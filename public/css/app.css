@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* ———————————————————— Clear Default Style ———————————————————— */
+* {
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, textarea, input {
+  border: none;
+  outline: none;
+}
+
+/* ———————————————————— Global Custom Class ———————————————————— */
+.flex-row {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ———————————————————— Global Variable ———————————————————— */
+:root {
+  /* Common */
+  --color-white: #fff;
+  --color-black: #000;
+  /* Light */
+  --color-white-light: #F9F2ED;
+  --color-blue-light: #3AB0FF;
+  --color-orange-light: #FFB562;
+  --color-red-light: #F87474;
+}
+
+/* Desktop */
+@media only screen and (min-width: 1300px) {
+  :root {
+    --font-h1: 4.5rem;
+    --font-h2: 3.5rem;
+    --font-h3: 2.3rem;
+    --font-h4: 1.8rem;
+    --font-h5: 1.6rem;
+    --font-h6: 1.3rem;
+  }
+}
+/* Tablet Computer */
+@media only screen and (max-width: 768px) {
+  :root {
+    --font-h1: 4.5rem;
+    --font-h2: 3.5rem;
+    --font-h3: 2.3rem;
+    --font-h4: 1.75rem;
+    --font-h5: 1.5rem;
+    --font-h6: 1.3rem;
+  }
+}
+/* Phone */
+@media only screen and (max-width: 768px) {
+  :root {
+    --font-h1: 3.5rem;
+    --font-h2: 3rem;
+    --font-h3: 2.5rem;
+    --font-h4: 1.55rem;
+    --font-h5: 1.4rem;
+    --font-h6: 1.4rem;
+  }
+}
