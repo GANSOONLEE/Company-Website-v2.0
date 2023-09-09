@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('contact_phone', 14);
             $table->string('whatsapp_phone', 14);
             $table->string('email')->unique();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
     }
 };

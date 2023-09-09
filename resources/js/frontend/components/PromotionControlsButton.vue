@@ -2,6 +2,7 @@
   <button
     type="button"
     data-bs-target="#promotionControls"
+    data-bs-interval="5"
     :data-bs-slide-to="index"
     :class="{'active': index === 0}"
     :aria-current="index === 0 ? 'true' : ''"

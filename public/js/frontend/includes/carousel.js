@@ -16791,10 +16791,10 @@ const replacer = (_key, val) => {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -16809,10 +16809,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81 ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -16826,6 +16826,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     type: "button",
     "data-bs-target": "#promotionControls",
+    "data-bs-interval": "5",
     "data-bs-slide-to": $props.index,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
       'active': $props.index === 0
@@ -16858,25 +16859,25 @@ exports["default"] = (sfc, props) => {
 
 /***/ }),
 
-/***/ "./resources/js/frontend/components/PromotionButton.vue":
-/*!**************************************************************!*\
-  !*** ./resources/js/frontend/components/PromotionButton.vue ***!
-  \**************************************************************/
+/***/ "./resources/js/frontend/components/PromotionControlsButton.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/frontend/components/PromotionControlsButton.vue ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _PromotionButton_vue_vue_type_template_id_0c96052b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PromotionButton.vue?vue&type=template&id=0c96052b */ "./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b");
-/* harmony import */ var _PromotionButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PromotionButton.vue?vue&type=script&lang=js */ "./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js");
+/* harmony import */ var _PromotionControlsButton_vue_vue_type_template_id_056ecb81__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PromotionControlsButton.vue?vue&type=template&id=056ecb81 */ "./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81");
+/* harmony import */ var _PromotionControlsButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PromotionControlsButton.vue?vue&type=script&lang=js */ "./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js");
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_PromotionButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_PromotionButton_vue_vue_type_template_id_0c96052b__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/frontend/components/PromotionButton.vue"]])
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_PromotionControlsButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_PromotionControlsButton_vue_vue_type_template_id_056ecb81__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/frontend/components/PromotionControlsButton.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -16885,32 +16886,32 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************/
+/***/ "./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionControlsButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PromotionButton.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionControlsButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PromotionControlsButton.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=script&lang=js");
  
 
 /***/ }),
 
-/***/ "./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b ***!
-  \********************************************************************************************/
+/***/ "./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81 ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionButton_vue_vue_type_template_id_0c96052b__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionControlsButton_vue_vue_type_template_id_056ecb81__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionButton_vue_vue_type_template_id_0c96052b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PromotionButton.vue?vue&type=template&id=0c96052b */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionButton.vue?vue&type=template&id=0c96052b");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PromotionControlsButton_vue_vue_type_template_id_056ecb81__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PromotionControlsButton.vue?vue&type=template&id=056ecb81 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/frontend/components/PromotionControlsButton.vue?vue&type=template&id=056ecb81");
 
 
 /***/ }),
@@ -17228,11 +17229,11 @@ var __webpack_exports__ = {};
   \****************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _components_PromotionButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PromotionButton.vue */ "./resources/js/frontend/components/PromotionButton.vue");
+/* harmony import */ var _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PromotionControlsButton.vue */ "./resources/js/frontend/components/PromotionControlsButton.vue");
 
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
-app.component('promotion-button', _components_PromotionButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+app.component('promotion-controls-button', _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.mount('#promotionControls');
 })();
 

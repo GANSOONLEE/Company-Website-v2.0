@@ -8,6 +8,10 @@
     <!-- csrf -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- 導入應用文件 -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="{{asset('js/js.app')}}"></script>
+
     <!-- 導入全局文件 -->
     <link rel="stylesheet" href="{{asset('css/frontend/global.css')}}">
     <script src="{{asset('js/frontend/global.js')}}"></script>
@@ -24,6 +28,8 @@
     <title>{{env('APP_NAME')}} | @yield('title')</title>
 </head>
 <body>
+
+    @include('frontend.includes.navbar')
 
     <div class="app">
 

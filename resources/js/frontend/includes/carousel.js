@@ -1,8 +1,8 @@
 
 import { createApp } from 'vue';
-import PromotionButton from '../components/PromotionButton.vue';
+import PromotionControlsButton from '../components/PromotionControlsButton.vue';
  
 const app = createApp({});
 
-app.component('promotion-button', PromotionButton);
+app.component('promotion-controls-button', PromotionControlsButton);
 app.mount('#promotionControls');

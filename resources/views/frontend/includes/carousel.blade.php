@@ -2,15 +2,7 @@
 <div id="promotionControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         @foreach ($promotionImages as $index => $promotionImage)
-        {{-- <button
-            type="button"
-            data-bs-target="#promotionControls"
-            data-bs-slide-to="{{$index}}"
-            class="{{$index==0?'active':''}}"
-            aria-current="{{$index==0?'true':''}}"
-            ia-label="Slide {{$index+1}}">
-        </button> --}}
-        <promotion-button :index="{{ $index }}"></promotion-button>
+        <promotion-controls-button :index="{{ $index }}"></promotion-controls-button>
         @endforeach
       </div>
     <div class="carousel-inner">

@@ -26,7 +26,9 @@ class User extends Authenticatable
         'birthday',
         'address',
         'profession',
-        'shop_name'
+        'shop_name',
+        'provider_id',
+        'avatar',
     ];
 
     /**
