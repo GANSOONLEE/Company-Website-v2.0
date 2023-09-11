@@ -3,6 +3,8 @@
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/frontend/global.js": "/js/frontend/global.js",
     "/js/frontend/includes/carousel.js": "/js/frontend/includes/carousel.js",
-    "/css/frontend/global.css": "/css/frontend/global.css",
+    "/js/frontend/includes/navbar.js": "/js/frontend/includes/navbar.js",
+    "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
+    "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
     "/css/app.css": "/css/app.css"
 }

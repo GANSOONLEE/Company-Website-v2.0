@@ -15,10 +15,11 @@ a {
   text-decoration: none;
 }
 
-ul, ol, li{
+ul, ol, dl {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 
 button, textarea, input {
   border: none;
@@ -56,10 +57,14 @@ button, textarea, input {
     --font-h4: 1.8rem;
     --font-h5: 1.6rem;
     --font-h6: 1.3rem;
+    --font-title: 1.2rem;
+    --font-subtitle: 1.1rem;
+    --font-content: 1rem;
+    --font-remark: .8rem;
   }
 }
 /* Tablet Computer */
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 867px) {
   :root {
     --font-h1: 4.5rem;
     --font-h2: 3.5rem;
@@ -67,10 +72,14 @@ button, textarea, input {
     --font-h4: 1.75rem;
     --font-h5: 1.5rem;
     --font-h6: 1.3rem;
+    --font-title: 1.1rem;
+    --font-subtitle: 1rem;
+    --font-content: 1rem;
+    --font-remark: .9rem;
   }
 }
 /* Phone */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 867px) {
   :root {
     --font-h1: 3.5rem;
     --font-h2: 3rem;
@@ -78,5 +87,9 @@ button, textarea, input {
     --font-h4: 1.55rem;
     --font-h5: 1.4rem;
     --font-h6: 1.4rem;
+    --font-title: 1.1rem;
+    --font-subtitle: 1rem;
+    --font-content: .9rem;
+    --font-remark: .8rem;
   }
 }

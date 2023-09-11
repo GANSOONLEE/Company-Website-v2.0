@@ -10726,6 +10726,18 @@ return jQuery;
 } );
 
 
+/***/ }),
+
+/***/ "./resources/js/frontend/includes/navbar.js":
+/*!**************************************************!*\
+  !*** ./resources/js/frontend/includes/navbar.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
 /***/ })
 
 /******/ 	});
@@ -10776,6 +10788,8 @@ var __webpack_exports__ = {};
   \*****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var _frontend_includes_navbar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../frontend/includes/navbar.js */ "./resources/js/frontend/includes/navbar.js");
+
 
 })();
 

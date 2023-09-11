@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller{
@@ -24,8 +25,10 @@ class HomeController extends Controller{
             return strpos($file, 'promotion') !== false;
         });
 
-        $permission = Permission::where('name', 'create_order')->first();
-dd($permission->roles()->toSql(), $permission->roles()->getBindings());
+        # TODO 等待注冊和登入功能后 測試能不能獲取用戶角色
+        // $user = \App\Models\User::where('email', 'vincentgan0402@gmail.com')
+        //     ->first();
+        // dd($user->getRole());
 
         return view('frontend.home',compact(
             'promotionImages'

@@ -7,6 +7,12 @@
 
     @include('frontend.includes.carousel')
 
+    <div class="content">
+
+        
+
+    </div>
+
 @endsection
 
 @push('after-body')
