@@ -2,10 +2,10 @@
 <footer class="footer display-column" id="footer">
 
     <!-- footer header -->
-    <div class="footer-header display-column">
+    {{-- <div class="footer-header display-column">
         <p class="footer-header-title">Site Map</p>
         <p class="footer-header-subtitle"></p>
-    </div>
+    </div> --}}
 
     <!-- footer body -->
     <div class="footer-body">
@@ -41,10 +41,22 @@
                         <i class="fa-solid fa-address-card"></i>About Us
                         </li></a>
                     <a href="#"><li class="footer-link">
-                        <i></i>Product
+                        <i class="fa-solid fa-cube"></i>Product
                     </li></a>
                     <a href="#"><li class="footer-link">
-                        <i></i>Contact
+                        <i class="fa-solid fa-envelope"></i>Contact
+                    </li></a>
+                </ul>
+            </section>
+
+            <section class="footer-link-section">
+                <p class="footer-link-section-title">Policy</p>
+                <ul class="footer-link-section-list">
+                    <a href="{{ route('policy.privacy-policy') }}" target="_blank"><li class="footer-link">
+                        Privacy Policy
+                    </li></a>
+                    <a href="{{ route('policy.terms-of-use') }}" target="_blank"><li class="footer-link">
+                        Terms of Use
                     </li></a>
                 </ul>
             </section>
@@ -60,15 +72,15 @@
             </div>
 
             <!-- information area -->
-            <div class="information-area flex-row">
+            <div class="information-area">
 
                 <!-- address & contact number -->
                 <div>
-                    <div class="contact-number flex-row">
+                    <div class="contact-number">
                         <i class="fa-solid fa-phone"></i>
                         <p>012-3456 7890</p>
                     </div>
-                    <div class="address flex-row">
+                    <div class="address">
                         <i class="fa-solid fa-location-dot"></i>
                         <p>No.5 ,Jalan Emas 5,<br>
                         Taman Emas, Hulu Yam, <br>

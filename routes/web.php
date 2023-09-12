@@ -18,15 +18,6 @@ use App\Domains\Notification\Services\RegisterVerifyService;
 
 require_once app_path('Helpers/Global/SystemHelper.php');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/email', [RegisterVerifyService::class, 'verify']);
-
-
-Route::get('/email', [RegisterVerifyService::class, 'verify']);
-
 /**
  * Frontend
  * Not need to login or get the authorize
@@ -35,6 +26,8 @@ Route::get('/email', [RegisterVerifyService::class, 'verify']);
 Route::group(['as' => 'frontend.', 'me'], function () {
     includeRouteFiles(__DIR__ . '/frontend/');
 });
+
+
 
 /**
  * Backend Customer
@@ -53,6 +46,30 @@ Route::group(['prefix' => 'customer', 'as' => 'backend.customer.'], function () 
 Route::group(['prefix' => 'admin', 'as' => 'backend.admin.'], function () {
     includeRouteFiles(__DIR__ . '/backend/admin/');
 });
+
+
+
+/**
+ * Policy
+ * website information policy
+ */
+
+Route::group(['prefix' => 'policy', 'as' => 'policy.'], function () {
+    includeRouteFiles(__DIR__ . '/policy/');
+});
+
+
+
+/**
+ * Auth
+ * provide authorize for local site
+ */
+
+Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
+    includeRouteFiles(__DIR__ . '/auth/');
+});
+
+
 
 /**
  * Services

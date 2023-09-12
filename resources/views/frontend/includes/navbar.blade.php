@@ -8,6 +8,8 @@
     <label for="menu-button">
         <i class="fa-solid fa-bars"></i>
     </label>
+
+    <!-- #TODO 加入路由 -->
     <div class="menu">
         <ul class="navbar-links common">
             <a href="" class="navbar-link">
@@ -29,7 +31,7 @@
                 <a href="" class="navbar-link primary">
                     <li class="navbar-link-label">Login</li>
                 </a>
-                <a href="" class="navbar-link">
+                <a href="{{ route('auth.register') }}" class="navbar-link">
                     <li class="navbar-link-label">Register</li>
                 </a>
             @endguest
