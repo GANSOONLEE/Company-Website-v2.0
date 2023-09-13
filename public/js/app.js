@@ -26395,6 +26395,45 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
+/***/ "./resources/scss/backend/user/includes/sidebar.scss":
+/*!***********************************************************!*\
+  !*** ./resources/scss/backend/user/includes/sidebar.scss ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/scss/frontend/category.scss":
+/*!***********************************************!*\
+  !*** ./resources/scss/frontend/category.scss ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/scss/frontend/includes/footer.scss":
+/*!******************************************************!*\
+  !*** ./resources/scss/frontend/includes/footer.scss ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/scss/frontend/includes/navbar.scss":
 /*!******************************************************!*\
   !*** ./resources/scss/frontend/includes/navbar.scss ***!
@@ -26434,10 +26473,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/auth/register.scss":
-/*!*******************************************!*\
-  !*** ./resources/scss/auth/register.scss ***!
-  \*******************************************/
+/***/ "./resources/scss/auth/login.scss":
+/*!****************************************!*\
+  !*** ./resources/scss/auth/login.scss ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -26447,10 +26486,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/frontend/includes/footer.scss":
-/*!******************************************************!*\
-  !*** ./resources/scss/frontend/includes/footer.scss ***!
-  \******************************************************/
+/***/ "./resources/scss/auth/register.scss":
+/*!*******************************************!*\
+  !*** ./resources/scss/auth/register.scss ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31072,11 +31111,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/frontend/includes/footer": 0,
 /******/ 			"css/auth/register": 0,
+/******/ 			"css/auth/login": 0,
 /******/ 			"css/auth/global": 0,
 /******/ 			"css/app": 0,
-/******/ 			"css/frontend/includes/navbar": 0
+/******/ 			"css/frontend/includes/navbar": 0,
+/******/ 			"css/frontend/includes/footer": 0,
+/******/ 			"css/frontend/category": 0,
+/******/ 			"css/backend/user/includes/sidebar": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -31126,12 +31168,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/scss/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/scss/auth/global.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/scss/auth/register.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/scss/frontend/includes/footer.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/frontend/includes/footer","css/auth/register","css/auth/global","css/app","css/frontend/includes/navbar"], () => (__webpack_require__("./resources/scss/frontend/includes/navbar.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/auth/global.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/auth/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/auth/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/backend/user/includes/sidebar.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/frontend/category.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/frontend/includes/footer.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/auth/register","css/auth/login","css/auth/global","css/app","css/frontend/includes/navbar","css/frontend/includes/footer","css/frontend/category","css/backend/user/includes/sidebar"], () => (__webpack_require__("./resources/scss/frontend/includes/navbar.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

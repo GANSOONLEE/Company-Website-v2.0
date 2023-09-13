@@ -30,6 +30,7 @@ class User extends Authenticatable
         'shop_name',
         'provider_id',
         'avatar',
+        'remember_token'
     ];
 
     /**
@@ -39,7 +40,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -57,9 +58,40 @@ class User extends Authenticatable
      */
 
     public function getRole(){
-        return DB::table('roles')
-            ->where('user_name', $this->name)
-            ->get();
+
+        return DB::table('users_roles')
+        ->select('user_email', 'role_name')
+        ->where('user_email', $this->email)
+        ->get()
+        ->pluck('role_name');
+    }
+
+    public function getRoleEntity(){
+
+        $role = DB::table('users_roles')
+        ->select('user_email', 'role_name')
+        ->where('user_email', $this->email)
+        ->get()
+        ->pluck('role_name');
+
+        $roleOfUser = Role::where('name', $role)->first();
+
+        return $roleOfUser;
+    }
+
+    public function isAdmin(){
+
+        $roles = $this->getRole();
+        $needle = 'admin';
+        return strpos($roles, $needle);
+    }
+
+    public function isUser(){
+
+        $roles = $this->getRole();
+        $needle = 'user';
+        return strpos($roles, $needle);
+
     }
 
 }

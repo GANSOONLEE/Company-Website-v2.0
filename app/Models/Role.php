@@ -11,9 +11,10 @@ class Role extends Model
     use HasFactory;
 
     protected $table = 'roles';
-    protected $primaryKey = 'name';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'name'
+        'name',
+        'weights'
     ];
 
     /**
@@ -38,14 +39,43 @@ class Role extends Model
             ->toArray();
     }
 
+    // public function hasPermission($permissionName)
+    // {
+    //     $count = DB::table('roles_permissions')
+    //         ->where('role_name', $this->name)
+    //         ->where('permission_name', $permissionName)
+    //         ->count();
+
+    //     return $count>0 ;
+    // }
+
     public function hasPermission($permissionName)
     {
+
         $count = DB::table('roles_permissions')
             ->where('role_name', $this->name)
             ->where('permission_name', $permissionName)
             ->count();
 
-        return $count > 0;
+        if ($count > 0) {
+            return true;
+        }
+
+        $weight = (int)$this->weight;
+        $rolesWithLowerWeight = Role::where('weight', '<', $weight)->get()->pluck('name');
+
+        foreach ($rolesWithLowerWeight as $roleName) {
+            $count = DB::table('roles_permissions')
+                ->where('role_name', $roleName)
+                ->where('permission_name', $permissionName)
+                ->count();
+
+            if ($count > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

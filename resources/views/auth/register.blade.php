@@ -6,28 +6,29 @@
 @section('app')
 
     <!-- form -->
-    <form action="" class="form" id="form">
-
+    <form action="{{ route('auth.register.post') }}" class="form" id="form" method="POST">
+        @csrf
         <!-- Header -->
         <!-- Title -->
         <div class="form-header">
             <p class="form-header-title">Register</p>
-            <img class="form-header-logo" src="{{asset('image/logo.png')}}" alt="">
+            <a href="{{ route('frontend.home') }}"><img class="form-header-logo" src="{{asset('image/logo.png')}}" alt="">
+            </a>
         </div>
         
         <!-- Body -->
         <!-- input area -->
         <div class="form-body">
+            
             @include('auth.forms.register-form')
         </div>
 
         <!-- Footer -->
-        <!-- button area -->
-        <div class="footer">
-
+        <!-- already have account -->
+       
+        <div class="form-footer flex-row">
+            <p class="login-text">Already have account?</p><a href="{{ route('auth.login') }}">Click here</a>
         </div>
-
-
     </form>
 
 @endsection

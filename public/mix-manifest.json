@@ -2,13 +2,17 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
+    "/js/backend/user/includes/sidebar.js": "/js/backend/user/includes/sidebar.js",
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/frontend/global.js": "/js/frontend/global.js",
     "/js/frontend/includes/carousel.js": "/js/frontend/includes/carousel.js",
     "/js/frontend/includes/navbar.js": "/js/frontend/includes/navbar.js",
-    "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
     "/css/auth/register.css": "/css/auth/register.css",
+    "/css/auth/login.css": "/css/auth/login.css",
     "/css/auth/global.css": "/css/auth/global.css",
     "/css/app.css": "/css/app.css",
-    "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css"
+    "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
+    "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
+    "/css/frontend/category.css": "/css/frontend/category.css",
+    "/css/backend/user/includes/sidebar.css": "/css/backend/user/includes/sidebar.css"
 }

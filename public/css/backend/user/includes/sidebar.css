@@ -1,0 +1,114 @@
+aside.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18vw;
+  height: 100vh;
+  background-color: #47576B;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  /* Logo */
+  /* Link */
+}
+aside.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+aside.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+aside.sidebar div.sidebar-logo {
+  position: sticky;
+  top: 0;
+  background-color: #414f5e;
+}
+aside.sidebar div.sidebar-logo img.sidebar-logo-image {
+  padding: 1rem 4rem;
+  width: 100%;
+}
+aside.sidebar div.link-section {
+  width: 100%;
+  margin-bottom: auto;
+}
+aside.sidebar div.link-section section.link-container div.link-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1.4rem;
+  width: 100%;
+  color: #fff;
+  background-color: #314158;
+  cursor: pointer;
+  font-size: var(--font-content);
+}
+aside.sidebar div.link-section section.link-container div.link-title i.link-title-icon {
+  font-size: 0.8rem;
+  margin-right: 1.2rem;
+}
+aside.sidebar div.link-section section.link-container div.link-title p.link-title-text {
+  margin-right: auto;
+}
+aside.sidebar div.link-section section.link-container div.link-title i.fa-angle-up {
+  transition: all 0.12s ease-in-out;
+}
+aside.sidebar div.link-section section.link-container div.link-title.active i.fa-angle-up {
+  transform: rotateZ(180deg);
+}
+aside.sidebar div.link-section section.link-container div.link-title:hover, aside.sidebar div.link-section section.link-container div.link-title.active {
+  background-color: #242f3d;
+  color: #fff;
+}
+aside.sidebar div.link-section section.link-container ul {
+  display: none;
+  flex-direction: column;
+  color: white;
+  font-size: 1.4rem;
+  padding: 0;
+  background-color: red;
+  font-size: var(--font-remark);
+}
+aside.sidebar div.link-section section.link-container ul a {
+  width: 100%;
+}
+aside.sidebar div.link-section section.link-container ul a li {
+  background-color: #1F2D3E;
+  padding: 0.8rem 2rem;
+  width: 100%;
+}
+aside.sidebar div.link-section section.link-container ul a li:hover {
+  background-color: #17202b;
+}
+aside.sidebar div.account-area {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.1333333333);
+  display: flex;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+  justify-content: flex-start;
+  align-items: center;
+  justify-self: flex-end;
+}
+aside.sidebar div.account-area div.avatar {
+  height: 3rem;
+}
+aside.sidebar div.account-area div.avatar img.avatar-image {
+  border-radius: 6px;
+  height: 100%;
+  padding: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.4666666667);
+}
+aside.sidebar div.account-area div.action p {
+  margin: 0;
+  margin-bottom: 0;
+}
+aside.sidebar div.account-area div.action p.name {
+  font-size: var(--font-content);
+  font-weight: bold;
+  color: #fff;
+}
+aside.sidebar div.account-area div.action p.logout {
+  font-size: var(--font-remark);
+  color: white;
+}

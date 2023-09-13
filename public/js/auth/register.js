@@ -10776,8 +10776,13 @@ var __webpack_exports__ = {};
   \***************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-//DOM Elements
 
+
+/**
+ * Multi Step Program Bar
+ */
+
+// #region
 
 jquery__WEBPACK_IMPORTED_MODULE_0__('button').click(function (event) {
   event.stopPropagation();
@@ -10797,24 +10802,79 @@ var updateSteps = function updateSteps(e) {
     circle.classList["".concat(index < currentStep ? "add" : "remove")]("active");
   });
 
+  // finalWidth = ((2 * circles.length) + 1);
+  // initialWidth = (((circles.length / (2 * circles.length)) + 1));
   // update progress bar width based on current step
   progressBar.style.width = "".concat((currentStep - 1) / (circles.length - 1) * 100, "%");
+  jquery__WEBPACK_IMPORTED_MODULE_0__('.input-area').removeClass('active');
+  jquery__WEBPACK_IMPORTED_MODULE_0__('.input-area').eq(currentStep - 1).addClass('active');
 
   // check if current step is last step or first step and disable corresponding buttons
   if (currentStep === circles.length) {
-    buttons[1].disabled = true;
+    // last page
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#prev").prop("disabled", false);
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#next").hide();
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#submit-button").show();
   } else if (currentStep === 1) {
-    buttons[0].disabled = true;
+    // first page
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#prev").prop("disabled", true);
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#next").prop("disabled", false);
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#next").show();
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#submit-button").hide();
   } else {
     buttons.forEach(function (button) {
       return button.disabled = false;
     });
+    jquery__WEBPACK_IMPORTED_MODULE_0__("#submit-button").hide();
   }
 };
 
 // add click event listeners to all buttons
 buttons.forEach(function (button) {
   button.addEventListener("click", updateSteps);
+});
+
+// #endregion
+
+/**
+ * Before Submit Verify
+ */
+
+jquery__WEBPACK_IMPORTED_MODULE_0__("#form").submit(function (event) {
+  event.preventDefault();
+
+  // get the value from form
+  var password = jquery__WEBPACK_IMPORTED_MODULE_0__("#password").val();
+  var confirmPassword = jquery__WEBPACK_IMPORTED_MODULE_0__("#confirm_password").val();
+  var email = jquery__WEBPACK_IMPORTED_MODULE_0__("#email").val();
+
+  // check the password are same
+  if (password !== confirmPassword) {
+    alert("Password nad Comfirm Password aren't same!");
+    return;
+  }
+
+  // request the email name-list from backend
+  jquery__WEBPACK_IMPORTED_MODULE_0__.ajax({
+    url: "/auth/register/valid",
+    method: "POST",
+    data: {
+      email: email
+    },
+    headers: {
+      'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0__('meta[name="csrf-token"]').attr('content')
+    },
+    success: function success(response) {
+      if (response.emailExists) {
+        alert("This email address already have.");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0__("#form").unbind('submit').submit();
+      }
+    },
+    error: function error() {
+      alert("Something error");
+    }
+  });
 });
 })();
 

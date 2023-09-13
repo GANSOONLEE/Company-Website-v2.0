@@ -25,11 +25,6 @@ class HomeController extends Controller{
             return strpos($file, 'promotion') !== false;
         });
 
-        # TODO 等待注冊和登入功能后 測試能不能獲取用戶角色
-        // $user = \App\Models\User::where('email', 'vincentgan0402@gmail.com')
-        //     ->first();
-        // dd($user->getRole());
-
         return view('frontend.home',compact(
             'promotionImages'
         ));

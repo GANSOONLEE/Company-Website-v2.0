@@ -1,6 +1,12 @@
-//DOM Elements
+
 
 import $ from 'jquery';
+
+/**
+ * Multi Step Program Bar
+ */
+
+// #region
 
 $('button').click(function(event){
     event.stopPropagation();
@@ -22,20 +28,79 @@ const updateSteps = (e) => {
         circle.classList[`${index < currentStep ? "add" : "remove"}`]("active");
     });
 
+    // finalWidth = ((2 * circles.length) + 1);
+    // initialWidth = (((circles.length / (2 * circles.length)) + 1));
     // update progress bar width based on current step
-    progressBar.style.width = `${((currentStep - 1) / (circles.length - 1)) * 100}%`;
+    progressBar.style.width = `${(((currentStep - 1) / (circles.length - 1) ) * 100)}%`;
+
+    $('.input-area').removeClass('active');
+    $('.input-area').eq(currentStep-1).addClass('active');
 
     // check if current step is last step or first step and disable corresponding buttons
     if (currentStep === circles.length) {
-        buttons[1].disabled = true;
+        // last page
+        $("#prev").prop("disabled", false);
+
+        $("#next").hide();
+
+        $("#submit-button").show();
     } else if (currentStep === 1) {
-        buttons[0].disabled = true;
+        // first page
+        $("#prev").prop("disabled", true);
+
+        $("#next").prop("disabled", false);
+        $("#next").show();
+
+        $("#submit-button").hide();
     } else {
         buttons.forEach((button) => (button.disabled = false));
+        $("#submit-button").hide();
     }
 };
 
 // add click event listeners to all buttons
 buttons.forEach((button) => {
     button.addEventListener("click", updateSteps);
+});
+
+// #endregion
+
+
+/**
+ * Before Submit Verify
+ */
+
+$("#form").submit(function (event) {
+    event.preventDefault();
+
+    // get the value from form
+    const password = $("#password").val();
+    const confirmPassword = $("#confirm_password").val();
+    const email = $("#email").val();
+
+    // check the password are same
+    if (password !== confirmPassword) {
+        alert("Password nad Comfirm Password aren't same!");
+        return;
+    }
+
+    // request the email name-list from backend
+    $.ajax({
+        url: "/auth/register/valid",
+        method: "POST",
+        data: { email: email },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.emailExists) {
+                alert("This email address already have.");
+            } else {
+                $("#form").unbind('submit').submit();
+            }
+        },
+        error: function () {
+            alert("Something error");
+        }
+    });
 });

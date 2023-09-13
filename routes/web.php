@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Domains\Notification\Services\RegisterVerifyService;
+use App\Http\Controllers\LocaleController;
 
 
 /*
@@ -18,12 +19,16 @@ use App\Domains\Notification\Services\RegisterVerifyService;
 
 require_once app_path('Helpers/Global/SystemHelper.php');
 
+// Language
+
+Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
+
 /**
  * Frontend
  * Not need to login or get the authorize
  */
 
-Route::group(['as' => 'frontend.', 'me'], function () {
+Route::group(['as' => 'frontend.'], function () {
     includeRouteFiles(__DIR__ . '/frontend/');
 });
 
@@ -34,8 +39,8 @@ Route::group(['as' => 'frontend.', 'me'], function () {
  * Need to login to get the authorize
  */
 
-Route::group(['prefix' => 'customer', 'as' => 'backend.customer.'], function () {
-    includeRouteFiles(__DIR__ . '/backend/customer/');
+Route::group(['prefix' => 'user', 'as' => 'backend.user.', 'middleware' => 'user'], function () {
+    includeRouteFiles(__DIR__ . '/backend/user/');
 });
 
 /**
@@ -46,7 +51,6 @@ Route::group(['prefix' => 'customer', 'as' => 'backend.customer.'], function () 
 Route::group(['prefix' => 'admin', 'as' => 'backend.admin.'], function () {
     includeRouteFiles(__DIR__ . '/backend/admin/');
 });
-
 
 
 /**
