@@ -18,8 +18,6 @@ aside.sidebar::-webkit-scrollbar-track {
   background: transparent;
 }
 aside.sidebar div.sidebar-logo {
-  position: sticky;
-  top: 0;
   background-color: #414f5e;
 }
 aside.sidebar div.sidebar-logo img.sidebar-logo-image {
@@ -39,6 +37,7 @@ aside.sidebar div.link-section section.link-container div.link-title {
   color: #fff;
   background-color: #314158;
   cursor: pointer;
+  padding: 0.8rem 1rem;
   font-size: var(--font-content);
 }
 aside.sidebar div.link-section section.link-container div.link-title i.link-title-icon {
@@ -46,6 +45,8 @@ aside.sidebar div.link-section section.link-container div.link-title i.link-titl
   margin-right: 1.2rem;
 }
 aside.sidebar div.link-section section.link-container div.link-title p.link-title-text {
+  margin-bottom: 0;
+  margin: 0;
   margin-right: auto;
 }
 aside.sidebar div.link-section section.link-container div.link-title i.fa-angle-up {

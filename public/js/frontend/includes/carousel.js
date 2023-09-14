@@ -17228,12 +17228,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/frontend/includes/carousel.js ***!
   \****************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PromotionControlsButton.vue */ "./resources/js/frontend/components/PromotionControlsButton.vue");
+/* harmony import */ var _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PromotionControlsButton.vue */ "./resources/js/frontend/components/PromotionControlsButton.vue");
 
-
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
-app.component('promotion-controls-button', _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var app = createApp({});
+app.component('promotion-controls-button', _components_PromotionControlsButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 app.mount('#promotionControls');
 })();
 

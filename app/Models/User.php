@@ -69,10 +69,14 @@ class User extends Authenticatable
     public function getRoleEntity(){
 
         $role = DB::table('users_roles')
-        ->select('user_email', 'role_name')
-        ->where('user_email', $this->email)
-        ->get()
-        ->pluck('role_name');
+            ->select('user_email', 'role_name')
+            ->where('user_email', $this->email)
+            ->get()
+            ->pluck('role_name');
+
+        if(!$role){
+            return false;
+        }
 
         $roleOfUser = Role::where('name', $role)->first();
 

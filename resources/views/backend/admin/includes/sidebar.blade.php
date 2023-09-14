@@ -50,8 +50,8 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.create-category') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.edit-category') }}</li></a>
+                <a href="{{ route('backend.admin.category.category-create') }}"><li>{{ __('sidebar.category-create') }}</li></a>
+                <a href="{{ route('backend.admin.category.category-edit') }}"><li>{{ __('sidebar.category-edit') }}</li></a>
             </ul>
         </section>
         @endif

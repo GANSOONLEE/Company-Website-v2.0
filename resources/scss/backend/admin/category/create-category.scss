@@ -1,0 +1,72 @@
+
+form.form#form{
+
+    // Button
+    div.button-area{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    // Category Cover
+    div.category-cover-area{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        // Preview
+        div.preview{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+            $size: 16vw;
+            width: calc($size + 10%);
+            height: $size;
+            margin-right: 2rem;
+            img.category-cover-preview{
+                width: auto;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        // Upload
+        div.upload{
+            display: flex;
+            flex-direction: column;
+            // Label
+            label.form-label{
+                cursor: pointer;
+                border: 1px solid #e33d00;
+                border-radius: 4px;
+                padding: .4rem .8rem;
+                color: #e33d00;
+                width: 100%;
+                &:hover{
+                    background-color: #ffdbce;
+                }
+            }
+    
+            // Cover Upload
+            input[type="file"].category-cover{
+                display: none;
+            }
+        }
+    }
+
+
+
+    // Category Name
+    div.category-name-area{
+        
+    }
+
+}
+
+// Global
+.required::after{
+    content: '*';
+    color: red;
+    margin-left: .6rem;
+}

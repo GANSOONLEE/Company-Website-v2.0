@@ -4,8 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import $ from 'jquery'
 import './bootstrap.js';
 import { createApp } from 'vue';
+
+window.$ = $;
+window.createApp = createApp;
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin

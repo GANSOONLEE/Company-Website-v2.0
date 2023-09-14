@@ -20,8 +20,8 @@ return [
     // Category
     "category" => '品类',
 
-    "create-category" => '新增品类',
-    "edit-category" => '编辑品类',
+    'category-create' => '新增品类',
+    'category-edit' => '编辑品类',
 
 
     // Brand

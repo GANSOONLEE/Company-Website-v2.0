@@ -2,7 +2,9 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
-    "/js/backend/user/includes/sidebar.js": "/js/backend/user/includes/sidebar.js",
+    "/js/backend/admin/category/create-category.js": "/js/backend/admin/category/create-category.js",
+    "/js/backend/admin/category/management-category.js": "/js/backend/admin/category/management-category.js",
+    "/js/backend/admin/includes/sidebar.js": "/js/backend/admin/includes/sidebar.js",
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/frontend/global.js": "/js/frontend/global.js",
     "/js/frontend/includes/carousel.js": "/js/frontend/includes/carousel.js",
@@ -14,5 +16,9 @@
     "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
     "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
     "/css/frontend/category.css": "/css/frontend/category.css",
-    "/css/backend/user/includes/sidebar.css": "/css/backend/user/includes/sidebar.css"
+    "/css/backend/admin/layouts/page.css": "/css/backend/admin/layouts/page.css",
+    "/css/backend/admin/includes/sidebar.css": "/css/backend/admin/includes/sidebar.css",
+    "/css/backend/admin/category/management-category.css": "/css/backend/admin/category/management-category.css",
+    "/css/backend/admin/category/edit-category-form.css": "/css/backend/admin/category/edit-category-form.css",
+    "/css/backend/admin/category/create-category.css": "/css/backend/admin/category/create-category.css"
 }

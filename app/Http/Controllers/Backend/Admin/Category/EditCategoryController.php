@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend\Admin\Category;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller{
+class EditCategoryController extends Controller
+{
+    public function editCategory(){
 
-    public function category(){
+        // check permission
+        if(!(auth()->user()->getRoleEntity()->hasPermission('admin_category'))){
+            abort(403, 'Insufficient permissions');
+        };
 
         $disk = 'public';
         $directory = 'category';
@@ -36,15 +41,13 @@ class CategoryController extends Controller{
             }
             
             $categoryCover = [
-                'name' => $category->name,
+                'entity' => $category,
                 'cover' => $cover,
             ];
 
             $categoryData[] = $categoryCover;
         }
 
-        return view('frontend.category', compact('categoryData'));
-
+        return view('backend.admin.category.edit-category', compact('categoryData'));
     }
-    
 }

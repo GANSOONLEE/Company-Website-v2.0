@@ -19,8 +19,7 @@ return [
     // Category
     "category" => 'Category',
 
-    "create-category" => 'Create Category',
-    "edit-category" => 'Edit Category',
+    'category-management' => 'Category Maintain',
 
 
     // Brand

@@ -18,8 +18,8 @@ aside.sidebar{
 
     /* Logo */
     div.sidebar-logo{
-        position: sticky;
-        top: 0;
+        // position: sticky;
+        // top: 0;
         background-color: #414f5e;
         img.sidebar-logo-image{
             padding: 1rem 4rem;
@@ -42,14 +42,16 @@ aside.sidebar{
                 color: #fff;
                 background-color: #314158;
                 cursor: pointer;
+                padding: .8rem 1rem;
                 font-size: var(--font-content);
                 i.link-title-icon{
                     font-size: .8rem;
                     margin-right: 1.2rem;
                 }
                 p.link-title-text{
+                    margin-bottom: 0;
+                    margin: 0;
                     margin-right: auto;
-                    
                 }
                 i.fa-angle-up{
                     transition: all .12s ease-in-out;

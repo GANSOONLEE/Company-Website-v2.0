@@ -1,5 +1,4 @@
 
-import { createApp } from 'vue';
 import PromotionControlsButton from '../components/PromotionControlsButton.vue';
  
 const app = createApp({});

@@ -21,7 +21,7 @@
     <!-- 導入應用文件 -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('css/frontend/includes/navbar.css')}}"> --}}
-    <script src="{{asset('js/js.app')}}"></script>
+    <script src="{{mix('js/app.js')}}"></script>
 
     <!-- 導入全局文件 -->
     <link rel="stylesheet" href="{{asset('css/frontend/global.css')}}">
