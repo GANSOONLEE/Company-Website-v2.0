@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class CreateProductController extends Controller
@@ -18,7 +19,8 @@ class CreateProductController extends Controller
 
         $categoryData = Category::all();
         $brandData = Brand::all();
+        $typeData = Type::all();
 
-        return view('backend.admin.product.create-product', compact('categoryData', 'brandData'));
+        return view('backend.admin.product.create-product', compact('categoryData', 'brandData', 'typeData'));
     }
 }

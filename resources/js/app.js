@@ -7,8 +7,6 @@
 import $ from 'jquery'
 import './bootstrap.js';
 
-// Vue
-import VueRouter from 'vue-router'
 import { createApp } from 'vue';
 window.app = createApp({});
 

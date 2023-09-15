@@ -6,7 +6,6 @@ const scssFiles = glob.sync("resources/scss/**/*.scss");
 const jsFiles = glob.sync("resources/js/**/*.js");
 
 mix.webpackConfig({
-    mode: 'production', // 设置为 'production'
     stats: {
         children: true,
     },

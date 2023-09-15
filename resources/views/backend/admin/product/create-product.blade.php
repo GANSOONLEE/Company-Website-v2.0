@@ -14,7 +14,7 @@
         <notification-modal :modal-title="'{{ $title }}'" :modal-content="'{{ $content }}'" :modal-confirm="'{{ $confirm }}'"/></notification-modal>
     @endif
 
-    <form action="" method="POST" class="form" id="form">
+    <form action="" method="POST" class="form" id="form" enctype="multipart/form-data">
         @csrf
         @include('backend.admin.product.create-product-form')
     </form>
@@ -22,8 +22,8 @@
 @endsection
 
 @push('after-style')
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\crate-product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\crate-product-form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product-form.css') }}">
 @endpush
 
 @push('after-script')

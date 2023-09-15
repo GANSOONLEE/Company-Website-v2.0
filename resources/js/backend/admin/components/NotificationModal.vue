@@ -1,37 +1,7 @@
 
 <style>
 
-    div.notification-modal{
-        position: absolute;
-        top: 2rem;
-        left: 12.5%;
-        padding: 0 1rem;
-        --sidebar: 18vw;
-        margin-left: var(--sidebar);
-        width: calc((100vw - var(--sidebar)) / 2);
-        border-radius: 6px;
-        box-shadow: 0 0 20px #00006630;
-    }
-
-    .modal-header p{
-        font-size: var(--font-h4);
-        margin-bottom: 0;
-    }
-
-    .modal-body p{
-        margin-bottom: 0;
-    }
-
-    .modal-footer{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-
-    .modal-footer button{
-        border-radius: 4px;
-        padding: .4rem .8rem;
-    }
+    
 
 </style>
 
