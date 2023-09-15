@@ -9,8 +9,6 @@ return [
     "traffic-analysis" => '流量分析',
     "user-analysis" => '用户分析',
 
-    
-
     // Product
     "product" => '产品',
 
@@ -27,8 +25,8 @@ return [
     // Brand
     "brand" => '品牌',
 
-    "create-brand" => '新增品牌',
-    "edit-brand" => '编辑品牌',
+    "brand-create" => '新增品牌',
+    "brand-edit" => '编辑品牌',
  
 
     // Image

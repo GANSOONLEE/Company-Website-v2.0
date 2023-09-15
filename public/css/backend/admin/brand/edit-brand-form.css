@@ -1,0 +1,69 @@
+div.background-form {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: none;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4666666667);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  cursor: pointer;
+}
+
+section.form {
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6666666667);
+  border-radius: 6px;
+  width: 20%;
+  height: auto;
+  padding: 0.4rem;
+  cursor: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 2rem;
+}
+section.form div.form-header p.form-header-text {
+  font-size: var(--font-h4);
+}
+section.form * {
+  margin: 0;
+}
+section.form div.form-body form#form div.brand-cover {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+section.form div.form-body form#form div.brand-cover img.brand-cover-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.form div.form-body form#form div.brand-upload {
+  margin-bottom: 1rem;
+}
+section.form div.form-body form#form div.brand-upload label.brand-cover {
+  cursor: pointer;
+  border: 1px solid #e33d00;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  color: #e33d00;
+  width: 100%;
+}
+section.form div.form-body form#form div.brand-upload label.brand-cover:hover {
+  background-color: #ffdbce;
+}
+section.form div.form-body form#form div.brand-upload input#brand-cover {
+  display: none;
+}
+section.form div.form-body form#form button.update-button {
+  margin-top: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  width: 100%;
+  font-size: var(--font-remark);
+}

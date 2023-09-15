@@ -35,8 +35,8 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.create-product') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.edit-product') }}</li></a>
+                <a href="{{ route('backend.admin.product.product-create') }}"><li>{{ __('sidebar.create-product') }}</li></a>
+                <a href="{{ route('backend.admin.product.product-edit') }}"><li>{{ __('sidebar.edit-product') }}</li></a>
             </ul>
         </section>
         @endif
@@ -65,8 +65,8 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.create-brand') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.edit-brand') }}</li></a>
+                <a href="{{ route('backend.admin.brand.brand-create') }}"><li>{{ __('sidebar.brand-create') }}</li></a>
+                <a href="{{ route('backend.admin.brand.brand-edit') }}"><li>{{ __('sidebar.brand-edit') }}</li></a>
             </ul>
         </section>
         @endif
@@ -86,7 +86,7 @@
         </section>
         @endif
 
-        <!-- Order 产品 -->
+        <!-- Order 订单 -->
         @if(auth()->user()->getRoleEntity()->hasPermission('admin_order'))
         <section class="link-container">
             <div class="link-title">
@@ -97,7 +97,7 @@
             <ul>
                 <a href="#"><li>{{ __('sidebar.order-process') }}</li></a>
                 <a href="#"><li>{{ __('sidebar.order-holding') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.order-deleted') }}</li></a>
+                {{-- <a href="#"><li>{{ __('sidebar.order-deleted') }}</li></a> --}}
             </ul>
         </section>
         @endif

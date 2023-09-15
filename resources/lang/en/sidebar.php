@@ -25,8 +25,8 @@ return [
     // Brand
     "brand" => 'Brand',
 
-    "create-brand" => 'Create Brand',
-    "edit-brand" => 'Edit Brand',
+    "brand-create" => 'Create Brand',
+    "brand-edit" => 'Edit Brand',
 
 
     // Image

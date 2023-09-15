@@ -29,7 +29,7 @@
 
         @extends('backend.admin.includes.sidebar')
 
-        <div class="page">
+        <div class="page" id="page">
 
             <p class="page-title">@yield('title')</p>
 

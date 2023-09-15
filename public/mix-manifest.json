@@ -2,9 +2,12 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
+    "/js/backend/admin/brand/create-brand.js": "/js/backend/admin/brand/create-brand.js",
+    "/js/backend/admin/brand/management-brand.js": "/js/backend/admin/brand/management-brand.js",
     "/js/backend/admin/category/create-category.js": "/js/backend/admin/category/create-category.js",
     "/js/backend/admin/category/management-category.js": "/js/backend/admin/category/management-category.js",
     "/js/backend/admin/includes/sidebar.js": "/js/backend/admin/includes/sidebar.js",
+    "/js/backend/admin/product/create-product.js": "/js/backend/admin/product/create-product.js",
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/frontend/global.js": "/js/frontend/global.js",
     "/js/frontend/includes/carousel.js": "/js/frontend/includes/carousel.js",
@@ -16,9 +19,14 @@
     "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
     "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
     "/css/frontend/category.css": "/css/frontend/category.css",
+    "/css/backend/admin/product/create-product.css": "/css/backend/admin/product/create-product.css",
+    "/css/backend/admin/product/create-product-form.css": "/css/backend/admin/product/create-product-form.css",
     "/css/backend/admin/layouts/page.css": "/css/backend/admin/layouts/page.css",
     "/css/backend/admin/includes/sidebar.css": "/css/backend/admin/includes/sidebar.css",
     "/css/backend/admin/category/management-category.css": "/css/backend/admin/category/management-category.css",
     "/css/backend/admin/category/edit-category-form.css": "/css/backend/admin/category/edit-category-form.css",
-    "/css/backend/admin/category/create-category.css": "/css/backend/admin/category/create-category.css"
+    "/css/backend/admin/category/create-category.css": "/css/backend/admin/category/create-category.css",
+    "/css/backend/admin/brand/management-brand.css": "/css/backend/admin/brand/management-brand.css",
+    "/css/backend/admin/brand/edit-brand-form.css": "/css/backend/admin/brand/edit-brand-form.css",
+    "/css/backend/admin/brand/create-brand.css": "/css/backend/admin/brand/create-brand.css"
 }

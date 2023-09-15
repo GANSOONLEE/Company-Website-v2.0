@@ -16,12 +16,14 @@ form.form#form div.category-cover-area div.preview {
   width: calc(16vw + 10%);
   height: 16vw;
   margin-right: 2rem;
+  overflow: hidden;
 }
 form.form#form div.category-cover-area div.preview img.category-cover-preview {
   width: auto;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  pointer-events: none;
 }
 form.form#form div.category-cover-area div.upload {
   display: flex;

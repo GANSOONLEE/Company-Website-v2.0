@@ -13,4 +13,5 @@ return [
     'update' => '更新',
     'delete' => '删除',
     'submit' => '提交',
+    'search' => '搜索'
 ];

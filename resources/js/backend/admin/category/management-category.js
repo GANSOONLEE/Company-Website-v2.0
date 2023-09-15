@@ -51,6 +51,18 @@ function callbackEditForm(data){
 }
 
 /**
- * <<API CALL>>
- * Delete Category
+ * Search bar
  */
+
+$('#searchInput').on('input', function() {
+    var searchText = $(this).val().toLowerCase();
+    
+    $('.category-row-data').each(function() {
+        var rowText = $(this).find('.editable').text().toLowerCase();
+        if (rowText.includes(searchText)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});

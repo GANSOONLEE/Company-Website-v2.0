@@ -1,0 +1,2 @@
+/*! For license information please see create-category.js.LICENSE.txt */
+(()=>{"use strict";(e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})})({}),$("#category-cover").on("change",(function(){var e=this.files[0];if(e){var t=new FileReader;t.onload=function(e){$(".category-cover-preview").attr("src",e.target.result)},t.readAsDataURL(e)}}))})();

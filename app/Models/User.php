@@ -98,4 +98,53 @@ class User extends Authenticatable
 
     }
 
+    /**
+     * 
+     * @param string $roleName
+     * @return void
+     */
+
+    public function assignRole($roleName)
+    {
+        $this->attachRole($roleName); 
+    }
+
+    /**
+     * asset method（Create）
+     *
+     * @param string $roleName
+     * @return void
+     */
+    private function attachRole($roleName)
+    {
+        DB::table('users_roles')->insert([
+            'user_email' => $this->email,
+            'role_name' => $roleName,
+        ]);
+    }
+
+    /**
+     * Modifier role （Update）
+     * 
+     * @param string $newRoleName New role name
+     * @return void
+     */
+
+    public function updateRole($newRoleName){
+        DB::table('users_roles')
+            ->where('user_email', $this->email)
+            ->update(['role_name' => $newRoleName]);
+    }
+
+    /**
+     * Delete record from relation table（Delete）
+     *
+     * @return void
+     */
+    public function deleteWithRelatedRecords()
+    {
+        DB::table('users_roles')->where('user_email', $this->email)->delete();
+        $this->delete();
+    }
+
 }

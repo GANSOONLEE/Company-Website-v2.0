@@ -1,0 +1,2 @@
+/*! For license information please see create-brand.js.LICENSE.txt */
+(()=>{"use strict";(e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})})({}),$("#brand-cover").on("change",(function(){var e=this.files[0];if(e){var r=new FileReader;r.onload=function(e){$(".brand-cover-preview").attr("src",e.target.result)},r.readAsDataURL(e)}}))})();

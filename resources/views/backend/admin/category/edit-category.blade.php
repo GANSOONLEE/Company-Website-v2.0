@@ -14,6 +14,8 @@
         </a>
     </div>
 
+    <input type="text" id="searchInput" placeholder="{{ __('category.search') }}">
+
     <table class="data-table">
         <thead>
             <tr class="category-row-header">

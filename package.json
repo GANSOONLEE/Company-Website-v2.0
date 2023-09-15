@@ -1,6 +1,7 @@
 {
     "private": true,
     "type": "module",
+    "sideEffects": [],
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -29,6 +30,7 @@
         "vue-loader": "^17.2.2",
         "vue-template-compiler": "^2.7.14",
         "webpack": "^5.0.0",
+        "webpack-bundle-analyzer": "^4.9.1",
         "webpack-cli": "^4.0.0"
     },
     "dependencies": {

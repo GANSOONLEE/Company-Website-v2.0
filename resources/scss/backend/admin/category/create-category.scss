@@ -24,10 +24,12 @@ form.form#form{
             width: calc($size + 10%);
             height: $size;
             margin-right: 2rem;
+            overflow: hidden;
             img.category-cover-preview{
                 width: auto;
                 height: 100%;
                 object-fit: cover;
+                pointer-events: none;
             }
         }
 
