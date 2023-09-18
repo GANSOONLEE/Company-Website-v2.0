@@ -4,17 +4,11 @@
 
 @section('main')
 
-    @php
-        $title = env('APP_NAME');
-        $content = __('product.content');
-        $confirm = __('product.confirm');
-    @endphp
+    <div id="alert">
+        <bootstrap-alert></bootstrap-alert>
+    </div>
 
-    @if(isset($title))
-        <notification-modal :modal-title="'{{ $title }}'" :modal-content="'{{ $content }}'" :modal-confirm="'{{ $confirm }}'"/></notification-modal>
-    @endif
-
-    <form action="" method="POST" class="form" id="form" enctype="multipart/form-data">
+    <form action="{{ route('backend.admin.product.create') }}" method="POST" class="form" id="form" enctype="multipart/form-data">
         @csrf
         @include('backend.admin.product.create-product-form')
     </form>

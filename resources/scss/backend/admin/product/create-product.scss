@@ -11,6 +11,7 @@ div.notification-modal{
     width: calc((100vw - var(--sidebar)) / 2);
     border-radius: 6px;
     box-shadow: 0 0 20px #00006630;
+    display: none;
     .modal-header p{
         font-size: var(--font-h4);
         margin-bottom: 0;
@@ -32,3 +33,19 @@ div.notification-modal{
     }
 }
 
+/* ———————————————————— Layouts ———————————————————— */
+
+div.app{
+    background-color: #d9d9ff30;
+}
+
+/* ———————————————————— Alert ———————————————————— */
+div#alert{
+    position: sticky;
+    display: none;
+    top: 0;
+    left: 0;
+    div.alert{
+        width: 100%;
+    }
+}

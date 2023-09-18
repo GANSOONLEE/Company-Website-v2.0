@@ -1,1 +1,135 @@
+section.data-area {
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1333333333);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+}
+section.data-area p.section-title {
+  font-size: var(--font-h5);
+  color: #121526;
+}
+section.data-area div.section-content {
+  display: flex;
+  overflow-x: auto;
+}
+section.data-area div.product-cover {
+  display: flex;
+  flex-direction: column;
+}
+section.data-area div.product-cover label {
+  cursor: pointer;
+  border: 2px solid #ff8800;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 10vw;
+  height: 10vw;
+  transition: all 0.12s ease-in;
+}
+section.data-area div.product-cover label:hover {
+  background-color: #ffefdc;
+}
+section.data-area div.product-cover label div.cover-preview {
+  height: 100%;
+}
+section.data-area div.product-cover label div.cover-preview img.cover-preview-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.data-area div.product-cover input[type=file] {
+  display: none;
+}
+section.data-area section.product-images {
+  display: flex;
+  -moz-column-gap: 3vw;
+       column-gap: 3vw;
+  margin-left: 3vw;
+}
+section.data-area section.product-images div.product-image {
+  display: flex;
+  flex-direction: column;
+}
+section.data-area section.product-images div.product-image label {
+  cursor: pointer;
+  border: 2px solid #ff8800;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 7vw;
+  height: 7vw;
+  transition: all 0.12s ease-in;
+}
+section.data-area section.product-images div.product-image label:hover {
+  background-color: #ffefdc;
+}
+section.data-area section.product-images div.product-image label div.picture-preview {
+  height: 100%;
+}
+section.data-area section.product-images div.product-image label div.picture-preview img.picture-preview-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.data-area section.product-images input[type=file] {
+  display: none;
+}
+section.data-area section.primary-name div.row {
+  align-items: flex-end;
+}
+section.data-area section.primary-brand {
+  align-items: flex-end;
+}
+section.data-area section.primary-brand label {
+  width: 100%;
+}
+section.data-area section.primary-brand label.brand-image-label {
+  height: 40px;
+  width: 40px;
+}
+section.data-area section.primary-brand label div.brand-preview {
+  height: 100%;
+  width: 100%;
+}
+section.data-area section.primary-brand label div.brand-preview img.brand-preview-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.data-area section.primary-brand input[type=file] {
+  display: none;
+}
+section.data-area section.another-brand div.another-brand-box label {
+  width: 100%;
+}
+section.data-area section.another-brand div.another-brand-box label.brand-image-label {
+  height: 40px;
+  width: 40px;
+}
+section.data-area section.another-brand div.another-brand-box label div.brand-preview {
+  height: 100%;
+  width: 100%;
+}
+section.data-area section.another-brand div.another-brand-box label div.brand-preview img.brand-preview-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.data-area section.another-brand div.another-brand-box input[type=file] {
+  display: none;
+}
+button[type=submit] {
+  width: 100%;
+}
 
+div.another-name-box,
+div.another-brand-box,
+section.product-images {
+  display: none;
+}

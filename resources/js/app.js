@@ -5,11 +5,11 @@
  */
 
 import $ from 'jquery'
+import { createApp } from 'vue';
 import './bootstrap.js';
 
-import { createApp } from 'vue';
-window.app = createApp({});
-
+const app = createApp({});
+window.app = app;
 window.$ = $;
 window.createApp = createApp;
 

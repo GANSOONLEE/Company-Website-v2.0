@@ -110,11 +110,11 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.user-management') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.role-management') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.permission-management') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.banned-account') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.operation-record') }}</li></a>
+                <a href="{{ route('backend.admin.account.user.management') }}"><li>{{ __('sidebar.user-management') }}</li></a>
+                <a href="{{ route('backend.admin.account.role.management') }}"><li>{{ __('sidebar.role-management') }}</li></a>
+                <a href="{{ route('backend.admin.account.permission.management') }}"><li>{{ __('sidebar.permission-management') }}</li></a>
+                <a href="{{ route('backend.admin.account.account.banned') }}"><li>{{ __('sidebar.banned-account') }}</li></a>
+                <a href="{{ route('backend.admin.account.user.operation') }}"><li>{{ __('sidebar.operation-record') }}</li></a>
             </ul>
         </section>
         @endif
