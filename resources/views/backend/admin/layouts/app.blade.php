@@ -44,6 +44,11 @@
 
     <script src="{{mix('/js/app.js')}}"></script>
     <script src="{{asset('js/backend/admin/includes/sidebar.js')}}"></script>
+    
+    <!-- jQuery -->
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
     <!-- 要在 javascript 之后加載的文件 -->
     @stack('after-script')

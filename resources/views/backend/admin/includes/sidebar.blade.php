@@ -80,8 +80,8 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.carousel-image') }}</li></a>
-                <a href="#"><li>{{ __('sidebar.category-image') }}</li></a>
+                <a href="{{ route('backend.admin.image.carousel-image') }}"><li>{{ __('sidebar.carousel-image') }}</li></a>
+                <a href="#"><li>{{ __('sidebar.product-image') }}</li></a>
             </ul>
         </section>
         @endif

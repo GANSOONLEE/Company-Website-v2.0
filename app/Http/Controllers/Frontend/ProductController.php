@@ -9,7 +9,8 @@ class ProductController extends Controller{
 
     public function product($category){
 
-        $product = Product::where('product_category', $category)
+        $productData = Product::where('product_category', $category)
+            ->where('product_status', 'Public')
             ->get();
 
         return view('frontend.product', compact('productData'));

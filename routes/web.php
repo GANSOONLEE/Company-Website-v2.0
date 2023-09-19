@@ -48,7 +48,7 @@ Route::group(['prefix' => 'user', 'as' => 'backend.user.', 'middleware' => 'user
  * Need to login to get the authorize
  */
 
-Route::group(['prefix' => 'admin', 'as' => 'backend.admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'backend.admin.', 'middleware' => 'admin'], function () {
     includeRouteFiles(__DIR__ . '/backend/admin/');
 });
 

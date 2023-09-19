@@ -33,7 +33,7 @@ return [
     "image" => 'Media',
 
     "carousel-image" => 'Carousel Image',
-    "category-image" => 'Category Image',
+    "product-image" => 'Product Image',
 
     // Order
     "order" => 'Order',

@@ -33,7 +33,7 @@ return [
     "image" => '媒体管理',
 
     "carousel-image" => '轮播图片',
-    "category-image" => '产品图鉴',
+    "product-image" => '产品图鉴',
 
     // Order
     "order" => '订单',
@@ -46,7 +46,7 @@ return [
     "user" => '用户',
 
     "user-management" => '用户管理',
-    "role-management" => '角色管理',
+    "role-management" => '身份管理',
     "permission-management" => '权限管理',
     "banned-account" => '停用账户',
     "operation-record" => '操作记录',
