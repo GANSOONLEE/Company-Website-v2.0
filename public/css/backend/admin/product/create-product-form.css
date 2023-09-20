@@ -88,8 +88,13 @@ section.data-area section.primary-brand label {
   width: 100%;
 }
 section.data-area section.primary-brand label.brand-image-label {
+  cursor: pointer;
+  background-color: #ffead1;
   height: 40px;
   width: 40px;
+}
+section.data-area section.primary-brand label.brand-image-label:hover {
+  background-color: #ffbf76;
 }
 section.data-area section.primary-brand label div.brand-preview {
   height: 100%;
@@ -108,8 +113,13 @@ section.data-area section.another-brand div.another-brand-box label {
   width: 100%;
 }
 section.data-area section.another-brand div.another-brand-box label.brand-image-label {
+  cursor: pointer;
+  background-color: #ffead1;
   height: 40px;
   width: 40px;
+}
+section.data-area section.another-brand div.another-brand-box label.brand-image-label:hover {
+  background-color: #ffbf76;
 }
 section.data-area section.another-brand div.another-brand-box label div.brand-preview {
   height: 100%;

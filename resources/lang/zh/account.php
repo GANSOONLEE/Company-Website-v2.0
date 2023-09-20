@@ -11,6 +11,7 @@ return [
     'edit' => '编辑',
     'banned' => '停用',
     'yourself' => '（您自己）',
+    'create-role-panel' => '身分组创建面板',
 
     // 身分组
     'roles' => [
@@ -53,4 +54,15 @@ return [
 
     // 按鈕
     'submit' => '提交',
+    'create-role' => '新建身分组',
+
+    // 表单
+    'form' => [
+        'label' => [
+            'role-id' => '身份ID',
+            'role-weight' => '权重',
+            'role-name-en' => '身分组中文名（会显示）',
+            'role-name-zh' => '身分组英文名（会显示）',
+        ],
+    ],
 ];

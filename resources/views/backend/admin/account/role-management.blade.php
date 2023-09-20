@@ -4,8 +4,16 @@
 
 @section('main')
 
-    <section class="user-role">
-        <p class="section-title">{{ __('account.user-role') }}</p>
+    <section class="role">
+        <div class="section-header flex-row">
+            <p class="section-title">{{ __('account.role') }}</p>
+            <a href="#create-role">   
+                <button class="btn btn-success" type="button" id="create-role-button">
+                    <i class="fa-solid fa-add"></i>
+                    {{ __('account.create-role') }}
+                </button>
+            </a>
+        </div>
         <table cellspacing="0.1">
             <thead>
                 <tr>
@@ -37,9 +45,9 @@
 @endsection
 
 @push('after-style')
-
+    <link rel="stylesheet" href="{{ asset('css\backend\admin\account\role-managemenet.css') }}">
 @endpush
 
 @push('after-script')
-    
+    <script src="{{ asset('js\backend\admin\account\role-management.js') }}"></script>
 @endpush

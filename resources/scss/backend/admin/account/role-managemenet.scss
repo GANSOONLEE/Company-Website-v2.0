@@ -1,0 +1,99 @@
+
+section.role{
+
+    div.section-header{
+        justify-content: space-between;
+        align-items: center;
+        p{
+            margin-bottom: 0;
+            font-size: var(--font-h5);
+        }
+        button{
+            i.fa-solid{
+                margin-right: .3rem;
+            }
+        }
+    }
+
+}
+
+/* ———————————————————— Table ———————————————————— */
+
+table{
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 20px #ccc;
+    width: 100%;
+    margin-top: 1.6rem;
+    // Global
+    thead, tbody{
+        
+    }
+
+    tr{
+        th, td{
+            padding: .6rem 1rem;
+        }
+    }
+
+    // Head
+    > thead{
+        tr{
+            margin: 0 .2rem;
+            border-bottom: 1px solid #eee;
+            th{
+
+            }
+        }
+    }
+
+    // Body
+    > tbody{
+        tr{
+            cursor: pointer;
+            &:nth-child(odd){
+                background-color: #fff;                    
+            }
+            &:nth-child(even){
+                background-color: #f7f7f7;                
+            }
+            &:hover{
+                background-color: #f0f0f0;
+            }
+            td{
+
+            }
+        }
+    }
+}
+
+/* —————————————————————— Panel ———————————————————— */
+
+section.panel#create-role{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #ccc;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    p.section-title{
+        margin-bottom: 0;
+        font-size: var(--font-h6);
+        font-weight: bold;
+        color: #0d0a20;
+    }
+
+    form.form#form{
+        padding-top: 1rem;
+
+        button{
+            width: 100%;
+        }
+    }
+}
+
+

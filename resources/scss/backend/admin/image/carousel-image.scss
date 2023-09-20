@@ -5,6 +5,10 @@ div.page{
     flex-direction: column;
 }
 
+form.form{
+    
+}
+
 section.panel{
     width: 100%;
     height: auto;
@@ -25,12 +29,17 @@ section.panel{
         height: 100%;
         padding: 2rem;
         overflow-x: auto;
-        background-color: rgba(7, 10, 31, 0.025);
+        background-color: rgba(7, 10, 31, 0.015);
         border-radius: 6px;
+        transition: all .12s ease-in-out;
+        &.active{
+            background-color: rgba(7, 10, 31, 0.075);
+        }
 
         // Image Box
         div.image-box{
             height: 7rem;
+            cursor: move;
             img.image-preview{
                 height: 100%;
             }

@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
+    "/js/backend/admin/account/role-management.js": "/js/backend/admin/account/role-management.js",
     "/js/backend/admin/account/user-management.js": "/js/backend/admin/account/user-management.js",
     "/js/backend/admin/brand/create-brand.js": "/js/backend/admin/brand/create-brand.js",
     "/js/backend/admin/brand/management-brand.js": "/js/backend/admin/brand/management-brand.js",
@@ -33,5 +34,6 @@
     "/css/backend/admin/brand/edit-brand-form.css": "/css/backend/admin/brand/edit-brand-form.css",
     "/css/backend/admin/brand/create-brand.css": "/css/backend/admin/brand/create-brand.css",
     "/css/backend/admin/account/user-management.css": "/css/backend/admin/account/user-management.css",
-    "/css/backend/admin/account/user-management-form.css": "/css/backend/admin/account/user-management-form.css"
+    "/css/backend/admin/account/user-management-form.css": "/css/backend/admin/account/user-management-form.css",
+    "/css/backend/admin/account/role-managemenet.css": "/css/backend/admin/account/role-managemenet.css"
 }

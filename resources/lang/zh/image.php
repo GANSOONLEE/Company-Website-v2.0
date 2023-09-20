@@ -10,12 +10,12 @@ return [
         ],
 
         // Promotion Panel
-        'promotion-two-panel' => [
+        'promotion-1-panel' => [
             'title' => '促销（一）面板',
         ],
 
-        // General Panel
-        'promotion-one-panel' => [
+        // Promotion Panel
+        'promotion-2-panel' => [
             'title' => '促销（二）面板',
         ],
 

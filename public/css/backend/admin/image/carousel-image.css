@@ -27,11 +27,16 @@ section.panel div.image-container {
   height: 100%;
   padding: 2rem;
   overflow-x: auto;
-  background-color: rgba(7, 10, 31, 0.025);
+  background-color: rgba(7, 10, 31, 0.015);
   border-radius: 6px;
+  transition: all 0.12s ease-in-out;
+}
+section.panel div.image-container.active {
+  background-color: rgba(7, 10, 31, 0.075);
 }
 section.panel div.image-container div.image-box {
   height: 7rem;
+  cursor: move;
 }
 section.panel div.image-container div.image-box img.image-preview {
   height: 100%;

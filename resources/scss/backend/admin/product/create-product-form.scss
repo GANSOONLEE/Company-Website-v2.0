@@ -115,8 +115,13 @@ section.data-area{
         label{
             width: 100%;
             &.brand-image-label{
+                cursor: pointer;
+                background-color: #ffead1;
                 height: 40px;
                 width: 40px;
+                &:hover{
+                    background-color: #ffbf76;
+                }
             }
             div.brand-preview{
                 height: 100%;
@@ -140,8 +145,13 @@ section.data-area{
             label{
                 width: 100%;
                 &.brand-image-label{
+                    cursor: pointer;
+                    background-color: #ffead1;
                     height: 40px;
                     width: 40px;
+                    &:hover{
+                        background-color: #ffbf76;
+                    }
                 }
                 div.brand-preview{
                     height: 100%;
