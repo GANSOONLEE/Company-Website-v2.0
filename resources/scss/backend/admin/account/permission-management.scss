@@ -1,0 +1,72 @@
+
+/* ———————————————————— Panel Setting ———————————————————— */
+
+section.panel{
+    margin: .4rem 2rem;
+    box-shadow: 0 0 20px #bbb;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2rem;
+    p.panel-title{
+        font-size: var(--font-h4);
+        color: #07070d;
+        padding-bottom: 1rem;
+        border-bottom: .25px solid #d9d9ec;
+    }
+    div.panel-content{
+
+    }
+}
+
+/* ———————————————————— Switch ———————————————————— */
+
+div.switch-box{
+    margin: 1rem 0;
+    background-color: #eee;
+    label.switch-label{
+
+    }
+    input[type="checkbox"] {
+        &:checked + label div.switch-button {
+            div.switch-marker {
+                background-color: red;
+                transform: translateX(100%);
+                p.label::before {
+                    content: 'off';
+                }
+            }
+        }
+    }
+    
+    div.switch-button {
+        padding: .2rem;
+        $height: 1.75rem;
+        height: $height;
+        width: calc($height * 2.2);
+        $color: #bbb;
+        border: 1px solid $color;
+        background-color: $color;
+        
+        div.switch-marker {
+            background-color: green;
+            height: 100%;
+            width: 50%;
+            transition: all .17s ease-in-out;
+            transform: translateX(0);
+            p.label{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0;
+                height: 100%;
+                &::before {
+                    padding-bottom: .2rem;
+                    content: 'on';
+                }
+            }
+        }
+    }
+}
+
+
+

@@ -19,11 +19,12 @@ class HomeController extends Controller{
 
         // 使用Storage获取目录下的所有文件
         $files = Storage::disk($disk)->files($directory);
+        $promotionImages = $files;
 
         // 筛选出以'promotion'开头的文件
-        $promotionImages = array_filter($files, function ($file) {
-            return strpos($file, 'promotion') !== false;
-        });
+        // $promotionImages = array_filter($files, function ($file) {
+        //     return strpos($file, 'promotion') !== false;
+        // });
 
         return view('frontend.home',compact(
             'promotionImages'

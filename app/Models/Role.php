@@ -31,23 +31,58 @@ class Role extends Model
 
     public function getPermissions()
     {
-        return DB::table('roles_permissions')
+        // Get all roles.
+        $roles = Role::all();
+    
+        // Get the permissions belonging to the current role.
+        $selfPermissions = DB::table('roles_permissions')
             ->select('permission_name')
             ->where('role_name', $this->name)
             ->get()
             ->pluck('permission_name')
             ->toArray();
+    
+        // Get the permissions of roles with lower weight than the current role.
+        $weight = (int)$this->weight;
+        $rolesWithLowerWeight = $roles->filter(function ($role) use ($weight) {
+            return (int)$role->weight < $weight;
+        });
+    
+        $permissionsWithInheritance = [];
+    
+        // Check if the current role has each permission.
+        foreach ($rolesWithLowerWeight as $role) {
+            $permissions = DB::table('roles_permissions')
+                ->select('permission_name')
+                ->where('role_name', $role->name)
+                ->get()
+                ->pluck('permission_name')
+                ->toArray();
+    
+            foreach ($permissions as $permission) {
+                // Check if the current role has this permission.
+                $hasPermission = in_array($permission, $selfPermissions);
+    
+                $permissionsWithInheritance[] = [
+                    'name' => $permission,
+                    'inherited' => false,
+                    'hasPermission' => true,
+                ];
+            }
+        }
+    
+        // Add the permissions belonging to the current role.
+        foreach ($selfPermissions as $permission) {
+            $permissionsWithInheritance[] = [
+                'name' => $permission,
+                'inherited' => true,
+                'hasPermission' => true, // Since it's the current role's permission.
+            ];
+        }
+    
+        return $permissionsWithInheritance;
     }
-
-    // public function hasPermission($permissionName)
-    // {
-    //     $count = DB::table('roles_permissions')
-    //         ->where('role_name', $this->name)
-    //         ->where('permission_name', $permissionName)
-    //         ->count();
-
-    //     return $count>0 ;
-    // }
+      
 
     public function hasPermission($permissionName)
     {

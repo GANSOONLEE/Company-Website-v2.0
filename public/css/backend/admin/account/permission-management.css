@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* ———————————————————— Panel Setting ———————————————————— */
+section.panel {
+  margin: 0.4rem 2rem;
+  box-shadow: 0 0 20px #bbb;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 2rem;
+}
+section.panel p.panel-title {
+  font-size: var(--font-h4);
+  color: #07070d;
+  padding-bottom: 1rem;
+  border-bottom: 0.25px solid #d9d9ec;
+}
+/* ———————————————————— Switch ———————————————————— */
+div.switch-box {
+  margin: 1rem 0;
+  background-color: #eee;
+}
+div.switch-box input[type=checkbox]:checked + label div.switch-button div.switch-marker {
+  background-color: red;
+  transform: translateX(100%);
+}
+div.switch-box input[type=checkbox]:checked + label div.switch-button div.switch-marker p.label::before {
+  content: "off";
+}
+div.switch-box div.switch-button {
+  padding: 0.2rem;
+  height: 1.75rem;
+  width: 3.85rem;
+  border: 1px solid #bbb;
+  background-color: #bbb;
+}
+div.switch-box div.switch-button div.switch-marker {
+  background-color: green;
+  height: 100%;
+  width: 50%;
+  transition: all 0.17s ease-in-out;
+  transform: translateX(0);
+}
+div.switch-box div.switch-button div.switch-marker p.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  height: 100%;
+}
+div.switch-box div.switch-button div.switch-marker p.label::before {
+  padding-bottom: 0.2rem;
+  content: "on";
+}

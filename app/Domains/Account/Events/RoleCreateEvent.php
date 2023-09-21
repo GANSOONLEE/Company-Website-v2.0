@@ -3,6 +3,7 @@
 namespace App\Domains\Account\Events;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class RoleCreateEvent{
 
@@ -15,6 +16,12 @@ class RoleCreateEvent{
         $roleNameEN = $request->input('role-name-en');
 
         dd($roleID, $roleWeight, $roleNameZH, $roleNameEN);
+
+        /**
+         * 
+         */
+
+        Lang::addLines();
 
     }
 

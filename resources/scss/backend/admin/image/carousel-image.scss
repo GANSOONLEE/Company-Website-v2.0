@@ -1,4 +1,6 @@
 
+@use "sass:color";
+
 /* ———————————————————— Layouts —————————————————— */
 div.page{
     display: flex;
@@ -17,8 +19,32 @@ section.panel{
     border: 1px solid #00000022;
     box-shadow: 0 0 10px #00000022;
     border-radius: 6px;
-    p.panel-title{
-        font-size: var(--font-h5);
+    div.panel-header{
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        p.panel-title{
+            margin-bottom: 0;
+            font-size: var(--font-h5);
+        }
+        label.upload-label{
+            cursor: pointer;
+            border-radius: 6px;
+            $color: rgb(255, 210, 193);
+            $hover-color: color.scale($color, $lightness: -20%);
+            border: 1px solid $color;
+            background-color: $color;
+            padding: .4rem 1rem;
+            transition: all .12s ease;
+            &:hover{
+                color: var(--color-white);
+                border-color: $hover-color;
+                background-color: $hover-color;
+            }
+        }
+        input[type="file"]{
+            display: none;
+        }
     }
     div.image-container{
         display: flex;
@@ -40,8 +66,26 @@ section.panel{
         div.image-box{
             height: 7rem;
             cursor: move;
+            position: relative;
+            &:hover div.delete-button{
+                background-color: #ffffffaa;
+            }
             img.image-preview{
                 height: 100%;
+            }
+            div.delete-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff75;
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 5%;
+                right: 5%;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all .12s ease-in-out;
             }
             p.image-name{
 

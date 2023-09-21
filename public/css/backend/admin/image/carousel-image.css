@@ -14,8 +14,30 @@ section.panel {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1333333333);
   border-radius: 6px;
 }
-section.panel p.panel-title {
+section.panel div.panel-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+section.panel div.panel-header p.panel-title {
+  margin-bottom: 0;
   font-size: var(--font-h5);
+}
+section.panel div.panel-header label.upload-label {
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid rgb(255, 210, 193);
+  background-color: rgb(255, 210, 193);
+  padding: 0.4rem 1rem;
+  transition: all 0.12s ease;
+}
+section.panel div.panel-header label.upload-label:hover {
+  color: var(--color-white);
+  border-color: #ff9167;
+  background-color: #ff9167;
+}
+section.panel div.panel-header input[type=file] {
+  display: none;
 }
 section.panel div.image-container {
   display: flex;
@@ -37,7 +59,25 @@ section.panel div.image-container.active {
 section.panel div.image-container div.image-box {
   height: 7rem;
   cursor: move;
+  position: relative;
+}
+section.panel div.image-container div.image-box:hover div.delete-button {
+  background-color: rgba(255, 255, 255, 0.6666666667);
 }
 section.panel div.image-container div.image-box img.image-preview {
   height: 100%;
+}
+section.panel div.image-container div.image-box div.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4588235294);
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
 }

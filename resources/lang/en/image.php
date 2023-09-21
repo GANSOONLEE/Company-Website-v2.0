@@ -5,16 +5,16 @@ return array (
   array (
     'general-panel' => 
     array (
-      'title' => '普通面板',
+      'title' => 'General Panel',
     ),
     'promotion-1-panel' => 
     array (
-      'title' => '促销（一）面板',
+      'title' => 'Promotion (1) Panel',
     ),
     'promotion-2-panel' => 
     array (
-      'title' => '促销（二）面板',
+      'title' => 'Promotion (2) Panel',
     ),
   ),
-  'upload' => '上传',
+  'upload' => 'Upload',
 );

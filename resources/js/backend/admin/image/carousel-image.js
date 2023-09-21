@@ -4,6 +4,8 @@ $(document).ready(function(){
     let draggableImageInstances = [];
     let draggablePanelArea = [];
 
+    const form = $('form.form')
+
     // create instance
     $('.image-box').each(function () {
         let draggableImage = new DraggableImage(this);
@@ -15,6 +17,13 @@ $(document).ready(function(){
         let panelArea = new PanelArea(this);
         draggablePanelArea.push(panelArea);
     });
+
+    let fileInput = $('input.upload-image');
+
+    fileInput.change(() => {
+        form.submit();
+    });
+
 
 })
 
@@ -28,15 +37,17 @@ class DraggableImage{
 
     element;
     id;
+    self;
 
     constructor(element){
 
         // Define variable
         this.element = element;
         this.id =  $(this.element).data('id')
+        this.self = this;
 
+        this.createCloseButton();
         this.initInstance();
-
     }
 
     /**
@@ -47,6 +58,7 @@ class DraggableImage{
 
         // Dragstart
         this.element.addEventListener('dragstart', (event)=>{this.setImageData(event)});
+    
     }
 
     setImageData(event){
@@ -63,6 +75,36 @@ class DraggableImage{
             this.path = relationPath;
             draggedImageId = $(this).data('id');
         });
+    }
+
+    createCloseButton(){
+        // 创建一个新的 div 元素，作为关闭按钮
+        const closeButton = $('<div>')
+            .addClass('delete-button')
+                .append($('<i>')
+                .addClass('fa-solid fa-xmark'));
+
+        closeButton.dblclick(this.deleteImage)
+
+        // 将关闭按钮添加到当前元素
+        $(this.element).find('img.image-preview').after(closeButton);
+    }
+
+    deleteImage = () =>{
+
+        let relationPath = $(this.element).find('img.image-preview').data('path');
+        let sourcePanel = $(this.element).closest('section.panel').data('panel');
+
+        console.log(sourcePanel)
+
+        let request = new AjaxAPI;
+        request.sentData(
+            '/admin/image/carousel-image-delete',
+            {
+                'relationPath': relationPath,
+                'sourcePanel': sourcePanel,
+            }
+        )
     }
 
 }
@@ -151,7 +193,7 @@ class AjaxAPI{
         
     }
 
-    sentData(url, data){
+    sentData(url, data, refresh=true){
 
         $.ajax({
             url: url,
@@ -162,8 +204,9 @@ class AjaxAPI{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                location.reload()
-                // $('body').html(data)
+                if(refresh){
+                    location.reload()
+                }
                 console.log(data);
             },
             error: function(xhr, status, error) {
