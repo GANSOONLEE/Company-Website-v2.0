@@ -5,6 +5,20 @@ div.page {
   flex-direction: column;
 }
 
+form.add-new-panel div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+form.add-new-panel div label {
+  margin-bottom: 0;
+  margin-right: 0.7rem;
+}
+form.add-new-panel div input#new-panel {
+  overflow: hidden;
+  border-radius: 4px 0 0 4px;
+  margin-left: 0.7rem;
+}
 section.panel {
   width: 100%;
   height: auto;

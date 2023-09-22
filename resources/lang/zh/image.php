@@ -17,4 +17,6 @@ return array (
     ),
   ),
   'upload' => '上传',
+  'new-panel' => '新增面板',
+  'add-panel' => '添加面板',
 );

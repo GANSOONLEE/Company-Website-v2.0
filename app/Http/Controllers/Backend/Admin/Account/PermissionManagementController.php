@@ -23,10 +23,20 @@ class PermissionManagementController extends Controller{
             }
         }
 
+        $permissions = Permission::orderBy('permission_category', 'asc')
+            ->orderBy('name', 'asc')
+            ->get();
+
         $permissionsData = [];
-        $permissions = Permission::all();
-        foreach($permissions as $permission){
-            $permissionsData[] = $permission->name;
+
+        foreach ($permissions as $permission) {
+            $category = $permission->permission_category;
+
+            if (!isset($permissionsData[$category])) {
+                $permissionsData[$category] = [];
+            }
+
+            $permissionsData[$category][] = $permission->name;
         }
 
         return view('backend.admin.account.permission-management', compact('roleData', 'permissionsData'));

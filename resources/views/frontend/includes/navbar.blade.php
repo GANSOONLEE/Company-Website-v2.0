@@ -38,8 +38,7 @@
 
             <!-- Auth -->
             @auth
-
-                @if(auth()->user()->isAdmin())
+                @if(auth()->user()->isAdmin() || auth()->user()->getRole()[0] === 'root')
                     <!-- admin -->
                     <a href="{{ route('backend.admin.dashboard') }}" class="navbar-link primary">
                         <li class="navbar-link-label">Dashborad</li>

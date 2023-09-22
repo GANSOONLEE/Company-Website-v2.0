@@ -9,7 +9,8 @@ class RoleManagementController extends Controller{
 
     public function roleManagement(){
 
-        $roleData = Role::all();
+        $roleData = Role::orderBy('weight', 'asc')
+            ->get();
 
         return view('backend.admin.account.role-management', compact('roleData'));
     }

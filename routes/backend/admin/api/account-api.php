@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Domains\Account\Events\UserUpdateEvent;
 use App\Domains\Account\Events\RoleCreateEvent;
 use App\Domains\Account\Events\RoleUpdateEvent;
+use App\Domains\Account\Events\PermissionUpdateEvent;
 
 Route::group(['prefix' => 'account', 'as' => 'account.'], function(){
 
@@ -13,5 +14,7 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function(){
 
     Route::post('create-role', [RoleCreateEvent::class, 'createRole'])->name('create-role');
     Route::post('update-role', [RoleUpdateEvent::class, 'updateRole'])->name('update-role');
+    
+    Route::post('update-permission', [PermissionUpdateEvent::class, 'updatePermission'])->name('update-permission');
 
 });

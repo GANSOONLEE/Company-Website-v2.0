@@ -7,8 +7,24 @@ div.page{
     flex-direction: column;
 }
 
-form.form{
-    
+form.add-new-panel{
+    div{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        label{
+            margin-bottom: 0;
+            margin-right: .7rem;
+        }
+        input#new-panel{
+            overflow: hidden;
+            border-radius: 4px 0 0 4px;
+            margin-left: .7rem;
+        }
+        button{
+
+        }
+    }
 }
 
 section.panel{

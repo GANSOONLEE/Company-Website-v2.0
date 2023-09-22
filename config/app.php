@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\TranslationManager\TranslationServiceProvider::class,
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
     ])->toArray(),
 
     /*

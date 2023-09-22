@@ -1,8 +1,56 @@
 
+@use 'sass:color';
+
+/* ———————————————————— Nav —————————————————— */
+
+div.nav{
+    position: fixed;
+    top: 3rem;
+    right: -8rem; // -8rem
+    
+    transition: all .2s ease-in-out;
+    &:hover{
+        right: 0;
+        div.hover{
+            right: -4rem;
+        }
+    }
+    div.hover{
+        $height: 50px;
+        height: $height;
+        width: $height;
+        background-color: #fff;
+        box-shadow: 0 0 10px #0e0b2415;
+        border-radius: 8px 0 0 8px;
+        position: relative;
+        z-index: -1;
+        right: 0;
+        transition: all .28s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    ul.nav-links{
+        box-shadow: 0 0 10px #0e0b2415;
+        background-color: #fff;
+        border: 1px solid #eee;
+        padding: 1.2rem;
+        a{
+            li.nav-link{
+                color: #07070d;
+                padding: .2rem;
+                &:hover{
+                    color: blue;
+                }
+            }
+        }
+    }
+}
+
 /* ———————————————————— Panel Setting ———————————————————— */
 
 section.panel{
-    margin: .4rem 2rem;
+    margin: 3rem 2rem;
     box-shadow: 0 0 20px #bbb;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -14,7 +62,34 @@ section.panel{
         border-bottom: .25px solid #d9d9ec;
     }
     div.panel-content{
-
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex: 1 0 50%;
+        div.permission-category{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            p.permission-category-title{
+                font-size: var(--font-h6);
+                font-weight: bold;
+                color: #07070d;
+                margin-bottom: 0;
+            }
+            div.permission-category-content{
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    div.panel-footer{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-left: 1rem;
     }
 }
 
@@ -22,47 +97,60 @@ section.panel{
 
 div.switch-box{
     margin: 1rem 0;
-    background-color: #eee;
+    $limit: calc((100% / 6));
+    min-width: $limit;
+    max-width: $limit;
     label.switch-label{
-
+        padding-left: 1rem;
+        cursor: pointer;
     }
     input[type="checkbox"] {
+        display: none;
         &:checked + label div.switch-button {
+
+            // General
+            $color: green;
+            border: 1px solid color.scale($color, $lightness: -20%);
+            background-color: $color;
+            
             div.switch-marker {
-                background-color: red;
                 transform: translateX(100%);
-                p.label::before {
-                    content: 'off';
-                }
             }
+        }
+        // Disabled
+        &:disabled + label div.switch-button{
+            cursor: not-allowed;
+            $color: rgb(125, 169, 125);
+            border: 1px solid color.scale($color, $lightness: -20%);
+            background-color: $color;
         }
     }
     
     div.switch-button {
+        cursor: pointer;
         padding: .2rem;
-        $height: 1.75rem;
+        $height: 1.25rem;
         height: $height;
-        width: calc($height * 2.2);
-        $color: #bbb;
-        border: 1px solid $color;
+        width: calc($height * 1.75);
+        $color: #ddd;
+        border: 1px solid color.scale($color, $lightness: -20%);
         background-color: $color;
-        
+        box-shadow: 0 0 20px #eee;
+        border-radius: 20px;
+        // Disabled
         div.switch-marker {
-            background-color: green;
+            background-color: #fff;
+            transform: translateX(0);
+            transition: all .17s ease-in-out;
             height: 100%;
             width: 50%;
-            transition: all .17s ease-in-out;
-            transform: translateX(0);
+            border-radius: 20px;
             p.label{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 0;
                 height: 100%;
-                &::before {
-                    padding-bottom: .2rem;
-                    content: 'on';
-                }
             }
         }
     }

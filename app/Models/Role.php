@@ -14,7 +14,7 @@ class Role extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
-        'weights'
+        'weight'
     ];
 
     /**
@@ -111,6 +111,40 @@ class Role extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @param array $permissionGroup 
+     * @return boolean
+     */
+    
+    public function updatePermission($permissionGroup)
+    {
+        foreach($permissionGroup as $permission){
+
+            $permissionName = $permission->name;
+            $isChecked = $permission->checked;
+
+            $existingRecord = DB::table('roles_permissions')
+                ->where('role_name', $this->name)
+                ->where('permission_name', $permissionName)
+                ->exists();
+
+            if ($isChecked && !$existingRecord) {
+                DB::table('roles_permissions')->insert([
+                    'role_name' => $this->name,
+                    'permission_name' => $permissionName,
+                ]);
+            } elseif (!$isChecked && $existingRecord) {
+                DB::table('roles_permissions')
+                    ->where('role_name', $this->name)
+                    ->where('permission_name', $permissionName)
+                    ->delete();
+            }
+                
+        }
+
+        return true;
     }
 
 }

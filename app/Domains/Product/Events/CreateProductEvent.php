@@ -26,14 +26,14 @@ class CreateProductEvent{
             $brandCode = $request->input('brand-input-brand-code');
             $frozenCode = $request->input('brand-input-frozen-code');
 
-        // Define image input variable
-        $productCover = $request->file('product-cover');
-        $productImageArray = $request->file('product-image');
-        $brandCover = $request->file('brand-cover');
+            // Define image input variable
+            $productCover = $request->file('product-cover');
+            $productImageArray = $request->file('product-image');
+            $brandCover = $request->file('brand-cover');
 
-        // Define directory
-        $disk = 'public';
-        $directory = 'category';
+            // Define directory
+            $disk = 'public';
+            $directory = 'category';
 
         /**
          * save product information

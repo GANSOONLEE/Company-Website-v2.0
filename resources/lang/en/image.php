@@ -17,4 +17,6 @@ return array (
     ),
   ),
   'upload' => 'Upload',
+  'add-panel' => 'Add Panel',
+  'new-panel' => 'New Panel',
 );

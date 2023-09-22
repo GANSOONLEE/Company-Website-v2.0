@@ -4,6 +4,14 @@
 
 @section('main')
 
+    <form action="{{ route('backend.admin.image.carousel-create-panel') }}" class="add-new-panel" method="POST">
+        <div class="mb-3 input-group">
+            <label for="new-panel" class="form-label">{{ __('image.new-panel') }}</label>
+            <input type="text" name="new-panel" id="new-panel" class="form-control" placeholder="{{ __('image.new-panel') }}">
+            <button class="btn btn-primary" type="submit">{{ __('image.add-panel') }}</button>
+        </div>
+    </form>
+
     <form action="{{ route('backend.admin.image.carousel-image-upload') }}" method="post" class="form" enctype="multipart/form-data">
         @csrf
         

@@ -128,6 +128,9 @@
             <ul>
                 <a href="{{ route('locale.change', ['lang' => 'zh']) }}"><li>中文</li></a>
                 <a href="{{ route('locale.change', ['lang' => 'en']) }}"><li>English</li></a>
+                @if (auth()->user()->getRoleEntity()->hasPermission('translation'))
+                    <a target="_translation" href="{{ route('translation') }}"><li>Translation</li></a>
+                @endif
             </ul>
         </section>
 

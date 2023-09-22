@@ -1,43 +1,107 @@
-// 获取所有权限的复选框元素
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+/**
+ * checkbox toggle status
+ */
+
 const permissionCheckboxes = document.querySelectorAll('.switch-box input[type="checkbox"]');
 
-// 当权限复选框状态发生变化时触发事件
 permissionCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function () {
-        // 获取当前权限的名称
         const permissionName = this.name;
         
-        // 获取当前权限所在的身份组级别
         const section = this.closest('section[data-role-level]');
         const level = parseInt(section.getAttribute('data-role-level'));
         
-        // 如果选中了复选框
         if (this.checked) {
-            // 遍历其他权限复选框
             permissionCheckboxes.forEach(otherCheckbox => {
-                // 获取其他权限所在的身份组级别
                 const otherSection = otherCheckbox.closest('section[data-role-level]');
                 const otherLevel = parseInt(otherSection.getAttribute('data-role-level'));
                 
-                // 如果其他权限的名称以当前权限名称开头（继承关系），且级别小于等于当前身份组级别
                 if (otherCheckbox.name.startsWith(permissionName) && otherLevel >= level) {
-                    // 选中继承的权限复选框
                     otherCheckbox.checked = true;
                 }
             });
-        } else { // 如果取消了复选框
-            // 遍历其他权限复选框
+        } else {
             permissionCheckboxes.forEach(otherCheckbox => {
-                // 获取其他权限所在的身份组级别
                 const otherSection = otherCheckbox.closest('section[data-role-level]');
                 const otherLevel = parseInt(otherSection.getAttribute('data-role-level'));
                 
-                // 如果其他权限的名称以当前权限名称开头（继承关系），且级别小于等于当前身份组级别
                 if (otherCheckbox.name.startsWith(permissionName) && otherLevel <= level) {
-                    // 取消继承的权限复选框
                     otherCheckbox.checked = false;
                 }
             });
         }
     });
 });
+
+// update permission
+
+$('.submit-button').click(updatePermission);
+
+function updatePermission(){
+    let panelContent = $(this).closest('div.panel-footer').closest('section.panel');
+    let checkboxes = panelContent.find('input[type="checkbox"]:not([disabled])');
+    let permissions = [];
+
+    checkboxes.each(function() {
+        let checkbox = $(this);
+        let name = checkbox.attr('name');
+        let checked = checkbox.prop('checked');
+
+        permissions.push({
+            name: name,
+            checked: checked
+        });
+    });
+
+    let role = $(this).data('role');
+
+    let request = new AjaxAPI();
+    request.sentData(
+        '/admin/account/update-permission',
+        {
+            'role': role,
+            'permissions': JSON.stringify(permissions),
+        },
+    );
+}
+
+class AjaxAPI{
+
+    /**
+     * @function constructor - Init Ajax Request
+     * @param {string} url
+     * @param {JSON} data - data you want to sent
+     */
+
+    constructor(){
+        
+    }
+
+    sentData(url, data, refresh=true){
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            dataType: 'html',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                if(refresh){
+                    location.reload()
+                }
+                console.log(data);
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+
+    }
+
+}
