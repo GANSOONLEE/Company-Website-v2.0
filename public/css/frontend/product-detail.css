@@ -1,0 +1,274 @@
+@charset "UTF-8";
+/* ———————————————————— Layouts ———————————————————— */
+div.content {
+  padding: 1rem 2rem 2rem;
+}
+
+/* ———————————————————— Breadcrumbs ———————————————————— */
+div.breadcrumbs {
+  padding-bottom: 1rem;
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item {
+  color: rgb(255, 111, 0);
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item.active {
+  color: rgb(45, 45, 45);
+  font-weight: bold;
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item::before {
+  font-weight: normal;
+}
+
+/* ———————————————————— Product Detail ———————————————————— */
+section.product-detail {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+/* ———————————————————— Product Cover & Image ———————————————————— */
+section.product-media {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+}
+section.product-media div.image-preview-container {
+  min-height: 300px;
+  max-height: 300px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+section.product-media div.image-preview-container img.image-preview {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.product-media div.image-selector-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+section.product-media div.image-selector-container div.prev-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(0);
+  left: 3%;
+}
+section.product-media div.image-selector-container div.prev-button > i.icon {
+  font-size: var(--font-remark);
+}
+section.product-media div.image-selector-container div.image-selector {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  overflow: hidden;
+}
+section.product-media div.image-selector-container div.image-selector div.item {
+  padding: 0.4rem 0;
+  margin-left: right;
+  width: calc(33.3333333333% - 40px);
+}
+section.product-media div.image-selector-container div.image-selector div.item img.item-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.product-media div.image-selector-container div.next-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
+  left: 97%;
+}
+section.product-media div.image-selector-container div.next-button > i.icon {
+  font-size: var(--font-remark);
+}
+
+/* ———————————————————— Product Information ———————————————————— */
+section.product-information {
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+section.product-information div.product-header {
+  padding-bottom: 0;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 0.2rem;
+}
+section.product-information div.product-header p.product-name {
+  font-weight: 600;
+  font-size: var(--font-h4);
+  color: rgb(1, 15, 47);
+  margin-bottom: 0.4rem;
+}
+section.product-information div.product-content {
+  display: flex;
+  height: 90%;
+}
+section.product-information div.product-content div.available-car-model {
+  padding-top: 0.8rem;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid #eee;
+  margin-right: 60px;
+}
+section.product-information div.product-content div.available-car-model p.title {
+  font-size: var(--font-title);
+  font-weight: bold;
+}
+section.product-information div.product-content div.available-car-model ul.item-list li.item:hover {
+  color: blue;
+}
+section.product-information div.product-content div.available-car-model ul.item-list li.item:hover span::before {
+  opacity: 1;
+  font-family: FontAwesome;
+  display: block;
+}
+section.product-information div.product-content div.available-car-model ul.item-list li.item:hover p {
+  padding-left: 0.8rem;
+}
+section.product-information div.product-content div.available-car-model ul.item-list li.item span::before {
+  content: "\f1b9";
+  opacity: 0;
+  display: none;
+  transition: all 0.12s ease-in-out;
+}
+section.product-information div.product-content div.available-car-model ul.item-list li.item p {
+  padding-left: 0;
+  transition: all 0.12s ease-in-out;
+}
+section.product-information div.product-content div.action-area {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.8rem;
+  width: 50%;
+}
+section.product-information div.product-content div.action-area p.form-title {
+  font-size: var(--font-title);
+  font-weight: bold;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+/* ———————————————————— Form ———————————————————— */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 2rem;
+  height: 100%;
+}
+form div.brand-selector {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+}
+form div.brand-selector label.brand-label {
+  width: calc(33.3333333333% - 40px);
+}
+form div.brand-selector label.brand-label input[type=radio] {
+  display: none;
+}
+form div.brand-selector label.brand-label input[type=radio]:checked + div.brand-box {
+  border: 2px solid #003893;
+  background-color: #003893;
+  color: var(--color-white);
+}
+form div.brand-selector label.brand-label div.brand-box {
+  cursor: pointer;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  transition: all 0.07s ease-in-out;
+}
+form div.brand-selector label.brand-label div.brand-box:hover {
+  border: 2px solid #003893;
+}
+form div.brand-selector label.brand-label div.brand-box p.brand-name {
+  margin-bottom: 0;
+}
+form div.button-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  justify-self: flex-end;
+  row-gap: 1.2rem;
+  width: 100%;
+  height: 100%;
+}
+form div.button-area div.quantity-modifier {
+  width: 100%;
+}
+form div.button-area div.quantity-modifier div.input-group {
+  width: 100%;
+}
+form div.button-area div.quantity-modifier div.input-group input[type=number]#quantity-input {
+  padding: 0.1rem;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+form div.button-area div.quantity-modifier div.input-group input[type=number]#quantity-input::-webkit-outer-spin-button, form div.button-area div.quantity-modifier div.input-group input[type=number]#quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+form div.button-area div.quantity-modifier div.input-group button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form div.button-area div.add-to-cart {
+  margin-top: auto;
+  width: 100%;
+}
+form div.button-area div.add-to-cart button[type=submit] {
+  width: 100%;
+  border: #ff9f32;
+  background-color: #ff9f32;
+}
+form div.button-area div.add-to-cart button[type=submit]:hover {
+  border: #f48200;
+  background-color: #f48200;
+}
+
+/* ================================= RWD ================================= */
+/* ———————————————————— Product Detail ———————————————————— */
+/* ———————————————————— Product Cover & Image ———————————————————— */
+/* ———————————————————— Product Information ———————————————————— */
+/* ———————————————————— Form ———————————————————— */

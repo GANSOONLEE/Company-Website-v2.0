@@ -13,7 +13,11 @@ class ProductController extends Controller{
             ->where('product_status', 'Public')
             ->get();
 
-        return view('frontend.product', compact('productData'));
+        $directory = "storage/product/$category";
+
+        $product = product();
+
+        return view('frontend.product', compact('productData', 'directory'));
 
     }
 

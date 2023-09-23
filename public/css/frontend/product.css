@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/* —————————————————————— Layouts —————————————————————— */
+div.content {
+  display: flex;
+  padding: 2rem 0 2rem 2rem;
+  width: 100%;
+}
+div.content section.filter {
+  width: 12%;
+}
+div.content section.container {
+  width: 88%;
+  padding: 0 0 1rem 2rem;
+}
+div.content section.container p.container-title {
+  font-size: var(--font-h5);
+  color: #060616;
+}
+div.content section.container section.product-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  -moz-column-gap: calc(16.6666666667% - 60px);
+       column-gap: calc(16.6666666667% - 60px);
+  row-gap: 2rem;
+}
+div.content section.container section.product-list a.product-detail-href {
+  overflow: hidden;
+  display: block;
+  min-width: 25%;
+  max-width: 25%;
+  height: auto;
+  box-shadow: 0 0 20px #eee;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+div.content section.container section.product-list a.product-detail-href:hover {
+  box-shadow: 0 0 20px #ddd;
+  border: 1px solid #ddd;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card {
+  width: 100%;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-image {
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-image img.product-cover {
+  width: 100%;
+  height: 100%;
+  max-height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: all 0.12s ease-in-out;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-image img.product-cover:hover {
+  transform: scale(1.2);
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-header {
+  font-size: var(--font-title);
+  font-weight: bold;
+  color: #060616;
+  padding: 0.6rem 1rem 0;
+  margin-bottom: 0.7rem;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-header p {
+  margin-bottom: 0;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-information {
+  font-size: var(--font-content);
+  padding: 0 1rem 0.6rem;
+}
+div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-information p {
+  margin-bottom: 0;
+}

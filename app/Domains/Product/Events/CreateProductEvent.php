@@ -33,12 +33,40 @@ class CreateProductEvent{
 
             // Define directory
             $disk = 'public';
-            $directory = 'category';
+            $directory = "product/$category/$code";
+
+            // image
+            $productCover = $request->file('product-cover');
+            $productImage = $request->file('product-image');
+            $brandCover = $request->file('brand-cover');
 
         /**
          * save product information
          */
         try{
+
+            // save image
+            if (!$productCover) {
+                return false;
+            }
+            
+            $originalName = $productCover->getClientOriginalName();
+            $newFileName = 'cover.' . $productCover->getClientOriginalExtension();
+            $path = $productCover->storeAs($directory, $newFileName, $disk);
+
+            if ($productImage) {
+                foreach($productImage as $image){
+                    $originalName = $image->getClientOriginalName();
+                    $path = $image->storeAs($directory, $originalName, $disk);
+                }
+            }
+
+            if($brandCover){
+                foreach($brandCover as $index => $cover){
+                    $originalName = $cover->getClientOriginalName();
+                    $path = $cover->storeAs("$directory/$brandCode[$index]", $originalName, $disk);
+                }
+            }
 
             // products
             $productData = [
@@ -65,7 +93,8 @@ class CreateProductEvent{
                 
                 // insert data
                 // $debugName[] = $productNameData;
-                DB::table('products_name')->insert($productNameData);
+                DB::table('products_name')
+                     ->insert($productNameData);
             }
 
             // products_brand
@@ -78,6 +107,7 @@ class CreateProductEvent{
                 }
 
                 $productBrandData = [
+                    'sku_id' => $this->generatorSkuId(),
                     'brand' => $brand[$i],
                     'code' => $brandCode[$i],
                     'frozen_code' => $frozenCode[$i],
@@ -85,16 +115,23 @@ class CreateProductEvent{
                 ];
             
                 // insert data
-                // $debugBrand[] = $productBrandData;
-                DB::table('products_brand')->insert($productBrandData);
+                DB::table('products_brand')
+                    ->insert($productBrandData);
             }
 
             return redirect()->back();
-            // dd($productData, $debugName, $debugBrand, $productCover, $productImageArray, $brandCover, $request);
 
         }catch(\Exception $e){
-        
+            $message = $e->getMessage();
         }
+
+        if(isset($message)){
+            dd($message);
+        }
+
+        dd($debugBrand);
+        
+        return redirect()->back();
     }
 
     public function generatorCode(): string{

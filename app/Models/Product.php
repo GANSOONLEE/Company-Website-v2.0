@@ -12,6 +12,7 @@ class Product extends Model
 
     protected $table = "products";
     protected $primaryKey = "product_code";
+    public $incrementing = false; 
     protected $fillable = [
         'product_code',
         'product_category',
@@ -25,7 +26,7 @@ class Product extends Model
 
     public function getProductBrand(){
 
-        return DB::table('prducts_brand')
+        return DB::table('products_brand')
         ->select('product_code', 'sku_id', 'brand', 'code')
         ->where('product_code', $this->product_code)
         ->get();
@@ -34,12 +35,12 @@ class Product extends Model
 
     public function getProductName(){
 
-        return DB::table('prducts_name')
+        return DB::table('products_name')
         ->select('product_code', 'name')
         ->where('product_code', $this->product_code)
         ->get();
 
-    } 
+    }
 
 
 }

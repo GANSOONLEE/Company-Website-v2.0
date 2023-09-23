@@ -3,7 +3,7 @@
 div.nav {
   position: fixed;
   top: 3rem;
-  right: -8rem;
+  right: -10rem;
   transition: all 0.2s ease-in-out;
 }
 div.nav:hover {
@@ -13,6 +13,7 @@ div.nav:hover div.hover {
   right: -4rem;
 }
 div.nav div.hover {
+  cursor: pointer;
   height: 50px;
   width: 50px;
   background-color: #fff;
@@ -31,13 +32,21 @@ div.nav ul.nav-links {
   background-color: #fff;
   border: 1px solid #eee;
   padding: 1.2rem;
+  width: 10rem;
 }
 div.nav ul.nav-links a li.nav-link {
   color: #07070d;
-  padding: 0.2rem;
+  padding: 0.2rem 0 0.2rem 0.2rem;
+  transition: all 0.12s ease-in-out;
 }
 div.nav ul.nav-links a li.nav-link:hover {
   color: blue;
+  margin-left: 0.2rem;
+}
+div.nav ul.nav-links a li.nav-link:hover::before {
+  content: "\f30b";
+  font-family: FontAwesome;
+  margin-right: 0.4rem;
 }
 
 /* ———————————————————— Panel Setting ———————————————————— */
