@@ -15,35 +15,40 @@
         <section class="product-detail">
 
             <!-- Product Cover & Image -->
-            <section class="product-media">
+            <section class="product-media" id="image-selector">
 
                 <!-- Image Preview -->
                 <div class="image-preview-container">
-                    <img src="{{ asset('storage/'. $productCover) }}" alt="" class="image-preview">
+                    <img src="{{ asset('storage/'. $productCover) }}" alt="" class="image-preview" data-preview="image-selector">
                 </div>
 
                 <!-- Image Select -->
                 <div class="image-selector-container">
 
                     <!-- Prev Button -->
-                    <div class="prev-button">
+                    <div class="prev-button" data-button="prev">
                         <i class="icon fa-solid fa-arrow-left"></i>
                     </div>
 
                     <!-- Image Selector -->
-                    <div class="image-selector">
+                    <div class="image-selector" data-item="image-selector">
+
+                        <div class="item" data-item="image-selector">
+                            <img data-item="image-selector" src="{{ asset('storage/'. $productCover) }}" alt="" class="item-image" data-image="image-selector">
+                        </div>
 
                         <!-- Item -->
                         @foreach ($productImages as $productImage)
-                        <div class="item">
-                            <img src="{{ asset('storage/'.$productImage) }}" alt="" class="item-image">
+                        <div class="item" data-item="image-selector">
+                            <img data-item="image-selector" src="{{ asset('storage/'.$productImage) }}" alt="" class="item-image" data-image="image-selector">
                         </div>
                         @endforeach
+
 
                     </div>
 
                     <!-- Next Button -->
-                    <div class="next-button">
+                    <div class="next-button" data-button="next">
                         <i class="icon fa-solid fa-arrow-right"></i>
                     </div>
 
@@ -79,7 +84,7 @@
                     <div class="action-area">
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
                         <!-- Form -->
-                        <form class="form" action="" method="post">
+                        <form class="form" action="{{ route('frontend.product.detail.post',['productCode'=>$productData->product_code]) }}" method="post">
                             @csrf
 
                             <!-- Booking -->
@@ -87,9 +92,10 @@
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 <label for="{{ $brand->code }}" class="brand-label" data-image="{{ $brandCover[$brand->code][0] }}">
-                                    <input name="brand" id="{{ $brand->code }}" type="radio">
+                                    <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio">
                                     <div class="brand-box">
                                         <p class="brand-name">{{ $brand->code }}</p>
+                                        <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.svg") }}" alt="">
                                     </div>
                                 </label>
                                 @endforeach
@@ -137,6 +143,25 @@
             </section>
 
         </section>
+
+        <div class="zoom-preview">
+            <img id="zoom-preview" src="" alt="">
+        </div>
+
+        @auth
+         
+            <div class="action-bar">
+                <a href="">
+                    <div class="cart-container">
+                        @if(auth()->user()->getCartNumber() > 0)
+                            <div class="notification">{{ auth()->user()->getCartNumber() }}</div>
+                        @endif
+                        <i class="icon fa-solid fa-cart-shopping"></i>
+                    </div>
+                </a>
+            </div>
+
+        @endauth
 
 
     </div>

@@ -103,9 +103,11 @@ section.product-media{
                 
             // Item
             div.item{
+                cursor: pointer;
                 padding: .4rem 0;
                 margin-left: right;
-                width: calc((100% / 3) - 40px);
+                max-width: calc((100% / 4) - 12px);
+                min-width: calc((100% / 4) - 12px);
                 img.item-image{
                     width: 100%;
                     height: 100%;
@@ -221,14 +223,15 @@ form{
     // Booking
     div.brand-selector{
         width: 100%;
+        height: 50%;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
-        column-gap: 40px;
+        column-gap: 20px;
         // UNIT FOR Brand
         label.brand-label{
-            width: calc((100% / 3) - 40px);
+            width: calc((100% / 3));
             input[type="radio"]{
                 display: none;
                 // If checked
@@ -239,19 +242,30 @@ form{
                 }
             }
             div.brand-box{
+                width: 100%;
+                height: 100%;
                 cursor: pointer;
                 border: 2px solid #eee;
                 border-radius: 4px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: .3rem .6rem;
+                white-space: none;
                 transition: all .07s ease-in-out;
+                overflow: hidden;
                 &:hover{
                     border: 2px solid #003893;
                 }
                 p.brand-name{
+                    padding: .3rem .3rem .3rem .6rem;
                     margin-bottom: 0;
+                }
+                img.brand-logo{
+                    height: 100%;
+                    width: 40%;
+                    object-fit: cover;
+                    background-color: var(--color-white);
+                    border-radius: 0 1px 1px 0;
                 }
             }
         }
@@ -337,6 +351,80 @@ form{
 
     }
 
+}
+
+/* ———————————————————— Action Bar ———————————————————— */
+div.action-bar{
+
+    position: fixed;
+    right: 1rem;
+    bottom: 8rem;
+
+    div.cart-container{
+        position: relative;
+        cursor: pointer;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        $color: rgb(255, 94, 0);
+        background-color: $color;
+        transition: all .12s ease-in-out;
+        &:hover{
+            background-color: color.scale($color, $lightness: -20%);
+            div.notification{
+                background-color: color.scale(red, $lightness: -20%);
+            }
+        }
+
+        div.notification{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            text-align: center;
+            font-size: var(--font-remark);
+            color: var(--color-white);
+            $color-notification: red;
+            background-color: $color-notification;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                
+            }
+        }
+
+        i.icon{
+            font-size: var(--font-h6);
+            color: var(--color-white);
+            margin: 0;
+        }
+    }
+
+}
+
+// zoom-preview
+div.zoom-preview{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background-color: #00000066;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img{
+        width: auto;
+        height: 80%;
+    }
 }
 
 
@@ -436,8 +524,12 @@ form{
 
             }
             div.brand-box{
+                
                 p.brand-name{
 
+                }
+                img.brand-logo{
+                    
                 }
             }
         }

@@ -25,6 +25,7 @@
     "/css/frontend/product-detail.css": "/css/frontend/product-detail.css",
     "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
     "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
+    "/css/frontend/includes/filter.css": "/css/frontend/includes/filter.css",
     "/css/frontend/category.css": "/css/frontend/category.css",
     "/css/backend/admin/product/create-product.css": "/css/backend/admin/product/create-product.css",
     "/css/backend/admin/product/create-product-form.css": "/css/backend/admin/product/create-product-form.css",

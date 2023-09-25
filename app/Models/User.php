@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Faker\Core\Number;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -146,5 +148,53 @@ class User extends Authenticatable
         DB::table('users_roles')->where('user_email', $this->email)->delete();
         $this->delete();
     }
+
+    /**
+     *  @method Add cart record to relation table
+     *  @param string $brand_code
+     */
+    
+    public function createCartRecord($brand_code, $quantity){
+
+        $sku_id = DB::table('products_brand')
+                        ->where('code', "$brand_code")
+                        ->value('sku_id');
+
+        $checkExistent = DB::table('carts')
+                            ->where('user_email', $this->email)
+                            ->where('sku_id', $sku_id);
+
+        // Check Existent
+        if($checkExistent->exists()){
+            $checkExistent->update([
+                'number' => $quantity + $checkExistent->first()->number,
+            ]);
+
+            return $checkExistent->first();
+        }
+
+        $newCartRecord = DB::table('carts')
+                            ->insert([
+                                'user_email' => $this->email,
+                                'sku_id' => $sku_id,
+                                'number' => $quantity,
+                            ]);
+
+        return $newCartRecord;
+
+    }
+
+    /**
+     * @method get the number of cart record, expect 0
+     * @return int
+     */
+
+    public function getCartNumber(): int{
+        return DB::table('carts')
+                    ->where('user_email', $this->email)
+                    ->where('number', '>', 0)
+                    ->count();
+    }
+
 
 }

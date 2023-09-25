@@ -17,7 +17,7 @@ class LocaleController extends Controller
 
         App::setLocale($lang);
 
-        $expiration = Carbon::now()->addYear()->timestamp; // 设置过期时间为一年后的时间戳
+        $expiration = Carbon::now()->addYear()->timestamp;
         $cookie = Cookie::make('lang', $lang, $expiration);
 
         return redirect()->back()->withCookie($cookie);

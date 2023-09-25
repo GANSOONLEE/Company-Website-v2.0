@@ -63,8 +63,11 @@ class CreateProductEvent{
 
             if($brandCover){
                 foreach($brandCover as $index => $cover){
-                    $originalName = $cover->getClientOriginalName();
-                    $path = $cover->storeAs("$directory/$brandCode[$index]", $originalName, $disk);
+                    // $originalName = $cover->getClientOriginalName();
+                    // $originalExtension = $cover->getClientOriginalExtension();
+                    // $originalName = $cover->getClientOriginalName();
+                    $newName = 'cover.png';
+                    $path = $cover->storeAs("$directory/$brandCode[$index]", $newName, $disk);
                 }
             }
 

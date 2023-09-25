@@ -9,9 +9,9 @@
 
         <!-- Filter -->
         <section class="filter">
-            {{-- @include('') --}}
-            1
+            @include('frontend.includes.filter')
         </section>
+
 
         <section class="container">
 
@@ -50,6 +50,7 @@
 @endsection
 
 @push('before-body')
+    <link rel="stylesheet" href="{{ asset('css/frontend/includes/filter.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/product.css') }}">
 @endpush
 

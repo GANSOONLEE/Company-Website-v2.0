@@ -82,9 +82,11 @@ section.product-media div.image-selector-container div.image-selector {
   overflow: hidden;
 }
 section.product-media div.image-selector-container div.image-selector div.item {
+  cursor: pointer;
   padding: 0.4rem 0;
   margin-left: right;
-  width: calc(33.3333333333% - 40px);
+  max-width: calc(25% - 12px);
+  min-width: calc(25% - 12px);
 }
 section.product-media div.image-selector-container div.image-selector div.item img.item-image {
   width: 100%;
@@ -187,15 +189,16 @@ form {
 }
 form div.brand-selector {
   width: 100%;
+  height: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  -moz-column-gap: 40px;
-       column-gap: 40px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
 form div.brand-selector label.brand-label {
-  width: calc(33.3333333333% - 40px);
+  width: 33.3333333333%;
 }
 form div.brand-selector label.brand-label input[type=radio] {
   display: none;
@@ -206,20 +209,32 @@ form div.brand-selector label.brand-label input[type=radio]:checked + div.brand-
   color: var(--color-white);
 }
 form div.brand-selector label.brand-label div.brand-box {
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   border: 2px solid #eee;
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.3rem 0.6rem;
+  white-space: none;
   transition: all 0.07s ease-in-out;
+  overflow: hidden;
 }
 form div.brand-selector label.brand-label div.brand-box:hover {
   border: 2px solid #003893;
 }
 form div.brand-selector label.brand-label div.brand-box p.brand-name {
+  padding: 0.3rem 0.3rem 0.3rem 0.6rem;
   margin-bottom: 0;
+}
+form div.brand-selector label.brand-label div.brand-box img.brand-logo {
+  height: 100%;
+  width: 40%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: var(--color-white);
+  border-radius: 0 1px 1px 0;
 }
 form div.button-area {
   display: flex;
@@ -265,6 +280,69 @@ form div.button-area div.add-to-cart button[type=submit] {
 form div.button-area div.add-to-cart button[type=submit]:hover {
   border: #f48200;
   background-color: #f48200;
+}
+
+/* ———————————————————— Action Bar ———————————————————— */
+div.action-bar {
+  position: fixed;
+  right: 1rem;
+  bottom: 8rem;
+}
+div.action-bar div.cart-container {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 94, 0);
+  transition: all 0.12s ease-in-out;
+}
+div.action-bar div.cart-container:hover {
+  background-color: #cc4b00;
+}
+div.action-bar div.cart-container:hover div.notification {
+  background-color: #cc0000;
+}
+div.action-bar div.cart-container div.notification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  font-size: var(--font-remark);
+  color: var(--color-white);
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.action-bar div.cart-container i.icon {
+  font-size: var(--font-h6);
+  color: var(--color-white);
+  margin: 0;
+}
+
+div.zoom-preview {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+div.zoom-preview img {
+  width: auto;
+  height: 80%;
 }
 
 /* ================================= RWD ================================= */

@@ -50,6 +50,8 @@ function validateForm(){
  * Image Selector
  */
 
+
+
 // #region
 
 
@@ -58,7 +60,7 @@ function validateForm(){
 /** CLASS DEFINE */
 
 /**
- *   @class Number Selector
+ * @class Number Selector
  */
 
 // #region
@@ -142,3 +144,126 @@ selector.init()
 // #endregion
 
 
+/**
+ * @class Image Selector
+ */
+
+class ImageSelector{
+
+    selectorID;
+    container;
+
+    /**
+     * 
+     * @param {string} selectorID 
+     */
+
+    constructor(selectorID){
+        this.selectorID = selectorID;
+    }
+
+    init(){
+        
+        let imagePreview = $(`#${this.selectorID}`); 
+
+        // Button
+        let prevButton = imagePreview.find('[data-button="prev"]');
+        let nextButton = imagePreview.find('[data-button="next"]');
+
+        prevButton.click(()=>{
+            this.moveContainer('prev')                
+        })
+        nextButton.click(()=>{
+            this.moveContainer('next')            
+        })
+
+        // Container
+        this.container = imagePreview.find(`[data-item="${this.selectorID}"]`)
+
+        // Image
+        let images = document.querySelectorAll(`img[data-item="${this.selectorID}"]`);
+        images.forEach(image => {
+            image.addEventListener('mouseenter',()=>{
+                this.imagePreview(image.src)
+            })
+            image.addEventListener('dblclick',()=>{
+                this.imageZoom(image.src)
+
+            })
+        });
+
+    }
+
+    moveContainer(mode){
+
+        let container = this.container; 
+        let containerWidth = container.width();
+
+        switch(mode){
+
+            case 'prev':
+                let scrollX = container.scrollLeft() - containerWidth / 2;
+                container.animate({ scrollLeft: scrollX }, 220);
+                break;
+
+            case 'next':
+                let scrollXNext = container.scrollLeft() + containerWidth / 2;
+                container.animate({ scrollLeft: scrollXNext }, 220);
+                break;
+
+            default:
+                break;
+
+        }
+
+    }
+
+    imagePreview(imgSrc){
+        imagePreviewContainer[0].querySelector('img').src = imgSrc;
+    }
+
+    imageZoom(imgSrc){
+
+        zoom.css('display', 'flex');
+        
+        zoom.click(function(){
+            zoom.hide()
+        })
+
+        let imageZoom =$('#zoom-preview');
+        imageZoom.click(function(event){
+            event.stopPropagation();
+        })
+        imageZoom.dblclick(function(event){
+            event.stopPropagation();
+        })
+
+        imageZoom.attr('src', imgSrc);
+
+    }
+
+}
+
+let zoom = $('div.zoom-preview');
+let imagePreview = new ImageSelector('image-selector');
+let imagePreviewContainer = $(`#image-selector`);
+imagePreview.init();
+
+/**
+ * Brand Image
+ */
+
+let brands = document.querySelectorAll('.brand-label');
+brands.forEach(brand => {
+
+    brand.addEventListener('click',function(){
+        let src = brand.querySelector('input').value
+        let category = brand.querySelector('input').getAttribute('data-category')
+        let code = brand.querySelector('input').getAttribute('data-product')
+        let relation = `/storage/product/${category}/${code}/${src}/cover.png`;
+        
+        imagePreviewContainer[0].querySelector('img').src = relation;
+
+    })
+
+})

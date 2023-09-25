@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Type;
 
 class ProductController extends Controller{
 
@@ -15,9 +16,9 @@ class ProductController extends Controller{
 
         $directory = "storage/product/$category";
 
-        $product = product();
+        $typeData = Type::all();
 
-        return view('frontend.product', compact('productData', 'directory'));
+        return view('frontend.product', compact('productData', 'directory', 'typeData'));
 
     }
 
