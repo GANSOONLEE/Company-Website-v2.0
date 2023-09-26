@@ -38,6 +38,9 @@
 
             <!-- Auth -->
             @auth
+                <a href="{{ route('backend.user.cart') }}" class="navbar-link secondary">
+                    <li class="navbar-link-label">Cart</li>
+                </a>
                 @if(auth()->user()->isAdmin() || auth()->user()->getRole()[0] === 'root')
                     <!-- admin -->
                     <a href="{{ route('backend.admin.dashboard') }}" class="navbar-link primary">
@@ -45,7 +48,7 @@
                     </a>
                 @elseif(auth()->user()->isUser())
                     <!-- user -->
-                    <a href="" class="navbar-link primary">
+                    <a href="{{ route('backend.user.dashboard') }}" class="navbar-link primary">
                         <li class="navbar-link-label">Dashborad</li>
                     </a>
                 @endif

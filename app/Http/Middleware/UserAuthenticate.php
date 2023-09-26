@@ -13,17 +13,20 @@ class UserAuthenticate
         $user = Auth::user();
 
         // if the user does not exist or the remember_token does not match, redirect to the login page
-        if (!$user || $request->input('remember_token') !== $user->remember_token) {
-            return redirect()->route('login');
+        if (!$user) {
+            return redirect()->route('frontend.login');
         }
 
         $roles = $user->getRole();
         
         // if the user's role is not 'user' or 'admin', the user will also be redirected to the login page.
-        $needle = 'user';
        
-        if (strpos($roles, $needle) == false) {
-            return redirect()->route('auth.login');
+        if (strpos($roles, 'user') == false) {
+            if(strpos($roles, 'admin') == false){
+                if(strpos($roles, 'root') == false){
+                    return redirect()->route('auth.login');
+                }
+            }
         }
 
         // the user exists and the role meets the conditions, continue the request

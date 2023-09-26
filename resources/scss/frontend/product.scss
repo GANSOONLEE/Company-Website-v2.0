@@ -2,12 +2,13 @@
 /* —————————————————————— Layouts —————————————————————— */
 div.content{
     display: flex;
-    padding: 2rem 0 2rem 2rem;
+    justify-content: flex-start;
+    padding: 1rem 0 2rem 2rem;
     width: 100%;
 
     // filter
     section.filter{
-        width: 12%;
+        
     }
 
     // content

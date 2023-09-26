@@ -8,10 +8,7 @@
     <div class="content">
 
         <!-- Filter -->
-        <section class="filter">
-            @include('frontend.includes.filter')
-        </section>
-
+        @include('frontend.includes.filter')
 
         <section class="container">
 

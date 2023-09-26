@@ -54,6 +54,17 @@ nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.primary:hover 
   border: 1px solid #5e5eff;
   background-color: #5e5eff;
 }
+nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.secondary {
+  border-radius: 4px;
+  border: 1px solid #878787;
+  background-color: #878787;
+  color: white;
+  transition: all 0.12s ease-in-out;
+}
+nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.secondary:hover {
+  border: 1px solid #6c6c6c;
+  background-color: #6c6c6c;
+}
 nav.navbar#navbar > label[for=menu-button] {
   /* If not phone, hide it */
   display: none;
@@ -117,6 +128,22 @@ nav.navbar#navbar > input[type=checkbox][name=menu-button]#menu-button {
     border: inherit;
     background-color: inherit;
     color: rgb(54, 54, 255);
+  }
+  nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.primary:hover {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+  }
+  nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.secondary {
+    border-radius: inherit;
+    border: inherit;
+    background-color: inherit;
+    color: rgb(73, 73, 73);
+  }
+  nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.secondary:hover {
+    border: none;
+    background-color: inherit;
+    color: inherit;
   }
   nav.navbar#navbar > label[for=menu-button] {
     /* If not phone, hide it */

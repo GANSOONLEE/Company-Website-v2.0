@@ -2,11 +2,9 @@
 /* —————————————————————— Layouts —————————————————————— */
 div.content {
   display: flex;
-  padding: 2rem 0 2rem 2rem;
+  justify-content: flex-start;
+  padding: 1rem 0 2rem 2rem;
   width: 100%;
-}
-div.content section.filter {
-  width: 12%;
 }
 div.content section.container {
   width: 88%;

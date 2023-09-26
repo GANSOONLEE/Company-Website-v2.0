@@ -1,3 +1,101 @@
 section.filter {
-  background-color: rgb(214, 214, 255);
+  width: 17%;
+  height: 87vh;
+  position: sticky;
+  border: 1.4px solid #eee;
+  border-radius: 8px;
+  top: 11.7vh;
+  background-color: #fefefe;
+  padding: 0.4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+section.filter div.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 0.4rem;
+  width: 100%;
+  padding: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #ddd;
+}
+section.filter div.container input.form-search {
+  width: 100%;
+  background-color: transparent;
+  padding: 0.2rem 0;
+  margin-left: 0.6rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.12s ease-in-out;
+}
+section.filter div.container input.form-search:focus {
+  border-bottom: 2px solid #7b86ff;
+}
+section.filter div.container label.label {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+}
+section.filter div.container label.label input {
+  margin-right: 0.4rem;
+  display: none;
+}
+section.filter div.container label.label input:checked + div.box {
+  background-color: #cacfff;
+}
+section.filter div.container label.label div.box {
+  width: 100%;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-radius: 4px;
+  background-color: #fdfdff;
+  transition: all 0.12s ease-in-out;
+}
+section.filter div.container label.label div.box:hover {
+  background-color: #e9ebfb;
+}
+section.filter div.container.search-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+section.filter div.container.model-container {
+  box-shadow: inset -5px -3px 10px #bbb;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 0.6rem;
+  padding-right: 0.4rem;
+  overflow-y: auto;
+}
+section.filter div.container.model-container::-webkit-scrollbar {
+  padding: 0.2rem 0;
+}
+section.filter div.container.model-container::-webkit-scrollbar-button {
+  background-color: rgb(174, 160, 255);
+}
+section.filter div.container.model-container::-webkit-scrollbar-track {
+  background-color: rgb(201, 214, 255);
+}
+section.filter div.container.model-container::-webkit-scrollbar-thumb {
+  background-color: rgb(57, 60, 255);
+}
+section.filter div.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.4rem;
+  padding-top: 1rem;
+  width: 100%;
+}
+section.filter div.button button {
+  width: 100%;
+}
+
+form {
+  height: 45vh;
 }
