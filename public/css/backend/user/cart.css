@@ -1,3 +1,4 @@
+@charset "UTF-8";
 section.cart {
   display: flex;
   flex-direction: column;
@@ -11,8 +12,37 @@ section.cart > section {
   box-shadow: 0 0 20px #dedede;
   padding: 2rem;
 }
-section.cart section.filter div.filter {
+section.cart p.filter-title {
+  color: #0e0e24;
+  font-weight: light;
+  font-size: var(--font-h5);
+}
+section.cart div.filter-container {
+  display: flex;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+section.cart div.filter-container div.filter {
   width: 33.3333333333%;
+}
+section.cart section.cart-list div.cart-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section.cart section.cart-list div.cart-list-header a {
+  max-width: -moz-max-content;
+  max-width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+section.cart section.cart-list div.cart-list-header a button {
+  color: var(--color-white);
+  text-align: center;
+  background-color: transparent;
 }
 section.cart section.cart-list div.cart-list-body {
   padding: 1rem 0;
@@ -41,14 +71,86 @@ section.cart section.cart-list div.cart-list-body table tbody {
   overflow-y: scroll;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td {
+  height: 100%;
   padding: 1rem 0;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td:first-child {
   padding-left: 1rem;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable {
+  cursor: pointer;
+  height: 100%;
+  width: -moz-min-content;
+  width: min-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  -moz-column-gap: 0.8rem;
+       column-gap: 0.8rem;
+  transition: all 0.12s ease-in-out;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable p {
+  margin-bottom: 0;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable i {
+  display: none;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable:hover {
+  color: blue;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable:hover p {
+  -webkit-text-decoration: 2px underline dotted blue;
+          text-decoration: 2px underline dotted blue;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable:hover i {
+  display: block;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td img {
   width: 6vw;
   height: auto;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+/* ———————————————————— popovers ———————————————————— */
+div.popovers {
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 0 5px #9a9a9a;
+}
+div.popovers div.popovers-header {
+  background-color: #e6e6e6;
+  padding: 0.3rem 1rem;
+}
+div.popovers div.popovers-header p.popovers-title {
+  font-size: var(--font-remark);
+  text-align: start;
+  margin-bottom: 0;
+  color: #666;
+}
+div.popovers div.popovers-content {
+  background-color: var(--color-white);
+  padding: 0.3rem 0.3rem 0.1rem;
+}
+div.popovers div.popovers-content textarea {
+  resize: none;
+  width: 100%;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+}
+div.popovers div.popovers-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.3rem;
+  background-color: var(--color-white);
+}
+div.popovers div.popovers-footer button {
+  font-size: 0.8rem;
+}
+div.popovers.show {
+  display: block;
 }

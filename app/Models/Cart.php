@@ -40,4 +40,15 @@ class Cart extends Model
 
         return $brand->$data;
     }
+
+    public function getProductInformationEntity(){
+        $brand = DB::table('products_brand')
+        ->where('sku_id', $this->sku_id)
+        ->first();
+
+        $product = Product::where('product_code', $brand->product_code)
+                ->first();
+
+        return $product;
+    }
 }

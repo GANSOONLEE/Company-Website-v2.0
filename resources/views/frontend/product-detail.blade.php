@@ -151,7 +151,7 @@
         @auth
          
             <div class="action-bar">
-                <a href="">
+                <a href="{{ route('backend.user.cart') }}">
                     <div class="cart-container">
                         @if(auth()->user()->getCartNumber() > 0)
                             <div class="notification">{{ auth()->user()->getCartNumber() }}</div>

@@ -18,7 +18,7 @@ aside.sidebar::-webkit-scrollbar-track {
   background: transparent;
 }
 aside.sidebar div.sidebar-logo {
-  background-color: #414f5e;
+  background-color: rgba(116, 124, 133, 0.3333333333);
 }
 aside.sidebar div.sidebar-logo img.sidebar-logo-image {
   padding: 1rem 4rem;

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Type;
 
 class UserViewCartController extends Controller
 {
@@ -17,8 +18,9 @@ class UserViewCartController extends Controller
                         ->get();
 
         $categoryData = Category::all();
+        $typeData = Type::all();
 
-        return view('backend.user.cart', compact('cartData', 'categoryData'));
+        return view('backend.user.cart', compact('cartData', 'categoryData', 'typeData'));
 
     }
 }

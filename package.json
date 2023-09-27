@@ -35,6 +35,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.23.1",
+        "docker": "^1.0.0",
         "foundation-sites": "^6.8.1",
         "jquery": "^3.7.1",
         "mix": "^0.0.1",

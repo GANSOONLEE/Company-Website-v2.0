@@ -12,6 +12,7 @@
     "/js/backend/admin/image/carousel-image.js": "/js/backend/admin/image/carousel-image.js",
     "/js/backend/admin/includes/sidebar.js": "/js/backend/admin/includes/sidebar.js",
     "/js/backend/admin/product/create-product.js": "/js/backend/admin/product/create-product.js",
+    "/js/backend/user/cart.js": "/js/backend/user/cart.js",
     "/js/backend/user/includes/sidebar.js": "/js/backend/user/includes/sidebar.js",
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/frontend/global.js": "/js/frontend/global.js",
