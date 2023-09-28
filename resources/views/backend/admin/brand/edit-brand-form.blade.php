@@ -28,8 +28,8 @@
                 </div>
 
                 <!-- brand Name -->
-                {{-- <label for="" class="form-label">{{ __('brand.edit-brand-name') }}</label>
-                <input class="form-control" name="brand-name" type="text" value=""> --}}
+                <label for="" class="form-label">{{ __('brand.edit-brand-name') }}</label>
+                <input class="form-control" name="brand-name" type="text" value="">
 
                 <!-- Button -->
                 <button class="update-button btn btn-primary" type="submit">{{ __('brand.update') }}</button>

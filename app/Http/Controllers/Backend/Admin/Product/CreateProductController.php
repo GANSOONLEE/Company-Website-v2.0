@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Type;
+use App\Models\CarModel;
 use Illuminate\Http\Request;
 
 class CreateProductController extends Controller
@@ -17,10 +18,15 @@ class CreateProductController extends Controller
             abort(403, 'Insufficient permissions');
         };
 
-        $categoryData = Category::all();
-        $brandData = Brand::all();
-        $typeData = Type::all();
+        $categoryData = Category::orderBy('name', 'asc')
+                            ->get();
+        $brandData = Brand::orderBy('name', 'asc')
+                            ->get();
+        $typeData = Type::orderBy('name', 'asc')
+                            ->get();
+        $modelData = CarModel::orderBy('name', 'asc')
+                            ->get();
 
-        return view('backend.admin.product.create-product', compact('categoryData', 'brandData', 'typeData'));
+        return view('backend.admin.product.create-product', compact('categoryData', 'brandData', 'typeData', 'modelData'));
     }
 }

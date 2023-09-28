@@ -79,12 +79,35 @@ function closePopover() {
     document.removeEventListener('click', closePopover);
 }
 
-// Ajax Request
+// Refresh effect
+
+let refresh = document.querySelector('#refresh');
+refresh.addEventListener('click', (event)=>{
+    event.preventDefault();
+
+    let icon = refresh.querySelector('.fa-refresh');
+    icon.classList.add('fa-spin')
+    setTimeout(function(){
+        icon.classList.remove('fa-spin');
+        location.reload();
+    }, 2500)
+
+    
+})
+
+// Ajax Request update number
 
 document.querySelector('#popover-update').addEventListener('click', ()=>{
     
     let brand_code = popover.querySelector('#brand_code').value;
     let number = popover.querySelector('#number').value;
+
+    closePopover();
+
+    if(isNaN(Number(number, 10))){
+        console.log('請輸入數字')
+        return false
+    }
 
     let data = {
         'brand_code': brand_code,
@@ -100,7 +123,51 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            
+            let row = document.querySelector('#' + brand_code).parentNode;
+            row.querySelector('.number').innerText = response['number']
+        },
+        error: function () {
+            alert("Something error");
+        }
+    })
+
+})
+
+// Ajax Request Create Order
+
+let createOrderBtn = document.querySelector('#create-order');
+createOrderBtn.addEventListener('click', ()=>{
+
+    let items = document.querySelectorAll('input[type="checkbox"]')
+    let checkedItems;
+
+    console.log(items)
+    items.forEach(item => {
+        if(!item.checked){
+            return false;
+        }
+
+        let skuId = item.getAttribute('data-sku-id');
+        let number = item.getAttribute('data-number');
+
+        checkedItems.push({
+            'sku_id': skuId,
+            'number': number,
+        })
+    })
+
+    console.log(checkedItems)
+
+    $.ajax({
+        url: "/user/order/create-order",
+        method: "POST",
+        dataType: 'json',
+        data: data,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+           console.log(response)
         },
         error: function () {
             alert("Something error");

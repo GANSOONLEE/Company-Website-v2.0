@@ -11,7 +11,13 @@ class CreateCartEvent{
         $brand_code = $request->brand;
         $quantity = $request->quantity;
 
-        auth()->user()->createCartRecord($brand_code, $quantity);
+        $user = auth()->user();
+
+        if(!$user){
+            return redirect()->route('auth.login');
+        }
+
+        $user->createCartRecord($brand_code, $quantity);
 
         return redirect()->back();
     }

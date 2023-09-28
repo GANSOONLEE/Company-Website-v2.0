@@ -44,7 +44,12 @@
         <div class="row">
             <div class="mb-3 col">
                 <label class="form-label" for="name-input-0">{{ __('product.model') }}</label>
-                <input type="text" class="form-control" name="name-input-model[]" id="name-input-0" required>
+                <input list="datalistOptions" type="text" class="form-control" name="name-input-model[]" id="name-input-0" required>
+                <datalist id="datalistOptions">
+                    @foreach ($modelData as $model)
+                    <option value="{{ $model->name }}">
+                    @endforeach
+                </datalist>
             </div>
 
             <!-- Model Serial -->

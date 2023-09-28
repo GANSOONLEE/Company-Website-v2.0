@@ -43,16 +43,25 @@
     <!-- cart list -->
     <section class="cart-list">
 
-        <div class="cart-list-header">
-            <a class="btn btn-success" href="">
-                <i class="fa-solid fa-refresh"></i>
-                <button>Refresh</button>
-            </a>
+        <div class="cart-list-header flex-row">
+            <div class="button-area flex-row">
+                <a class="btn btn-success" href="" id="refresh">
+                    <i class="fa-solid fa-refresh"></i>
+                    <button>Refresh</button>
+                </a>
+    
+                <a class="btn btn-primary" href="{{ route('frontend.category') }}">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <button>Goto Shop</button>
+                </a>
+            </div>
 
-            <a class="btn btn-primary" href="{{ route('frontend.category') }}">
-                <i class="fa-solid fa-shopping-cart"></i>
-                <button>go to shop</button>
-            </a>
+            <div class="button-area flex-row">
+                <a class="btn" id="create-order">
+                    <i class="fa-solid fa-add"></i>
+                    <button>Create Order</button>
+                </a>
+            </div>
         </div>
 
         <div class="cart-list-body">
@@ -61,6 +70,7 @@
                 <thead>
                     <tr>
                         {{-- <th>SKU ID</th> --}}
+                        <th></th>
                         <th>Image</th>
                         <th>Product Name</th>
                         {{-- <th>Product Code</th> --}}
@@ -86,12 +96,15 @@
                     <tr>
                         {{-- <td>{{ $cart->sku_id }}</td> --}}
                         <td>
+                            <input data-sku-ui="{{ $sku_id }}" data-number="{{ $number }}" type="checkbox" name="" id="">
+                        </td>
+                        <td>
                             <a target="_product" href="{{ route('frontend.product-detail', ["productCode"=>$product_code]) }}">
                                 <img src="{{ asset("storage/product/$category/$product_code/$code/cover.png") }}" alt="">
                             </a>
                         </td>
                         <td data-select-column="name">{{ $name }}</td>
-                        <td data-select-column="name" class="sku-id" style="display: none">{{ $sku_id }}</td>
+                        <td data-select-column="name" class="sku-id" style="display: none" id="{{ $sku_id }}">{{ $sku_id }}</td>
                         {{-- <td data-select-column="product_code">{{ $product_code }}</td> --}}
                         <td data-select-column="category">{{ $category }}</td>
                         <td data-select-column="type">{{ $type }}</td> 

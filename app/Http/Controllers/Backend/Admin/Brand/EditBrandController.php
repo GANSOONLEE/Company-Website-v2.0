@@ -21,9 +21,10 @@ class EditBrandController extends Controller
 
         // Array
         $brandData = [];
-        $categories = Brand::all();
+        $brands = Brand::orderBy('name', 'asc')
+                    ->get();
 
-        foreach ($categories as $brand) {
+        foreach ($brands as $brand) {
             $matchingFile = null;
             
             foreach ($files as $file) {
@@ -37,7 +38,7 @@ class EditBrandController extends Controller
             if ($matchingFile !== null) {
                 $cover = $matchingFile;
             } else {
-                $cover = 'storage/brand/placeholder.png';
+                $cover = 'storage/brand/placeholder.svg';
             }
             
             $brandCover = [

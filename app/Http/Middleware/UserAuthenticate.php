@@ -14,7 +14,7 @@ class UserAuthenticate
 
         // if the user does not exist or the remember_token does not match, redirect to the login page
         if (!$user) {
-            return redirect()->route('frontend.login');
+            return redirect()->route('auth.login');
         }
 
         $roles = $user->getRole();

@@ -11,6 +11,10 @@ class AdminAuthenticate
     {
 
         $user = Auth::user();
+        
+        if(!$user){
+            return redirect()->route('auth.login');
+        }
 
         if(!$user->getRoleEntity()->hasPermission('admin')){
             abort(403, 'Insufficient permissions');

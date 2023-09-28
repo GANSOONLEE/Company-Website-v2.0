@@ -26,7 +26,7 @@ class UpdateUserCartEvent{
 
             $data = [
                 'code' => $brand_code,
-                'cart' => $cart,
+                'number' => $number
             ];
 
         }catch(\Exception $err){
