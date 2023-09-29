@@ -31,3 +31,14 @@ Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $p
     $trail->push($productData->product_code, route('frontend.product-detail', $productData->product_code));
 });
 
+// Home > Order
+Breadcrumbs::for('order', function (BreadcrumbTrail $trail){
+    $trail->parent('home');
+    $trail->push('Order', route('backend.user.order'));
+});
+
+// Home > Order > [Order Detail]
+Breadcrumbs::for('orderDetail', function (BreadcrumbTrail $trail, $order){
+    $trail->parent('order');
+    $trail->push($order->code, route('backend.user.order-detail', $order->code));
+});

@@ -98,12 +98,17 @@ section.cart section.cart-list div.cart-list-body table tbody tr td .editable {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  -moz-column-gap: 0.8rem;
-       column-gap: 0.8rem;
   transition: all 0.12s ease-in-out;
+}
+section.cart section.cart-list div.cart-list-body table tbody tr td .editable .number {
+  display: flex;
+  -moz-column-gap: 0.4rem;
+       column-gap: 0.4rem;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td .editable p {
   margin-bottom: 0;
+  width: -moz-max-content;
+  width: max-content;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td .editable i {
   display: none;
@@ -116,6 +121,7 @@ section.cart section.cart-list div.cart-list-body table tbody tr td .editable:ho
           text-decoration: 2px underline dotted blue;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td .editable:hover i {
+  line-height: unset;
   display: block;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td img {
@@ -166,4 +172,14 @@ div.popovers div.popovers-footer button {
 }
 div.popovers.show {
   display: block;
+}
+
+div#alert {
+  position: sticky;
+  display: none;
+  top: 0;
+  left: 0;
+}
+div#alert div.alert {
+  width: 100%;
 }

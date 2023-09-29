@@ -33,7 +33,7 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>Your cart</li></a>
+                <a href="{{ route('backend.user.cart') }}"><li>Your cart</li></a>
             </ul>
         </section>
         {{-- @endif --}}
@@ -47,11 +47,7 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul>
-                <a href="#"><li>Order Placed</li></a>
-                <a href="#"><li>Order Accepted </li></a>
-                <a href="#"><li>Order in Progress</li></a>
-                <a href="#"><li>Order On Hold</li></a>
-                <a href="#"><li>Order Completed </li></a>
+                <a href="{{ route('backend.user.order') }}"><li>Your Order</li></a>
             </ul>
         </section>
         @endif

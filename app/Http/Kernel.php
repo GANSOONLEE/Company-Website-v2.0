@@ -47,14 +47,15 @@ class Kernel extends HttpKernel
         ],
 
         'user' => [
-            // 在这里列出你的自定义中间件
             \App\Http\Middleware\UserAuthenticate::class,
         ],
 
         'translation-auth' => [
-            // 在这里列出你的自定义中间件
             \App\Http\Middleware\TranslationAuthMiddleware::class,
         ],
+        'login' => [
+            \App\Http\Middleware\LoginMiddleware::class,
+        ]
     ];
 
     /**

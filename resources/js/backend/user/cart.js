@@ -1,6 +1,10 @@
 
 // Search EOM
 
+import BootstrapAlert from './components/BootstrapAlert.vue';
+const alert = createApp(BootstrapAlert);
+const vm = alert.mount('#alert');
+
 class SearchMappingFactory{
 
     searchInput;
@@ -105,8 +109,17 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
     closePopover();
 
     if(isNaN(Number(number, 10))){
-        console.log('請輸入數字')
+        vm.updateMessage('Please enter number');
+        vm.showAlert();
+        $('#alert').css('display', 'block')
         return false
+    }
+
+    if(number < 0 || number >= 100){
+        vm.updateMessage('Can\'t less then 0 or more then 100');
+        vm.showAlert();
+        $('#alert').css('display', 'block')
+        return false;
     }
 
     let data = {
@@ -139,35 +152,53 @@ let createOrderBtn = document.querySelector('#create-order');
 createOrderBtn.addEventListener('click', ()=>{
 
     let items = document.querySelectorAll('input[type="checkbox"]')
-    let checkedItems;
+    let checkedItems = [];
+    let status = true;
 
-    console.log(items)
     items.forEach(item => {
-        if(!item.checked){
-            return false;
+        if(item.checked){
+            let skuId = item.getAttribute('data-sku-id');
+            let number = item.getAttribute('data-number');
+
+            if(number == 0){
+                vm.updateMessage('The items you select have 0');
+                vm.showAlert();
+                $('#alert').css('display', 'block')
+                status = false;
+                return false;
+            }
+   
+            checkedItems.push({
+                'sku_id': skuId,
+                'number': number,
+            })
         }
 
-        let skuId = item.getAttribute('data-sku-id');
-        let number = item.getAttribute('data-number');
-
-        checkedItems.push({
-            'sku_id': skuId,
-            'number': number,
-        })
     })
 
-    console.log(checkedItems)
+    if(checkedItems.length === 0){
+        vm.updateMessage('Please select 1 or more item');
+        vm.showAlert();
+        $('#alert').css('display', 'block')
+        status = false;
+        return false;
+    }
+
+    if(!status){
+        return false;
+    }
 
     $.ajax({
         url: "/user/order/create-order",
         method: "POST",
         dataType: 'json',
-        data: data,
+        data: {orderData: checkedItems},
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
            console.log(response)
+           location.reload()
         },
         error: function () {
             alert("Something error");

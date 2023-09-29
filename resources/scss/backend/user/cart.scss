@@ -112,10 +112,15 @@ section.cart{
                                 display: flex;
                                 justify-content: flex-start;
                                 align-items: center;
-                                column-gap: .8rem;
+                                
                                 transition: all .12s ease-in-out;
+                                .number{
+                                    display: flex;
+                                    column-gap: .4rem;
+                                }
                                 p{
                                     margin-bottom: 0;
+                                    width: max-content;
                                 }
                                 i{
                                     display: none;
@@ -126,6 +131,7 @@ section.cart{
                                         text-decoration: 2px underline dotted blue;
                                     }
                                     i{
+                                        line-height: unset;
                                         display: block;
                                     }
                                 }
@@ -193,3 +199,12 @@ div.popovers{
     }
 }
 
+div#alert{
+    position: sticky;
+    display: none;
+    top: 0;
+    left: 0;
+    div.alert{
+        width: 100%;
+    }
+}

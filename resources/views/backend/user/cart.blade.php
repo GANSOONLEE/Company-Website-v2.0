@@ -4,6 +4,10 @@
 
 @section('main')
 
+<div id="alert">
+    <bootstrap-alert></bootstrap-alert>
+</div>
+
 <section class="cart">
 
     <!-- filter -->
@@ -96,7 +100,7 @@
                     <tr>
                         {{-- <td>{{ $cart->sku_id }}</td> --}}
                         <td>
-                            <input data-sku-ui="{{ $sku_id }}" data-number="{{ $number }}" type="checkbox" name="" id="">
+                            <input data-sku-id="{{ $sku_id }}" data-number="{{ $number }}" type="checkbox" name="" id="">
                         </td>
                         <td>
                             <a target="_product" href="{{ route('frontend.product-detail', ["productCode"=>$product_code]) }}">
@@ -111,8 +115,10 @@
                         <td data-select-column="code">{{ $code }}</td>
                         <td data-select-column="number">
                             <div class="editable popovers-edit">
-                                <p class="number">{{ $number }}</p>
-                                <i class="fa-solid fa-pen"></i>
+                                <div class="number flex-row">
+                                    <p>{{ $number }}</p>
+                                    <i class="fa-solid fa-pen"></i>
+                                </div>
                             </div>
                         </td>
                     </tr>

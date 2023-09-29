@@ -1,0 +1,100 @@
+
+/* ———————————————————— Tab ———————————————————— */
+
+section.tab{
+    border: 1px solid #0d0d2819;
+    border-radius: 6px;
+    box-shadow: 0 0 20px #0d0d2819;
+    padding: 2rem;
+
+    // section title
+    p.section-title{
+        font-size: var(--font-h4);
+        color: #0b0b18;
+    }
+
+    // tab bar
+    section.tab-bar{
+        border-bottom: .5px solid #bbb;
+        column-gap: 4rem;
+        margin-bottom: 1rem;
+
+        // tab
+        a.tab-link{
+            padding: .4rem;
+            border-bottom: 2px solid transparent;
+            transition: all .17s ease-in-out;
+
+            // active
+            &.active{
+                color: blue;
+                border-bottom-color: blue;
+            }
+        }
+
+    }
+
+    @mixin table{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 1rem;
+        padding-right: 30%;
+        text-align: left
+    }
+
+    @mixin cell{
+        min-width: auto;
+        width: calc(40%);
+        max-width:  45%;
+        margin-bottom: 0;
+    }
+
+    // tab header
+    section.tab-header{
+        padding: 1rem 0;
+        background-color: #d2d2d2;
+        @include table;
+
+        p.header-text{
+            @include cell;
+            font-weight: bold;
+        }
+    }
+
+    // tab container
+    section.tab-container{
+        padding: 1rem 0;
+
+        // tab content
+        div.tab-content{
+            display: none;
+            max-height: 40vh;
+            overflow-y: auto;
+
+            // order-link
+            a.order-link{
+                @include table;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+
+                > p{
+                    @include cell;
+                }
+
+                // odd
+                &:nth-child(odd){
+                    background-color: #efefef;
+                }
+
+                // even
+                &:nth-child(even){
+                    background-color: #fcfcfc;
+                }
+            }
+
+        }
+
+    }
+
+}

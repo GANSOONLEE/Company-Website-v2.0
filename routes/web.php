@@ -28,7 +28,7 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
  * Not need to login or get the authorize
  */
 
-Route::group(['as' => 'frontend.'], function () {
+Route::group(['as' => 'frontend.', 'middleware' => 'login'], function () {
     includeRouteFiles(__DIR__ . '/frontend/');
 });
 

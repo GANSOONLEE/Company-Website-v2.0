@@ -197,4 +197,17 @@ class User extends Authenticatable
     }
 
 
+
+    public function getOrderAll(){
+
+    }
+
+    public function getOrderWithStatus($status){
+
+        return Order::where('status', $status)
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+    }
+
 }
