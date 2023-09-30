@@ -43,4 +43,11 @@ class Order extends Model
         return $orderDetails;
 
     }
+
+    public function getUserInformation(){
+
+        return User::where('email', $this->user_email)
+                    ->first();
+
+    }
 }

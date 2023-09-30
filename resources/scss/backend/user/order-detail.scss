@@ -107,9 +107,17 @@ section.order{
                 div.item-information{
                     display: flex;
                     column-gap: 2.2rem;
+                    margin-right: 2rem;
                     p{
                         margin-bottom: 0;
                     }
+                }
+
+                // Action
+                div.item-action{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
                 // odd

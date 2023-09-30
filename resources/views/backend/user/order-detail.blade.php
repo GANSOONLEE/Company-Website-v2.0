@@ -28,7 +28,6 @@
 
             <div class="order-information">
                 <div class="info">
-                    <em>1</em>
                     <p class="key">Order ID: </p>
                     <p class="value">{{ $order->code }}</p>
                 </div>
@@ -73,6 +72,11 @@
                             <p>{{ $brand->brand }}</p>
                             <p>{{ $brand->code }}</p>
                         </div>
+                        @if (auth()->user()->getRoleEntity()->hasPermission('edit_order'))
+                        <div class="item-action">
+                            <input type="checkbox" name="" id="">
+                        </div>
+                        @endif
                     </a>
                 @endforeach
 

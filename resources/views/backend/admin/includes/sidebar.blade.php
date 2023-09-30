@@ -95,7 +95,7 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul>
-                <a href="#"><li>{{ __('sidebar.order-process') }}</li></a>
+                <a href="{{ route('backend.admin.order.index') }}"><li>{{ __('sidebar.order-process') }}</li></a>
                 <a href="#"><li>{{ __('sidebar.order-holding') }}</li></a>
                 {{-- <a href="#"><li>{{ __('sidebar.order-deleted') }}</li></a> --}}
             </ul>

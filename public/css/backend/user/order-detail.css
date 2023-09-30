@@ -92,9 +92,15 @@ section.order div.order-content div.order-container a.order-item div.item-inform
   display: flex;
   -moz-column-gap: 2.2rem;
        column-gap: 2.2rem;
+  margin-right: 2rem;
 }
 section.order div.order-content div.order-container a.order-item div.item-information p {
   margin-bottom: 0;
+}
+section.order div.order-content div.order-container a.order-item div.item-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 section.order div.order-content div.order-container a.order-item:nth-child(odd) {
   background-color: #fefefe;
