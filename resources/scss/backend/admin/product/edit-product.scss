@@ -1,0 +1,108 @@
+
+/* ———————————————————— Layouts ———————————————————— */
+
+div.main{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+@mixin panel-effect{
+    box-shadow: 0 0 20px #1c254020;
+    border: 1px solid #1c254020;
+    border-radius: 8px;
+    margin: 1rem;
+}
+
+section.basic-information-edit-panel{
+    // background-color: red;
+    @include panel-effect;
+    height: 20vh;
+}
+
+section.filter{
+    // background-color: orange;
+    @include panel-effect;
+    height: 12vh;
+}
+
+section.datalist{
+    // background-color: yellow;
+    @include panel-effect;
+    height: 50vh;
+}
+
+
+/* ———————————————————————————————— Panel ————————————————————————————————— */
+
+
+
+/* ———————————————————————————————— Filter ————————————————————————————————— */
+
+div.filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+    
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        label{
+            margin-bottom: 0;
+        }
+        p{
+            margin-bottom: 0;
+        }
+    }
+
+}
+
+
+/* ———————————————————————————————— Datalist Table ————————————————————————————————— */
+
+div.datalist{
+
+    // Table
+    table{
+        width: 100%;
+        table-layout: auto;
+        word-break: break-all;
+
+        // tr
+        tr{
+            cursor: pointer;
+            // odd
+            &:nth-child(odd){
+
+            }
+
+            // even
+            &:nth-child(even){
+
+            }
+
+            &:hover{
+
+            }
+
+        }
+
+        // td Global
+        td{
+            padding: 1rem 1.8rem;
+
+            // Product Cover
+            img{
+                height: 8vh;
+                width: auto;
+                object-fit: cover;
+            }
+        }
+
+    }
+
+}

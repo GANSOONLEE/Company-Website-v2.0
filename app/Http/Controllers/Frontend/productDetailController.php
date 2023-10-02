@@ -47,7 +47,7 @@ class productDetailController extends Controller
             $image =  Storage::disk($disk)->files($subdirectory);
             $brandCover[$subDirectoryName]= $image;
         }
-
+        
         return view('frontend.product-detail', compact(
             'productData',
             'productCover',

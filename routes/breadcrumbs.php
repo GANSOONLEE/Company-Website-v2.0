@@ -31,14 +31,26 @@ Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $p
     $trail->push($productData->product_code, route('frontend.product-detail', $productData->product_code));
 });
 
-// Home > Order
+// Home > Order (User)
 Breadcrumbs::for('order', function (BreadcrumbTrail $trail){
     $trail->parent('home');
     $trail->push('Order', route('backend.user.order'));
 });
 
-// Home > Order > [Order Detail]
+// Home > Order > [Order Detail] (User)
 Breadcrumbs::for('orderDetail', function (BreadcrumbTrail $trail, $order){
     $trail->parent('order');
     $trail->push($order->code, route('backend.user.order-detail', $order->code));
+});
+
+// Home > Order (Admin)
+Breadcrumbs::for('order-admin', function (BreadcrumbTrail $trail){
+    $trail->parent('home');
+    $trail->push('Order', route('backend.admin.order.index'));
+});
+
+// Home > Order > [Order Detail] (Admin)
+Breadcrumbs::for('orderDetail-admin', function (BreadcrumbTrail $trail, $order){
+    $trail->parent('order-admin');
+    $trail->push($order->code, route('backend.admin.order.order-detail', $order->code));
 });

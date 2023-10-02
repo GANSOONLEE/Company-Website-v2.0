@@ -42,5 +42,16 @@ class Product extends Model
 
     }
 
+    public function deleteWithRelatedRecords(){
+
+        // Brand
+        DB::table('products_brand')->where('product_code', $this->product_code)->delete();
+
+        // Name
+        DB::table('products_name')->where('product_code', $this->product_code)->delete();
+
+        // Product
+        $this->delete();
+    }
 
 }

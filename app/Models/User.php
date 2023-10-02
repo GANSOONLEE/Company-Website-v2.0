@@ -205,6 +205,7 @@ class User extends Authenticatable
     public function getOrderWithStatus($status){
 
         return Order::where('status', $status)
+                ->where('user_email', $this->email)
                 ->orderBy('created_at', 'desc')
                 ->get();
 

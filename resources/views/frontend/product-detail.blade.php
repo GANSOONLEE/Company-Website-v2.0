@@ -91,7 +91,11 @@
                             <div class="brand-selector">
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
-                                <label for="{{ $brand->code }}" class="brand-label" data-image="{{ $brandCover[$brand->code][0] }}">
+                                @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [])
+                                <label for="{{ $brand->code }}" class="brand-label" data-image="{{ $brandCover[$brand->code][0] }}">  
+                                @else
+                                <label for="{{ $brand->code }}" class="brand-label" data-image="">  
+                                @endif
                                     <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio">
                                     <div class="brand-box">
                                         <p class="brand-name">{{ $brand->code }}</p>

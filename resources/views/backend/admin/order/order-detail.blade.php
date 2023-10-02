@@ -4,6 +4,8 @@
 
 @section('main')
 
+    {{ Breadcrumbs::render('orderDetail-admin', $order) }}
+
     <section class="order">
 
         <!-- Header -->
@@ -11,15 +13,25 @@
 
             <!-- customer -->
             <div class="customer-information">
-
-
+                <p id="customer-shop-name">{{ $order->getUserInformation()->shop_name }}</p>
+                <p id="customer-whatsapp-phone">{{ $order->getUserInformation()->whatsapp_phone }}</p>
             </div>
 
             <!-- order -->
-            <div class="order-informatino">
-                
+            <div class="order-information">
+                <p id="order-status">{{ $order->status }}</p>
+                <p id="created_at">{{ $order->created_at }}</p>
             </div>
 
+        </div>
+
+        <!-- Title -->
+        <div class="order-title">
+            <p>{{ __('order.product-category') }}</p>
+            <p>{{ __('order.propduct-type') }}</p>
+            <p>{{ __('order.product-name') }}</p>
+            <p>{{ __('order.product-code') }}</p>
+            <p>{{ __('order.number') }}</p>
         </div>
 
         <!-- Content -->
@@ -27,29 +39,18 @@
 
             <!-- item -->
             @foreach (($order->getOrderItems()) as $item)
-                @php
-                    $brand = DB::table('products_brand')
-                        ->where('sku_id', $item->sku_id)
-                        ->first();
-
-                    $product = DB::table('products')
-                        ->where('product_code', $brand->product_code)
-                        ->first();
-
-                    $category = $product->product_category;
-                @endphp
-
-            <a href="" class="item-box">
+            <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="item-box">
 
                 <!-- information -->
                 <div class="item-information">
-                    {{ $category }}
+                    <p>{{ $item->product_category }}</p>
+                    <p>{{ $item->product_type }}</p>
+                    <p>{{ $item->name }}</p>
+                    {{-- <p>{{ $item->brand }}</p> --}}
+                    <p>{{ $item->code }}</p>
+                    <p>{{ $item->number }}</p>
                 </div>
 
-                <!-- remark -->
-                <div class="item-remark">
-
-                </div>
             </a>
             @endforeach
 
@@ -57,7 +58,7 @@
 
         <!-- Footer -->
         <div class="order-footer">
-
+            {{ __('order.item-count', ["count"=>$order->getItemCount()]) }}
         </div>
 
     </section>

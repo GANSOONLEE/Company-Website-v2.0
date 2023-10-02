@@ -36,6 +36,7 @@ class Order extends Model
         $orderDetails = DB::table('orders_detail')
             ->where('order_id', $this->code)
             ->join('products_brand', 'orders_detail.sku_id', '=', 'products_brand.sku_id')
+            ->join('products_name', 'products_brand.product_code', '=', 'products_name.product_code')
             ->join('products', 'products_brand.product_code', '=', 'products.product_code')
             ->orderBy('products.product_category', 'asc')
             ->get();

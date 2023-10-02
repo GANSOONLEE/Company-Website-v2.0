@@ -40,6 +40,7 @@ return array (
     'admin' => 'Admin',
     'order' => 'Order',
     'user' => 'User',
+    'translation' => 'translate',
   ),
   'permission' => 
   array (
@@ -147,6 +148,11 @@ return array (
     array (
       'description' => 'Allow admin to create new panel',
       'name' => 'Create Panel',
+    ),
+    'zh-tw' => 
+    array (
+      'name' => 'traditional Chinese',
+      'description' => 'Allow traditional Chinese viewing interface',
     ),
   ),
 );

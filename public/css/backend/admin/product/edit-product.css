@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* ———————————————————— Layouts ———————————————————— */
+div.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+section.basic-information-edit-panel {
+  box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
+  border: 1px solid rgba(28, 37, 64, 0.1254901961);
+  border-radius: 8px;
+  margin: 1rem;
+  height: 20vh;
+}
+
+section.filter {
+  box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
+  border: 1px solid rgba(28, 37, 64, 0.1254901961);
+  border-radius: 8px;
+  margin: 1rem;
+  height: 12vh;
+}
+
+section.datalist {
+  box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
+  border: 1px solid rgba(28, 37, 64, 0.1254901961);
+  border-radius: 8px;
+  margin: 1rem;
+  height: 50vh;
+}
+
+/* ———————————————————————————————— Panel ————————————————————————————————— */
+/* ———————————————————————————————— Filter ————————————————————————————————— */
+div.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  height: 100%;
+}
+div.filter div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+div.filter div label {
+  margin-bottom: 0;
+}
+div.filter div p {
+  margin-bottom: 0;
+}
+
+/* ———————————————————————————————— Datalist Table ————————————————————————————————— */
+div.datalist table {
+  width: 100%;
+  table-layout: auto;
+  word-break: break-all;
+}
+div.datalist table tr {
+  cursor: pointer;
+}
+div.datalist table td {
+  padding: 1rem 1.8rem;
+}
+div.datalist table td img {
+  height: 8vh;
+  width: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}

@@ -33,6 +33,9 @@ class PermissionManagementController extends Controller{
             $category = $permission->permission_category;
 
             if (!isset($permissionsData[$category])) {
+                if($category == 'translation'){
+                    continue;
+                }
                 $permissionsData[$category] = [];
             }
 

@@ -40,6 +40,7 @@ return array (
     'admin' => '管理员',
     'order' => '订单',
     'user' => '用户',
+    'translation' => '翻译',
   ),
   'permission' => 
   array (
@@ -147,6 +148,11 @@ return array (
     array (
       'description' => '允许管理员新增面板',
       'name' => '新增面板',
+    ),
+    'zh-tw' => 
+    array (
+      'description' => '允许使用繁体中文查看界面',
+      'name' => '繁体中文',
     ),
   ),
 );
