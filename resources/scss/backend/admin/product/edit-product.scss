@@ -17,25 +17,153 @@ div.main{
 section.basic-information-edit-panel{
     // background-color: red;
     @include panel-effect;
-    height: 20vh;
+    height: 22vh;
+
+    div.no-product{
+        font-size: var(--font-h4);
+        text-align: center;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #666;
+        p{
+            margin-bottom: 0;
+            font-weight: bold
+        }
+    }
+
 }
 
 section.filter{
     // background-color: orange;
     @include panel-effect;
-    height: 12vh;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: auto;
 }
 
 section.datalist{
     // background-color: yellow;
     @include panel-effect;
+    padding: 1rem 0;
     height: 50vh;
+    overflow-y: auto;
 }
 
 
 /* ———————————————————————————————— Panel ————————————————————————————————— */
 
+div.panel{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 2rem;
+    height: 100%;
 
+    // Product Cover
+    div.product-image{
+        height: 100%;
+        padding: 1rem 0;
+        
+        img.product-image-cover{
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+    }
+
+    // Product Information
+    div.product-information{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100%;
+        width: 100%;
+        padding: 1rem 2rem;
+
+        // Basic Information
+        div.basic-information{
+
+        }
+
+        // Action Area
+        div.action-area{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            row-gap: .4rem;
+            height: 100%;
+            width: 100%;
+
+            // Form
+            form#form{
+                display: flex;
+                column-gap: .8rem;
+                padding: .2rem 0;
+                width: 100%;
+
+                // Column
+                div.column{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    width: 100%;
+                }
+
+                // Product Cover Input
+                input[type="file"]{
+                    display: none;
+
+                    & + div.column{
+                        justify-content: flex-end;
+                        align-items: flex-start;
+                    }
+                }
+
+                // Product Cover Label
+                label.cover-upload{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: .2rem .5rem;
+                    color: blue;
+                    border: 1px solid blue;
+                    border-radius: 4px;
+                    transition: all .1s ease-in-out;
+                    margin-bottom: 0;
+                    height: 100%;
+                    cursor: pointer;
+                    p{
+                        margin-bottom: 0;
+                    }
+                    &:hover{
+                        background-color: blue;
+                        color: var(--color-white);
+                    }
+                }
+
+                input[type="text"]{
+                    padding: .2rem .7rem;
+                    height: 50%;
+                }
+            }
+
+            // Edit More Button
+            div.edit-more{
+                width: 100%;
+                button{
+                    width: 100%;
+                    padding: .2rem .7rem;
+                }
+            }
+        }
+
+    }
+}
 
 /* ———————————————————————————————— Filter ————————————————————————————————— */
 
@@ -75,18 +203,19 @@ div.datalist{
         // tr
         tr{
             cursor: pointer;
+
             // odd
             &:nth-child(odd){
-
+                background-color: #ededed;
             }
 
             // even
             &:nth-child(even){
-
+                background-color: #f4f4f4;
             }
 
             &:hover{
-
+                background-color: #e4e4e4;
             }
 
         }
@@ -101,6 +230,22 @@ div.datalist{
                 width: auto;
                 object-fit: cover;
             }
+
+            a{
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    column-gap: .4rem;
+                    padding: .2rem .7rem;
+
+                    // Icon
+                    i{
+                        font-size: var(--font-remark);
+                    }
+                }
+            }
+
         }
 
     }

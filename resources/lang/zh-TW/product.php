@@ -22,4 +22,6 @@ return array (
   'filter' => '過濾器',
   'name' => '名稱',
   'status' => '狀態',
+  'select-product-edit' => '請從下面選擇你要編輯的貨品',
+  'edit' => '編輯',
 );

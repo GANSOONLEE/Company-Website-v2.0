@@ -22,4 +22,6 @@ return array (
   'filter' => 'Filter',
   'name' => 'Name',
   'status' => 'Status',
+  'select-product-edit' => 'Please select the product you want to edit from below',
+  'edit' => 'Edit',
 );

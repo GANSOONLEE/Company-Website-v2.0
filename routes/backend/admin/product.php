@@ -11,7 +11,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
     Route::get('product-create', [CreateProductController::class, 'createProduct'])
         ->name('product-create');
 
-    Route::get('product-edit', [EditProductController::class, 'editProduct'])
+    Route::get('product-edit/{productCode?}', [EditProductController::class, 'editProduct'])
         ->name('product-edit');
     
 });

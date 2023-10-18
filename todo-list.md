@@ -40,7 +40,7 @@ Sidebar:
   - [ ] 关于我们 About Us
   - [X] 产品 Product
     - [X] 品类 Categories
-      - [X] 产品概括
+      - [ ] 产品概括 **(重做界面 UI)**
         - [X] 产品详情
   - [ ] 联络 Contact
 

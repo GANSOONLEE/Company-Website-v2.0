@@ -6,14 +6,11 @@
 
     <!-- Edit Panel -->
     <section class="basic-information-edit-panel">
-        @php
-            $product = 2
-        @endphp
         @if (isset($product))
             @include('backend.admin.product.includes.panel')
         @else
             <div class="no-product">
-                1
+                <p>{{ __('product.select-product-edit') }}</p>
             </div>
         @endif
     </section>
