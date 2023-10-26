@@ -24,4 +24,9 @@ return array (
   'status' => '状态',
   'select-product-edit' => '请从下面选择你要编辑的货品',
   'edit' => '编辑',
+  'plaese-select-category' => '请选择 -- <b>类别</b> --',
+  'plaese-select-type' => '请选择 -- <b>类型</b> --',
+  'upload' => '上传',
+  'edit-more' => '编辑更多',
+  'delete' => '删除',
 );

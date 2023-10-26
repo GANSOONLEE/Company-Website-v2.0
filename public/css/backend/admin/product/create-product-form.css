@@ -109,6 +109,16 @@ section.data-area section.primary-brand label div.brand-preview img.brand-previe
 section.data-area section.primary-brand input[type=file] {
   display: none;
 }
+section.data-area section.primary-brand button.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 0.8rem;
+       column-gap: 0.8rem;
+}
+section.data-area section.primary-brand button.btn p {
+  margin-bottom: 0;
+}
 section.data-area section.another-brand div.another-brand-box label {
   width: 100%;
 }
@@ -133,6 +143,16 @@ section.data-area section.another-brand div.another-brand-box label div.brand-pr
 }
 section.data-area section.another-brand div.another-brand-box input[type=file] {
   display: none;
+}
+section.data-area section.another-brand button.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 0.8rem;
+       column-gap: 0.8rem;
+}
+section.data-area section.another-brand button.btn p {
+  margin-bottom: 0;
 }
 button[type=submit] {
   width: 100%;

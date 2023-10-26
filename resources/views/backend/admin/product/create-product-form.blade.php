@@ -130,7 +130,11 @@
 
         <!-- Button -->
         <div class="mb-3 col-2">
-            <button type="button" class="btn btn-primary" id="add-brand-input">{{ __('product.add-brand-input') }}</button>
+            <button type="button" class="btn btn-primary" id="add-brand-input">
+                <i class="fa-solid fa-add"></i>
+                <p>{{ __('product.add-brand-input') }}</p>
+            </button>
+            
         </div>
 
     </section>
@@ -173,6 +177,14 @@
                 <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-{{ $i }}">
             </div>
 
+            <!-- Delete Button -->
+            <div class="mb-3 col-2">
+                <button type="button" class="btn btn-danger" id="delete-brand-input-{{ $i }}">
+                    <i class="fa-solid fa-trash"></i>
+                    <p>{{ __('product.delete') }}</p>
+                </button>
+            </div>
+
         </div>
         @endfor
 
@@ -186,9 +198,10 @@
     <!-- Category -->
     <section class="category col-6">
         {{-- <p class="section-title">{{ __('product.category-upload') }}</p> --}}
+        <p class="form-label section-title" for="product-category">{{ __('product.category') }}</p>
         <div class="mb-3">
-            <label class="form-label" for="product-category">{{ __('product.category') }}</label>
             <select class="form-control" name="product-category" id="" required>
+                <option value="Default" disabled selected hidden>{!! __('product.plaese-select-category') !!}</option>
                 @foreach($categoryData as $category)
                     <option value="{{$category->name}}">{{$category->name}}</option>
                 @endforeach
@@ -199,9 +212,10 @@
     <!-- Type -->
     <section class="type col-6">
         {{-- <p class="section-title">{{ __('product.type-upload') }}</p> --}}
+        <p class="form-label section-title" for="product-type">{{ __('product.type') }}</p>
         <div class="mb-3">
-            <label class="form-label" for="product-type">{{ __('product.type') }}</label>
             <select class="form-control" name="product-type" id="" required>
+                <option value="Default" disabled selected hidden>{!! __('product.plaese-select-type') !!}</option>
                 @foreach($typeData as $type)
                     <option value="{{$type->name}}">{{$type->name}}</option>
                 @endforeach

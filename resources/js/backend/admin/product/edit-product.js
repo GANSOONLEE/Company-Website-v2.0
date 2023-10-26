@@ -94,23 +94,33 @@ function findFilter(filterName){
 
 import FilterFactory from './filter/FilterFactory.js'
 
-class FilterElementFactory {
+export default class FilterElementFactory {
+    
     static filterList = [];
 
     element;
-    method;
+    column;
+    trigger;
 
-    constructor(element, method) {
+    constructor(element, method, trigger = "change") {
+
         this.element = element;
-        this.method = method;
+        this.column = element.getAttribute('data-select-filter');
+        this.trigger = trigger;
+
+        this.setupFilterMethod(element, method, trigger)
     }
 
-    setupFilterMethod() {
-        let method = this.method;
+    setupFilterMethod(element, method, trigger) {
+
+        // Define Variable
+        let column = this.column;
+
+        // Push to Stack
         FilterElementFactory.filterList.push(this);
 
         // Define available methods
-        const allowedMethods = ['contain', 'strict', 'begin', 'end'];
+        const allowedMethods = ['contain', 'strict'];
 
         // Verify method
         if (!allowedMethods.includes(method)) {
@@ -119,12 +129,8 @@ class FilterElementFactory {
         }
 
         // Pass to method factory
-        let bindFilter = new FilterFactory(method, this.element);
-        this.init(bindFilter);
-    }
-
-    init(methodFilter) {
-        // Your initialization code here
+        let bindFilter = new FilterFactory(element, method, column, trigger);
+        return;
     }
 
     /**
@@ -134,6 +140,22 @@ class FilterElementFactory {
     static getAllFilter() {
         return FilterElementFactory.filterList;
     }
+
+    static filterOnLink(){
+        let allFilter = FilterElementFactory.getAllFilter();
+
+        allFilter.forEach(filter => {
+
+            let trigger = filter.trigger;
+            
+            const event = new Event(trigger, {
+                bubbles: true,
+                cancelable: true,
+            });
+
+            let result = filter.element.dispatchEvent(event);
+        });
+    }
 }
 
 /**
@@ -141,20 +163,16 @@ class FilterElementFactory {
  */
 
 let name = findFilter('name');
-let nameFilter = new FilterElementFactory(name, 'contain');
-nameFilter.setupFilterMethod();
+let nameFilter = new FilterElementFactory(name, 'contain', 'keyup');
 
 let category = findFilter('category');
 let categoryFilter = new FilterElementFactory(category, 'strict');
-categoryFilter.setupFilterMethod();
 
 let type = findFilter('type');
 let typeFilter = new FilterElementFactory(type, 'strict');
-typeFilter.setupFilterMethod();
 
 let status = findFilter('status');
 let statusFilter = new FilterElementFactory(status, 'strict');
-statusFilter.setupFilterMethod();
 
-const allFilters = FilterElementFactory.getAllFilter();
+const allFilters = FilterElementFactory.filterOnLink();
 console.log(allFilters);

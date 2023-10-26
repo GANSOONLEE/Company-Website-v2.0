@@ -137,6 +137,16 @@ section.data-area{
             display: none;
         }
 
+        button.btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: .8rem;
+            p{
+                margin-bottom: 0;
+            }
+        }
+
     }
 
     // Another brand
@@ -165,6 +175,16 @@ section.data-area{
             }
             input[type="file"]{
                 display: none;
+            }
+        }
+
+        button.btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: .8rem;
+            p{
+                margin-bottom: 0;
             }
         }
     }

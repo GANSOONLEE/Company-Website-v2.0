@@ -24,4 +24,9 @@ return array (
   'status' => 'Status',
   'select-product-edit' => 'Please select the product you want to edit from below',
   'edit' => 'Edit',
+  'plaese-select-category' => 'Please select -- <b>Category</b> --',
+  'plaese-select-type' => 'Please select -- <b>Type</b> --',
+  'upload' => 'upload',
+  'edit-more' => 'Edit more',
+  'delete' => 'Delete',
 );

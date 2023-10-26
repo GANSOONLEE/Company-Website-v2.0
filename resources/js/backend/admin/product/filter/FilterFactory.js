@@ -7,15 +7,18 @@
  * 
  */
 
-import ContainFilterFactory from './ContainFilterFactory.js'
-import StrictFilterFactory from './StrictFilterFactory.js'
-import BeginFilterFactory from './BeginFilterFactory.js'
-import EndFilterFactory from './EndFilterFactory.js'
+import ContainFilter from './ContainFilter.js'
+import StrictFilter from './StrictFilter.js'
+import BeginFilter from './BeginFilter.js'
+import EndFilter from './EndFilter.js'
+
+import FilterElementFactory from '../edit-product.js'
 
 export default class FilterFactory{
 
     method;
     element;
+    column;
 
     /**
      * 
@@ -23,19 +26,19 @@ export default class FilterFactory{
      * @param {element} element 
      */
 
-    constructor(method, element){
-        this.method = method;
+    constructor(element, method, column, trigger){
         this.element = element;
+        this.method = method;
+        this.column = column;
 
-        this.changeListener();
+        return this.triggerListener(trigger);
     }
 
-    changeListener(){
+    triggerListener(trigger){
 
-        this.element.addEventListener('change', ()=>{
+        this.element.addEventListener(trigger, ()=>{
             let value = this.element.value;
-            this.initFilterEvent(value);
-            console.log(value)
+            let result = this.initFilterEvent(value);
         })
 
     }
@@ -44,25 +47,19 @@ export default class FilterFactory{
     initFilterEvent(value){
         let method = this.method;
         let element = this.element;
+        let column = this.column;
 
         switch(method){
 
             case 'contain':
-                new ContainFilterFactory(element, value);
-                return value;
+                return new ContainFilter(value, column);
                 
             case 'strict':
-                new StrictFilterFactory(element, value);
-                return value;
+                return new StrictFilter(value, column);
 
-            case 'begin':
-                new BeginFilterFactory(element, value);
-                return value;
-
-            case 'end':
-                new EndFilterFactory(element, value);
-                return value;
-
+            default:
+                console.error('Something Wrong!')
+                return;
         }
     }
 

@@ -33,5 +33,5 @@
 @endpush
 
 @push('after-script')
-    <script src="{{ asset('js\backend\admin\product\edit-product.js') }}"></script>
+    <script defer src="{{ asset('js\backend\admin\product\edit-product.js') }}"></script>
 @endpush

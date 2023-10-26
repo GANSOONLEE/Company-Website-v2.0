@@ -49,6 +49,9 @@ class RegisterEvent{
         $rememberToken = Str::random(60);
         $user->update(['remember_token' => $rememberToken]);
 
+        // Preset Role
+        $user->attachRole('new_user');
+
         // Save token at cookie
         $cookie = Cookie::make('remember_token', $rememberToken, 43200);
 

@@ -52,7 +52,7 @@
             <div class="flex-row group-column">
                 <div class="mb-3">
                     <label for="birthday" class="form-label required">Birthday</label>
-                    <input type="text" class="form-control" name="birthday" id="birthday" placeholder="Birthday" required>
+                    <input type="date" class="form-control" name="birthday" id="birthday" placeholder="Birthday" required>
                 </div>
             
                 <div class="mb-3">

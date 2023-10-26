@@ -22,7 +22,7 @@
                 <a class="product-detail-href" href="{{ route('frontend.product-detail', ['productCode' => $product->product_code]) }}">
                     <div class="custom-card">
                         <div class="custom-card-image">
-                            <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.jpg") }}" alt="">
+                            <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
                         </div>
                         <div class="custom-card-header">
                             @foreach (($product->getProductName()) as $name)
