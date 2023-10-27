@@ -189,16 +189,17 @@ form {
 }
 form div.brand-selector {
   width: 100%;
-  height: 50%;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   -moz-column-gap: 20px;
        column-gap: 20px;
+  row-gap: 10px;
 }
 form div.brand-selector label.brand-label {
-  width: 33.3333333333%;
+  width: 57.1428571429%;
 }
 form div.brand-selector label.brand-label input[type=radio] {
   display: none;
@@ -215,7 +216,7 @@ form div.brand-selector label.brand-label div.brand-box {
   border: 2px solid #eee;
   border-radius: 4px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   white-space: none;
   transition: all 0.07s ease-in-out;
@@ -230,7 +231,7 @@ form div.brand-selector label.brand-label div.brand-box p.brand-name {
 }
 form div.brand-selector label.brand-label div.brand-box img.brand-logo {
   height: 100%;
-  width: 40%;
+  width: 30%;
   -o-object-fit: cover;
      object-fit: cover;
   background-color: var(--color-white);
@@ -280,6 +281,9 @@ form div.button-area div.add-to-cart button[type=submit] {
 form div.button-area div.add-to-cart button[type=submit]:hover {
   border: #f48200;
   background-color: #f48200;
+}
+form div.button-area div.add-to-cart button[type=submit]:disabled {
+  cursor: not-allowed;
 }
 
 /* ———————————————————— Action Bar ———————————————————— */
@@ -343,6 +347,10 @@ div.zoom-preview {
 div.zoom-preview img {
   width: auto;
   height: 80%;
+}
+
+input:disabled {
+  cursor: not-allowed;
 }
 
 /* ================================= RWD ================================= */

@@ -154,5 +154,10 @@ return array (
       'name' => '繁體中文',
       'description' => '允許使用繁體中文查看界面',
     ),
+    'user_backend' => 
+    array (
+      'name' => '允許用戶進入後臺',
+      'description' => '讓用戶可以訪問後臺',
+    ),
   ),
 );

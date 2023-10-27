@@ -1,6 +1,9 @@
 
 <section class="filter">
-    <p class="filter-title">FILTER BY</p>
+    <div class="filter-title">
+        <i class="fa-solid fa-filter"></i>
+        <p>FILTER</p>
+    </div>
     <form action="{{ route('frontend.product.search.post', ['productCategory' => $category]) }}" method="GET">
         {{-- @csrf --}}
 
@@ -35,8 +38,7 @@
         </div>
 
         <div class="button">
-            <button class="btn btn-primary" type="submit">{{ __('Search') }}</button>
-            <button class="btn btn-secondary" type="reset">{{ __('Clear Filter') }}</button>
+            <button class="btn btn-primary" type="submit">{{ __('Search or Reset') }}</button>
         </div>
 
     </form>

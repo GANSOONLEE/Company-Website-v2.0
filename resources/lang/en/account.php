@@ -154,5 +154,10 @@ return array (
       'name' => 'traditional Chinese',
       'description' => 'Allow traditional Chinese viewing interface',
     ),
+    'user_backend' => 
+    array (
+      'name' => 'Allow users to enter the background',
+      'description' => 'Give users access to the backend',
+    ),
   ),
 );

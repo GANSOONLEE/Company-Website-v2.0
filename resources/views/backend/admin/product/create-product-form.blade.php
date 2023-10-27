@@ -75,7 +75,12 @@
             <!-- Model -->
             <div class="mb-3 col-4">
                 {{-- <label class="form-label" for="name-input-{{$i}}">{{ __('product.model') }}</label> --}}
-                <input type="text" class="form-control" name="name-input-model[]" id="name-input-{{$i}}">
+                <input list="datalistOptions-{{$i}}" type="text" class="form-control" name="name-input-model[]" id="name-input-{{$i}}">
+                <datalist id="datalistOptions-{{$i}}">
+                    @foreach ($modelData as $model)
+                    <option value="{{ $model->name }}">
+                    @endforeach
+                </datalist>
             </div>
     
             <!-- Model Serial -->
@@ -110,6 +115,7 @@
         <div class="mb-3 col-3">
             <label class="form-label" for="brand-0">{{ __('product.brand') }}</label>
             <select class="form-control" name="brand-input-brand[]" id="brand-0" required>
+                <option value="Default" disabled selected hidden></option>
                 @foreach($brandData as $brand)
                     <option value="{{$brand->name}}">{{$brand->name}}</option>
                 @endforeach
@@ -125,7 +131,7 @@
         <!-- Frozen Code -->
         <div class="mb-3 col-3">
             <label class="form-label" for="frozen-code-0">{{ __('product.frozen-code') }}</label>
-            <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-0" required>
+            <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-0">
         </div>
 
         <!-- Button -->
@@ -179,7 +185,7 @@
 
             <!-- Delete Button -->
             <div class="mb-3 col-2">
-                <button type="button" class="btn btn-danger" id="delete-brand-input-{{ $i }}">
+                <button type="button" class="btn btn-danger" id="delete-brand-input">
                     <i class="fa-solid fa-trash"></i>
                     <p>{{ __('product.delete') }}</p>
                 </button>

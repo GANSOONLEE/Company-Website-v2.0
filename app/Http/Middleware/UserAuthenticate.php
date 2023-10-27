@@ -29,6 +29,10 @@ class UserAuthenticate
             }
         }
 
+        if(!auth()->user()->getRoleEntity()->hasPermission('user_backend')){
+            abort(403, 'Insufficient permissions');
+        }
+
         // the user exists and the role meets the conditions, continue the request
         return $next($request);
     }

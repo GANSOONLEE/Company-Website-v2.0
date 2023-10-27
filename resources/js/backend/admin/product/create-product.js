@@ -50,6 +50,19 @@ function validateForm(){
         return {valid: false, message: "Wrong Extensions! Support .png, .jpg, .jpeg only!"}
     }
 
+    // check dropdown list have be selected
+    let brandList = document.querySelector('#brand-0')
+    let typeList = document.querySelector('[name="product-type"]')
+    let categoryList = document.querySelector('[name="product-category"]')
+
+    if(!(
+        typeList.value !== "Default" &&
+        categoryList.value !== "Default" &&
+        brandList.value !== "Default"
+        )){
+        return {valid: false, message: "Please choose category or type"};
+    }
+
     return {valid: true, message: ""};
 }
 
@@ -89,16 +102,26 @@ let brandIndex = 0;
 let addBrandInputButton = document.querySelector('#add-brand-input');
 addBrandInputButton.addEventListener('click', (event)=>{
     if(brandIndex>=10){
+        brandIndex = 0;
         return false;
     }
-
-    brandIndex>=10? false: '';
 
     let list = $('.another-brand-box');
     list.eq(brandIndex).css('display', 'flex');
     brandIndex++;
 })
 
+/**
+ * Hide Brand Input
+ */
+
+let deleteBrandInputButton = document.querySelectorAll('#delete-brand-input')
+deleteBrandInputButton.forEach(button => {
+    button.addEventListener('click', (event) => {
+        let list = $(event.target).closest('.another-brand-box');
+        list.css('display', 'none');
+    });
+})
 // #endregion
 
 

@@ -17,9 +17,15 @@ class PermissionManagementController extends Controller{
         $userRoleWeight = auth()->user()->getRoleEntity()->weight;
 
         $roleData = [];
-        foreach($roles as $role){
-            if($role->weight < $userRoleWeight){
+        if($userRoleWeight === 100){
+            foreach($roles as $role){
                 $roleData[] = $role;
+            }
+        }else{
+            foreach($roles as $role){
+                if($role->weight < $userRoleWeight){
+                    $roleData[] = $role;
+                }
             }
         }
 

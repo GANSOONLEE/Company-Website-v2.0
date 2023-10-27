@@ -17,6 +17,7 @@ class BrandCreateEvent{
         $disk = 'public';
         $directory = 'brand';
 
+        // Check Image Existent
         if ($uploadedFile) {
             $originalName = $uploadedFile->getClientOriginalName();
             $newFileName = $name . '.' . $uploadedFile->getClientOriginalExtension();

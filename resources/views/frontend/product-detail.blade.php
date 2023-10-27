@@ -80,6 +80,10 @@
                         </ul>
                     </div>
 
+                    @php
+                        $permission = auth()->user()->getRoleEntity()->hasPermission('user_backend') ? '' : 'disabled';
+                    @endphp
+
                     <!-- Action Area -->
                     <div class="action-area">
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
@@ -96,10 +100,14 @@
                                 @else
                                 <label for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
-                                    <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio">
+                                    <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
                                     <div class="brand-box">
                                         <p class="brand-name">{{ $brand->code }}</p>
-                                        <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.svg") }}" alt="">
+                                        @if (file_exists(public_path("storage/brand/$brand->brand.svg")))
+                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.svg") }}" alt="">
+                                        @else
+                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.png") }}" alt="">
+                                        @endif
                                     </div>
                                 </label>
                                 @endforeach
@@ -114,7 +122,7 @@
                                     <div class="input-group">
 
                                         <!-- Remove -->
-                                        <button class="remove-button" data-text="quantity-input" data-button-type="remove" type="button">
+                                        <button class="remove-button" data-text="quantity-input" data-button-type="remove" type="button" {{ $permission }}>
                                             <i class="icon fa-solid fa-minus"></i>
                                             <p class="button-text"></p>
                                         </button>
@@ -122,10 +130,11 @@
                                         <!-- Preview & Input -->
                                         <input type="number" min="0" max="100" name="quantity" value="0" id="quantity-input"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="The number must more then 0"
+                                            {{ $permission }}
                                         >
 
                                         <!-- Add -->
-                                        <button class="add-button" data-text="quantity-input" data-button-type="add" type="button">
+                                        <button class="add-button" data-text="quantity-input" data-button-type="add" type="button" {{ $permission }}>
                                             <i class="icon fa-solid fa-add"></i>
                                             <p class="button-text"></p>
                                         </button>
@@ -135,7 +144,7 @@
 
                                 <!-- Add To Cart -->
                                 <div class="add-to-cart">
-                                    <button class="btn btn-primary" type="submit">Add To Cart</button>
+                                    <button class="btn btn-primary" type="submit" {{ $permission }}>Add To Cart</button>
                                 </div>
 
                             </div>
@@ -153,18 +162,18 @@
         </div>
 
         @auth
-         
-            <div class="action-bar">
-                <a href="{{ route('backend.user.cart') }}">
-                    <div class="cart-container">
-                        @if(auth()->user()->getCartNumber() > 0)
-                            <div class="notification">{{ auth()->user()->getCartNumber() }}</div>
-                        @endif
-                        <i class="icon fa-solid fa-cart-shopping"></i>
-                    </div>
-                </a>
-            </div>
-
+            @if(auth()->user()->getRoleEntity()->hasPermission('user_backend'))
+                <div class="action-bar">
+                    <a href="{{ route('backend.user.cart') }}">
+                        <div class="cart-container">
+                            @if(auth()->user()->getCartNumber() > 0)
+                                <div class="notification">{{ auth()->user()->getCartNumber() }}</div>
+                            @endif
+                            <i class="icon fa-solid fa-cart-shopping"></i>
+                        </div>
+                    </a>
+                </div>
+            @endif
         @endauth
 
 

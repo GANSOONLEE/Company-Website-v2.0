@@ -154,5 +154,10 @@ return array (
       'description' => '允许使用繁体中文查看界面',
       'name' => '繁体中文',
     ),
+    'user_backend' => 
+    array (
+      'name' => '允许用户进入后台',
+      'description' => '让用户可以访问后台',
+    ),
   ),
 );

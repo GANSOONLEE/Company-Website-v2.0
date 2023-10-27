@@ -65,9 +65,11 @@
 
             <!-- Edit More -->
             <div class="edit-more">
-                <button class="btn btn-success">
-                    {{ __('product.edit-more') }}
-                </button>
+                <a href="{{ route('backend.admin.product.edit-more', ['productCode' => $product->product_code]) }}">
+                    <button class="btn btn-success">
+                        {{ __('product.edit-more') }}
+                    </button>
+                </a>
             </div>
 
         </div>

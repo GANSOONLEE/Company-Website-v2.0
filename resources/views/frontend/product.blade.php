@@ -23,6 +23,9 @@
                     <div class="custom-card">
                         <div class="custom-card-image">
                             <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
+                            <div class="see-more">
+                                See More
+                            </div>
                         </div>
                         <div class="custom-card-header">
                             @foreach (($product->getProductName()) as $name)

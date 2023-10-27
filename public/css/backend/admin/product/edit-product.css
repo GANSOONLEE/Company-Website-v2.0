@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* ———————————————————— Layouts ———————————————————— */
-div.main {
+div.app {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -10,7 +10,7 @@ section.basic-information-edit-panel {
   box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
   border: 1px solid rgba(28, 37, 64, 0.1254901961);
   border-radius: 8px;
-  margin: 1rem;
+  margin: 1rem 0;
   height: 22vh;
 }
 section.basic-information-edit-panel div.no-product {
@@ -31,7 +31,7 @@ section.filter {
   box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
   border: 1px solid rgba(28, 37, 64, 0.1254901961);
   border-radius: 8px;
-  margin: 1rem;
+  margin: 1rem 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
   height: auto;
@@ -41,7 +41,7 @@ section.datalist {
   box-shadow: 0 0 20px rgba(28, 37, 64, 0.1254901961);
   border: 1px solid rgba(28, 37, 64, 0.1254901961);
   border-radius: 8px;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 1rem 0;
   height: 50vh;
   overflow-y: auto;

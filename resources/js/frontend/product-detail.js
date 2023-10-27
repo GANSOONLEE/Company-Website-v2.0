@@ -258,12 +258,23 @@ brands.forEach(brand => {
 
     brand.addEventListener('click',function(){
         let src = brand.querySelector('input').value
+        if (src.includes('#')) {
+            src = encodeURIComponent(src);
+        }
+
         let category = brand.querySelector('input').getAttribute('data-category')
         let code = brand.querySelector('input').getAttribute('data-product')
+
         let relation = `/storage/product/${category}/${code}/${src}/cover.png`;
-        
-        imagePreviewContainer[0].querySelector('img').src = relation;
 
+        var req = new XMLHttpRequest();
+        req.open('GET', relation, false);
+        req.send();
+        console.log(req.status)
+        if(req.status === 200){
+            imagePreviewContainer[0].querySelector('img').src = relation;
+        }else{
+            imagePreviewContainer[0].querySelector('img').src = `/storage/product/placeholder.png`;
+        }
     })
-
 })

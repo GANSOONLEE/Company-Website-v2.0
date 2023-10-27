@@ -28,10 +28,15 @@ class LoginEvent{
     
             Auth::login($user);
     
-            return redirect()->route('backend.admin.dashboard')->withCookie($cookie);
+            if($user->isAdmin() || $user->getRole() == "root"){
+                return redirect()->route('backend.admin.dashboard')->withCookie($cookie);
+            }else{
+                return redirect()->route('backend.user.cart')->withCookie($cookie);
+            }
+
         } else {
             // 验证失败，返回错误信息或重定向回登录页面
-            return back()->withErrors(['email' => '登录失败，请检查您的邮箱和密码。']);
+            return back()->withErrors(['email' => 'Login Failure, please check your email address and password.']);
         }
 
     }
