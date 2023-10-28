@@ -2,6 +2,7 @@
 
 namespace App\Domains\Product\Events;
 use App\Models\Product;
+use App\Models\Operation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -57,7 +58,8 @@ class CreateProductEvent{
             if ($productImage) {
                 foreach($productImage as $image){
                     $originalName = $image->getClientOriginalName();
-                    $path = $image->storeAs($directory, $originalName, $disk);
+                    $modifierName = str_replace('/', '_', $originalName);
+                    $path = $image->storeAs($directory, $modifierName, $disk);
                 }
             }
 
@@ -67,7 +69,8 @@ class CreateProductEvent{
                     // $originalExtension = $cover->getClientOriginalExtension();
                     // $originalName = $cover->getClientOriginalName();
                     $newName = 'cover.png';
-                    $path = $cover->storeAs("$directory/$brandCode[$index]", $newName, $disk);
+                    $modifierBrandCode = str_replace('/', '_', $brandCode);
+                    $path = $cover->storeAs("$directory/$modifierBrandCode[$index]", $newName, $disk);
                 }
             }
 
@@ -109,10 +112,12 @@ class CreateProductEvent{
                     continue;
                 }
 
+                $brandCodeEncode = str_replace('/', '_', $brandCode[$i]);
+
                 $productBrandData = [
                     'sku_id' => $this->generatorSkuId(),
                     'brand' => $brand[$i],
-                    'code' => $brandCode[$i],
+                    'code' => $brandCodeEncode,
                     'frozen_code' => $frozenCode[$i],
                     'product_code' => $code,
                 ];
@@ -121,6 +126,14 @@ class CreateProductEvent{
                 DB::table('products_brand')
                     ->insert($productBrandData);
             }
+
+            $operation = [
+                'email' => auth()->user()->email,
+                'operation_type' => 'Create',
+                'operation_category' => 'Product',
+            ];
+
+            Operation::create($operation);
 
             return redirect()->back();
 

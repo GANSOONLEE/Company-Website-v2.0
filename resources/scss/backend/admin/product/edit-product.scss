@@ -59,7 +59,6 @@ div.panel{
     justify-content: flex-start;
     align-items: center;
     overflow: hidden;
-    padding: 0 2rem;
     height: 100%;
 
     // Product Cover
@@ -203,6 +202,7 @@ div.datalist{
         // tr
         tr{
             cursor: pointer;
+            text-wrap: nowrap;
 
             // odd
             &:nth-child(odd){
@@ -223,6 +223,10 @@ div.datalist{
         // td Global
         td{
             padding: 1rem 1.8rem;
+
+            &[data-search-column="name"]{
+                text-wrap: wrap;
+            }
 
             // Product Cover
             img{

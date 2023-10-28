@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* ———————————————————— Layouts ———————————————————— */
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+section.container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1333333333);
+  border-radius: 6px;
+  border: 1px solid #dadada;
+  padding: 1rem 1.2rem;
+}
+section.container.child {
+  display: flex;
+}
+section.container div.section-title p.section-title-text {
+  font-size: var(--font-h6);
+  font-weight: bold;
+}
+section.container div.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: var(--font-subtitle);
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+  row-gap: 1.4rem;
+  overflow-x: auto;
+  padding: 0 1.2rem;
+}
+
+/* ———————————————————— Image Upload ———————————————————— */
+input[type=file] {
+  display: none;
+}
+
+div.product-cover div.upload-cover {
+  height: 120px;
+  width: 120px;
+  background-color: rgba(218, 218, 218, 0.2666666667);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
+  position: relative;
+}
+div.product-cover div.upload-cover:hover {
+  background-color: transparent;
+  border: 1px solid #dadada;
+}
+div.product-cover div.upload-cover:hover > i, div.product-cover div.upload-cover:hover > p {
+  opacity: 0;
+}
+div.product-cover div.upload-cover img {
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+div.product-cover div.upload-cover p {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+div.product-image {
+  display: flex;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+}
+div.product-image div.product-image-box div.upload-image {
+  height: 120px;
+  width: 120px;
+  background-color: rgba(218, 218, 218, 0.2666666667);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
+  position: relative;
+}
+div.product-image div.product-image-box div.upload-image:hover {
+  background-color: transparent;
+  border: 1px solid #dadada;
+}
+div.product-image div.product-image-box div.upload-image:hover > i, div.product-image div.product-image-box div.upload-image:hover > p {
+  opacity: 0;
+}
+div.product-image div.product-image-box div.upload-image img {
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+div.product-image div.product-image-box div.upload-image p {
+  margin-bottom: 0;
+}
+
+/* ———————————————————— Name Upload ———————————————————— */
+/* ———————————————————— Brand Upload ———————————————————— */
+div.brand-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  -moz-column-gap: 2.3rem;
+       column-gap: 2.3rem;
+}
+div.brand-box div.image label {
+  position: relative;
+  height: 75px;
+  width: 75px;
+  background-color: rgba(218, 218, 218, 0.2666666667);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
+}
+div.brand-box div.image label:hover {
+  background-color: transparent;
+  border: 1px solid #dadada;
+}
+div.brand-box div.image label:hover > i, div.brand-box div.image label:hover > p {
+  opacity: 0;
+}
+div.brand-box div.image label img {
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+div.brand-box div.image label p {
+  margin-bottom: 0;
+}
+/* ———————————————————— Category & Type Upload ———————————————————— */
+section.sub-container {
+  width: 50%;
+}
+section.sub-container div.content {
+  padding: 0;
+  padding-right: 0.8rem;
+}

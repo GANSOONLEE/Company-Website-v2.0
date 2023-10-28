@@ -27,7 +27,7 @@ class Product extends Model
     public function getProductBrand(){
 
         return DB::table('products_brand')
-        ->select('product_code', 'sku_id', 'brand', 'code')
+        ->select('product_code', 'sku_id', 'brand', 'code', 'frozen_code')
         ->where('product_code', $this->product_code)
         ->get();
 

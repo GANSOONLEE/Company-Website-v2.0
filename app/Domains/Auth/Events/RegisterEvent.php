@@ -50,7 +50,7 @@ class RegisterEvent{
         $user->update(['remember_token' => $rememberToken]);
 
         // Preset Role
-        $user->attachRole('new_user');
+        $user->assignRole('new_user');
 
         // Save token at cookie
         $cookie = Cookie::make('remember_token', $rememberToken, 43200);

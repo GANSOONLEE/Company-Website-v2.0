@@ -29,4 +29,5 @@ return array (
   'upload' => '上傳',
   'edit-more' => '編輯更多',
   'delete' => '刪除',
+  'upload-cover' => '上傳封面照',
 );

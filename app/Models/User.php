@@ -117,7 +117,7 @@ class User extends Authenticatable
      * @param string $roleName
      * @return void
      */
-    private function attachRole($roleName)
+    public function attachRole($roleName)
     {
         DB::table('users_roles')->insert([
             'user_email' => $this->email,

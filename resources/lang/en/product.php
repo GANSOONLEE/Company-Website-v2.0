@@ -29,4 +29,5 @@ return array (
   'upload' => 'upload',
   'edit-more' => 'Edit more',
   'delete' => 'Delete',
+  'upload-cover' => 'Upload cover photo',
 );

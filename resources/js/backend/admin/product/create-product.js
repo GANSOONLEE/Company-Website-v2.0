@@ -32,7 +32,15 @@ form.addEventListener('submit', function(event){
         return false;
     }
 
-    form.submit();
+    vm.updateMessage('Success Post !')
+    vm.showAlert();
+    $('#alert').css('display', 'block')
+
+    setTimeout(()=>{
+        form.submit();
+    }, 3000)
+
+   
 })
 
 function validateForm(){

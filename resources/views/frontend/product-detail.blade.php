@@ -19,7 +19,7 @@
 
                 <!-- Image Preview -->
                 <div class="image-preview-container">
-                    <img src="{{ asset('storage/'. $productCover) }}" alt="" class="image-preview" data-preview="image-selector">
+                    <img data-item="image-selector" src="{{ asset('storage/'. $productCover) }}" alt="" class="image-preview item-image" data-preview="image-selector">
                 </div>
 
                 <!-- Image Select -->
@@ -91,22 +91,25 @@
                         <form class="form" action="{{ route('frontend.product.detail.post',['productCode'=>$productData->product_code]) }}" method="post">
                             @csrf
 
+                            
                             <!-- Booking -->
                             <div class="brand-selector">
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [])
-                                <label for="{{ $brand->code }}" class="brand-label" data-image="{{ $brandCover[$brand->code][0] }}">  
+                                <label for="{{ $brand->code }}" class="brand-label" data-image="{{ str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
                                 @else
                                 <label for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
                                     <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
                                     <div class="brand-box">
-                                        <p class="brand-name">{{ $brand->code }}</p>
+                                        <p class="brand-name">{{ str_replace('_', '/', $brand->code) }}</p>
                                         @if (file_exists(public_path("storage/brand/$brand->brand.svg")))
                                             <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.svg") }}" alt="">
-                                        @else
+                                        @elseif(file_exists(public_path("storage/brand/$brand->brand.png")))
                                             <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.png") }}" alt="">
+                                        @else
+                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.jpg") }}" alt="">
                                         @endif
                                     </div>
                                 </label>

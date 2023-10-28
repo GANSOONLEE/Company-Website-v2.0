@@ -85,6 +85,87 @@ function findFilter(filterName){
 }
 
 /**
+ * Init Filter
+ */
+
+import Filter from './class/Filter.js';
+
+let filters = {};
+
+function initFilter(columnId, mode, trigger = "change") {
+    let column = findFilter(columnId);
+    filters[columnId] = new Filter(column, mode, trigger);
+    console.log('初始化成功')
+
+    // 设置回调函数，用于处理过滤器值变化
+    filters[columnId].setChangeCallback(applyFilters);
+}
+
+initFilter('name', 'contain', 'keyup');
+initFilter('category', 'strict');
+initFilter('type', 'strict');
+initFilter('status', 'strict');
+
+function applyFilters() {
+    console.log('調用中')
+    let nameValue = filters['name'].getValue();
+    let categoryValue = filters['category'].getValue();
+    let typeValue = filters['type'].getValue();
+    let statusValue = filters['status'].getValue();
+
+    let columns = document.querySelectorAll('[data-search-column]'); // 选择带有 data-search-column 属性的元素
+    var nameMatch, categoryMatch, typeMatch, statusMatch;
+
+    columns.forEach(column => {
+        let columnName = column.getAttribute('data-search-column');
+        let columnContent = column.innerText;
+
+        if(columnName === "name"){
+            nameMatch = nameValue == "" || (columnMatchesFilter(columnContent, nameValue, filters['name'].getMode()));
+            console.log(`nameMatch 結果為：${nameMatch}，查詢條件為 ${nameValue}，内容爲${columnContent}` )
+            return nameMatch
+        }
+
+        if(columnName === "category"){
+            categoryMatch = categoryValue == "" || (columnMatchesFilter(columnContent, categoryValue, filters['category'].getMode()));
+            console.log(`categoryMatch 結果為：${categoryMatch}，查詢條件為 ${categoryValue}，内容爲${columnContent}` )
+            return categoryMatch
+        }
+
+        if(columnName === "type"){
+            typeMatch = typeValue == "" || (columnMatchesFilter(columnContent, typeValue, filters['type'].getMode()));
+            console.log(`typeMatch 結果為：${typeMatch}，查詢條件為 ${typeValue}，内容爲${columnContent}` )
+            return typeMatch
+        }
+
+        if(columnName === "status"){
+            statusMatch = statusValue == "" || (columnMatchesFilter(columnContent, statusValue, filters['status'].getMode()));
+            console.log(`statusMatch 結果為：${statusMatch}，查詢條件為 ${statusValue}，内容爲${columnContent}` )
+            return statusMatch
+        }
+
+        console.log(nameMatch && categoryMatch && typeMatch && statusMatch)
+
+        if (nameMatch && categoryMatch && typeMatch && statusMatch) {
+            column.parentElement.style.display = 'table-row';
+        } else {
+            column.parentElement.style.display = 'none';
+        }
+    });
+}
+
+function columnMatchesFilter(columnContent, filterValue, mode) {
+    if (mode === 'contain') {
+        return columnContent.toUpperCase().includes(filterValue.toUpperCase());
+    } else if (mode === 'strict') {
+        return columnContent === filterValue;
+    }
+}
+
+
+
+
+/**
  *  --------------------------------------------
  *  
  *  Filter Factory
@@ -92,87 +173,87 @@ function findFilter(filterName){
  *  --------------------------------------------
  */
 
-import FilterFactory from './filter/FilterFactory.js'
+// import FilterFactory from './filter/FilterFactory.js'
 
-export default class FilterElementFactory {
+// export default class FilterElementFactory {
     
-    static filterList = [];
+//     static filterList = [];
 
-    element;
-    column;
-    trigger;
+//     element;
+//     column;
+//     trigger;
 
-    constructor(element, method, trigger = "change") {
+//     constructor(element, method, trigger = "change") {
 
-        this.element = element;
-        this.column = element.getAttribute('data-select-filter');
-        this.trigger = trigger;
+//         this.element = element;
+//         this.column = element.getAttribute('data-select-filter');
+//         this.trigger = trigger;
 
-        this.setupFilterMethod(element, method, trigger)
-    }
+//         this.setupFilterMethod(element, method, trigger)
+//     }
 
-    setupFilterMethod(element, method, trigger) {
+//     setupFilterMethod(element, method, trigger) {
 
-        // Define Variable
-        let column = this.column;
+//         // Define Variable
+//         let column = this.column;
 
-        // Push to Stack
-        FilterElementFactory.filterList.push(this);
+//         // Push to Stack
+//         FilterElementFactory.filterList.push(this);
 
-        // Define available methods
-        const allowedMethods = ['contain', 'strict'];
+//         // Define available methods
+//         const allowedMethods = ['contain', 'strict'];
 
-        // Verify method
-        if (!allowedMethods.includes(method)) {
-            console.error(`Method [${method}] isn't allowed`);
-            return false;
-        }
+//         // Verify method
+//         if (!allowedMethods.includes(method)) {
+//             console.error(`Method [${method}] isn't allowed`);
+//             return false;
+//         }
 
-        // Pass to method factory
-        let bindFilter = new FilterFactory(element, method, column, trigger);
-        return;
-    }
+//         // Pass to method factory
+//         let bindFilter = new FilterFactory(element, method, column, trigger);
+//         return;
+//     }
 
-    /**
-     * @static
-     * @returns {Array}
-     */
-    static getAllFilter() {
-        return FilterElementFactory.filterList;
-    }
+//     /**
+//      * @static
+//      * @returns {Array}
+//      */
+//     static getAllFilter() {
+//         return FilterElementFactory.filterList;
+//     }
 
-    static filterOnLink(){
-        let allFilter = FilterElementFactory.getAllFilter();
+//     static filterOnLink(){
+//         let allFilter = FilterElementFactory.getAllFilter();
 
-        allFilter.forEach(filter => {
+//         allFilter.forEach(filter => {
 
-            let trigger = filter.trigger;
+//             let trigger = filter.trigger;
             
-            const event = new Event(trigger, {
-                bubbles: true,
-                cancelable: true,
-            });
+//             const event = new Event(trigger, {
+//                 bubbles: true,
+//                 cancelable: true,
+//             });
 
-            let result = filter.element.dispatchEvent(event);
-        });
-    }
-}
+//             let result = filter.element.dispatchEvent(event);
+//         });
+//     }
+// }
 
 /**
  * Filter & Data Connector
  */
 
-let name = findFilter('name');
-let nameFilter = new FilterElementFactory(name, 'contain', 'keyup');
+// let name = findFilter('name');
+// let nameFilter = new FilterElementFactory(name, 'contain', 'keyup');
 
-let category = findFilter('category');
-let categoryFilter = new FilterElementFactory(category, 'strict');
+// let category = findFilter('category');
+// let categoryFilter = new FilterElementFactory(category, 'strict');
 
-let type = findFilter('type');
-let typeFilter = new FilterElementFactory(type, 'strict');
+// let type = findFilter('type');
+// let typeFilter = new FilterElementFactory(type, 'strict');
 
-let status = findFilter('status');
-let statusFilter = new FilterElementFactory(status, 'strict');
+// let status = findFilter('status');
+// let statusFilter = new FilterElementFactory(status, 'strict');
 
-const allFilters = FilterElementFactory.filterOnLink();
-console.log(allFilters);
+// const allFilters = FilterElementFactory.filterOnLink();
+// console.log(allFilters);

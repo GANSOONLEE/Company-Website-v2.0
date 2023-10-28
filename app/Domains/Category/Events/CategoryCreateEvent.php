@@ -3,6 +3,7 @@
 namespace App\Domains\Category\Events;
 
 use App\Models\Category;
+use App\Models\Operation;
 use Illuminate\Http\Request;
 
 class CategoryCreateEvent{
@@ -26,6 +27,14 @@ class CategoryCreateEvent{
         // Create record at DB
         $data = ['name' => $name];
         Category::create($data);
+
+        $operation = [
+            'email' => auth()->user()->email,
+            'operation_type' => 'Create',
+            'operation_category' => 'Category',
+        ];
+
+        Operation::create($operation);
         
         return redirect()->back();
 

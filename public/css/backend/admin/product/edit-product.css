@@ -53,7 +53,6 @@ div.panel {
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
-  padding: 0 2rem;
   height: 100%;
 }
 div.panel div.product-image {
@@ -165,6 +164,7 @@ div.datalist table {
 }
 div.datalist table tr {
   cursor: pointer;
+  text-wrap: nowrap;
 }
 div.datalist table tr:nth-child(odd) {
   background-color: #ededed;
@@ -177,6 +177,9 @@ div.datalist table tr:hover {
 }
 div.datalist table td {
   padding: 1rem 1.8rem;
+}
+div.datalist table td[data-search-column=name] {
+  text-wrap: wrap;
 }
 div.datalist table td img {
   height: 8vh;

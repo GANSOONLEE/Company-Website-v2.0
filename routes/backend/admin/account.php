@@ -23,7 +23,7 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function(){
     Route::get('account-banned', [AccountBannedController::class,'accountBanned'])
         ->name('account.banned');
 
-    Route::get('user-operation', [UserOperationController::class,''])
+    Route::get('user-operation', [UserOperationController::class,'userOperation'])
         ->name('user.operation');
 
 

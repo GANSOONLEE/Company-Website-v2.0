@@ -3,6 +3,7 @@
 namespace App\Domains\Account\Events;
 
 use App\Models\Role;
+use App\Models\Operation;
 use Illuminate\Http\Request;
 
 
@@ -35,6 +36,14 @@ class PermissionUpdateEvent{
             ];
 
         }
+
+        $operation = [
+            'email' => auth()->user()->email,
+            'operation_type' => 'Update',
+            'operation_category' => 'Permission',
+        ];
+
+        Operation::create($operation);
 
         return response()->json($status);
 

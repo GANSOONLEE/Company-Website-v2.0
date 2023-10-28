@@ -3,6 +3,7 @@
 namespace App\Domains\Brand\Events;
 
 use App\Models\Brand;
+use App\Models\Operation;
 use Illuminate\Http\Request;
 
 class BrandCreateEvent{
@@ -27,6 +28,14 @@ class BrandCreateEvent{
         // Create record at DB
         $data = ['name' => $name];
         Brand::create($data);
+
+        $operation = [
+            'email' => auth()->user()->email,
+            'operation_type' => 'Create',
+            'operation_category' => 'Brand',
+        ];
+
+        Operation::create($operation);
         
         return redirect()->back();
 

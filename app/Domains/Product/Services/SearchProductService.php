@@ -23,34 +23,34 @@ class SearchProductService{
             return redirect()->route('frontend.product', ['category'=>$category]);
         }
 
-        // build a query
+        $typeResult = [];
 
+        // build a query
         if(!empty($type)){
             $typeResult = Product::where('product_type', $type)
                         ->where('product_category', $category)
                         ->get();
         }
 
-        $modelResult = [];
+        $modelResult = '';
 
         if(!empty($model)){
             $product_code = DB::table('products_name')
-                ->select('product_code', DB::raw('MAX(name) as name'))
+                ->select('product_code', DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'))
                 ->where('name', 'like', '%' . $model . '%')
                 ->groupBy('product_code')
                 ->get();
-
             
             $products = [];
             foreach($product_code as $code){
-                $product = Product::where('product_category', $category)
-                            ->first();
-                            
+                $product = Product::where('product_code', $code->product_code)
+                    ->first();
                 $products[] = $product; 
-            }
 
+            }
             $modelResult = $products;
         }
+
 
         $productData = [];
 

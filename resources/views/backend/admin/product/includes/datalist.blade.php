@@ -10,7 +10,7 @@
             <tr data-product-code="{{ $data->product_code }}" onclick="location.href=">
                 
                 <td>
-                    <img src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.jpg") }}" alt="">
+                    <img src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
                 </td>
                 <td data-search-column="name">{{ $data->getProductName()[0]->name }}</td>
                 <td data-search-column="category">{{ $data->product_category }}</td>

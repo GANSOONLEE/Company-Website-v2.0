@@ -2,6 +2,8 @@
 
 namespace App\Domains\Brand\Events;
 
+use App\Models\Brand;
+use App\Models\Operation;
 use Illuminate\Http\Request;
 
 class BrandUpdateEvent{
@@ -10,6 +12,7 @@ class BrandUpdateEvent{
 
         // Define variable
         $name = $request->input('brand-name');
+        $originName = $request->input('brand-origin-name');
         $uploadedFile = $request->file('brand-cover');
 
         // Define directory
@@ -20,8 +23,20 @@ class BrandUpdateEvent{
             $originalName = $uploadedFile->getClientOriginalName();
             $newFileName = $name . '.' . $uploadedFile->getClientOriginalExtension();
             $path = $uploadedFile->storeAs($directory, $newFileName, $disk);
-
         }
+
+        $brand = Brand::where('name', $originName)->first();
+        $brand->update([
+            "name" => $name,
+        ]);
+
+        $operation = [
+            'email' => auth()->user()->email,
+            'operation_type' => 'Update',
+            'operation_category' => 'Brand',
+        ];
+
+        Operation::create($operation);
         
         return redirect()->back();
 

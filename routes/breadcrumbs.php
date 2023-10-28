@@ -28,7 +28,7 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail, $product) {
 // Home > [Category] > [ProductDetail]
 Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $productData) {
     $trail->parent('product', $product);
-    $trail->push($productData->product_code, route('frontend.product-detail', $productData->product_code));
+    $trail->push($productData->getProductName()[0]->name, route('frontend.product-detail', $productData->getProductName()[0]->name));
 });
 
 // Home > Order (User)
