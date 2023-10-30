@@ -33,9 +33,15 @@ class EditProductDetailsController extends Controller{
             }
         }
 
-        $categories = Category::all();
-        $brands = Brand::all();
-        $types = Type::all();
+        $categories = Category::orderBy('name', 'asc')
+                        ->get();
+                        
+        $brands = Brand::orderBy('name', 'asc')
+                        ->get();
+                        
+        $types = Type::orderBy('name', 'asc')
+                        ->get();
+                        
 
         return view('backend.admin.product.edit-product-detail', compact('product', 'categories' ,'types', 'brands', 'productImages'));
     }

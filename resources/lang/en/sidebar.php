@@ -29,4 +29,5 @@ return array (
   'logout' => 'Logout',
   'category-create' => 'Create Category',
   'category-edit' => 'Edit Category',
+  'edit-product-detail' => 'Edit product details',
 );

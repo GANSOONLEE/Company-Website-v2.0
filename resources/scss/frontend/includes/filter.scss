@@ -1,11 +1,11 @@
 
 section.filter{
     width: 17%;
-    height: 87vh;
+    height: 89vh;
     position: sticky;
     border: 1.4px solid #b3b3b3;
     border-radius: 8px;
-    top: 11.7vh;
+    top: 9.7vh;
     background-color: #fefefe;
     padding: .4rem 1rem;
     display: flex;
@@ -90,18 +90,6 @@ section.filter{
             padding-top: .6rem;
             padding-right: .4rem;
             overflow-y: auto;
-            // &::-webkit-scrollbar{
-            //     padding: .2rem 0;
-            // }
-            // &::-webkit-scrollbar-button{
-            //     background-color: rgb(174, 160, 255);
-            // }
-            // &::-webkit-scrollbar-track{
-            //     background-color: rgb(201, 214, 255);
-            // }
-            // &::-webkit-scrollbar-thumb{
-            //     background-color: rgb(57, 60, 255);
-            // }
         }
     }
     div.button{

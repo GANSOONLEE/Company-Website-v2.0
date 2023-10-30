@@ -28,7 +28,7 @@ section.container div.content {
        column-gap: 1.2rem;
   row-gap: 1.4rem;
   overflow-x: auto;
-  padding: 0 1.2rem;
+  padding: 0.2rem 1.2rem;
 }
 
 /* ———————————————————— Image Upload ———————————————————— */
@@ -56,6 +56,9 @@ div.product-cover div.upload-cover:hover {
 }
 div.product-cover div.upload-cover:hover > i, div.product-cover div.upload-cover:hover > p {
   opacity: 0;
+}
+div.product-cover div.upload-cover:hover img:not([src=""]) + .delete-button.btn.btn-danger {
+  display: block;
 }
 div.product-cover div.upload-cover img {
   z-index: -1;
@@ -97,6 +100,9 @@ div.product-image div.product-image-box div.upload-image:hover {
 div.product-image div.product-image-box div.upload-image:hover > i, div.product-image div.product-image-box div.upload-image:hover > p {
   opacity: 0;
 }
+div.product-image div.product-image-box div.upload-image:hover img:not([src=""]) + .delete-button.btn.btn-danger {
+  display: block;
+}
 div.product-image div.product-image-box div.upload-image img {
   z-index: -1;
   position: absolute;
@@ -110,7 +116,28 @@ div.product-image div.product-image-box div.upload-image p {
   margin-bottom: 0;
 }
 
+div.delete-button.btn.btn-danger {
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+  padding: 0.08rem 0.4rem;
+  display: none;
+  transition: all 0.12s ease-in-out;
+}
+div.delete-button.btn.btn-danger i {
+  font-size: var(--font-remark);
+}
+
 /* ———————————————————— Name Upload ———————————————————— */
+div.name-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.name {
+  width: 33%;
+}
+
 /* ———————————————————— Brand Upload ———————————————————— */
 div.brand-box {
   display: flex;
@@ -118,6 +145,7 @@ div.brand-box {
   align-items: flex-end;
   -moz-column-gap: 2.3rem;
        column-gap: 2.3rem;
+  width: 100%;
 }
 div.brand-box div.image label {
   position: relative;
@@ -140,6 +168,9 @@ div.brand-box div.image label:hover {
 div.brand-box div.image label:hover > i, div.brand-box div.image label:hover > p {
   opacity: 0;
 }
+div.brand-box div.image label:hover img:not([src=""]) + .delete-button.btn.btn-danger {
+  display: block;
+}
 div.brand-box div.image label img {
   z-index: -1;
   position: absolute;
@@ -152,6 +183,16 @@ div.brand-box div.image label img {
 div.brand-box div.image label p {
   margin-bottom: 0;
 }
+div.brand-box div.brand {
+  width: 20%;
+}
+div.brand-box div.brand-code {
+  width: 40%;
+}
+div.brand-box div.frozen-code {
+  width: 40%;
+}
+
 /* ———————————————————— Category & Type Upload ———————————————————— */
 section.sub-container {
   width: 50%;
@@ -160,3 +201,5 @@ section.sub-container div.content {
   padding: 0;
   padding-right: 0.8rem;
 }
+
+/* ———————————————————— Button ———————————————————— */

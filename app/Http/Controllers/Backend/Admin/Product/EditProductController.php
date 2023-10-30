@@ -22,9 +22,17 @@ class EditProductController extends Controller
             $product = null;
         }
             
-        $productData = Product::orderBy('product_category', 'asc')->get();
-        $categoryData = Category::all();
-        $typeData = Type::all();
+        $productData = Product::select('products.*')
+            ->join('products_name', 'products_name.product_code', '=', 'products.product_code')
+            ->groupBy('products.product_code')
+            ->orderByRaw('SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.name), \',\', 1) ASC')
+            ->get();
+
+        $categoryData = Category::orderBy('name', 'asc')
+                            ->get();
+
+        $typeData = Type::orderBy('name', 'asc')
+                            ->get();
 
         $productStatuses = Product::pluck('product_status');
         $statusData = collect($productStatuses)->unique();

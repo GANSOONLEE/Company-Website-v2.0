@@ -32,7 +32,7 @@ section.container{
         column-gap: 1.2rem;
         row-gap: 1.4rem;
         overflow-x: auto;
-        padding: 0 1.2rem;
+        padding: .2rem 1.2rem;
     }
 }
 
@@ -58,6 +58,9 @@ input[type="file"]{
         border: 1px solid #dadada;
         & > i, > p{
             opacity: 0;
+        }
+        img:not([src=""]) + .delete-button.btn.btn-danger{
+            display: block;
         }
     }
 }
@@ -95,7 +98,7 @@ div.product-image{
         div.upload-image{
             $size: 120px;
             height: $size;
-    width: $size;
+            width: $size;
             @include upload-area;
             position: relative;
             img{
@@ -113,8 +116,28 @@ div.product-image{
     }
 }
 
+div.delete-button.btn.btn-danger{
+    position: absolute;
+    right: .4rem;
+    top: .4rem;
+    padding: .08rem .4rem;
+    display: none;
+    transition: all .12s ease-in-out;
+    i{
+        font-size: var(--font-remark);
+    }
+}
+
 /* ———————————————————— Name Upload ———————————————————— */
 
+div.name-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.name{ 
+    width: 33%;
+}
 
 /* ———————————————————— Brand Upload ———————————————————— */
 
@@ -123,6 +146,7 @@ div.brand-box{
     justify-content: space-between;
     align-items: flex-end;
     column-gap: 2.3rem;
+    width: 100%;
 
     // Brand Image 品牌照片
     div.image{
@@ -154,17 +178,17 @@ div.brand-box{
 
     // Brand 品牌
     div.brand{
-
+        width: 20%;
     }
 
     // Brand Code 品牌編號
     div.brand-code{
-
+        width: 40%;
     }
 
     // Frozen Code Frozen編號
     div.frozen-code{
-
+        width: 40%;
     }
 
 }
@@ -177,3 +201,5 @@ section.sub-container{
         padding-right: .8rem;
     }
 }
+
+/* ———————————————————— Button ———————————————————— */

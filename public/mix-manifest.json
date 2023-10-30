@@ -15,6 +15,7 @@
     "/js/backend/admin/order/view-order.js": "/js/backend/admin/order/view-order.js",
     "/js/backend/admin/product/class/Filter.js": "/js/backend/admin/product/class/Filter.js",
     "/js/backend/admin/product/create-product.js": "/js/backend/admin/product/create-product.js",
+    "/js/backend/admin/product/edit-product-detail.js": "/js/backend/admin/product/edit-product-detail.js",
     "/js/backend/admin/product/edit-product.js": "/js/backend/admin/product/edit-product.js",
     "/js/backend/user/cart.js": "/js/backend/user/cart.js",
     "/js/backend/user/includes/sidebar.js": "/js/backend/user/includes/sidebar.js",

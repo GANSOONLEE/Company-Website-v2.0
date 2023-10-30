@@ -29,4 +29,5 @@ return array (
   'operation-record' => '操作记录',
   'language' => '语言',
   'logout' => '登出',
+  'edit-product-detail' => '编辑产品详细',
 );

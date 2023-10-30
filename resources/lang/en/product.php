@@ -30,4 +30,6 @@ return array (
   'edit-more' => 'Edit more',
   'delete' => 'Delete',
   'upload-cover' => 'Upload cover photo',
+  'cancel' => 'Cancel',
+  'delete-confirm' => 'Are you sure you want to delete this photo?',
 );

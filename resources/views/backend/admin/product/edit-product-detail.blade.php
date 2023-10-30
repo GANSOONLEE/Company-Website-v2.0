@@ -4,7 +4,17 @@
 
 @section('main')
 
-<form action="" method="post" enctype="multipart/form-data">
+<div id="modal">
+    <bootstrap-modal
+        :app="'{{ env('APP_NAME') }}'"
+        :message="'{{ __('product.delete-confirm') }}'"
+        :delete="'{{ __('product.delete') }}'"
+        :cancel="'{{ __('product.cancel') }}'"
+    ></bootstrap-modal>
+</div>
+
+<form action="{{ route('backend.admin.product.edit') }}" method="POST" enctype="multipart/form-data">
+    @csrf
 
     <!-- Image Container -->
     <section class="container">
@@ -17,10 +27,10 @@
 
             <!-- Cover -->
             <div class="product-cover">
-                <input type="file" name="" id="product-cover" class="product-cover" accept=".jpg, .jpeg, .bmp, .png, .svg">
+                <input type="file" name="product-cover" id="product-cover" class="product-cover product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
                 <label for="product-cover" class="form-label">
                     <div class="upload-cover preview">
-                        <img src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
+                        <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
                         <i class="fa-solid fa-add"></i>
                         <p class="cover-text">{{ __('product.upload-cover') }}</p>
                     </div>
@@ -32,14 +42,20 @@
     
                 <!-- Unit of image-->
                 @for ($i = 0; $i < 10; $i++)
-                <div class="product-image-box">
-                    <input type="file" name="" id="product-image-" class="product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
-                    <label for="product-image-" class="form-label">
+                <div class="product-image-box box-list">
+                    <input data-slot="product-{{ $i+1 }}" type="file" name="product-image[]" id="product-image-{{ $i+1 }}" class="product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
+                    <label for="product-image-{{ $i+1 }}" class="form-label">
                         <div class="upload-image preview">
-                            @if (count($productImages) > $i)  
-                                <img src="{{ asset("storage/$productImages[$i]") }}" alt="">
+                            @if (count($productImages) > $i)
+                            <img class="image-preview" src="{{ asset("storage/$productImages[$i]") }}" alt="" onerror="this.style.display='none'" onload="this.style.display='block'">
+                            <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
                             @else
-                                <img src="" alt="" onerror="this.style.display='none'">
+                                <img class="image-preview" src="" alt="" onerror="this.style.display='none'" onload="this.style.display='block'">
+                                <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                    <i class="fa-solid fa-trash"></i>
+                                </div>
                             @endif
                             <i class="fa-solid fa-add"></i>
                             <p class="image-text">{{ __('product.upload') }}</p>
@@ -60,19 +76,19 @@
             <p class="section-title-text">{{ __('product.model-upload') }}</p>
         </div>
 
-        <div class="content flex-column">
+        <div class="content name-content">
 
             <!-- existent record-->
             @foreach ($product->getProductName() as $name)
                 <div class="name">
-                    <input class="form-control" type="text" name="fullname[]" id="" value="{{ $name->name }}">
+                    <input class="form-control" type="text" name="fullname[]" id="" placeholder="{{ __('product.name') }}" value="{{ $name->name }}">
                 </div>
             @endforeach
 
             <!-- blank record -->
             @for ($i = 0; $i < 10-count($product->getProductName()); $i++)
                 <div class="name">
-                    <input class="form-control" type="text" name="fullname[]" id="">
+                    <input class="form-control" type="text" name="fullname[]" id="" placeholder="{{ __('product.name') }}">
                 </div>
             @endfor
             
@@ -95,10 +111,15 @@
                 <div class="brand-box flex-row">
 
                     <!-- Brand Image 品牌照片 -->
-                    <div class="image">
-                        <input type="file" name="" id="brand-image-{{ $index }}">
+                    <div class="image box-list">
+                        <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image[]" id="brand-image-{{ $index }}">
                         <label for="brand-image-{{ $index }}">
-                            <img src="{{ asset("storage/product/$product->product_category/$product->product_code/$brand->code/cover.png") }}" alt="" class="image-upload">
+                            <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/$brand->code/cover.png") }}" alt="" class="image-upload">
+                            @if ($index !== 0)
+                            <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                            @endif
                             <i class="fa-solid fa-add"></i>
                             <p class="image-text">{{ __('product.upload') }}</p>
                         </label>
@@ -107,7 +128,7 @@
                     <!-- Brand 品牌 -->
                     <div class="brand">
                         <label for="" class="form-label">{{ __('product.brand') }}</label>
-                        <select class="form-control" name="" id="">
+                        <select class="form-control" name="brand[]" id="">
                             @foreach ($brands as $brandData)
                                 <option value="{{ $brandData->name }}" {{ $brand->brand == $brandData->name ? "selected" : ""}}>{{ $brandData->name }}</option>
                             @endforeach
@@ -122,7 +143,7 @@
 
                     <!-- Frozen Code Frozen編號 -->
                     <div class="frozen-code">
-                        <label for="" class="form-label">{{ __('product.brand') }}</label>
+                        <label for="" class="form-label">{{ __('product.frozen-code') }}</label>
                         <input class="form-control" type="text" name="brand-frozen[]" value="{{ $brand->frozen_code }}">
                     </div>
 
@@ -130,15 +151,23 @@
 
             @endforeach
 
+            
             <!-- blank record -->
-            @for ($i = count($product->getProductBrand()); $i < 10; $i++)
+            @php
+                $i = count($product->getProductBrand())+2;
+            @endphp
+            @for ($i = (count($product->getProductBrand())+1); $i < 10; $i++)
+            
             <div class="brand-box">
-
+                
                 <!-- Brand Image 品牌照片 -->
-                <div class="image">
-                    <input type="file" name="" id="brand-image-{{ $i }}">
+                <div class="image box-list">
+                    <input class="brand-image" data-slot="brand-{{ $i }}" type="file" name="brand-image[]" id="brand-image-{{ $i }}">
                     <label for="brand-image-{{ $i }}">
-                        <img src="" alt="" class="image-upload" onerror="this.style.display = 'none'">
+                        <img class="brand-preview" src="" alt="" class="image-upload" onerror="this.style.display = 'none'" onload="this.style.display ='block'" >
+                        <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
                         <i class="fa-solid fa-add"></i>
                         <p class="image-text">{{ __('product.upload') }}</p>
                     </label>
@@ -146,7 +175,7 @@
 
                 <!-- Brand 品牌 -->
                 <div class="brand">
-                    <select class="form-control" name="" id="">
+                    <select class="form-control" name="brand[]" id="">
                         <option value="" selected hidden readonly disabled>{{ __('product.brand') }}</option>
                         @foreach ($brands as $brandData)
                             <option value="{{ $brandData->name }}">{{ $brandData->name }}</option>
@@ -207,10 +236,8 @@
 
     </section>
 
-    <!-- Button Container -->
-    <section class="container">
-
-    </section>
+    <!-- Button -->
+    <button class="btn btn-primary">{{ __('product.submit') }}</button>
 
 </form>
 
@@ -221,5 +248,5 @@
 @endpush
 
 @push('after-script')
-    
+    <script src="{{ asset('js/backend/admin/product/edit-product-detail.js') }}"></script>
 @endpush

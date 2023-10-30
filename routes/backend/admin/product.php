@@ -16,6 +16,6 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
         ->name('product-edit');
 
     Route::get('product-edit/details/{productCode?}', [EditProductDetailsController::class, 'editProductMoreDetails'])
-        ->name('edit-more');
+        ->name('edit-product-more');
     
 });

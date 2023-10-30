@@ -5,7 +5,7 @@
 @section('main')
 
     <!-- Edit Panel -->
-    <section class="basic-information-edit-panel">
+    {{-- <section class="basic-information-edit-panel">
         @if (isset($product))
             @include('backend.admin.product.includes.panel')
         @else
@@ -13,7 +13,7 @@
                 <p>{{ __('product.select-product-edit') }}</p>
             </div>
         @endif
-    </section>
+    </section> --}}
 
     <!-- Filter -->
     <section class="filter">

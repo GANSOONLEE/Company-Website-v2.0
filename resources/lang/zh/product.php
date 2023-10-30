@@ -30,4 +30,6 @@ return array (
   'edit-more' => '编辑更多',
   'delete' => '删除',
   'upload-cover' => '上传封面照',
+  'cancel' => '取消',
+  'delete-confirm' => '你确定你要删除这张照片吗？',
 );
