@@ -4,8 +4,7 @@ namespace App\Domains\Product\Events;
 use App\Models\Product;
 use App\Models\Operation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteProductImageEvent{
 
@@ -13,22 +12,51 @@ class DeleteProductImageEvent{
 
         try{
 
-            $imageSrc = $request->src;
+            // Define variable
+            $imageName = urldecode($request->imageName);
+            $product_code = $request->product_code;
 
-            $response = Http::delete($imageSrc);
+            // Get Product Information
+            $productInstance = Product::where('product_code', $product_code)->first();
+            $category = $productInstance->product_category;
 
+            // Define Path Parameter
+            $diskName = 'public';
+            $directory = "product/$category/$product_code/";
+
+            // Verify validation
+            $oldImage = Storage::disk($diskName)->exists($directory . '/' . $imageName);
+            if(!$oldImage){
+                new \Exception('Can\'t find this image');
+                return false;
+            }
+
+            // Delete Image
+            $result = Storage::disk($diskName)->delete($directory . '/'. $imageName);
+            
+            // Record Operation
+            $operationData = [
+                "email" => auth()->user()->email,
+                "operation_type" => 'Update',
+                "operation_category" => 'Product',
+            ];
+
+            Operation::create($operationData);
+
+            // Response
             $status = [
                 "result" => "success",
-                "imageSrc" => $imageSrc,
-                'response' => $response->successful()
             ];
+
         }catch(\Exception $e){
+
             $status = [
                 "result" => "failure",
                 "file" => $e->getFile(),
                 "line" => $e->getLine(),
                 "message" => $e->getMessage()
             ];
+
         }
 
         return response()->json($status);

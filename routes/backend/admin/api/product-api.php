@@ -10,7 +10,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
 
     Route::post('product-create-post', [CreateProductEvent::class, 'createProduct'])->name('create');
 
-    Route::post('product-edit-post', [UpdateProductEvent::class, 'updateProduct'])->name('edit');
+    Route::post('product-edit-post/{product_code}', [UpdateProductEvent::class, 'updateProduct'])->name('edit');
 
     Route::post('image-delete-api', [DeleteProductImageEvent::class, 'deleteImage']);
 });

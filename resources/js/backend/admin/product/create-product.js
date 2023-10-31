@@ -5,6 +5,7 @@ import BootstrapAlert from '../components/BootstrapAlert.vue';
 // 创建一个全局的 Vue 应用实例
 const alert = createApp(BootstrapAlert);
 const vm = alert.mount('#alert');
+console.log(vm)
 /**
  * @example call method update message
  * vm.updateMessage(THE_MESSAGE_YOU_WANT_DISPLAY)

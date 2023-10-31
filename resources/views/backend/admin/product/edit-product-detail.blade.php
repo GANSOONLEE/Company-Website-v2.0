@@ -4,6 +4,13 @@
 
 @section('main')
 
+<div id="alert">
+    <custom-alert
+        :message = "'你好'"
+        :status = "'success'"
+    ></custom-alert>
+</div>
+
 <div id="modal">
     <bootstrap-modal
         :app="'{{ env('APP_NAME') }}'"
@@ -13,7 +20,7 @@
     ></bootstrap-modal>
 </div>
 
-<form action="{{ route('backend.admin.product.edit') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('backend.admin.product.edit', ['product_code'=>$product->product_code]) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- Image Container -->
@@ -43,7 +50,7 @@
                 <!-- Unit of image-->
                 @for ($i = 0; $i < 10; $i++)
                 <div class="product-image-box box-list">
-                    <input data-slot="product-{{ $i+1 }}" type="file" name="product-image[]" id="product-image-{{ $i+1 }}" class="product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
+                    <input data-slot="product-{{ $i+1 }}" type="file" name="product-image-{{ $i+1 }}" id="product-image-{{ $i+1 }}" class="product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
                     <label for="product-image-{{ $i+1 }}" class="form-label">
                         <div class="upload-image preview">
                             @if (count($productImages) > $i)
@@ -112,9 +119,9 @@
 
                     <!-- Brand Image 品牌照片 -->
                     <div class="image box-list">
-                        <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image[]" id="brand-image-{{ $index }}">
+                        <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image-{{ $index }}" id="brand-image-{{ $index }}">
                         <label for="brand-image-{{ $index }}">
-                            <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/$brand->code/cover.png") }}" alt="" class="image-upload">
+                            <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.png") }}" alt="" class="image-upload">
                             @if ($index !== 0)
                             <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
                                 <i class="fa-solid fa-trash"></i>
@@ -144,7 +151,7 @@
                     <!-- Frozen Code Frozen編號 -->
                     <div class="frozen-code">
                         <label for="" class="form-label">{{ __('product.frozen-code') }}</label>
-                        <input class="form-control" type="text" name="brand-frozen[]" value="{{ $brand->frozen_code }}">
+                        <input class="form-control" type="text" name="frozen-code[]" value="{{ $brand->frozen_code }}">
                     </div>
 
                 </div>
@@ -162,7 +169,7 @@
                 
                 <!-- Brand Image 品牌照片 -->
                 <div class="image box-list">
-                    <input class="brand-image" data-slot="brand-{{ $i }}" type="file" name="brand-image[]" id="brand-image-{{ $i }}">
+                    <input class="brand-image" data-slot="brand-{{ $i }}" type="file" name="brand-image-{{ $i }}" id="brand-image-{{ $i }}" value="slot-{{ $i }}">
                     <label for="brand-image-{{ $i }}">
                         <img class="brand-preview" src="" alt="" class="image-upload" onerror="this.style.display = 'none'" onload="this.style.display ='block'" >
                         <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
@@ -190,7 +197,7 @@
 
                 <!-- Frozen Code Frozen編號 -->
                 <div class="frozen-code">
-                    <input class="form-control" type="text" name="brand-frozen[]" value="" placeholder="{{ __('product.frozen-code') }}">
+                    <input class="form-control" type="text" name="frozen-code[]" value="" placeholder="{{ __('product.frozen-code') }}">
                 </div>
             </div>
             @endfor
@@ -209,7 +216,7 @@
             </div>
 
             <div class="content">
-                <select name="" id="" class="form-control">
+                <select name="category" id="" class="form-control">
                     @foreach ($categories as $category)  
                     <option value="{{ $category->name }}" {{ $product->product_category == $category->name ? "selected" : ""}}>{{ $category->name }}</option>
                     @endforeach
@@ -225,7 +232,7 @@
             </div>
 
             <div class="content">
-                <select name="" id="" class="form-control">
+                <select name="type" id="" class="form-control">
                     @foreach ($types as $type)
                     <option value="{{ $type->name }}" {{ $product->product_type == $type->name ? "selected" : ""}}>{{ $type->name }}</option>
                     @endforeach

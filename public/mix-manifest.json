@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
+    "/js/backend/admin/account/operation-record.js": "/js/backend/admin/account/operation-record.js",
     "/js/backend/admin/account/permission-management.js": "/js/backend/admin/account/permission-management.js",
     "/js/backend/admin/account/role-management.js": "/js/backend/admin/account/role-management.js",
     "/js/backend/admin/account/user-management.js": "/js/backend/admin/account/user-management.js",
@@ -59,5 +60,6 @@
     "/css/backend/admin/account/user-management.css": "/css/backend/admin/account/user-management.css",
     "/css/backend/admin/account/user-management-form.css": "/css/backend/admin/account/user-management-form.css",
     "/css/backend/admin/account/role-managemenet.css": "/css/backend/admin/account/role-managemenet.css",
-    "/css/backend/admin/account/permission-management.css": "/css/backend/admin/account/permission-management.css"
+    "/css/backend/admin/account/permission-management.css": "/css/backend/admin/account/permission-management.css",
+    "/css/backend/admin/account/operation-record.css": "/css/backend/admin/account/operation-record.css"
 }

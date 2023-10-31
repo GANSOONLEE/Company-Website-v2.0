@@ -203,3 +203,14 @@ section.sub-container div.content {
 }
 
 /* ———————————————————— Button ———————————————————— */
+/* ———————————————————— Alert ———————————————————— */
+.alert {
+  z-index: 100;
+  position: fixed;
+  height: 9vh;
+  width: 77.2vw;
+  top: 1rem;
+  left: 20.4vw;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+}
