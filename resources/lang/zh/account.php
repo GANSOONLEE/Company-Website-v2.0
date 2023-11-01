@@ -159,5 +159,15 @@ return array (
       'name' => '允许用户进入后台',
       'description' => '让用户可以访问后台',
     ),
+    'promotion_promotion-1' => 
+    array (
+      'name' => '促销一面板',
+      'description' => '允许查看促销一面板',
+    ),
+    'promotion_promotion-2' => 
+    array (
+      'description' => '允许查看促销二面板',
+      'name' => '促销二面板',
+    ),
   ),
 );

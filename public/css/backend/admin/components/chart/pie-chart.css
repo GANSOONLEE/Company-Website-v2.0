@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* ———————————————————— pie chart ———————————————————— */
+div#pie-chart {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+div#pie-chart canvas#myChart {
+  width: auto;
+  height: 100%;
+}

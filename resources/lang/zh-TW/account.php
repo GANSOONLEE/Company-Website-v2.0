@@ -159,5 +159,15 @@ return array (
       'name' => '允許用戶進入後臺',
       'description' => '讓用戶可以訪問後臺',
     ),
+    'promotion_promotion-1' => 
+    array (
+      'name' => '促銷一面板',
+      'description' => '允許查看促銷一面板',
+    ),
+    'promotion_promotion-2' => 
+    array (
+      'description' => '允許查看促銷二面板',
+      'name' => '促銷二面板',
+    ),
   ),
 );

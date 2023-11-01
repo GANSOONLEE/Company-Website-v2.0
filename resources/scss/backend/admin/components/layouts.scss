@@ -1,0 +1,85 @@
+
+@use 'sass:color';
+
+.alert{
+    z-index: 100;
+    position: fixed;
+    height: 9vh;
+    width: 77.2vw;
+    top: 1rem;
+    left: 20.4vw;
+    column-gap: 1.2rem;
+}
+
+/* ———————————————————— Card ———————————————————— */
+
+/*
+    ┌────────────┐
+    │    Main    │
+    └────────────┘
+    ┌─────┐┌─────┐
+    │ Sub ││ Sub │
+    └─────┘└─────┘
+*/
+
+$theme-color: #2f43b2;
+
+@mixin card-panel{
+    box-shadow: 0 0 20px rgba($theme-color, .2);
+    border: 1px solid rgba($theme-color, .1);
+    border-radius: 6px;
+    
+    padding: 1.4rem;
+}
+
+section.custom-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    $spacing: 1rem;
+    row-gap: $spacing;
+
+    // Main Card
+    div.main-card{
+        @include card-panel;
+        height: 60vh;
+
+        div.card-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+
+            h3.card-title-text{
+                margin-bottom: 0;
+            }
+
+            button#refresh-button{
+                padding: .3rem .7rem;
+                border-radius: 4px;
+                background-color: green;
+                color: white;
+                transition: all .12s ease-in-out;
+                &:hover{
+                    background-color: color.scale(green, $lightness: -20%);
+                }
+            }
+        }
+    }
+
+    // Sub Card Container
+    div.sub-card-container{
+        display: flex;
+        column-gap: $spacing;
+
+        // Sub Card
+        div.sub-card{
+            @include card-panel;
+            height: 40vh;
+            width: 50%;
+        }
+
+    }
+
+}
+

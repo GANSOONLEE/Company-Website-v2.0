@@ -1,0 +1,133 @@
+
+/* ———————————————————— Component ———————————————————— */
+
+div#pagination{
+
+    /* Filter */
+    section#pagination-header{
+        height: 0;
+    }
+
+    /* Body */
+    section#pagination-body{
+        border: 1px solid #dadada;
+        box-shadow: 0 0 15px #dadada;
+        border-radius: 6px;
+        background-color: #fdfdff;
+        padding: .6rem 2rem;
+
+        @mixin table{
+            display: table;
+            table-layout: auto;
+            width: 100%;
+        }
+
+        /* Column Name */
+        section#column-name{
+            @include table;
+            div.column-title{
+                display: table-row;
+                background-color: red;
+                p{
+                    display: table-cell;
+                    width: auto;
+                }
+            }
+
+        }
+
+        /* Record */
+        section#record-list{
+            @include table;
+            border-collapse: separate;
+            // border-spacing: 0 10px;
+
+            --color-brand: #bbfaff;
+            --color-product: #bbffbb;
+            --color-category: #ffbbfa;
+            --color-permission: #fabbbb;
+            --color-order: #ffbbff;
+
+            div.record-row{
+                &[data-identify="Brand"]{
+                    background-color: var(--color-brand);
+                }
+                &[data-identify="Product"]{
+                    background-color: var(--color-product);
+                }
+                &[data-identify="Category"]{
+                    background-color: var(--color-category);
+                }
+                &[data-identify="Permission"]{
+                    background-color: var(--color-permission);
+                }
+                &[data-identify="Order"]{
+                    background-color: var(--color-order);
+                }
+            }
+
+            div.record-row, div.column-title{
+                display: table-row;
+                padding: 1rem 0;
+                
+                p{
+                    padding: .6rem .4rem;
+                    display: table-cell;
+                    width: auto;
+                    
+                    &.title{
+                        border-bottom: 1px solid #00000022;
+                        font-weight: bold;
+                        padding-bottom: .6rem;
+                    }
+                }
+                
+            }
+        }
+
+    }
+
+    /* Page Selector */
+    section#pagination-footer{
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 1.2rem;
+        
+        // page Selector
+        nav#page-selector{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ul.pagination{
+                width: auto;
+                li.page-item{
+
+                    a.page-link{
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        // Input pageIndex
+        div.page-input{
+            display: flex;
+            width: 120px;
+            button{
+                padding: 0 .6rem;
+            }
+        }
+
+    }
+
+}
+
+

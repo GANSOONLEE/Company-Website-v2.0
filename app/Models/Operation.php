@@ -29,7 +29,7 @@ class Operation extends Model
         'Product' => 'products',
         'Category' => 'categories',
         'Brand' => 'brands',
-        'Permission' => 'permissions',
+        'Permission' => 'roles_permissions',
         'Order' => 'orders',
     ];
 
@@ -37,7 +37,7 @@ class Operation extends Model
         'Product' => 'product_code',
         'Category' => 'name',
         'Brand' => 'name',
-        'Permission' => 'name',
+        'Permission' => 'permission_name',
         'Order' => 'code',
     ];
 

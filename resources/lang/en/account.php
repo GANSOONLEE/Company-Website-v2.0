@@ -159,5 +159,15 @@ return array (
       'name' => 'Allow users to enter the background',
       'description' => 'Give users access to the backend',
     ),
+    'promotion_promotion-1' => 
+    array (
+      'name' => 'Promotional one panel',
+      'description' => 'Allow viewing of promotions panel',
+    ),
+    'promotion_promotion-2' => 
+    array (
+      'description' => 'Allow viewing of promotional second panel',
+      'name' => 'Promotional two panels',
+    ),
   ),
 );

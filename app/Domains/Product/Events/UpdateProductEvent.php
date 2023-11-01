@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateProductEvent{
 
-    public $mode = "debug"; // debug production
+    public $mode = "production"; // debug production
     public function updateProduct(Request $request, $product_code){
 
         // Define variable
@@ -129,9 +129,16 @@ class UpdateProductEvent{
                     continue;
                 }
 
+                if($name == null){
+                    continue;
+                }
+
                 $productNameData = [
                     'name' => $name,
+                    'product_code' => $product_code,
                 ];
+
+                dd($product_name_collection, $productNameData);
 
                 $this->mode === "production" ? DB::table('products_name')->insert($productNameData) : '';
             }
@@ -174,6 +181,7 @@ class UpdateProductEvent{
                     'brand' => $brand,
                     'brand_code' => $product_brand_code_collection[$index],
                     'frozen_code' => $product_frozen_code_collection[$index],
+                    'product_code' => $product_code,
                 ];
 
                 $this->mode === "production" ? DB::table('products_brand')->insert($productBrandData) : '';
