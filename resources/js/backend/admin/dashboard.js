@@ -2,15 +2,10 @@
 // Import Vue Components
 
 import PieChart from './components/chart/PieChartComponent.vue'
-
-const pieChart = createApp(PieChart);
-pieChart.mount('#pie-chart')
-
 import CustomAlert from './components/CustomAlert.vue';
 
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount("#alert")
-
 
 // Request Data
 
@@ -37,32 +32,24 @@ async function getRequest(){
                 resolve(response)
             },
             error(response){
-                console.error(response)
                 reject(response)
             }
         })
     });
-    
 }
 
-// Chart.js Setting
-
-const ctx = document.getElementById('myChart');
-var myChart;
-
-async function build(){
+window.onload = async () =>{
 
     let data = await getRequest();
-
     let count = data.count;
-    let totalRecord = count.total;
+
     let categoryRecord = [
         count.category_count
     ]
     let typeRecord = [
         count.type_count
     ]
-
+        
     const labels = [];
     const datasetData = [];
 
@@ -71,50 +58,138 @@ async function build(){
         datasetData.push(record.count)
     })
 
-    // categoryRecord[0].forEach(record=>{
-    //     labels.push(record.product_category)
-    //     datasetData.push(record.count)
-    // })
+    const externalData = {labels, datasetData}
 
-    myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '# of Items',
-                data: datasetData,
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)',
-                    'rgb(99, 255, 198)',
-                    'rgb(163, 82, 255)',
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    position: "right"
-                }
-            },
-            locale: "zh-CN"
-        }
+    const pieChart = createApp(PieChart, {
+        externalData: externalData 
     });
 
+    pieChart.mount("#pie-chart");
+
 }
 
-window.onload = ()=>{
-    build();
-}
+// refresh chart
+let refreshButton = $('#refresh-button');
+refreshButton.click((event)=>{
 
-// refresh canvas
-let refreshButton = document.querySelector('#refresh-button');
-refreshButton.addEventListener('click', ()=>{
-    myChart ? myChart.destroy() : '';
-    build()
-    alertInstance.updateMessage('Success update!', 'success');
-    alertInstance.autoAlert();
+    // Set time delay
+    let button = event.target;
+    button.disabled = true;
+    let counter;
+
+    let requestBlockLimiterSubject = subject.subscribeObserver(RequestBlockLimiter);
+    let overLimit = subject.notifyObserver(RequestBlockLimiter, limitCounter())
+
+    const bannerTime = setTimeout(()=>{
+        button.disabled = false;
+    }, timeLimit * 1000)
+
+    if(overLimit == true){
+        alertInstance.updateMessage(`You are over limit !<br> ${timeLimit} can't more then ${requestLimit}`, 'warning');
+        alertInstance.showAlert();
+        button.disabled = true;
+        return;
+    }
+
+    const timer = setTimeout(()=>{
+        button.disabled = false;
+    }, 3300)
+
+    // trigger refresh
+    window.externalRefreshChart(alertInstance);
+
 })
+
+// // [Observer]
+class Observer{
+
+    /**
+     * @param {function} callback
+     */
+
+    notify(callback){
+        ()=>{
+            callback
+        };
+    }
+
+}
+
+// // [Subscription] 
+class Subject{
+
+    observers = [];
+
+    /**
+     * @param {Observer} observer
+     */
+
+    subscribeObserver(observer){
+        this.observers.push(observer);
+    }
+
+    unsubscribeObserver(observer){
+        let index = this.observers.indexOf(observer);
+        if (index > -1) {
+           this.observers.splice(index, 1) 
+        }
+    }
+
+    notifyObserver(observer, callback){
+        let index = this.observers.indexOf(observer);
+        return callback;
+    }
+
+    notifyAllObservers(callback){
+        for(let i = 0; i < this.observers ; i++){
+            this.observers[i].notify(callback);
+        }
+    }
+
+}
+
+// [Event]
+
+let i = 1
+let timer = null;
+let timeLimit = 60; // 60 second
+let timeCounter = timeLimit;
+let requestLimit = 5; // (requestLimit) at (timeLimit)
+
+function limitCounter(){
+
+    // check timer existent
+    if (i >= requestLimit) {
+        return true;
+    }
+
+    /**
+     * @param {number} timeCounter
+     * @param {number} requestLimit
+     */
+
+    if(timer){
+        i++;
+        return false;
+    }
+
+    timer = setInterval(() => {
+        timeCounter--;
+        if (0 >= timeCounter) {
+            clearInterval(timer);
+            i = 1;
+            timer = null;
+            timeLimit = timeCounter;
+        } 
+    }, 1000);
+
+}
+
+// create observer instance
+let subject = new Subject();
+let RequestBlockLimiter = new Observer();
+
+
+
+
 

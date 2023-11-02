@@ -17,6 +17,10 @@ class UserAuthenticate
             return redirect()->route('auth.login');
         }
 
+        if ($user->status != "Available"){
+            return redirect()->route('auth.login');
+        }
+
         $roles = $user->getRole();
         
         // if the user's role is not 'user' or 'admin', the user will also be redirected to the login page.

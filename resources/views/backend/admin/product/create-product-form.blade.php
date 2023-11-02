@@ -7,7 +7,7 @@
         <div class="product-cover">
             <label for="product-cover">
                 <div class="cover-preview">
-                    <img class="cover-preview-image thumbnail" src="" alt="">
+                    <img class="cover-preview-image thumbnail" src="" alt="" onerror="this.style.display = 'none'" onload="this.style.display = 'block'">
                 </div>
             </label>
             <input type="file" name="product-cover" id="product-cover" class="product-cover-input" accept=".jpg, .png, .jpeg" required>
@@ -22,7 +22,7 @@
             <div class="product-image">
                 <label for="product-picture-{{$i}}">
                     <div class="picture-preview">
-                        <img class="picture-preview-image thumbnail" src="" alt="">
+                        <img class="picture-preview-image thumbnail" src="" alt="" onerror="this.style.display = 'none'" onload="this.style.display = 'block'">
                     </div>
                 </label>
                 <input type="file" name="product-image[]" id="product-picture-{{$i}}" class="product-image" accept=".jpg, .png, .jpeg">

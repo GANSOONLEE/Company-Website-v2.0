@@ -20,14 +20,26 @@ class LoginMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $token =  Cookie::get('remember_token');
-        $user = User::where('remember_token', $token)->first();
 
-        if(auth()->check()){
+        if (!$token) {
             return $next($request);
         }
 
-        if($user){
-            Auth::login($user);
+        $user = User::where('remember_token', $token)
+            ->first();
+
+
+        if (!$user) {
+            return $next($request);
+        }
+
+        if(config('function.email_verify')){
+            $status = $user->status;
+            if($status == "Available"){
+                Auth::login($user);
+            }else{
+                $next($request);
+            }
         }
 
         return $next($request);

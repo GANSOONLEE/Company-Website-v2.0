@@ -63,6 +63,9 @@ section.custom-card{
                 &:hover{
                     background-color: color.scale(green, $lightness: -20%);
                 }
+                &:active{
+                    background-color: color.scale(green, $lightness: -40%);
+                }
             }
         }
     }
@@ -81,5 +84,11 @@ section.custom-card{
 
     }
 
+}
+
+// Button Status
+button[disabled]{
+    cursor: not-allowed;
+    background-color: #686b68 !important;
 }
 

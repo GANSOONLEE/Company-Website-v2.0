@@ -22,8 +22,8 @@
         <svg style="width: 20px;" :class="iconClass" xmlns="http://www.w3.org/2000/svg" :aria-label="iconAriaLabel">
             <use :xlink:href="iconHref" />
         </svg>
-        <div>
-            {{ message }}
+        <div v-html="message">
+            
         </div>
         <button type="button" class="btn-close" @click="closeAlert"></button>
     </div>
@@ -99,7 +99,7 @@ export default {
             this.showAlert();
             setTimeout(()=>{
                 this.closeAlert()
-            }, 3200)
+            }, 3000)
         }
     },
 };

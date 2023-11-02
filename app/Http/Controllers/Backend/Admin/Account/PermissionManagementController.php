@@ -10,7 +10,6 @@ class PermissionManagementController extends Controller{
 
     public function permissionManagement(){
 
-        //
         $roles = Role::orderBy('weight', 'asc')
             ->get();
 

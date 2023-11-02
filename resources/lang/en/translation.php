@@ -5,7 +5,7 @@ return array (
   'warning-translation:export' => 'Warning, translations are not visible until they are exported back to the app/lang file, using <code>php artisan translation:export</code> command or publish button.',
   'success-group:import' => 'Done importing, processed <strong class="counter">N</strong> items! Reload this page to refresh the groups!',
   'success-items:search' => 'Done searching for translations, found <strong class="counter">N</strong> items!',
-  'success-group:publish' => 'Done publishing the translations for group \'<?php echo $group ?>\'!',
+  'success-group:publish' => 'Done publishing the translations for group :group!',
   'append-new-translation' => 'Append new translations',
   'success-group:trans' => 'Done publishing the translations for all group!',
   'replace-existing-translation' => 'Replace existing translations',

@@ -51,6 +51,9 @@ section.custom-card div.main-card div.card-title button#refresh-button {
 section.custom-card div.main-card div.card-title button#refresh-button:hover {
   background-color: #006600;
 }
+section.custom-card div.main-card div.card-title button#refresh-button:active {
+  background-color: #004d00;
+}
 section.custom-card div.sub-card-container {
   display: flex;
   -moz-column-gap: 1rem;
@@ -63,4 +66,9 @@ section.custom-card div.sub-card-container div.sub-card {
   padding: 1.4rem;
   height: 40vh;
   width: 50%;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  background-color: #686b68 !important;
 }

@@ -23,8 +23,15 @@
             </button>
         </div>
         
-        <div id="pie-chart">
-
+        <div class="section" id="pie-chart">
+            <div class="section-title">
+                <p class="section-title-text">
+                    
+                </p>
+            </div>
+            <div id="pie-chart">
+            
+            </div>
         </div>
 
     </div>

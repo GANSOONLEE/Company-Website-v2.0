@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class LogoutController extends Controller{
 
@@ -11,11 +12,11 @@ class LogoutController extends Controller{
 
         $user = Auth::user();
 
-        if ($user) {
-            $user->update(['remember_token' => null]);
-        }
+        Cookie::forget("remember_token");
         
         Auth::logout();
+        session()->flush();
+
         return redirect()->route('frontend.home');
     }
 

@@ -117,16 +117,16 @@
 <div class="container-fluid">
     <p>{!! __('translation.warning-translation:export') !!}</p>
     <div class="alert alert-success success-import" style="display:none;">
-        <p>{!! __('translation.success-group:import') !!}</p>
+        <p>{!! __('translation.success-group:import', ["group" => $group ]) !!}</p>
     </div>
     <div class="alert alert-success success-find" style="display:none;">
-        <p>{!! __('translation.success-items:search') !!}</p>
+        <p>{!! __('translation.success-items:search', ["group"=> $group]) !!}</p>
     </div>
     <div class="alert alert-success success-publish" style="display:none;">
-        <p>{!! __('translation.success-group:publish') !!}</p>
+        <p>{!! __('translation.success-group:publish', ["group"=> $group]) !!}</p>
     </div>
     <div class="alert alert-success success-publish-all" style="display:none;">
-        <p>{!! __('translation.success-group:trans') !!}</p>
+        <p>{!! __('translation.success-group:trans', ["group"=> $group]) !!}</p>
     </div>
     <?php if(Session::has('successPublish')) : ?>
         <div class="alert alert-info">

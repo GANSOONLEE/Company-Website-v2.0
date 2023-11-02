@@ -1,12 +1,13 @@
 @component('mail::message')
-# Welcome to the first Newsletter
+# Please activate your account
 
-Dear {{$email}},
+Dear {{$name}},
 
-We look forward to communicating more with you. For more information visit our blog.
+Thanks to register our service, please click the below to activate your account.
+Hope you have a nice day.
 
-@component('mail::button', ['url' => 'enter your desired url'])
-Blog
+@component('mail::button', ['url' => $url])
+Activate
 @endcomponent
 
 Thanks,<br>

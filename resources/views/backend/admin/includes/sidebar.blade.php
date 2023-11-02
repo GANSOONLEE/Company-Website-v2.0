@@ -19,7 +19,7 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>{{ __('sidebar.data-analysis') }}</li></a>
+                <a href="{{ route('backend.admin.dashboard') }}"><li>{{ __('sidebar.data-analysis') }}</li></a>
                 <a href="#"><li>{{ __('sidebar.traffic-analysis') }}</li></a>
                 <a href="#"><li>{{ __('sidebar.user-analysis') }}</li></a>
             </ul>

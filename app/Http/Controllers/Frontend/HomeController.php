@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegisterVerify;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller{
@@ -32,8 +34,10 @@ class HomeController extends Controller{
             $lastWord = end($parts);
 
             // check permission
-            if(!auth()->user()->getRoleEntity()->hasPermission("promotion_$lastWord")){
-                continue;
+            if(auth()->check()){
+                if(!auth()->user()->getRoleEntity()->hasPermission("promotion_$lastWord")){
+                    continue;
+                }
             }
 
             $files = Storage::disk($disk)->files($promotionDirectory);

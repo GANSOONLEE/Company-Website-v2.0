@@ -5,7 +5,7 @@ return array (
   'warning-translation:export' => '警告，在使用 <code>php artisan Translation:export </code>指令或发布按钮将翻译汇出回 app/lang 档案之前，翻译不可见。',
   'success-group:import' => '完成导入，处理 <strong class="counter">N</strong> 个项目！重新加载此页面以刷新组！',
   'success-items:search' => '完成搜索翻译，找到 <strong class="counter">N</strong> 项！',
-  'success-group:publish' => '已完成发布组“<?php echo $group ?>”的翻译！',
+  'success-group:publish' => '已完成发布组 :group 的翻译！',
   'success-group:trans' => '已完成所有小组的翻译发布！',
   'append-new-translation' => '追加新翻译',
   'replace-existing-translation' => '替换现有翻译',

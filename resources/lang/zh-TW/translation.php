@@ -5,7 +5,7 @@ return array (
   'warning-translation:export' => '警告，在使用 <code>php artisan Translation:export </code>指令或發布按鈕將翻譯匯出回 app/lang 檔案之前，翻譯不可見。',
   'success-group:import' => '完成導入，處理 <strong class="counter">N</strong> 個項目！重新加載此頁面以刷新群組！',
   'success-items:search' => '完成搜尋翻譯，找到 <strong class="counter">N</strong> 項！',
-  'success-group:publish' => '已完成發布群組「<?php echo $group ?>」的翻譯！',
+  'success-group:publish' => '已完成發布群組 :group 的翻譯！',
   'success-group:trans' => '已完成所有小組的翻譯發布！',
   'append-new-translation' => '追加新翻譯',
   'replace-existing-translation' => '取代現有翻譯',
