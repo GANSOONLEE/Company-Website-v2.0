@@ -2,11 +2,12 @@
 
 namespace App\Domains\Order\Events;
 
-use App\Models\Cart;
 use Illuminate\Http\Request;
-use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Events\NewOrderEvent;
 
 class CreateOrderEvent{
 
@@ -47,7 +48,10 @@ class CreateOrderEvent{
                             'number' => 0,
                         ]);
                         
-            }
+            };
+
+            $orderNewCount = Order::where('order_status', 'New')->count(); 
+            event(new NewOrderEvent($orderNewCount));
 
             $status = [
                 'status' => 'success',

@@ -7,8 +7,7 @@ import CustomAlert from './components/CustomAlert.vue';
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount("#alert")
 
-// Request Data
-
+// #region Request Data
 async function getRequest(){
 
     const parameter  = {
@@ -37,6 +36,8 @@ async function getRequest(){
         })
     });
 }
+
+// #endregion
 
 window.onload = async () =>{
 
@@ -70,57 +71,102 @@ window.onload = async () =>{
 
 // refresh chart
 let refreshButton = $('#refresh-button');
+let count = 0;
 refreshButton.click((event)=>{
 
-    // Set time delay
     let button = event.target;
-    button.disabled = true;
-    let counter;
 
-    let requestBlockLimiterSubject = subject.subscribeObserver(RequestBlockLimiter);
-    let overLimit = subject.notifyObserver(RequestBlockLimiter, limitCounter())
+    count++;
+    if(count > 2){
 
-    const bannerTime = setTimeout(()=>{
-        button.disabled = false;
-    }, timeLimit * 1000)
+        blockRequestEvent.bindFunction(()=>{
+            if(bannedTime){
+                return false;
+            }
+            alertInstance.updateMessage('You are over limit!<br>Please try again after 60 second!', 'warning');
+            alertInstance.showAlert();
+        
+            button.disabled = true;
+        
+            let timeDelay = 60;
+            let bannedTime = setTimeout(()=>{
+                button.disabled = false;
+            }, timeDelay * 1000)
+            let timeDisplay = setInterval(()=>{
+                timeDelay--;
+                if(timeDelay <= 0){
+                    alertInstance.closeAlert();
+                    clearInterval(timeDisplay);
+                    count = 0;
+                    return false;
+                }
+                alertInstance.updateMessage(`You are over limit!<br>Please try again after ${timeDelay} second!`, 'warning');
+            }, 1000)
+            
+            return false;
+        })
 
-    if(overLimit == true){
-        alertInstance.updateMessage(`You are over limit !<br> ${timeLimit} can't more then ${requestLimit}`, 'warning');
-        alertInstance.showAlert();
-        button.disabled = true;
-        return;
+        return refreshDataObserver.trigger(button);
     }
-
-    const timer = setTimeout(()=>{
-        button.disabled = false;
-    }, 3300)
 
     // trigger refresh
     window.externalRefreshChart(alertInstance);
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.disabled = false;
+    }, 3200);
 
 })
 
-// // [Observer]
+// #region [Class] Observer 
+
 class Observer{
 
+    subscribedSubjects = [];
+
+    construct(){
+        
+    }
+
     /**
-     * @param {function} callback
+     * Manual trigger observer
      */
 
-    notify(callback){
-        ()=>{
-            callback
-        };
+    trigger(){
+        for (const subject of this.subscribedSubjects) {
+            subject.observerAreTriggered();
+        }
+    }
+
+    /**
+     * Subscribe to subject
+     */
+
+    subscribeToSubject(subject){
+        this.subscribedSubjects.push(subject)
+    }
+
+    /**
+     * Response to subject
+     */
+    notify(){
+        return true;
     }
 
 }
 
-// // [Subscription] 
+// #endregion
+
+// #region [Class] Subject
+
 class Subject{
 
     observers = [];
+    events = [];
 
     /**
+     * Subscribe observer
      * @param {Observer} observer
      */
 
@@ -128,68 +174,107 @@ class Subject{
         this.observers.push(observer);
     }
 
+    /**
+     * Unsubscribe observer
+     * @param {Observer} observer
+     */
+
     unsubscribeObserver(observer){
         let index = this.observers.indexOf(observer);
-        if (index > -1) {
-           this.observers.splice(index, 1) 
-        }
-    }
-
-    notifyObserver(observer, callback){
-        let index = this.observers.indexOf(observer);
-        return callback;
-    }
-
-    notifyAllObservers(callback){
-        for(let i = 0; i < this.observers ; i++){
-            this.observers[i].notify(callback);
-        }
-    }
-
-}
-
-// [Event]
-
-let i = 1
-let timer = null;
-let timeLimit = 60; // 60 second
-let timeCounter = timeLimit;
-let requestLimit = 5; // (requestLimit) at (timeLimit)
-
-function limitCounter(){
-
-    // check timer existent
-    if (i >= requestLimit) {
-        return true;
+        this.observers.splice(index, 1);
     }
 
     /**
-     * @param {number} timeCounter
-     * @param {number} requestLimit
+     * Subscribe event
+     * @param {Event} event
      */
 
-    if(timer){
-        i++;
-        return false;
+    subscribeEvent(event){
+        this.events.push(event);
     }
 
-    timer = setInterval(() => {
-        timeCounter--;
-        if (0 >= timeCounter) {
-            clearInterval(timer);
-            i = 1;
-            timer = null;
-            timeLimit = timeCounter;
-        } 
-    }, 1000);
+    /**
+     * Unsubscribe event
+     * @param {Event} event
+     */
+
+    unsubscribeEvent(event){
+        let index = this.events.indexOf(event);
+        this.events.splice(index, 1);
+    }
+
+    /**
+     * Subject test observer still alive
+     * @param {Observer} observer
+     */
+
+    notifyObserver(observer){
+
+        // Are observer was subscribed by this subject
+        if(!this.observers.includes(observer)){
+            console.error(`Error, this observer haven't subscribed by this subject!`)
+            return false;
+        }
+
+        let result = null;
+        result = observer.notify();
+
+        result ? console.info('Still alive') : console.error('Missing it');
+    }
+
+    /**
+     * When observer are triggered
+     */
+
+    observerAreTriggered(){
+        for (const event of this.events) {
+            event.run();
+        }
+    }
 
 }
 
-// create observer instance
-let subject = new Subject();
-let RequestBlockLimiter = new Observer();
+// #endregion
+
+// #region [Class] Event
+
+class Event{
+
+    callback = ()=>{};
+
+    /**
+     * 
+     * @param {Function} callback 
+     * @example ()=>{}
+     * @example function(){}
+     * @example initForm()
+     */
+    bindFunction(callback){
+        this.callback = callback;
+    }
+
+    /**
+     * @param {Function} callback
+     */
+
+    run(){
+        this.callback();
+    }
+
+}
+
+// #endregion
 
 
+// #region Define observer
+
+let refreshDataObserver = new Observer;
+let requestDataLimiter = new Subject;
+let blockRequestEvent = new Event;
 
 
+requestDataLimiter.subscribeObserver(refreshDataObserver);
+refreshDataObserver.subscribeToSubject(requestDataLimiter);
+requestDataLimiter.subscribeEvent(blockRequestEvent);
 
+// #endregion

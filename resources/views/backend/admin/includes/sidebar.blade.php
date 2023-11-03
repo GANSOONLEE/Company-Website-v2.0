@@ -90,12 +90,21 @@
         @if(auth()->user()->getRoleEntity()->hasPermission('admin_order'))
         <section class="link-container">
             <div class="link-title">
-                <i class="link-title-icon fa-solid fa-list-alt"></i>
+                <i class="link-title-icon fa-solid fa-list-alt">
+                    @if (\App\Models\Order::getOrderNew() > 0)
+                        <div class="notification"></div>
+                    @endif
+                </i>
                 <p class="link-title-text">{{ __('sidebar.order') }}</p>
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul>
-                <a href="{{ route('backend.admin.order.index') }}"><li>{{ __('sidebar.order-process') }}</li></a>
+                <a href="{{ route('backend.admin.order.index') }}">
+                    <li>{{ __('sidebar.order-process') }}</li>
+                    @if (\App\Models\Order::getOrderNew() > 0)
+                        <div class="notification">{{ \App\Models\Order::getOrderNew() }}</div>
+                    @endif
+                </a>
                 <a href="#"><li>{{ __('sidebar.order-holding') }}</li></a>
                 {{-- <a href="#"><li>{{ __('sidebar.order-deleted') }}</li></a> --}}
             </ul>

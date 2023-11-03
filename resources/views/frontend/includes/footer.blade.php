@@ -78,7 +78,7 @@
                 <div>
                     <div class="contact-number">
                         <i class="fa-solid fa-phone"></i>
-                        <p>012-3456 7890</p>
+                        <p>017-243 0100</p>
                     </div>
                     <div class="address">
                         <i class="fa-solid fa-location-dot"></i>

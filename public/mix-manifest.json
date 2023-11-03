@@ -36,6 +36,7 @@
     "/css/frontend/includes/navbar.css": "/css/frontend/includes/navbar.css",
     "/css/frontend/includes/footer.css": "/css/frontend/includes/footer.css",
     "/css/frontend/includes/filter.css": "/css/frontend/includes/filter.css",
+    "/css/frontend/contact.css": "/css/frontend/contact.css",
     "/css/frontend/category.css": "/css/frontend/category.css",
     "/css/backend/user/order-detail.css": "/css/backend/user/order-detail.css",
     "/css/backend/user/layouts/page.css": "/css/backend/user/layouts/page.css",

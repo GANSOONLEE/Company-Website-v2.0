@@ -7,9 +7,7 @@
     <title>{{ env('APP_NAME') }} | {{ __('Terms and Conditions') }}</title>
 </head>
 <body>
-    
-</body>
-</html>
+
 
 <h2>Terms and Conditions</h2>
 
@@ -361,6 +359,11 @@
         {{config('policy-information.email-address')}}
     </div>
 </div>
+<div class="statement">
+    <p><b>Create At:</b> {{config('policy-information.terms-crete')}}</p>
+    <p><b>Update At:</b> {{config('policy-information.terms-update')}}</p>
+    <p><b>Current Version:</b> {{config('policy-information.terms-version')}}</p>
+</div>
 
 <style>
     body{
@@ -404,4 +407,17 @@
     div.section-body{
         padding: 0 3rem .4rem;
     }
+
+    div.statement{
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(213, 213, 213);
+        border-radius: 6px;
+        margin-top: 3rem;
+        padding: .2rem 2rem;
+    }
+
 </style>
+    
+</body>
+</html>

@@ -75,6 +75,12 @@
 
 <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
 
+<div class="statement">
+    <p><b>Create At:</b> {{config('policy-information.policy-crete')}}</p>
+    <p><b>Update At:</b> {{config('policy-information.policy-update')}}</p>
+    <p><b>Current Version:</b> {{config('policy-information.policy-version')}}</p>
+</div>
+
 <style>
     body{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -90,6 +96,15 @@
         display: flex;
         flex-direction: column;
         row-gap: .4rem;
+    }
+
+    div.statement{
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(213, 213, 213);
+        border-radius: 6px;
+        margin-top: 3rem;
+        padding: .2rem 2rem;
     }
 
     /* h1{

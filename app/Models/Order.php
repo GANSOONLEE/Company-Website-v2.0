@@ -51,4 +51,9 @@ class Order extends Model
                     ->first();
 
     }
+
+    public static function getOrderNew(){
+        return Order::where('status', 'Placed')
+                ->count();
+    }
 }

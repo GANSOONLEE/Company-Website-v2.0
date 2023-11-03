@@ -12,6 +12,7 @@ const app = createApp({});
 window.app = app;
 window.$ = $;
 window.createApp = createApp;
+const Vue = window.Vue;
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin

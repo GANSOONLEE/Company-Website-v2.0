@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/* ———————————————————— Profile ———————————————————— */
+div.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+div.profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  border-radius: 6px;
+  width: 47%;
+}
+div.profile div.profile-avatar {
+  border-radius: 50%;
+  width: 12rem;
+  height: 12rem;
+  overflow: hidden;
+}
+div.profile div.profile-avatar img.profile-picture {
+  background-color: beige;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+div.profile div.profile-information div.profile-name p.profile-name-text {
+  font-size: var(--font-h4);
+  font-weight: bold;
+  margin-bottom: 0;
+}
+div.profile div.profile-information div.contact-number p.contact-number-text {
+  font-size: var(--font-title);
+  margin-bottom: 0;
+}

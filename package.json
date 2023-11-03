@@ -26,7 +26,7 @@
         "sass-loader": "^13.3.2",
         "style-loader": "^3.0.0",
         "vite": "^4.0.0",
-        "vue": "^3.3.4",
+        "vue": "^3.3.7",
         "vue-loader": "^17.2.2",
         "vue-template-compiler": "^2.7.14",
         "webpack": "^5.0.0",
@@ -35,10 +35,11 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.23.1",
-        "docker": "^1.0.0",
+        "docker": "^0.2.14",
         "foundation-sites": "^6.8.1",
         "jquery": "^3.7.1",
         "mix": "^0.0.1",
+        "vue-pusher": "^1.1.0",
         "vue-router": "^4.2.4"
     }
 }

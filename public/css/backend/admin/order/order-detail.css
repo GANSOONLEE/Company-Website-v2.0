@@ -86,5 +86,21 @@ section.order div.order-content a.item-box:hover {
   background-color: #e2e2e2;
 }
 section.order div.order-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 0.6rem;
   padding: 0.6rem 0;
+}
+section.order div.order-footer p {
+  margin-bottom: 0;
+}
+section.order div.order-footer div.button-area {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: flex-end;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }

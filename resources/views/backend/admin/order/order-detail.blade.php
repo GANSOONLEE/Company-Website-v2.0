@@ -6,7 +6,7 @@
 
     {{ Breadcrumbs::render('orderDetail-admin', $order) }}
 
-    <section class="order">
+    <section class="order" data-order-code={{ $order->code }}>
 
         <!-- Header -->
         <div class="order-header">
@@ -20,7 +20,7 @@
             <!-- order -->
             <div class="order-information">
                 <p id="order-status">{{ $order->status }}</p>
-                <p id="created_at">{{ $order->created_at }}</p>
+                <p id="created_at">{{ $order->created_at->addHours(8) }}</p>
             </div>
 
         </div>
@@ -58,7 +58,26 @@
 
         <!-- Footer -->
         <div class="order-footer">
-            {{ __('order.item-count', ["count"=>$order->getItemCount()]) }}
+            <p>{{ __('order.item-count', ["count"=>$order->getItemCount()]) }}</p>
+
+            <!-- follow status to display button -->
+            <div class="button-area">
+            @if ($order->status === "Placed")
+                <!-- If placed -->
+                <button class="btn btn-primary" type="button" data-button="Accepted">{{ __('order.accepted') }}</button>
+            @elseif($order->status === "Accepted")
+                <!-- If accepted -->
+                <button class="btn btn-primary" type="button" data-button="Completed">{{ __('order.in-progress') }}</button>
+            @elseif($order->status === "In Progress")
+                <button class="btn btn-secondary" type="button" data-button="On Hold">{{ __('order.on-hold') }}</button>
+                <button class="btn btn-primary" type="button" data-button="Completed">{{ __('order.completed') }}</button>
+            @elseif($order->status === "On Hold")
+                <!-- If on-hold -->
+                <button class="btn btn-primary" type="button" data-button="In Progress">{{ __('order.in-progress') }}</button>
+            @elseif($order->status === "Completed")
+                <button class="btn btn-primary" type="button" disabled>{{ __('order.completed') }}</button>
+            @endif
+            </div>
         </div>
 
     </section>

@@ -136,7 +136,22 @@ section.order{
 
     // Footer
     div.order-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        row-gap: .6rem;
         padding: .6rem 0;
+        p{
+            margin-bottom: 0;
+        }
+        div.button-area{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            align-self: flex-end;
+            column-gap: 2rem;
+        }
     }
 
 }

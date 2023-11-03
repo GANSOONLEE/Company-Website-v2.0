@@ -24,13 +24,13 @@
 
         <div class="tab-content" id="order-placed">
 
-            @foreach (auth()->user()->getOrderWithStatus('placed') as $order)     
+            @foreach (auth()->user()->getOrderWithStatus('Placed') as $order)     
                 <a href="{{ route('backend.admin.order.order-detail',["orderID" => $order->code]) }}" class="order-link">
                     <p class="user-company">{{ $order->getUserInformation()->shop_name }}</p>
                     <p class="user-phone">{{ $order->getUserInformation()->whatsapp_phone }}</p>
                     <p class="order-code">{{ $order->code }}</p>
                     <p class="item-count">{{ $order->getItemCount() }}</p>
-                    <p class="create">{{ $order->created_at }}</p>
+                    <p class="create">{{ $order->created_at->addHours(8) }}</p>
                 </a>
             @endforeach
 
@@ -38,31 +38,49 @@
 
         <div class="tab-content" id="order-accepted">
             
-            @foreach (auth()->user()->getOrderWithStatus('accepted') as $order)     
-                
+            @foreach (auth()->user()->getOrderWithStatus('Accepted') as $order)     
+                <a href="{{ route('backend.admin.order.order-detail',["orderID" => $order->code]) }}" class="order-link">
+                    <p class="user-company">{{ $order->getUserInformation()->shop_name }}</p>
+                    <p class="user-phone">{{ $order->getUserInformation()->whatsapp_phone }}</p>
+                    <p class="order-code">{{ $order->code }}</p>
+                    <p class="item-count">{{ $order->getItemCount() }}</p>
+                    <p class="create">{{ $order->created_at->addHours(8) }}</p>
+                </a>
             @endforeach
 
         </div>
 
         <div class="tab-content" id="order-in-progress">
 
-            @foreach (auth()->user()->getOrderWithStatus('in-progress') as $order)     
-                
+            @foreach (auth()->user()->getOrderWithStatus('In Progress') as $order)     
+                <a href="{{ route('backend.admin.order.order-detail',["orderID" => $order->code]) }}" class="order-link">
+                    <p class="user-company">{{ $order->getUserInformation()->shop_name }}</p>
+                    <p class="user-phone">{{ $order->getUserInformation()->whatsapp_phone }}</p>
+                    <p class="order-code">{{ $order->code }}</p>
+                    <p class="item-count">{{ $order->getItemCount() }}</p>
+                    <p class="create">{{ $order->created_at->addHours(8) }}</p>
+                </a>
             @endforeach
 
         </div>
         
         <div class="tab-content" id="order-on-hold">
 
-            @foreach (auth()->user()->getOrderWithStatus('on-hold') as $order)     
-                
+            @foreach (auth()->user()->getOrderWithStatus('On Hold') as $order)     
+                <a href="{{ route('backend.admin.order.order-detail',["orderID" => $order->code]) }}" class="order-link">
+                    <p class="user-company">{{ $order->getUserInformation()->shop_name }}</p>
+                    <p class="user-phone">{{ $order->getUserInformation()->whatsapp_phone }}</p>
+                    <p class="order-code">{{ $order->code }}</p>
+                    <p class="item-count">{{ $order->getItemCount() }}</p>
+                    <p class="create">{{ $order->created_at->addHours(8) }}</p>
+                </a>
             @endforeach
 
         </div>
 
         <div class="tab-content" id="order-completed">
 
-             @foreach (auth()->user()->getOrderWithStatus('completed') as $order)     
+             @foreach (auth()->user()->getOrderWithStatus('Completed') as $order)     
                 <a href="{{ route('backend.user.order-detail',["orderID" => $order->code]) }}" class="order-link">
                     <p class="order-code">{{ $order->code }}</p>
                     <p class="item-count">{{ $order->getItemCount() }}</p>

@@ -15,13 +15,13 @@
             <a href="{{ route('frontend.home') }}" class="navbar-link">
                 <li class="navbar-link-label">Home</li>
             </a>
-            <a href="" class="navbar-link">
+            {{-- <a href="" class="navbar-link">
                 <li class="navbar-link-label">About Us</li>
-            </a>
+            </a> --}}
             <a href="{{ route('frontend.category') }}" class="navbar-link">
                 <li class="navbar-link-label">Product</li>
             </a>
-            <a href="" class="navbar-link">
+            <a href="{{ route('frontend.contact') }}" class="navbar-link">
                 <li class="navbar-link-label">Contact</li>
             </a>
         </ul>

@@ -1,9 +1,9 @@
 
 // Search EOM
 
-import BootstrapAlert from './components/BootstrapAlert.vue';
-const alert = createApp(BootstrapAlert);
-const vm = alert.mount('#alert');
+import CustomAlert from '../admin/components/CustomAlert.vue';
+const alert = createApp(CustomAlert);
+const alertInstance = alert.mount('#alert');
 
 class SearchMappingFactory{
 
@@ -37,8 +37,6 @@ class SearchMappingFactory{
         });
 
     }
-
-
 
 }
 
@@ -109,15 +107,15 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
     closePopover();
 
     if(isNaN(Number(number, 10))){
-        vm.updateMessage('Please enter number');
-        vm.showAlert();
+        alertInstance.updateMessage('Please enter number');
+        alertInstance.autoAlert();
         $('#alert').css('display', 'block')
         return false
     }
 
     if(number < 0 || number >= 100){
-        vm.updateMessage('Can\'t less then 0 or more then 100');
-        vm.showAlert();
+        alertInstance.updateMessage('Can\'t less then 0 or more then 100');
+        alertInstance.autoAlert();
         $('#alert').css('display', 'block')
         return false;
     }
@@ -136,11 +134,12 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            let row = document.querySelector('#' + brand_code).parentNode;
-            row.querySelector('.number').innerText = response['number']
+            let row = document.getElementById(brand_code).parentNode;
+            row.querySelector('.number').innerText = response['number'];
         },
         error: function () {
-            alert("Something error");
+            alertInstance.updateMessage("Something error", 'error');
+            alertInstance.autoAlert();
         }
     })
 
@@ -161,8 +160,8 @@ createOrderBtn.addEventListener('click', ()=>{
             let number = item.getAttribute('data-number');
 
             if(number == 0){
-                vm.updateMessage('The items you select have 0');
-                vm.showAlert();
+                alertInstance.updateMessage('The items you select have 0');
+                alertInstance.showAlert();
                 $('#alert').css('display', 'block')
                 status = false;
                 return false;
@@ -177,8 +176,8 @@ createOrderBtn.addEventListener('click', ()=>{
     })
 
     if(checkedItems.length === 0){
-        vm.updateMessage('Please select 1 or more item');
-        vm.showAlert();
+        alertInstance.updateMessage('Please select 1 or more item');
+        alertInstance.showAlert();
         $('#alert').css('display', 'block')
         status = false;
         return false;
@@ -200,8 +199,10 @@ createOrderBtn.addEventListener('click', ()=>{
            console.log(response)
            location.reload()
         },
-        error: function () {
-            alert("Something error");
+        error: function (response) {
+            console.log(response)
+            alertInstance.updateMessage('Unsuccess', 'error');
+            alertInstance.autoAlert();
         }
     })
 

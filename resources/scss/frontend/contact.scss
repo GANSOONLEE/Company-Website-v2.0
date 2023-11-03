@@ -1,0 +1,58 @@
+
+/* ———————————————————— Profile ———————————————————— */
+div.content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+div.profile{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    column-gap: 4rem;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 20px #00000022;
+    border-radius: 6px;
+    width: 47%;
+
+    // Picture
+    div.profile-avatar{
+        border-radius: 50%;
+        width: 12rem;
+        height: 12rem;
+        overflow: hidden;
+        img.profile-picture{
+            background-color: beige;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    // Information
+    div.profile-information{
+        
+        // Name
+        div.profile-name{
+            p.profile-name-text{
+                font-size: var(--font-h4);
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+        }
+
+        // Contact Number
+        div.contact-number{
+            p.contact-number-text{
+                font-size: var(--font-title);
+                margin-bottom: 0;
+            }
+        }
+
+    }
+
+}
+

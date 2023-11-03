@@ -37,7 +37,7 @@
                 </div>
                 <div class="info">
                     <p class="key">Created At: </p>
-                    <p class="value">{{ $order->created_at }}</p>
+                    <p class="value">{{ $order->created_at->addHours(8) }}</p>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
 
                     <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="order-item">
                         <div class="item-image">
-                            <img src="{{ asset("storage/product/$category/$product->product_code/cover.jpg") }}" alt="">
+                            <img src="{{ asset("storage/product/$category/$product->product_code/cover.png") }}" alt="">
                         </div>
                         <div class="item-information">
                             <p>{{ $category }}</p>

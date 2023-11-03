@@ -4,6 +4,10 @@
 
 @section('main')
 
+    <div id="alert">
+
+    </div>
+
     <div id="pagination">
 
         <!-- Filter -->

@@ -83,3 +83,5 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
     includeRouteFiles(__DIR__ . '/service/');
 });
+
+Route::post('message/test','Test@test');

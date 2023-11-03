@@ -1,12 +1,10 @@
 
 // Vue Component
 
-import PaginationComponent from '../components/PaginationComponent.vue'
+import CustomAlert from '../components/CustomAlert.vue';
 
-// const paginationBox = createApp(PaginationComponent);
-// const pagination = paginationBox.mount('#paginationBox')
-app.component('pagination-component', PaginationComponent);
-app.mount('#paginationBox');
+const alert = createApp(CustomAlert);
+const alertInstance = alert.mount("#alert")
 
 // Function
 
@@ -21,17 +19,22 @@ gotoButton.addEventListener('click', ()=>{
     const min = parseInt(pageIndexInput.getAttribute('min'));
     const max = parseInt(pageIndexInput.getAttribute('max'));
 
-    // Get Current Page
-    const currentPage = parseInt(pageIndexInput.value);
+    let currentPage = parseInt(pageIndexInput.value);
+    if(!currentPage){
+        window.location.href = currentUrl
+        return false;
+    }
 
     // Verify data validation
     if(currentPage == null || currentPage == ''){
-        alert('Please input a number!')
+        alertInstance.updateMessage('Please input a number!', 'error')
+        alertInstance.autoAlert();
         return false;
     }
 
     if(min > currentPage || currentPage > max){
-        alert(`Your page must between ${min} and ${max}!, you value ${currentPage}`)
+        alertInstance.updateMessage(`Your page <b>must between</b> ${min} and ${max}!<br>You value ${currentPage}`, 'error')
+        alertInstance.autoAlert();
         return false;
     }
 
