@@ -7,7 +7,7 @@
     height: 9vh;
     width: 77.2vw;
     top: 1rem;
-    left: 20.4vw;
+    left: 19.2vw;
     column-gap: 1.2rem;
 }
 
@@ -49,9 +49,20 @@ section.custom-card{
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0;
+            position: relative;
 
-            h3.card-title-text{
+            h4.card-title-text{
                 margin-bottom: 0;
+                margin-left: 1.4rem;
+                height: 100%;
+                &::before{
+                    content: '';
+                    left: 0;
+                    background-color: #2f43b2;
+                    height: 78%;
+                    width: 4px;
+                    position: absolute;
+                }
             }
 
             button#refresh-button{
@@ -67,6 +78,10 @@ section.custom-card{
                     background-color: color.scale(green, $lightness: -40%);
                 }
             }
+        }
+        div.card-body#pie-chart{
+            height: 80%;
+            width: auto;
         }
     }
 

@@ -5,7 +5,7 @@
   height: 9vh;
   width: 77.2vw;
   top: 1rem;
-  left: 20.4vw;
+  left: 19.2vw;
   -moz-column-gap: 1.2rem;
        column-gap: 1.2rem;
 }
@@ -37,9 +37,20 @@ section.custom-card div.main-card div.card-title {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0;
+  position: relative;
 }
-section.custom-card div.main-card div.card-title h3.card-title-text {
+section.custom-card div.main-card div.card-title h4.card-title-text {
   margin-bottom: 0;
+  margin-left: 1.4rem;
+  height: 100%;
+}
+section.custom-card div.main-card div.card-title h4.card-title-text::before {
+  content: "";
+  left: 0;
+  background-color: #2f43b2;
+  height: 78%;
+  width: 4px;
+  position: absolute;
 }
 section.custom-card div.main-card div.card-title button#refresh-button {
   padding: 0.3rem 0.7rem;
@@ -53,6 +64,10 @@ section.custom-card div.main-card div.card-title button#refresh-button:hover {
 }
 section.custom-card div.main-card div.card-title button#refresh-button:active {
   background-color: #004d00;
+}
+section.custom-card div.main-card div.card-body#pie-chart {
+  height: 80%;
+  width: auto;
 }
 section.custom-card div.sub-card-container {
   display: flex;

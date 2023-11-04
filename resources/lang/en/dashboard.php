@@ -1,6 +1,6 @@
 <?php
 
 return array (
-  'item-quantity' => 'Quantity of each item',
+  'item-quantity' => 'Total Itmes: :count',
   'refresh' => 'refresh',
 );

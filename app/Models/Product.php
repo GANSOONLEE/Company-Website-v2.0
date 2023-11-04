@@ -18,6 +18,7 @@ class Product extends Model
         'product_category',
         'product_type',
         'product_status',
+        'updated_at'
     ];
 
     /**

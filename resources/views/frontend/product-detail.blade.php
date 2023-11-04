@@ -83,6 +83,8 @@
                     @php
                         if(auth()->check()){
                             $permission = auth()->user()->getRoleEntity()->hasPermission('user_backend') ? '' : 'disabled';
+                        }else{
+                            $permission = 'disabled';
                         }
                     @endphp
 

@@ -16,7 +16,7 @@ class Operation extends Model
     protected $fillable = [
         'email',
         'operation_type',
-        'operation_category'
+        'operation_category',
     ];
 
     public function getUserByOperation(){
@@ -47,19 +47,26 @@ class Operation extends Model
 
     public function build(){
         $category = $this->operation_category;
+        $type = $this->operation_type;
         $operation_time = $this->created_at;
 
-        return $this->getOperationDetail($category, $operation_time);
+        return $this->getOperationDetail($category, $type, $operation_time);
     }
 
-    public function getOperationDetail($category, $operation_time){
+    public function getOperationDetail($category, $type, $operation_time){
         $table = $this->tables[$category];
         $date = date('Y-m-d H:i:s', $operation_time->timestamp);
         $queryBuilder = DB::table($table);
-        $resultArray = $queryBuilder->where('created_at', $operation_time)
-            ->pluck($this->data[$category])
-            ->toArray();
-        
+        if($type == 'Create'){
+            $resultArray = $queryBuilder->where('created_at', $date)
+                ->pluck($this->data[$category])
+                ->toArray();
+                
+        }else{
+            $resultArray = $queryBuilder->where('updated_at', $date)
+                ->pluck($this->data[$category])
+                ->toArray();
+        }
         return implode(', ', $resultArray);
     }
 

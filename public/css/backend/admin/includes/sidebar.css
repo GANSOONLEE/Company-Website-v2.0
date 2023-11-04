@@ -96,7 +96,7 @@ aside.sidebar div.link-section section.link-container ul a li:hover {
 aside.sidebar div.link-section section.link-container ul a div.notification {
   position: absolute;
   top: 50%;
-  right: 50%;
+  right: 35%;
   transform: translateY(-50%);
   display: flex;
   justify-content: center;

@@ -15,15 +15,15 @@
     <div class="main-card">
 
         <div class="card-title">
-            <h3 class="card-title-text">
-                {{ __('dashboard.item-quantity') }}
-            </h3>
+            <h4 class="card-title-text">
+                {{ __('dashboard.item-quantity', ["count"=> \App\Models\Product::all()->count() ]) }}
+            </h4>
             <button type="button" id="refresh-button">
                 {{ __('dashboard.refresh') }}
             </button>
         </div>
         
-        <div class="section" id="pie-chart">
+        <div class="card-body" id="pie-chart">
             <div class="section-title">
                 <p class="section-title-text">
                     

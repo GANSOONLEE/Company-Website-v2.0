@@ -41,6 +41,12 @@ async function getRequest(){
 
 window.onload = async () =>{
 
+    let refreshButton = document.querySelector('#refresh-button');
+    refreshButton.disabled = true;
+    setTimeout(()=>{
+        refreshButton.disabled = false;
+    }, 1200)
+
     let data = await getRequest();
     let count = data.count;
 

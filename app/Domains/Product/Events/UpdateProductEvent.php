@@ -127,7 +127,6 @@ class UpdateProductEvent{
             }
 
         // Update Data
-
         
             $product = Product::where('product_code', $product_code)->first();
 
@@ -136,6 +135,7 @@ class UpdateProductEvent{
                 $productData = [
                     'product_category' => $category,
                     'product_type' => $type,
+                    'updated_at' => now(),
                 ];
 
                 $this->mode === "production" ? $product->update($productData) : '';
