@@ -14,6 +14,7 @@
 /* ———————————————————— Category Card ———————————————————— */
 a.category-box {
   width: 25%;
+  height: 100%;
 }
 a.category-box section.category-card {
   border: 1px solid #ccc;
@@ -37,4 +38,19 @@ a.category-box section.category-card div.category-description {
 }
 a.category-box section.category-card div.category-description p.category-description-text {
   margin-bottom: 0;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  .content {
+    align-items: stretch;
+    justify-content: center;
+    -moz-column-gap: 40px;
+         column-gap: 40px;
+    row-gap: 2rem;
+    padding: 2rem 4vw;
+  }
+  a.category-box {
+    width: calc(100% - 20px);
+  }
 }

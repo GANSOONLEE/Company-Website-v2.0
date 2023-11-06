@@ -90,7 +90,7 @@
                 
                 <!-- google map -->
                 <div class="google-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.5705456242517!2d101.63097927259881!3d3.45405444353573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc6d8d2f518695%3A0xc1c2470ad30300fe!2sFrozen%20air%20cond%20sdn%20bhd!5e0!3m2!1sen!2smy!4v1688700665979!5m2!1sen!2smy" width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.5705456242517!2d101.63097927259881!3d3.45405444353573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc6d8d2f518695%3A0xc1c2470ad30300fe!2sFrozen%20air%20cond%20sdn%20bhd!5e0!3m2!1sen!2smy!4v1688700665979!5m2!1sen!2smy" width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

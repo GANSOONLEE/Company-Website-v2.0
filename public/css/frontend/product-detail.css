@@ -353,8 +353,76 @@ input:disabled {
   cursor: not-allowed;
 }
 
-/* ================================= RWD ================================= */
-/* ———————————————————— Product Detail ———————————————————— */
-/* ———————————————————— Product Cover & Image ———————————————————— */
-/* ———————————————————— Product Information ———————————————————— */
-/* ———————————————————— Form ———————————————————— */
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  /* ———————————————————— Product Detail ———————————————————— */
+  section.product-detail {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  /* ———————————————————— Product Cover & Image ———————————————————— */
+  section.product-media {
+    width: 100%;
+  }
+  section.product-media div.image-preview-container {
+    width: 100%;
+  }
+  section.product-media div.image-preview-container img.image-preview {
+    width: 100%;
+  }
+  section.product-media div.image-selector-container div.image-selector div.item:first-child {
+    margin-left: 2.6rem;
+  }
+  /* ———————————————————— Product Information ———————————————————— */
+  section.product-information {
+    padding: 0;
+  }
+  section.product-information div.product-content {
+    display: flex;
+    flex-direction: column;
+  }
+  section.product-information div.product-content div.available-car-model {
+    border: none;
+    width: 100%;
+  }
+  section.product-information div.product-content div.available-car-model p.title {
+    font-size: var(--font-h6);
+  }
+  section.product-information div.product-content div.available-car-model ul.item-list {
+    font-size: var(--font-subtitle);
+  }
+  section.product-information div.product-content div.action-area {
+    width: 100%;
+  }
+  section.product-information div.product-content div.action-area p.form-title {
+    font-size: var(--font-h6);
+  }
+  /* ———————————————————— Form ———————————————————— */
+  form {
+    width: 100%;
+  }
+  form div.brand-selector label.brand-label {
+    width: calc(50% - 20px);
+  }
+  form div.button-area div.add-to-cart {
+    width: 100%;
+  }
+  form div.button-area div.add-to-cart button[type=submit] {
+    width: 100%;
+  }
+  div.zoom-preview {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+    overflow: hidden;
+  }
+  div.zoom-preview img {
+    width: 80%;
+    height: auto;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}

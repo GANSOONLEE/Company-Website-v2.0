@@ -21,8 +21,9 @@
 }
 
 form.form#form {
-  width: calc(auto);
-  height: auto;
+  width: auto;
+  max-width: 80%;
+  height: 80%;
   padding: 2rem 4rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
   border-radius: 4px;
@@ -142,4 +143,17 @@ section.input-area * {
 }
 section.input-area *:placeholder {
   font-size: calc(var(--font-remark));
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  /* ———————————————————— Global Class ———————————————————— */
+  .group-column {
+    flex-direction: column !important;
+    row-gap: 1.4rem;
+  }
+  /* ———————————————————— Layouts ———————————————————— */
+  form.form#form {
+    overflow-y: auto;
+  }
 }

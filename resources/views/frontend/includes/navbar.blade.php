@@ -2,7 +2,7 @@
 <nav class="navbar" id="navbar">
 
     <div class="company-logo">
-        <img src="{{asset('image/logo-square.png')}}" alt="" class="company-logo-image">
+        <img src="{{asset('image/logo-square-lite.png')}}" alt="" class="company-logo-image">
     </div>
     <input type="checkbox" name="menu-button" id="menu-button">
     <label for="menu-button">

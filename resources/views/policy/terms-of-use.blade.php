@@ -366,9 +366,13 @@
 </div>
 
 <style>
+    html{
+        scroll-behavior: smooth
+    }
     body{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        padding: 3rem 4rem
+        padding: 3rem 4rem;
+        scroll-behavior: smooth;
     }
 
     h1{

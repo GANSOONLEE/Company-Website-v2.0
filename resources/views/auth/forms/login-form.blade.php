@@ -6,12 +6,12 @@
         
             <div class="mb-3">
                 <label for="email" class="form-label required">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                <input type="email" class="form-control" autocomplete="username" name="email" id="email" placeholder="Email" required>
             </div>
         
             <div class="mb-3 flex-column">
                 <label for="password" class="form-label required">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="Password" required>
             </div>
                 
         </section>

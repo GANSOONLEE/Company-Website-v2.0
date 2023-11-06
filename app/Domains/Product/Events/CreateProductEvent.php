@@ -140,12 +140,6 @@ class CreateProductEvent{
         }catch(\Exception $e){
             $message = $e->getMessage();
         }
-
-        if(isset($message)){
-            dd($message);
-        }
-
-        dd($debugBrand);
         
         return redirect()->back();
     }

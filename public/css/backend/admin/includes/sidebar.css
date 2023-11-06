@@ -3,6 +3,7 @@ aside.sidebar {
   top: 0;
   left: 0;
   width: 18vw;
+  min-width: 220px;
   height: 100vh;
   background-color: #47576B;
   display: flex;
@@ -22,6 +23,7 @@ aside.sidebar div.sidebar-logo {
 }
 aside.sidebar div.sidebar-logo img.sidebar-logo-image {
   padding: 1rem 4rem;
+  height: auto;
   width: 100%;
 }
 aside.sidebar div.link-section {

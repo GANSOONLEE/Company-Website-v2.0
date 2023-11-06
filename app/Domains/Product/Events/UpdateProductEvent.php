@@ -100,6 +100,8 @@ class UpdateProductEvent{
             }
 
             
+
+            
             /*
             | upload Brand Image 上传品牌照
             | 
@@ -200,14 +202,18 @@ class UpdateProductEvent{
 
                 $deleteRecord = [];
                 $deleteRecord = array_diff($oldRecordCollection, $product_brand_code_collection);
+                $newRecord = array_diff($product_brand_code_collection, $oldRecordCollection);
 
                 // Check deleted record
-                foreach($deleteRecord as $record){   
+                foreach($deleteRecord as $index => $record){   
                     if($this->mode === "production"){
                         DB::table('products_brand')
                             ->where('product_code', $product_code)
                             ->where('code', $record)
                             ->delete();
+                    }
+                    if($this->mode === "production"){
+                        $oldFile = Storage::disk($disk)->move("$directory/$record/cover.png", "$directory/$newRecord[$index]/cover.png");
                     }
                 }
 

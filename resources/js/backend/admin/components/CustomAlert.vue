@@ -24,7 +24,7 @@
         <div v-html="message">
             
         </div>
-        <button type="button" class="btn-close" @click="closeAlert"></button>
+        <button type="button" title="Close Alert" class="btn-close" @click="closeAlert"></button>
     </div>
 
 </template>

@@ -3,7 +3,7 @@
     <!-- Logo -->
     <div class="sidebar-logo">
         <a href="{{ route('frontend.home') }}">
-            <img src="{{ asset('image/logo-white.png') }}" alt="" class="sidebar-logo-image">
+            <img src="{{ asset('image/logo-white.png') }}" alt="Logo" class="sidebar-logo-image">
         </a>
     </div>
 

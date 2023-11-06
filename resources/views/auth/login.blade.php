@@ -25,7 +25,7 @@
         <!-- Footer -->
         <!-- already have account -->
         <div class="form-footer flex-row">
-            <p class="register-text">Already have account?</p><a href="{{ route('auth.register') }}">Click here</a>
+            <p class="register-text">Already have account?</p><a href="{{ route('auth.register') }}">Login</a>
         </div>
 
     </form>
@@ -36,6 +36,6 @@
     <link rel="stylesheet" href="{{ asset('css\auth\login.css') }}">
 @endpush
 
-@push('after-body')login
-    <script src="{{ asset('js\auth\login.js') }}"></script>
+@push('after-body')
+    {{-- <script src="{{ asset('js\auth\login.js') }}"></script> --}}
 @endpush

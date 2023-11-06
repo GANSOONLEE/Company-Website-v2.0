@@ -114,3 +114,82 @@ div.content{
     }
 
 }
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+    div.content{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        // filter
+        section.filter{
+            
+        }
+    
+        // content
+        section.container{
+            padding: 1rem 2rem;
+            width: 100%;
+            p.container-title{
+                
+            }
+            
+            // product card
+            section.product-list{
+                column-gap: 2rem;
+    
+                // unit
+                a.product-detail-href{
+                    min-width: calc((100% / 1) - 20px);
+                    max-width: calc((100% / 1) - 20px);
+                    
+                    &:hover{
+                        
+                    }
+                    div.custom-card{
+                        
+                        div.custom-card-image{
+                           
+                            &:hover{
+                                > img.product-cover{
+                                    
+                                    filter: brightness(0.4);
+                                    & + div.see-more{
+                                        
+                                    }
+                                }
+                            }
+                            img.product-cover{
+                                
+                            }
+                            div.see-more{
+                                
+                            }
+                        }
+                        // header
+                        div.custom-card-header{
+                            
+                            p{
+
+                            }
+                        }
+    
+                        // information
+                        div.custom-card-information{
+                            
+                            p{
+                               
+                            }
+                        }
+                    }
+                }
+    
+            }
+    
+        }
+    
+    }
+}

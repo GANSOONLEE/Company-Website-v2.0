@@ -13,8 +13,8 @@ async function getRequest(){
     const parameter  = {
         analysis: {
             total_record: true,
-            count_with_category: true,
-            count_with_type: false,
+            count_with_category: false,
+            count_with_type: true,
         }
     };
     
@@ -48,6 +48,7 @@ window.onload = async () =>{
     }, 1200)
 
     let data = await getRequest();
+    console.log(data);
     let count = data.count;
 
     let categoryRecord = [

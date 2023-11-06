@@ -435,158 +435,200 @@ input:disabled{
 }
 
 
-/* ================================= RWD ================================= */
 
+/* ==================== RWD ==================== */
 
-/* ———————————————————— Product Detail ———————————————————— */
-section.product{
+// Phone
+@media only screen and (max-width: 867px) {
 
-
-}
-
-/* ———————————————————— Product Cover & Image ———————————————————— */
-section.product-media{
-
-    // Image Preview
-    div.image-preview-container{
-        img.image-preview{
-            
-        }
+    /* ———————————————————— Product Detail ———————————————————— */
+    section.product-detail{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
-    // Image Select
-    div.image-selector-container{
+    /* ———————————————————— Product Cover & Image ———————————————————— */
+    section.product-media{
+        width: 100%;
 
-        // Prev Button
-        div.prev-button{
-
-        }
-
-        // Image Selector
-        div.image-selector{
-
-            // Item
-            div.item{
-                img.item-image{
-                    
-                }
-            }
-
-        }
-
-        // Next Button
-        div.next-button{
-
-        }
-
-    }
-
-}
-
-/* ———————————————————— Product Information ———————————————————— */
-section.product-information{
-
-    // Product Name
-    div.product-header{
-        p.product-name{
-
-        }
-    }
-
-    // Product Detail
-    div.product-content{
-
-        // Available Car Model
-        div.available-car-model{
-
-            ul.item-list{
-
-                li.item{
-
-                }
-
-            }
-
-        }
-
-        // Action Area
-        div.action-area{
-
-        }
-
-    }
-    
-}
-
-/* ———————————————————— Form ———————————————————— */
-
-form{
-
-    // Booking
-    div.brand-selector{
-
-        // UNIT FOR Brand
-        label.brand-label{
-            input[type="radio"]{
-
-            }
-            div.brand-box{
-                
-                p.brand-name{
-
-                }
-                img.brand-logo{
-                    
-                }
+        // Image Preview
+        div.image-preview-container{
+            width: 100%;
+            img.image-preview{
+                width: 100%
             }
         }
 
-    }
+        // Image Select
+        div.image-selector-container{
 
-    // Button
-    div.button-area{
+            // Prev Button
+            div.prev-button{
 
-        // Quantity Modifier
-        div.quantity-modifier{
-            div.input-group{
+            }
 
-                // Remove
-                button.remove-button{
+            // Image Selector
+            div.image-selector{
 
-                }
-
-                // Preview & Input
-                input[type="text"]#quantity-input{
-
-                }
-
-                // Add
-                button.add-button{
-
-                }
-
-                // <= button
-                button{
-                    i.icon{
-
+                // Item
+                div.item{
+                    &:first-child{
+                        margin-left: 2.6rem;
                     }
-                    p.button-text{
-
+                    img.item-image{
+                        
                     }
                 }
 
             }
-        }
 
-        // Add To Cart
-        div.add-to-cart{
-            button[type="submit"]{
+            // Next Button
+            div.next-button{
 
             }
+
         }
 
     }
 
+    /* ———————————————————— Product Information ———————————————————— */
+    section.product-information{
+        padding: 0;
+
+        // Product Name
+        div.product-header{
+            p.product-name{
+
+            }
+        }
+
+        // Product Detail
+        div.product-content{
+            display: flex;
+            flex-direction: column;
+
+            // Available Car Model
+            div.available-car-model{
+                border: none;
+                width: 100%;
+
+                p.title{
+                    font-size: var(--font-h6);
+                }
+
+                ul.item-list{
+                    font-size: var(--font-subtitle);
+
+                    li.item{
+
+                    }
+
+                }
+
+            }
+
+            // Action Area
+            div.action-area{
+                width: 100%;
+
+                p.form-title{
+                    font-size: var(--font-h6);
+                }
+            }
+
+        }
+        
+    }
+
+    /* ———————————————————— Form ———————————————————— */
+
+    form{
+        width: 100%;
+
+        // Booking
+        div.brand-selector{
+
+            // UNIT FOR Brand
+            label.brand-label{
+                width: calc((100% / 2) - 20px);
+                input[type="radio"]{
+
+                }
+                div.brand-box{
+                    
+                    p.brand-name{
+
+                    }
+                    img.brand-logo{
+                        
+                    }
+                }
+            }
+
+        }
+
+        // Button
+        div.button-area{
+
+            // Quantity Modifier
+            div.quantity-modifier{
+                div.input-group{
+
+                    // Remove
+                    button.remove-button{
+
+                    }
+
+                    // Preview & Input
+                    input[type="text"]#quantity-input{
+
+                    }
+
+                    // Add
+                    button.add-button{
+
+                    }
+
+                    // <= button
+                    button{
+                        i.icon{
+
+                        }
+                        p.button-text{
+
+                        }
+                    }
+
+                }
+            }
+
+            // Add To Cart
+            div.add-to-cart{
+                width: 100%;
+                button[type="submit"]{
+                    width: 100%;
+                }
+            }
+
+        }
+
+    }
+
+    // zoom-preview
+    div.zoom-preview{
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        display: none;
+        overflow: hidden;
+        img{
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+
 }
-
-

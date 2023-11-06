@@ -61,7 +61,9 @@
 
                 <!-- Product Name -->
                 <div class="product-header">
-                    <p class="product-name">{{ ($productData->getProductName())[0]->name }}</p>
+                    @if (count($productData->getProductName()) > 0)
+                        <p class="product-name">{{ ($productData->getProductName())[0]->name }}</p>
+                    @endif
                 </div>
 
                 <!-- Product Detail -->
@@ -94,10 +96,10 @@
                         <!-- Form -->
                         <form class="form" action="{{ route('frontend.product.detail.post',['productCode'=>$productData->product_code]) }}" method="post">
                             @csrf
-
                             
                             <!-- Booking -->
                             <div class="brand-selector">
+
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [])
@@ -151,7 +153,7 @@
 
                                 <!-- Add To Cart -->
                                 <div class="add-to-cart">
-                                    <button class="btn btn-primary" type="submit" {{ $permission }}>Add To Cart</button>
+                                    <button class="btn btn-primary" type="submit" {{ $permission }} {{ count($productData->getProductName()) > 0 ? "" : "disabled" }}>Add To Cart</button>
                                 </div>
 
                             </div>

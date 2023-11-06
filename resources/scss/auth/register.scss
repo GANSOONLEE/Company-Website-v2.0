@@ -22,8 +22,9 @@
 }
 
 form.form#form{
-    width: calc(auto);
-    height: auto;
+    width: auto;
+    max-width: 80%;
+    height: 80%;
     padding: 2rem 4rem;
     box-shadow: 0 0 20px #00000022;
     border-radius: 4px;
@@ -158,4 +159,112 @@ section.input-area{
         font-size: calc(var(--font-remark));
     }
     
+}
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+        
+    /* ———————————————————— Global Class ———————————————————— */
+
+    .group-column{
+       flex-direction: column !important;
+       row-gap: 1.4rem;
+    }
+
+    .required::after{
+
+    }
+
+    /* ———————————————————— Layouts ———————————————————— */
+
+    .app{
+
+    }
+
+    form.form#form{
+        // height: auto;
+        overflow-y: auto;
+
+        // Header
+        > div.form-header{
+          
+            > p.form-header-title{
+             
+            }
+            > a{
+                img.form-header-logo{
+                  
+                    &:hover{
+
+                    }
+                }
+            }
+        }
+
+        // Body
+
+
+
+        // Footer
+        > div.form-footer{
+
+            p.login-text{
+
+            }
+            a{
+
+            }
+        }
+    }
+
+    // Multi Step Progress Bar
+    .container {
+      
+        .steps {
+            
+            .circle {
+             
+                &.active {
+
+                }
+            }
+            .progress-bar {
+             
+                .indicator {
+                  
+                }
+            }
+        }
+        .buttons {
+           
+            button {
+               
+                &:active {
+                    
+                }
+                &:disabled {
+                    
+                }
+            }
+        }
+    }
+
+    // Input
+
+    section.input-area{
+       
+        &.active{
+
+        }
+        *{
+            
+        }
+        *:placeholder{
+
+        }
+        
+    }
 }

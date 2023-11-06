@@ -10,7 +10,7 @@ nav.navbar#navbar {
   top: 0;
   height: 8vh;
   width: 100%;
-  z-index: 99;
+  z-index: 101;
   background-color: var(--color-white);
 }
 nav.navbar#navbar > div.company-logo {
@@ -127,7 +127,7 @@ nav.navbar#navbar > input[type=checkbox][name=menu-button]#menu-button {
     border-radius: inherit;
     border: inherit;
     background-color: inherit;
-    color: rgb(54, 54, 255);
+    color: var(--color-black);
   }
   nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.primary:hover {
     border: none;

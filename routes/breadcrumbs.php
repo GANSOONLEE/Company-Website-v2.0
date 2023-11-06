@@ -28,7 +28,11 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail, $product) {
 // Home > [Category] > [ProductDetail]
 Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $productData) {
     $trail->parent('product', $product);
-    $trail->push($productData->getProductName()[0]->name, route('frontend.product-detail', $productData->getProductName()[0]->name));
+    if(count($productData->getProductName()) <= 0){
+        $trail->push('', route('frontend.product-detail', ''));
+    }else{
+        $trail->push($productData->getProductName()[0]->name, route('frontend.product-detail', $productData->getProductName()[0]->name));
+    };
 });
 
 // Home > Order (User)

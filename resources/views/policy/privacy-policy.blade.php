@@ -13,7 +13,7 @@
 
 <h1>Privacy Policy for {{config('policy-information.company-name')}}</h1>
 
-<p>At Frozen Aircond, accessible from {{ env("APP_URL") }}, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Frozen Aircond and how we use it.</p>
+<p>At Frozen Aircond, accessible from <a href="{{ env("APP_URL") }}">{{ env("APP_URL") }}</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Frozen Aircond and how we use it.</p>
 
 <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 

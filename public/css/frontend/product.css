@@ -95,3 +95,27 @@ div.content section.container section.product-list a.product-detail-href div.cus
 div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-information p {
   margin-bottom: 0;
 }
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  div.content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  div.content section.container {
+    padding: 1rem 2rem;
+    width: 100%;
+  }
+  div.content section.container section.product-list {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+  div.content section.container section.product-list a.product-detail-href {
+    min-width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+  div.content section.container section.product-list a.product-detail-href div.custom-card div.custom-card-image:hover > img.product-cover {
+    filter: brightness(0.4);
+  }
+}

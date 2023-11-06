@@ -18,12 +18,7 @@
                     'imagePath' => 'image/profile/DaSheng.png',
                     'name' => 'DaSheng',
                     'contactNumber' => '012-3456 7890',
-                ],
-                [
-                    'imagePath' => 'image/profile/unknow.png',
-                    'name' => 'Unknown',
-                    'contactNumber' => '012-3456 7890',
-                ],
+                ]
             ];
         @endphp
 
