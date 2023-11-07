@@ -26,33 +26,35 @@
         </div>
 
         <!-- Title -->
-        <div class="order-title">
-            <p>{{ __('order.product-category') }}</p>
-            <p>{{ __('order.propduct-type') }}</p>
-            <p>{{ __('order.product-name') }}</p>
-            <p>{{ __('order.product-code') }}</p>
-            <p>{{ __('order.number') }}</p>
-        </div>
+        <div class="order-table">
 
-        <!-- Content -->
-        <div class="order-content">
+            <div class="order-title">
+                <p>{{ __('order.product-category') }}</p>
+                {{-- <p>{{ __('order.propduct-type') }}</p> --}}
+                <p>{{ __('order.product-name') }}</p>
+                <p>{{ __('order.product-code') }}</p>
+                <p>{{ __('order.number') }}</p>
+            </div>
 
-            <!-- item -->
-            @foreach (($order->getOrderItems()) as $item)
-            <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="item-box">
+            <!-- Content -->
+            <div class="order-content">
+                <!-- item -->
+                @foreach (($order->getOrderItems()) as $item)
+                <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="item-box">
 
-                <!-- information -->
-                <div class="item-information">
-                    <p>{{ $item->product_category }}</p>
-                    <p>{{ $item->product_type }}</p>
-                    <p>{{ $item->name }}</p>
-                    {{-- <p>{{ $item->brand }}</p> --}}
-                    <p>{{ $item->code }}</p>
-                    <p>{{ $item->number }}</p>
-                </div>
+                    <!-- information -->
+                    <div class="item-information">
+                        <p>{{ $item->product_category }}</p>
+                        {{-- <p>{{ $item->product_type }}</p> --}}
+                        <p>{{ \App\Models\Brand::findProductName($item->code) }}</p>
+                        {{-- <p>{{ $item->brand }}</p> --}}
+                        <p>{{ $item->code }}</p>
+                        <p>{{ $item->number }}</p>
+                    </div>
 
-            </a>
-            @endforeach
+                </a>
+                @endforeach
+            </div>
 
         </div>
 
@@ -62,12 +64,17 @@
 
             <!-- follow status to display button -->
             <div class="button-area">
+
+            <a target="_download" href="{{ route('backend.admin.order.order-detail-pdf', ['orderID'=> $order->code]) }}">
+                <button class="btn btn-success" type="button" data-button="Download">{{ __('order.download-pdf') }}</button>
+            </a>
+
             @if ($order->status === "Placed")
                 <!-- If placed -->
                 <button class="btn btn-primary" type="button" data-button="Accepted">{{ __('order.accepted') }}</button>
             @elseif($order->status === "Accepted")
                 <!-- If accepted -->
-                <button class="btn btn-primary" type="button" data-button="Completed">{{ __('order.in-progress') }}</button>
+                <button class="btn btn-primary" type="button" data-button="In Progress">{{ __('order.in-progress') }}</button>
             @elseif($order->status === "In Progress")
                 <button class="btn btn-secondary" type="button" data-button="On Hold">{{ __('order.on-hold') }}</button>
                 <button class="btn btn-primary" type="button" data-button="Completed">{{ __('order.completed') }}</button>

@@ -2,7 +2,7 @@
 
     <p class="section-title">{{ __('order.status') }}</p>
 
-    <section class="tab-bar flex-row">
+    <section class="tab-bar">
 
         <a href="#" class="tab-link active" id="order-placed">{{ __('order.placed') }}</a>
         <a href="#" class="tab-link" id="order-accepted">{{ __('order.accepted') }}</a>

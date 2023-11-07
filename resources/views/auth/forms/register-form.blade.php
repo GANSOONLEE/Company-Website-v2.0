@@ -74,7 +74,7 @@
         </section>
 
     </div>
-    <div class="buttons mt-3">
+    <div class="buttons">
         <button type="button" id="prev" class="btn btn-primary" disabled>Prev</button>
         <button type="button" id="next" class="btn btn-primary" >Next</button>
         <button type="submit" id="submit-button" class="btn btn-success" style="display: none;">Submit</button>

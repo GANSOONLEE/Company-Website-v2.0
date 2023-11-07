@@ -17,7 +17,10 @@ return array (
   'product-category' => 'Category',
   'propduct-type' => 'Type',
   'product-name' => 'Name',
-  'product-code' => 'Number',
+  'product-code' => 'Code',
   'number' => 'Quantity',
   'item-count' => 'Total :count items',
+  'download-pdf' => 'Save as pdf',
+  'serial-number' => 'No.',
+  'printed-at' => 'Print date',
 );

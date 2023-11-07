@@ -20,4 +20,7 @@ return array (
   'product-code' => '产品编号',
   'number' => '数量',
   'item-count' => '共 :count 件物品',
+  'download-pdf' => '储存为 pdf',
+  'serial-number' => '编号',
+  'printed-at' => '打印日期',
 );

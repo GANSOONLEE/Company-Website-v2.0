@@ -25,7 +25,7 @@
         <!-- Footer -->
         <!-- already have account -->
         <div class="form-footer flex-row">
-            <p class="register-text">Already have account?</p><a href="{{ route('auth.register') }}">Login</a>
+            <p class="register-text">Haven't any account?</p><a href="{{ route('auth.register') }}">Register</a>
         </div>
 
     </form>

@@ -75,6 +75,11 @@ section.order{
         width: 25%;
     }
 
+    // Table
+    div.order-table{
+        
+    }
+    
     // Title
     div.order-title{
         display: flex;
@@ -147,12 +152,151 @@ section.order{
         }
         div.button-area{
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             align-self: flex-end;
             column-gap: 2rem;
+            width: 100%;
         }
     }
 
 }
 
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+        
+    /* ———————————————————— Layouts ———————————————————— */
+
+
+
+
+
+    /* —————————————————————— Order ———————————————————— */
+
+    section.order{
+       
+        // Header
+        div.order-header{
+           
+            // p Global
+            p{
+                
+            }
+
+            // @mixin information
+            @mixin information{
+                
+            }
+
+            // Customer
+            div.customer-information{
+                @include information;
+
+                @mixin customer-information{
+                    
+                }
+
+                p#customer-shop-name{
+                    @include customer-information;
+                }
+
+                p#customer-whatsapp-phone{
+                    @include customer-information;
+                }
+            }
+
+            // Order
+            div.order-information{
+                @include information;
+
+                @mixin order-information{
+                   
+                }
+
+                p#order-status{
+                    @include order-information;
+                }
+                p#created_at{
+                    @include order-information;
+                }
+            }
+
+        }
+
+        @mixin column{
+
+        }
+
+        // Table
+        div.order-table{
+            overflow-x: auto;
+        }
+        
+        // Title
+        div.order-title{
+            text-wrap: nowrap;
+            column-gap: 2rem;
+            
+            p{
+                @include column;
+                width: max-content;
+            }
+        }
+
+        // Content
+        div.order-content{      
+            column-gap: 2rem;
+            
+            // Item
+            a.item-box{
+                width: max-content;
+               
+                @mixin item{
+
+                }
+
+                // Information
+                div.item-information{
+                    @include item;
+
+                    p{
+                        text-wrap: nowrap;
+                        @include column;
+                    }
+                }
+
+                // odd & even background-color
+                &:nth-child(odd){
+
+                }
+
+                &:nth-child(even){
+
+                }
+
+                &:hover{
+
+                }
+
+            }
+
+        }
+
+        // Footer
+        div.order-footer{
+
+            p{
+
+            }
+            div.button-area{
+
+            }
+        }
+
+    }
+
+}

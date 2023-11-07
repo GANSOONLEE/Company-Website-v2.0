@@ -61,9 +61,15 @@ popoversTrigger.forEach(trigger => {
         popover.style.display = 'block';
     
         const triggerRect = trigger.getBoundingClientRect();
+        console.log(triggerRect.top)
+        console.log(triggerRect.left)
+        const target = event.target;
+     
+        let height = window.pageYOffset + target.getBoundingClientRect().top;
     
-        popover.style.top = triggerRect.top - popover.offsetHeight - 10 + 'px';
-        popover.style.left = triggerRect.left + 'px';
+        popover.style.top = height - target.offsetHeight + 'px';
+        popover.style.left = triggerRect.left - 15 * target.offsetWidth + 'px';
+
         popover.classList.add('show');
         popover.querySelector('#number').value = number;
         popover.querySelector('#brand_code').value = skuID;

@@ -1,7 +1,7 @@
 
 div.page{
     $sidebar-width: 18vw;
-    width: calc(100vw - $sidebar-width);
+    // width: calc(100vw - $sidebar-width);
     margin-left: $sidebar-width;
     padding: 1rem 2rem;
     p.page-title{
@@ -9,4 +9,23 @@ div.page{
         margin-bottom: 2.2rem;
         font-size: var(--font-h4);
     }
+}
+
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+    $sidebar-width: 55px;
+
+    div.page{
+        width: calc(100vw - $sidebar-width);
+        margin-left: $sidebar-width;
+        p.page-title{
+            margin-bottom: .6rem;
+            font-size: var(--font-h6);
+        }
+    }
+
 }

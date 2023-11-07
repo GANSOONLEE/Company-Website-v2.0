@@ -98,9 +98,39 @@ section.order div.order-footer p {
 }
 section.order div.order-footer div.button-area {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   align-self: flex-end;
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+  width: 100%;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  /* ———————————————————— Layouts ———————————————————— */
+  /* —————————————————————— Order ———————————————————— */
+  section.order div.order-table {
+    overflow-x: auto;
+  }
+  section.order div.order-title {
+    text-wrap: nowrap;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+  section.order div.order-title p {
+    width: -moz-max-content;
+    width: max-content;
+  }
+  section.order div.order-content {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+  section.order div.order-content a.item-box {
+    width: -moz-max-content;
+    width: max-content;
+  }
+  section.order div.order-content a.item-box div.item-information p {
+    text-wrap: nowrap;
+  }
 }
