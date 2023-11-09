@@ -11,6 +11,8 @@ class UserOperationController extends Controller{
 
         $operations = Operation::orderBy("created_at","desc")->get();
 
+        
+
         return view('backend.admin.account.user-operation', compact('operations'));
     }
 

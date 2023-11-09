@@ -1,52 +1,87 @@
 
-// Search EOM
+// Search DOM
 
 import CustomAlert from '../admin/components/CustomAlert.vue';
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount('#alert');
 
-class SearchMappingFactory{
 
-    searchInput;
-    selectTable;
-    selectColumns;
+/**
+ *  Helper Function
+ *  @function DOMElement - select all filter
+ *  @param {String} filterName - filter name you want to select 
+ */
 
-    constructor(input){
-        this.searchInput = input;
-        this.selectTable = document.querySelector('[data-select-table]');
-        this.selectColumns = this.selectTable.querySelectorAll(`[data-select-column=${input.getAttribute('data-search-input')}]`);
+function findFilter(filterName){
+
+    let filter = document.querySelector(`[data-select-filter=${filterName}]`);
+    
+    if(!filter){
+        console.error(`Filter ${filterName} not find`)
     }
 
-    init(){
-
-        this.searchInput.addEventListener('change', ()=>{
-            this.search(this.searchInput.value, this.selectColumns)
-        })
-
-    }
-
-    search(value, selectColumns){
-        selectColumns.forEach(column => {
-            if(column.innerText != value && value != 'all'){
-                column.parentNode.style.display = "none";
-            }else if(value == 'all' ){
-                column.parentNode.style.display = "table-row";
-            }else{
-                column.parentNode.style.display = "table-row";
-            }
-        });
-
-    }
+    return filter;
 
 }
 
-// Instance
+/**
+ * Init Filter
+ */
 
-let inputs = document.querySelectorAll('[data-search-input]');
-inputs.forEach(input => {
-    let filter = new SearchMappingFactory(input)
-    filter.init()
-})
+import Filter from '../admin/product/class/Filter.js';
+
+let filters = {};
+
+function initFilter(columnId, mode, trigger = "change") {
+    let column = findFilter(columnId);
+    filters[columnId] = new Filter(column, mode, trigger);
+    console.log('初始化成功')
+
+    filters[columnId].setChangeCallback(applyFilters);
+}
+
+initFilter('category', 'strict');
+initFilter('type', 'strict');
+
+function applyFilters() {
+    console.log('調用中')
+    let categoryValue = filters['category'].getValue();
+    let typeValue = filters['type'].getValue();
+
+    let columns = document.querySelectorAll('[data-search-column]'); // 选择带有 data-search-column 属性的元素
+    var categoryMatch, typeMatch;
+
+    columns.forEach(column => {
+        let columnName = column.getAttribute('data-search-column');
+        let columnContent = column.innerText;
+
+        if(columnName === "category"){
+            categoryMatch = categoryValue == "" || (columnMatchesFilter(columnContent, categoryValue, filters['category'].getMode()));
+            // console.log(`categoryMatch 結果為：${categoryMatch}，查詢條件為 ${categoryValue}，内容爲${columnContent}` )
+            return categoryMatch
+        }
+
+        if(columnName === "type"){
+            typeMatch = typeValue == "" || (columnMatchesFilter(columnContent, typeValue, filters['type'].getMode()));
+            // console.log(`typeMatch 結果為：${typeMatch}，查詢條件為 ${typeValue}，内容爲${columnContent}` )
+            return typeMatch
+        }
+
+        if (categoryMatch && typeMatch) {
+            column.parentElement.style.display = 'table-row';
+        } else {
+            column.parentElement.style.display = 'none';
+        }
+    });
+}
+
+function columnMatchesFilter(columnContent, filterValue, mode) {
+    if (mode === 'contain') {
+        return columnContent.toUpperCase().includes(filterValue.toUpperCase());
+    } else if (mode === 'strict') {
+        return columnContent === filterValue;
+    }
+}
 
 // Popovers
 let popoversTrigger = document.querySelectorAll('.popovers-edit');

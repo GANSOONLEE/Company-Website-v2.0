@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title></title>
+    <title>{{ env('APP_NAME') . ' | ' . $order->code }}</title>
 
     <style>
         @page{

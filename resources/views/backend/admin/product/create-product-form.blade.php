@@ -131,7 +131,10 @@
         <!-- Frozen Code -->
         <div class="mb-3 col-3">
             <label class="form-label" for="frozen-code-0">{{ __('product.frozen-code') }}</label>
-            <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-0">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">FZ-</span>
+                <input class="form-control col-2" type="text" name="brand-input-frozen-code[]" id="frozen-code-0">
+            </div>
         </div>
 
         <!-- Button -->

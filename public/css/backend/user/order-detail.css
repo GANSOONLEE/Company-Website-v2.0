@@ -93,6 +93,7 @@ section.order div.order-content div.order-container a.order-item div.item-inform
   -moz-column-gap: 2.2rem;
        column-gap: 2.2rem;
   margin-right: 2rem;
+  width: 60%;
 }
 section.order div.order-content div.order-container a.order-item div.item-information p {
   margin-bottom: 0;
@@ -101,6 +102,7 @@ section.order div.order-content div.order-container a.order-item div.item-action
   display: flex;
   justify-content: center;
   align-items: center;
+  height: auto;
 }
 section.order div.order-content div.order-container a.order-item:nth-child(odd) {
   background-color: #fefefe;

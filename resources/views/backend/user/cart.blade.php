@@ -19,8 +19,8 @@
             <div class="filter category-filter flex-column">
     
                 <label class="form-label" for="">Category</label>
-                <select class="form-select" data-search-input="category" name="" id="">
-                    <option value="all"> -- Clear Filter -- </option>
+                <select class="form-select" data-select-filter="category" name="" id="">
+                    <option value=""> -- Clear Filter -- </option>
                     @foreach ($categoryData as $category)
                         <option value="{{ $category->name }}">{{ $category->name }}</option>
                     @endforeach
@@ -31,8 +31,8 @@
             <div class="filter type-filter flex-column">
     
                 <label class="form-label" for="">Type</label>
-                <select class="form-select" data-search-input="type" name="" id="">
-                    <option value="all"> -- Clear Filter -- </option>
+                <select class="form-select" data-select-filter="type" name="" id="">
+                    <option value=""> -- Clear Filter -- </option>
                     @foreach ($typeData as $typeData)
                         <option value="{{ $typeData->name }}">{{ $typeData->name }}</option>
                     @endforeach
@@ -84,7 +84,7 @@
                         <th>Number</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="max-height: 70vh;">
                     <!-- Cart -->
                     @foreach ($cartData as $cart)
                     @php
@@ -107,13 +107,13 @@
                                 <img src="{{ asset("storage/product/$category/$product_code/$code/cover.png") }}" alt="">
                             </a>
                         </td>
-                        <td data-select-column="name">{{ $name }}</td>
-                        <td data-select-column="name" class="sku-id" style="display: none" id="{{ $sku_id }}">{{ $sku_id }}</td>
-                        {{-- <td data-select-column="product_code">{{ $product_code }}</td> --}}
-                        <td data-select-column="category">{{ $category }}</td>
-                        <td data-select-column="type">{{ $type }}</td> 
-                        <td data-select-column="code">{{ $code }}</td>
-                        <td data-select-column="number">
+                        <td data-search-column="name">{{ $name }}</td>
+                        <td data-search-column="sku-id" class="sku-id" style="display: none" id="{{ $sku_id }}">{{ $sku_id }}</td>
+                        {{-- <td data-search-column="product_code">{{ $product_code }}</td> --}}
+                        <td data-search-column="category">{{ $category }}</td>
+                        <td data-search-column="type">{{ $type }}</td> 
+                        <td data-search-column="code">{{ $code }}</td>
+                        <td data-search-column="number">
                             <div class="editable popovers-edit">
                                 <div class="number flex-row">
                                     <p>{{ $number }}</p>

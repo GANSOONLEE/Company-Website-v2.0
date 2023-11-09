@@ -65,7 +65,7 @@ section.cart section.cart-list div.cart-list-body table {
   word-break: break-all;
   word-wrap: break-word;
   overflow: hidden;
-  border: 2px solid #b8c4ff;
+  border: 2px solid rgb(203, 203, 203);
   border-radius: 6px;
   background-color: #f5fcff;
 }
@@ -78,10 +78,6 @@ section.cart section.cart-list div.cart-list-body table thead tr th {
 }
 section.cart section.cart-list div.cart-list-body table thead tr th:first-child {
   padding-left: 1rem;
-}
-section.cart section.cart-list div.cart-list-body table tbody {
-  max-width: 80vw;
-  overflow-y: scroll;
 }
 section.cart section.cart-list div.cart-list-body table tbody tr td {
   height: 100%;
@@ -182,4 +178,67 @@ div#alert {
 }
 div#alert div.alert {
   width: 100%;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  section.cart > section {
+    padding: 0.8rem;
+  }
+  section.cart p.filter-title {
+    font-size: var(--font-title);
+  }
+  section.cart div.filter-container div.filter {
+    width: 50%;
+    font-size: var(--font-subtitle);
+  }
+  section.cart div.filter-container div.filter label.form-label {
+    font-size: var(--font-subtitle);
+  }
+  section.cart section.cart-list {
+    padding: 1rem;
+  }
+  section.cart section.cart-list div.cart-list-header .button-area a {
+    padding: 0.3rem 0.2rem;
+    -moz-column-gap: 0.3rem;
+         column-gap: 0.3rem;
+  }
+  section.cart section.cart-list div.cart-list-header .button-area a i {
+    font-size: calc(var(--font-remark) - 0.3rem);
+  }
+  section.cart section.cart-list div.cart-list-header .button-area a button {
+    font-size: calc(var(--font-remark) - 0.3rem);
+  }
+  section.cart section.cart-list div.cart-list-body {
+    overflow: auto;
+    max-height: 90vw;
+    position: relative;
+  }
+  section.cart section.cart-list div.cart-list-body table {
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    top: 0;
+  }
+  section.cart section.cart-list div.cart-list-body table thead {
+    position: sticky;
+    top: 0;
+  }
+  section.cart section.cart-list div.cart-list-body table thead tr {
+    width: 100%;
+  }
+  section.cart section.cart-list div.cart-list-body table thead tr th {
+    text-wrap: nowrap;
+    font-size: var(--font-remark);
+    padding-right: 0.8rem;
+  }
+  section.cart section.cart-list div.cart-list-body table tbody tr {
+    width: 100%;
+  }
+  section.cart section.cart-list div.cart-list-body table tbody tr td {
+    text-wrap: nowrap;
+    font-size: var(--font-remark);
+    padding-right: 0.8rem;
+  }
+  /* ———————————————————— popovers ———————————————————— */
 }

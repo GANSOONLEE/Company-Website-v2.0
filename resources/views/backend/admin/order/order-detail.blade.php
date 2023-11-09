@@ -66,7 +66,7 @@
             <div class="button-area">
 
             <a target="_download" href="{{ route('backend.admin.order.order-detail-pdf', ['orderID'=> $order->code]) }}">
-                <button class="btn btn-success" type="button" data-button="Download">{{ __('order.download-pdf') }}</button>
+                <button class="btn btn-success" type="button">{{ __('order.download-pdf') }}</button>
             </a>
 
             @if ($order->status === "Placed")

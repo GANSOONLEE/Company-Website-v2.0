@@ -68,9 +68,10 @@
                             <img src="{{ asset("storage/product/$category/$product->product_code/cover.png") }}" alt="">
                         </div>
                         <div class="item-information">
-                            <p>{{ $category }}</p>
-                            <p>{{ $brand->brand }}</p>
-                            <p>{{ $brand->code }}</p>
+                            <p class="col-2">{{ $category }}</p>
+                            <p class="col-2">{{ $brand->brand }}</p>
+                            <p class="col-4">{{ $brand->code }}</p>
+                            <p class="col-2">{{ $item->number }}</p>
                         </div>
                         @if (auth()->user()->getRoleEntity()->hasPermission('edit_order'))
                         <div class="item-action">

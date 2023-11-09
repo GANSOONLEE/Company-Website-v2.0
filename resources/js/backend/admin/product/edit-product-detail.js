@@ -23,7 +23,7 @@ let deleteButtons = document.querySelectorAll('.delete-button');
 deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', (event)=>{
         event.preventDefault();
-        let closestInput = event.target.closest('.box-list').querySelector('input[type="file"]');
+        let closestInput = event.target.parentElement.parentElement.querySelector('input[type="file"]');
         dataSlot = closestInput.getAttribute('data-slot');
     })
 });

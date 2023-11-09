@@ -15,6 +15,7 @@ class SocialiteController extends Controller
      */
     public function redirectToProvider()
     {
+        dd(Socialite::driver('google')->redirect());
         return Socialite::driver('google')->redirect();
     }
     

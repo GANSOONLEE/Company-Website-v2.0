@@ -37,7 +37,14 @@
                 <input type="file" name="product-cover" id="product-cover" class="product-cover product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
                 <label for="product-cover" class="form-label">
                     <div class="upload-cover preview">
-                        <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
+                        @if (Storage::disk('public')->exists("product/$product->product_category/$product->product_code/cover.png"))
+                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
+                        @else
+                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.jpg") }}" alt="">
+                        @endif
+                        <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
                         <i class="fa-solid fa-add"></i>
                         <p class="cover-text">{{ __('product.upload-cover') }}</p>
                     </div>
@@ -121,12 +128,15 @@
                     <div class="image box-list">
                         <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image-{{ $index }}" id="brand-image-{{ $index }}">
                         <label for="brand-image-{{ $index }}">
-                            <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.png") }}" alt="" class="image-upload">
-                            @if ($index !== 0)
+                            @if (Storage::disk('public')->exists("/product/$product->product_category/$product->product_code/". str_replace(' ', '%20', urlencode($brand->code)) . "/cover.jpg"))
+                                <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.jpg") }}" alt="" class="image-upload">
+                            @else
+                                <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.png") }}" alt="" class="image-upload">
+                            @endif
+
                             <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
                                 <i class="fa-solid fa-trash"></i>
                             </div>
-                            @endif
                             <i class="fa-solid fa-add"></i>
                             <p class="image-text">{{ __('product.upload') }}</p>
                         </label>
@@ -151,7 +161,10 @@
                     <!-- Frozen Code Frozen編號 -->
                     <div class="frozen-code">
                         <label for="" class="form-label">{{ __('product.frozen-code') }}</label>
-                        <input class="form-control" type="text" name="frozen-code[]" value="{{ $brand->frozen_code }}">
+                        {{-- <div class="input-group"> --}}
+                            {{-- <span class="input-group-text" id="basic-addon1">FZ-</span> --}}
+                            <input class="form-control" type="text" name="frozen-code[]" value="{{ $brand->frozen_code }}">
+                        {{-- </div> --}}
                     </div>
 
                 </div>
@@ -197,7 +210,10 @@
 
                 <!-- Frozen Code Frozen編號 -->
                 <div class="frozen-code">
-                    <input class="form-control" type="text" name="frozen-code[]" value="" placeholder="{{ __('product.frozen-code') }}">
+                    {{-- <div class="input-group"> --}}
+                        {{-- <span class="input-group-text" id="basic-addon1">FZ-</span> --}}
+                        <input class="form-control" type="text" name="frozen-code[]" value="" placeholder="{{ __('product.frozen-code') }}">
+                    {{-- </div> --}}
                 </div>
             </div>
             @endfor

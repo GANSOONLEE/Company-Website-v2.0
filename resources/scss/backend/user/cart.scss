@@ -76,7 +76,7 @@ section.cart{
                 word-break: break-all;
                 word-wrap: break-word;
                 overflow: hidden;
-                border: 2px solid #b8c4ff;
+                border: 2px solid rgb(203, 203, 203);
                 border-radius: 6px;
                 background-color: #f5fcff;
 
@@ -96,8 +96,7 @@ section.cart{
 
                 // Body
                 tbody{
-                    max-width: 80vw;
-                    overflow-y: scroll;
+                    
                     tr{
                         td{
                             height: 100%;
@@ -206,5 +205,185 @@ div#alert{
     left: 0;
     div.alert{
         width: 100%;
+    }
+}
+
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+        
+    section.cart{
+
+        > section{
+            padding: .8rem;
+        }
+
+        p.filter-title{
+            font-size: var(--font-title);
+        }
+
+        // filter
+        div.filter-container{
+
+            div.filter{
+                width: 50%;
+                font-size: var(--font-subtitle);
+                label.form-label{
+                    font-size: var(--font-subtitle);
+                }
+            }
+
+        }
+
+        // cart-list
+        section.cart-list{
+            padding: 1rem;
+            
+            // Header
+            div.cart-list-header{
+
+                .button-area{
+
+                    a{
+                        padding: .3rem .2rem;
+                        
+                        column-gap: .3rem;
+                        &#create-order{
+
+                            &:hover{
+
+                            }
+                        }
+                        i{
+                            font-size: calc(var(--font-remark) - .3rem);
+                        }
+                        button{
+                            font-size: calc(var(--font-remark) - .3rem);
+                        }    
+                    }
+                }
+
+            }
+
+            // Body
+            div.cart-list-body{
+                overflow: auto;
+                max-height: 90vw;
+                position: relative;
+
+                @mixin tr{
+                    width: 100%;
+                }
+
+                @mixin th-td{
+                    text-wrap: nowrap;
+                    font-size: var(--font-remark);
+                    padding-right: .8rem;
+                }
+
+                // Table
+                table{
+                    width: 100%;
+                    height: 100%;
+                    position: sticky;
+                    top: 0;
+                    
+                    // Header
+                    thead{
+                        position: sticky;
+                        top: 0;
+                        tr{
+                            @include tr;
+                            th{
+                                @include th-td;
+                                &:first-child{
+
+                                }
+                            }
+                        }
+                    }
+
+                    // Body
+                    tbody{
+        
+                        tr{
+                            @include tr;
+                            td{
+                                @include th-td;
+                                &:first-child{
+
+                                }
+                                .editable{
+
+                                    .number{
+
+                                    }
+                                    p{
+
+                                    }
+                                    i{
+
+                                    }
+                                    &:hover{
+
+                                        p{
+
+                                        }
+                                        i{
+
+                                        }
+                                    }
+                                }
+                                img{
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    /* ———————————————————— popovers ———————————————————— */
+    div.popovers{
+
+        // Header
+        div.popovers-header{
+
+            p.popovers-title{
+
+            }
+        }
+
+        // Content
+        div.popovers-content{
+
+            textarea{
+
+            }
+        }
+
+        // Footer
+        div.popovers-footer{
+
+            button{
+
+            }
+        }
+        &.show{
+
+        }
+    }
+
+    div#alert{
+
+        div.alert{
+
+        }
     }
 }

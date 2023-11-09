@@ -170,4 +170,7 @@ return array (
       'name' => '促销二面板',
     ),
   ),
+  'avaiable-account' => '可用的账号',
+  'banned-account' => '封禁账号',
+  'unavaiable-account' => '不可用的账号',
 );

@@ -109,28 +109,57 @@ section.order div.order-footer div.button-area {
 /* ==================== RWD ==================== */
 @media only screen and (max-width: 867px) {
   /* ———————————————————— Layouts ———————————————————— */
+  aside.sidebar {
+    display: none;
+  }
+  div#page.page {
+    margin-left: 0;
+    width: 100%;
+  }
   /* —————————————————————— Order ———————————————————— */
+  section.order div.order-header div.customer-information {
+    flex-direction: column;
+  }
+  section.order div.order-header div.customer-information p#customer-shop-name {
+    font-size: calc(var(--font-remark) + 0.2rem);
+  }
+  section.order div.order-header div.customer-information p#customer-whatsapp-phone {
+    font-size: calc(var(--font-remark) + 0.2rem);
+  }
+  section.order div.order-header div.order-information p#order-status {
+    color: #888;
+  }
+  section.order div.order-header div.order-information p#created_at {
+    color: #888;
+  }
   section.order div.order-table {
+    position: relative;
     overflow-x: auto;
   }
   section.order div.order-title {
-    text-wrap: nowrap;
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
+    position: sticky;
+    top: 0;
+    min-width: 600px;
   }
   section.order div.order-title p {
-    width: -moz-max-content;
-    width: max-content;
+    min-width: 140px;
+    max-width: 25%;
+    width: auto;
+    font-size: 0.8rem;
   }
   section.order div.order-content {
+    min-width: 600px;
+    max-height: 80vh;
     -moz-column-gap: 2rem;
          column-gap: 2rem;
   }
   section.order div.order-content a.item-box {
-    width: -moz-max-content;
-    width: max-content;
+    width: 100%;
   }
   section.order div.order-content a.item-box div.item-information p {
-    text-wrap: nowrap;
+    min-width: 140px;
+    max-width: 25%;
+    width: auto;
+    font-size: 0.8rem;
   }
 }

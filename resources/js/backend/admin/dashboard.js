@@ -48,7 +48,6 @@ window.onload = async () =>{
     }, 1200)
 
     let data = await getRequest();
-    console.log(data);
     let count = data.count;
 
     let categoryRecord = [
@@ -83,6 +82,13 @@ refreshButton.click((event)=>{
 
     let button = event.target;
 
+    // Start the clear timer
+    let timeDelay = 60;
+
+    const clearTimer = setTimeout(()=>{
+        count = 0;
+    }, timeDelay * 1000)
+
     count++;
     if(count > 2){
 
@@ -95,7 +101,7 @@ refreshButton.click((event)=>{
         
             button.disabled = true;
         
-            let timeDelay = 60;
+            
             let bannedTime = setTimeout(()=>{
                 button.disabled = false;
             }, timeDelay * 1000)

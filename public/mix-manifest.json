@@ -65,5 +65,6 @@
     "/css/backend/admin/account/user-management-form.css": "/css/backend/admin/account/user-management-form.css",
     "/css/backend/admin/account/role-managemenet.css": "/css/backend/admin/account/role-managemenet.css",
     "/css/backend/admin/account/permission-management.css": "/css/backend/admin/account/permission-management.css",
-    "/css/backend/admin/account/operation-record.css": "/css/backend/admin/account/operation-record.css"
+    "/css/backend/admin/account/operation-record.css": "/css/backend/admin/account/operation-record.css",
+    "/css/backend/admin/account/banned-account.css": "/css/backend/admin/account/banned-account.css"
 }

@@ -15,6 +15,7 @@ section.tab{
 
     // tab bar
     section.tab-bar{
+        display: flex;
         border-bottom: .5px solid #bbb;
         column-gap: 4rem;
         margin-bottom: 1rem;
@@ -97,4 +98,94 @@ section.tab{
 
     }
 
+}
+
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+            
+    /* ———————————————————— Tab ———————————————————— */
+
+    section.tab{
+        
+
+        // section title
+        p.section-title{
+
+        }
+
+        // tab bar
+        section.tab-bar{
+            flex-direction: column;
+
+
+            // tab
+            a.tab-link{
+                width: 100%;
+
+                // active
+                &.active{
+
+                }
+            }
+
+        }
+
+        @mixin table{
+            flex-direction: column;
+            padding: unset;
+            align-items: unset;
+        }
+
+        @mixin cell{
+            width: 100%;
+            max-width: 100%;
+            padding: .4rem;
+        }
+
+        // tab header
+        section.tab-header{
+            
+
+            @include table;
+
+            p.header-text{
+               
+                @include cell;
+
+            }
+        }
+
+        // tab container
+        section.tab-container{
+
+            // tab content
+            div.tab-content{
+
+                // order-link
+                a.order-link{
+                    @include table;
+
+                    > p{
+                        @include cell;
+                    }
+
+                    // odd
+                    &:nth-child(odd){
+
+                    }
+
+                    // even
+                    &:nth-child(even){
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
 }

@@ -70,4 +70,20 @@ class Operation extends Model
         return implode(', ', $resultArray);
     }
 
+    public static function deleteRecordsBefore($day = 7){
+
+        $thresholdDate = now()->subDays($day);
+
+        Operation::where('created_at', '<', $thresholdDate)->delete();
+
+    }
+
+    public static function selectRecordsBefore($day = 7){
+
+        $thresholdDate = now()->subDays($day);
+
+        return Operation::where('created_at', '<', $thresholdDate)->count();
+
+    }
+
 }

@@ -171,14 +171,20 @@ section.order{
         
     /* ———————————————————— Layouts ———————————————————— */
 
+    aside.sidebar{
+        display: none;
+    }
 
+    div#page.page{
+        margin-left: 0;
+        width: 100%;
+    }
 
 
 
     /* —————————————————————— Order ———————————————————— */
 
     section.order{
-       
         // Header
         div.order-header{
            
@@ -194,10 +200,11 @@ section.order{
 
             // Customer
             div.customer-information{
+                flex-direction: column;
                 @include information;
 
                 @mixin customer-information{
-                    
+                    font-size: calc(var(--font-remark) + .2rem);
                 }
 
                 p#customer-shop-name{
@@ -214,7 +221,7 @@ section.order{
                 @include information;
 
                 @mixin order-information{
-                   
+                   color: #888
                 }
 
                 p#order-status{
@@ -228,32 +235,39 @@ section.order{
         }
 
         @mixin column{
-
+            min-width: 140px;
+            max-width: 25%;
+            width: auto;
+            font-size: .8rem;
         }
 
         // Table
         div.order-table{
+            position: relative;
             overflow-x: auto;
         }
         
         // Title
         div.order-title{
-            text-wrap: nowrap;
-            column-gap: 2rem;
+            position: sticky;
+            top: 0;
+            min-width: 600px;
             
             p{
                 @include column;
-                width: max-content;
             }
         }
 
         // Content
-        div.order-content{      
+        div.order-content{  
+            min-width: 600px;
+            max-height: 80vh;
+            // overflow-y: auto;
             column-gap: 2rem;
             
             // Item
             a.item-box{
-                width: max-content;
+                width: 100%;
                
                 @mixin item{
 
@@ -264,7 +278,6 @@ section.order{
                     @include item;
 
                     p{
-                        text-wrap: nowrap;
                         @include column;
                     }
                 }

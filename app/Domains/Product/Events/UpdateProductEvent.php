@@ -13,6 +13,10 @@ class UpdateProductEvent{
     public $mode = "production"; // debug production
     public function updateProduct(Request $request, $product_code){
 
+        // if(auth()->user()->email == "vincentgan0402@gmail.com"){
+        //     $this->mode = "debug"; 
+        // }
+    
         // Define variable
 
             /*
@@ -107,21 +111,16 @@ class UpdateProductEvent{
             | 
             */
 
-            if(count($brand_image_collection) > 0){
+            if(count($brand_image_collection) >= 0){
 
                 foreach($brand_image_collection as $key => $brandtImage){
 
-                    $brandCode = $product_brand_code_collection[$key-1];
+                    $brandCode = $product_brand_code_collection[$key];
 
                     $originalName = $brandtImage->getClientOriginalName();
                     $originalExtension = $brandtImage->getClientOriginalExtension();
                     $modifierName = 'cover.' . $originalExtension;
                     $path = $directory . '/' . $brandCode;
-
-                    // Check existent
-                    if(Storage::disk($disk)->exists($path)){
-                        continue;
-                    }
 
                     $this->mode === "production" ? $brandtImage->storeAs($path, $modifierName, $disk) : '';
                 }

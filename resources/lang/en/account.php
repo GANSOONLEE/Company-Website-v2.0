@@ -170,4 +170,7 @@ return array (
       'name' => 'Promotional two panels',
     ),
   ),
+  'avaiable-account' => 'Available accounts',
+  'banned-account' => 'Banned Account',
+  'unavaiable-account' => 'Unavailable account',
 );

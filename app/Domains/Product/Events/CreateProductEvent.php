@@ -118,7 +118,7 @@ class CreateProductEvent{
                     'sku_id' => $this->generatorSkuId(),
                     'brand' => $brand[$i],
                     'code' => $brandCodeEncode,
-                    'frozen_code' => $frozenCode[$i],
+                    'frozen_code' => 'FZ-' . $frozenCode[$i],
                     'product_code' => $code,
                 ];
             

@@ -10,3 +10,22 @@ div.page{
         font-size: var(--font-h4);
     }
 }
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+    $sidebar-width: 55px;
+
+    div.page{
+        width: calc(100vw - $sidebar-width);
+        margin-left: $sidebar-width;
+        padding: .8rem 1.4rem;
+        p.page-title{
+            margin-bottom: .6rem;
+            font-size: var(--font-h6);
+        }
+    }
+
+}

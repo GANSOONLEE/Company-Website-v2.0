@@ -2,7 +2,7 @@
 
     <p class="section-title">Status</p>
 
-    <section class="tab-bar flex-row">
+    <section class="tab-bar">
 
         <a href="#" class="tab-link active" id="order-placed">Placed</a>
         <a href="#" class="tab-link" id="order-accepted">Accepted</a>
@@ -26,7 +26,7 @@
                 <a href="{{ route('backend.user.order-detail',["orderID" => $order->code]) }}" class="order-link">
                     <p class="order-code">{{ $order->code }}</p>
                     <p class="item-count">{{ $order->getItemCount() }}</p>
-                    <p class="create">{{ $order->created_at }}</p>
+                    <p class="create" style="text-wrap: nowrap;">{{ $order->created_at }}</p>
                 </a>
             @endforeach
 
@@ -38,7 +38,7 @@
                 <a href="{{ route('backend.user.order-detail',["orderID" => $order->code]) }}" class="order-link">
                     <p class="order-code">{{ $order->code }}</p>
                     <p class="item-count">{{ $order->getItemCount() }}</p>
-                    <p class="create">{{ $order->created_at }}</p>
+                    <p class="create" style="text-wrap: nowrap;">{{ $order->created_at }}</p>
                 </a>
             @endforeach
 
