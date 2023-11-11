@@ -32,4 +32,6 @@ return array (
   'upload-cover' => '上傳封面照',
   'cancel' => '取消',
   'delete-confirm' => '你確定你要刪除這張照片嗎？',
+  'delete-confirm-product' => '您確定要刪除它嗎？<br>
+                    （注意！此操作<b>無法恢復！</b>）',
 );

@@ -60,10 +60,29 @@ window.onload = async () =>{
     const labels = [];
     const datasetData = [];
 
-    typeRecord[0].forEach(record=>{
-        labels.push(record.product_type)
-        datasetData.push(record.count)
-    })
+    let datasetDataOption = 'type';
+
+    switch (datasetDataOption) {
+
+        case 'type':
+            typeRecord[0].forEach(record=>{
+                labels.push(record.product_type)
+                datasetData.push(record.count)
+            })
+
+            break;
+
+        case 'category':
+            categoryRecord[0].forEach(record=>{
+                labels.push(record.product_category)
+                datasetData.push(record.count)
+            })
+
+            break;
+    
+        default:
+            break;
+    }
 
     const externalData = {labels, datasetData}
 

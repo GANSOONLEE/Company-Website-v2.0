@@ -93,3 +93,30 @@ function columnMatchesFilter(columnContent, filterValue, mode) {
         return columnContent === filterValue;
     }
 }
+
+
+// Delete Confirm
+
+let buttons = document.querySelectorAll('a[button-event="delete"]');
+let deleteConfirmButton = document.querySelector('#deleteButtonConfirm');
+
+window.onload = ()=>{
+
+    buttons.forEach(button=>{
+
+        button.style.display = "table-cell";
+
+        button.addEventListener('click', (event)=>{
+            event.preventDefault();
+            deleteConfirmButton.setAttribute('data-link', button.href)
+        })
+    })
+
+}
+
+deleteConfirmButton.addEventListener('click', ()=>{
+
+    window.location.href = deleteConfirmButton.getAttribute('data-link')
+
+});
+
