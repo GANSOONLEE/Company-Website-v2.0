@@ -18,6 +18,12 @@ class SearchProductService{
         $type = $request->type;
         $model = $request->model;
 
+        // dd(
+        //     "您的 Category 為： $category",
+        //     "您的 Type 為：$type",
+        //     "您的 Model 為：$model",
+        // );
+
         // check are empty filter
         if(empty($search) && empty($type) && empty($model)){
             return redirect()->route('frontend.product', ['category'=>$category]);
@@ -36,9 +42,15 @@ class SearchProductService{
 
         if(!empty($model)){
             $product_code = DB::table('products_name')
-                ->select('product_code', DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'))
+                ->select(
+                    'products.product_code',
+                    DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'),
+                    'products_name.product_code'
+                    )
+                ->join('products','products.product_code','=','products_name.product_code')
                 ->where('name', 'like', '%' . $model . '%')
-                ->groupBy('product_code')
+                ->where('products.product_category', $category)
+                ->groupBy('products.product_code')
                 ->get();
             
             $products = [];
@@ -46,7 +58,6 @@ class SearchProductService{
                 $product = Product::where('product_code', $code->product_code)
                     ->first();
                 $products[] = $product; 
-
             }
             $modelResult = $products;
         }

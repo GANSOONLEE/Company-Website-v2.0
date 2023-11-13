@@ -8,18 +8,18 @@
     <div class="content">
 
         @php
-            $profileImages = [
-                [
-                    'imagePath' => 'image/profile/AhShe.png',
-                    'name' => 'AhShe',
-                    'contactNumber' => '012-3456 7890',
-                ],
-                [
-                    'imagePath' => 'image/profile/DaSheng.png',
-                    'name' => 'DaSheng',
-                    'contactNumber' => '012-3456 7890',
-                ]
-            ];
+            // $profileImages = [
+            //     [
+            //         'imagePath' => 'image/profile/AhShe.png',
+            //         'name' => 'AhShe',
+            //         'contactNumber' => '012-3456 7890',
+            //     ],
+            //     [
+            //         'imagePath' => 'image/profile/DaSheng.png',
+            //         'name' => 'DaSheng',
+            //         'contactNumber' => '012-3456 7890',
+            //     ]
+            // ];
         @endphp
 
         @foreach ($profileImages as $image)

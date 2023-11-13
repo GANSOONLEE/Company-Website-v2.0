@@ -11,7 +11,7 @@
     <!-- Link -->
     <div class="link-section">
 
-        <!-- Dashboard 儀表板 -->
+        <!-- Data 用戶數據 -->
         @if(auth()->user()->getRoleEntity()->hasPermission('admin_dashboard'))
         <section class="link-container">
             <div class="link-title">
@@ -20,12 +20,12 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="#"><li>Your Data</li></a>
+                <a href="{{ route('backend.user.data.user') }}"><li>Your Data</li></a>
             </ul>
         </section>
         @endif
 
-        <!-- Dashboard 儀表板 -->
+        <!-- Cart 購物車 -->
         {{-- @if(auth()->user()->getRoleEntity()->hasPermission('admin_dashboard')) --}}
         <section class="link-container">
             <div class="link-title">

@@ -1,0 +1,69 @@
+
+/* ———————————————————— Global ———————————————————— */
+textarea{
+    resize: none;
+}
+
+[disabled]{
+    pointer-events: auto !important;
+    cursor: not-allowed !important;
+    transition: all .12s ease-in-out;
+}
+
+[read-only]{
+    pointer-events: none !important;
+}
+
+.read-only::before{
+    content: '#';
+    width: auto;
+    color: red;
+    margin-right: .4rem;
+}
+
+/* ———————————————————— Data ———————————————————— */
+
+section.data{
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 20px #ddd;
+
+    div.row-title{
+        
+        p.row-title-text{
+            padding-bottom: .3rem;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            font-size: var(--font-h4);
+        }
+    }
+
+    div.action{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        align-items: center;
+        column-gap: 1rem;
+        margin-top: 1rem;
+        p.text{
+            color: red;
+            margin-right: auto;
+            margin-bottom: 0;
+            font-size: var(--font-remark);
+            justify-self: flex-start;
+            a{
+                color: black;
+                &:hover{
+                    color: blue;
+                }
+            }
+        }
+
+        button{
+            i{
+                margin-right: .4rem;
+            }
+        }
+    }
+}
