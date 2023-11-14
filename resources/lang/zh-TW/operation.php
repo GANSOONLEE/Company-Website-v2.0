@@ -6,6 +6,7 @@ return array (
     'Brand' => '品牌',
     'Product' => '商品',
     'Permission' => '權限',
+    'Category' => '類別',
   ),
   'datetime' => '時間戳',
   'number' => '編號',

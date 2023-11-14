@@ -12,4 +12,5 @@ return array (
   'delete' => '删除',
   'submit' => '提交',
   'search' => '搜索',
+  'update-success' => '上传成功',
 );

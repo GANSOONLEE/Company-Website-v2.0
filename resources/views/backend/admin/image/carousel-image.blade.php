@@ -4,6 +4,8 @@
 
 @section('main')
 
+    <div id="alert"></div>
+
     <form action="{{ route('backend.admin.image.carousel-create-panel') }}" class="add-new-panel" method="POST">
         <div class="mb-3 input-group">
             <label for="new-panel" class="form-label">{{ __('image.new-panel') }}</label>

@@ -6,6 +6,7 @@ return array (
     'Brand' => 'brand',
     'Product' => 'product',
     'Permission' => 'Permissions',
+    'Category' => 'Category',
   ),
   'datetime' => 'Timestamp',
   'number' => 'No.',

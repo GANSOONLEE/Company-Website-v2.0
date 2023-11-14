@@ -12,4 +12,5 @@ return array (
   'delete' => 'Delete',
   'submit' => 'Submit',
   'search' => 'Search',
+  'update-success' => 'Update Successful!',
 );

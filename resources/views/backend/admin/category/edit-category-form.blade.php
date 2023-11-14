@@ -28,8 +28,12 @@
                 </div>
 
                 <!-- Category Name -->
-                {{-- <label for="" class="form-label">{{ __('category.edit-category-name') }}</label>
-                <input class="form-control" name="category-name" type="text" value=""> --}}
+                <label for="" class="form-label">{{ __('category.edit-category-name') }}</label>
+                <input class="form-control" name="category-name" type="text" value="">
+
+                <!-- Category Name -->
+                <label for="" class="form-label" hidden>{{ __('category.edit-category-name') }}</label>
+                <input class="form-control" name="category-name-old" type="text" value="" hidden>
 
                 <!-- Button -->
                 <button class="update-button btn btn-primary" type="submit">{{ __('category.update') }}</button>

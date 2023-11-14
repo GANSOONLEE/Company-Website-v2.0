@@ -1,5 +1,21 @@
 
+// Vue components Export
+
+import CustomAlert from '../components/CustomAlert.vue'
+const alert = createApp(CustomAlert);
+const alertInstance = alert.mount('#alert')
+
+// function
+
+let notification;
+
 $(document).ready(function(){
+
+    if(localStorage.getItem(notification)){
+        alertInstance.updateMessage(localStorage.getItem(notification))
+        alertInstance.autoAlert();
+        localStorage.clear();
+    }
 
     let draggableImageInstances = [];
     let draggablePanelArea = [];
@@ -204,12 +220,14 @@ class AjaxAPI{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
+                let LocalS = localStorage.setItem(notification, 'Successful Update!')
                 if(refresh){
                     location.reload()
                 }
                 console.log(data);
             },
             error: function(xhr, status, error) {
+                let LocalS = localStorage.setItem(notification, 'That have something happen !')
                 console.log(xhr.responseText);
             }
         });

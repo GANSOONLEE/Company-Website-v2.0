@@ -34,4 +34,5 @@ return array (
   'delete-confirm' => '你确定你要删除这张照片吗？',
   'delete-confirm-product' => '您确定要删除它吗？<br>
                     （注意！此操作<b>无法恢复！</b>）',
+  'upload-successful' => '上传成功',
 );

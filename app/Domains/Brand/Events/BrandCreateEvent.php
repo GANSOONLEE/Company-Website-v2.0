@@ -10,34 +10,47 @@ class BrandCreateEvent{
 
     public function brandCreate(Request $request){
 
-        // Define variable
-        $name = $request->input('brand-name');
-        $uploadedFile = $request->file('brand-cover');
+        try{
+            // Define variable
+            $name = $request->input('brand-name');
+            $uploadedFile = $request->file('brand-cover');
+    
+            // Define directory
+            $disk = 'public';
+            $directory = 'brand';
+    
+            // Check Image Existent
+            if ($uploadedFile) {
+                $originalName = $uploadedFile->getClientOriginalName();
+                $newFileName = $name . '.' . $uploadedFile->getClientOriginalExtension();
+                $path = $uploadedFile->storeAs($directory, $newFileName, $disk);
+            }
+    
+            // Create record at DB
+            $data = ['name' => $name];
+            Brand::create($data);
+    
+            $operation = [
+                'email' => auth()->user()->email,
+                'operation_type' => 'Create',
+                'operation_category' => 'Brand',
+            ];
+    
+            Operation::create($operation);
 
-        // Define directory
-        $disk = 'public';
-        $directory = 'brand';
+            $status = [
+                'status' => trans('brand.upload-success'),
+                'icon' => 'success',
+            ];
+        }catch(\Exception $e){
 
-        // Check Image Existent
-        if ($uploadedFile) {
-            $originalName = $uploadedFile->getClientOriginalName();
-            $newFileName = $name . '.' . $uploadedFile->getClientOriginalExtension();
-            $path = $uploadedFile->storeAs($directory, $newFileName, $disk);
+            $status = [
+                'status' => trans('brand.upload-failure'),
+                'icon' => 'error'
+            ];
         }
-
-        // Create record at DB
-        $data = ['name' => $name];
-        Brand::create($data);
-
-        $operation = [
-            'email' => auth()->user()->email,
-            'operation_type' => 'Create',
-            'operation_category' => 'Brand',
-        ];
-
-        Operation::create($operation);
         
-        return redirect()->back();
+        return response()->json($status);
 
     }
 

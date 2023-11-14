@@ -1,4 +1,12 @@
 
+// Vue Components Import
+
+import CustomAlert from '../components/CustomAlert.vue';
+const alert = createApp(CustomAlert);
+const alertInstance = alert.mount('#alert');
+
+// Function
+
 // Document ready
 $(document).ready(function(event){
 
@@ -66,3 +74,47 @@ $('#searchInput').on('input', function() {
         }
     });
 });
+
+function down(){
+    let editForm = $('edit-category-form');
+    editForm.hide();
+}
+
+/**
+ * Build An Async Request
+ */
+
+let form = document.querySelector('form');
+form.addEventListener('submit', (event)=>{
+    event.preventDefault();
+
+    // Build XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+    xhr.open(
+        'POST',
+        form.action,
+        true
+    )
+
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            down()
+            alertInstance.updateMessage(response.status, response.icon);
+            alertInstance.autoAlert();
+        }
+    };
+
+    // get media picture
+    let categoryCover = document.querySelector('#category-cover');
+
+    // build data
+    let formData = new FormData(form);
+    formData.append("category-cover", categoryCover)
+
+    xhr.send(formData);
+
+})

@@ -48,7 +48,10 @@ class CreateProductEvent{
 
             // save image
             if (!$productCover) {
-                return false;
+                return response()->json([
+                    'status' => trans('product.please-upload-cover'),
+                    'icon' => 'error'
+                ]);
             }
             
             $originalName = $productCover->getClientOriginalName();
@@ -135,12 +138,27 @@ class CreateProductEvent{
 
             Operation::create($operation);
 
-            return redirect()->back();
+            $status = [
+                'status' => trans('product.create-product-success'),
+                'icon' => 'error',
+            ];
 
         }catch(\Exception $e){
-            $message = $e->getMessage();
+
+            $status = [
+                'status' => trans('product.create-product-error'),
+                'icon' => 'error',
+                'debugMessage' => $e->getMessage(),
+                'debugLine' => $e->getLine(),
+                'debugFile' => $e->getFile(),
+            ];
         }
         
+        $status = [
+            'status' => 'Success',
+            'icon' => 'success',
+        ];
+    
         return redirect()->back();
     }
 

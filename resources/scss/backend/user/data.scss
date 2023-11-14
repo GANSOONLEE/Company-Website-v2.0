@@ -11,7 +11,8 @@ textarea{
 }
 
 [read-only]{
-    pointer-events: none !important;
+    pointer-events: none;
+    cursor: not-allowed;
 }
 
 .read-only::before{

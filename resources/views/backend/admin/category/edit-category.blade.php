@@ -4,6 +4,7 @@
 
 @section('main')
 
+    <div id="alert"></div>
 
     <div class="header">
         <a href="{{ route('backend.admin.category.category-create') }}">

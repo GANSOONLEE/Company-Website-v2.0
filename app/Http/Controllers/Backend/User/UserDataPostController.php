@@ -11,17 +11,29 @@ class UserDataPostController extends Controller
 {
     public function userPostData(Request $request){
 
-        // Get data
-        $user = auth()->user();
+        try{
 
-        $user->update([
-            'whatsapp_phone' => $request->whatsapp_phone,
-            'contact_phone' => $request->contact_phone,
-            'address' => $request->address,
-        ]);
-
-
-        return redirect()->back();
-
+            // Get data
+            $user = auth()->user();
+    
+            $user->update([
+                'whatsapp_phone' => $request->whatsapp_phone,
+                'contact_phone' => $request->contact_phone,
+                'address' => $request->address,
+            ]);
+    
+            $status = [
+                'status' => 'Successful save!', 
+                'icon' => 'success',
+            ];
+            
+        }catch(\Exception $e){
+            $status = [
+                'status' => 'That have something happen!',
+                'icon' => 'warning',
+            ];
+        }
+        
+        return response()->json($status);
     }
 }

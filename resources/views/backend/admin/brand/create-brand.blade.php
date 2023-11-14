@@ -4,6 +4,8 @@
 
 @section('main')
 
+    <div id="alert"></div>
+
     <form action="{{ route('backend.admin.brand.create') }}" class="form" id="form" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-6 button-area">

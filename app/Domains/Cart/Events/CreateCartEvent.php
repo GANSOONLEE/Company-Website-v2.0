@@ -8,18 +8,30 @@ class CreateCartEvent{
 
     public function createCart(Request $request)
     {
-        $brand_code = $request->brand;
-        $quantity = $request->quantity;
+        try {
+            $brand_code = $request->brand;
+            $quantity = $request->quantity;
+    
+            $user = auth()->user();
+    
+            if(!$user){
+                return redirect()->route('auth.login');
+            }
+    
+            $user->createCartRecord($brand_code, $quantity);
 
-        $user = auth()->user();
-
-        if(!$user){
-            return redirect()->route('auth.login');
+            $status = [
+                'status' => trans('product.upload-successful'),
+                'icon' => 'success',
+            ];
+        }catch(\Exception $e){
+            $status = [
+                'status' => trans('product.upload-failure'),
+                'icon' => 'error',
+            ];
         }
 
-        $user->createCartRecord($brand_code, $quantity);
-
-        return redirect()->back();
+        return response()->json($status);
     }
 
 }
