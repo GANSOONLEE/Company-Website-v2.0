@@ -172,6 +172,7 @@ return [
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\NodeServiceProvider::class,
     ])->toArray(),
 
     /*

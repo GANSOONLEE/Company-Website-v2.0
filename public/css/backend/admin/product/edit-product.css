@@ -143,6 +143,9 @@ div.filter {
   padding: 0 2rem;
   height: 100%;
 }
+div.filter form {
+  width: 100%;
+}
 div.filter div {
   display: flex;
   flex-direction: column;
@@ -154,6 +157,12 @@ div.filter div label {
 }
 div.filter div p {
   margin-bottom: 0;
+}
+div.filter div.button {
+  justify-content: flex-end;
+}
+div.filter div.button button {
+  width: 100%;
 }
 
 /* ———————————————————————————————— Datalist Table ————————————————————————————————— */
@@ -197,4 +206,17 @@ div.datalist table td a button {
 }
 div.datalist table td a button i {
   font-size: var(--font-remark);
+}
+
+/* ———————————————————— Page Selector ———————————————————— */
+nav#page-selector {
+  margin-right: 1rem;
+}
+
+div.page-input button#gotoButton {
+  padding: 0 1rem;
+  transition: all 0.12s ease-in-out;
+}
+div.page-input button#gotoButton:hover {
+  background-color: #dadada;
 }

@@ -76,5 +76,5 @@ class RegisterEvent{
         return redirect()->route('backend.user.dashboard')->withCookie($cookie);
 
     }
-
+    
 }

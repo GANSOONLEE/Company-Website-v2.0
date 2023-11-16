@@ -35,4 +35,5 @@ return array (
   'delete-confirm-product' => 'Are you sure you want to delete it?<br>
                     (Attention! This operation <b>can\'t be restore!</b>)',
   'upload-successful' => 'Upload Successful !',
+  'search' => 'Search',
 );

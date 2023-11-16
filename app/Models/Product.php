@@ -56,5 +56,4 @@ class Product extends Model
         // Product
         $this->delete();
     }
-
 }

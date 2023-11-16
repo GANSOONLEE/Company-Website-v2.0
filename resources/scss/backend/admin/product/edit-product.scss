@@ -1,4 +1,6 @@
 
+@use 'sass:color';
+
 /* ———————————————————— Layouts ———————————————————— */
 
 div.app{
@@ -172,6 +174,10 @@ div.filter{
     align-items: center;
     padding: 0 2rem;
     height: 100%;
+
+    form{
+        width: 100%;
+    }
     
     div{
         display: flex;
@@ -183,6 +189,14 @@ div.filter{
         }
         p{
             margin-bottom: 0;
+        }
+    }
+
+    div.button{
+        justify-content: flex-end;
+
+        button{
+            width: 100%;
         }
     }
 
@@ -254,4 +268,20 @@ div.datalist{
 
     }
 
+}
+
+/* ———————————————————— Page Selector ———————————————————— */
+nav#page-selector{
+    margin-right: 1rem;
+}
+
+div.page-input{
+
+    button#gotoButton{
+        padding: 0 1rem;
+        transition: all .12s ease-in-out;
+        &:hover{
+            background-color: color.scale(#F2F2F2, $lightness: -10%);
+        }
+    }
 }

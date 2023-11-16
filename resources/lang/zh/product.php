@@ -35,4 +35,5 @@ return array (
   'delete-confirm-product' => '您确定要删除它吗？<br>
                     （注意！此操作<b>无法恢复！</b>）',
   'upload-successful' => '上传成功',
+  'search' => '搜索',
 );

@@ -6,238 +6,111 @@ use App\Models\Operation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class UpdateProductEvent{
 
     public $mode = "production"; // debug production
+    public $disk = "public";
+    public $product_code;
+    public $product;
+
+
+    public $sourceCategory;
+    public $sourceType;
+    public $sourceDirectory;
+
+
+    public $destinationCategory;
+    public $destinationType;
+    public $destinationDirectory;
+
     public function updateProduct(Request $request, $product_code){
 
         // if(auth()->user()->email == "vincentgan0402@gmail.com"){
         //     $this->mode = "debug"; 
         // }
-    
-        // Define variable
 
-            /*
-             | Image 照片 
-             | 
-            */
+        $this->product_code = $product_code;
 
-            // Image (File)
-            $product_cover = $request->file("product-cover");
+        // Get product instance
+        $product = Product::where('product_code', $product_code)->first();
+        $this->product = $product;
 
-            $product_image_collection = [];
-            for($i = 0; $i < 10; $i++){
-                if($request->file("product-image-" . $i)){
-                    $product_image_collection[$i] = $request->file("product-image-" . $i);
-                }
+        // Set source attributes
+        $this->sourceCategory = $product->product_category;
+        $this->sourceType = $product->product_type;
+        $this->sourceDirectory = "product/$this->sourceCategory/$this->product_code";
+
+        // Set destination attributes
+        $this->destinationCategory = $request->category;
+        $this->destinationType = $request->type;
+        $this->destinationDirectory = "product/$this->destinationCategory/$this->product_code";
+
+        // dd(
+        //     $this->mode,
+        //     $this->disk,
+        //     $this->product_code,
+        //     $this->product,
+        //     $this->sourceCategory,
+        //     $this->sourceType,
+        //     $this->sourceDirectory,
+        //     $this->destinationCategory,
+        //     $this->destinationType,
+        //     $this->destinationDirectory,
+        // );
+
+        // Get image entities
+
+        /**
+         * Update Image
+         */
+        
+        $product_cover = $request->file("product-cover");
+        isset($product_cover) ? $this->productCoverUpdate($product_cover) : '';
+
+
+        $productImageCollection = [];
+        for($i = 0; $i < 10; $i++){
+            if($request->file("product-image-" . $i)){
+                $productImageCollection[$i] = $request->file("product-image-" . $i);
             }
+        }
+        $productImageCollection > 0 ? $this->productImageUpdate($productImageCollection) : '';
 
-            $brand_image_collection = [];
-            for($i = 0; $i < 10; $i++){
-                if($request->file("brand-image-" . $i)){
-                    $brand_image_collection[$i] = $request->file("brand-image-" . $i);
-                }
+
+        $brandCoverCollection = [];
+        for($i = 0; $i < 10; $i++){
+            if($request->file("brand-image-" . $i)){
+                $brandCoverCollection[$i] = $request->file("brand-image-" . $i);
             }
+        }
+        $brandCoverCollection > 0 ? $this->brandCoverUpdate($brandCoverCollection) : '';
 
-            // Product Attributes
-
-            /*
-             | Product 商品
-             | 
-            */
-
-            $category = $request->category;
-            $type = $request->type;
-
-            // Product Name
-            $product_name_collection = $request->fullname;
-
-            // Product Brand
-            $product_brand_collection = $request->brand;
-            $product_brand_code_collection = $request->input('brand-code');
-            $product_frozen_code_collection = $request->input('frozen-code');
-
-        /*
-         | upload Image 上传照片
-         | 
-        */
-
-        $disk = 'public';
-        $directory = "product/$category/$product_code";
-
-            /*
-            | upload Product Cover 上传封面照
-            | 
-            */
-
-            if(isset($product_cover)){
-                $originalName = $product_cover->getClientOriginalName();
-                $newFileName = 'cover.' . $product_cover->getClientOriginalExtension();
-                $path = $product_cover->storeAs($directory, $newFileName, $disk);
-            }
-
-            /*
-            | upload Product Image 上传商品照
-            | 
-            */
-
-            if(count($product_image_collection) > 0){
-
-                foreach($product_image_collection as $productImage){
-
-                    // Delete
-
-                    $originalName = $productImage->getClientOriginalName();
-                    $modifierName = str_replace('/', '_', $originalName);
-                    $path = $directory . '/' . $modifierName;
-
-                    // Check existent
-                    if(Storage::disk($disk)->exists($path)){
-                        continue;
-                    }
-
-                    $this->mode === "production" ? $productImage->storeAs($directory, $modifierName, $disk) : '';
-                }
-
-            }
-
-            
-
-            
-            /*
-            | upload Brand Image 上传品牌照
-            | 
-            */
-
-            if(count($brand_image_collection) >= 0){
-
-                foreach($brand_image_collection as $key => $brandtImage){
-
-                    $brandCode = $product_brand_code_collection[$key];
-
-                    $originalName = $brandtImage->getClientOriginalName();
-                    $originalExtension = $brandtImage->getClientOriginalExtension();
-                    $modifierName = 'cover.' . $originalExtension;
-                    $path = $directory . '/' . $brandCode;
-
-                    $this->mode === "production" ? $brandtImage->storeAs($path, $modifierName, $disk) : '';
-                }
-
-            }
+        /**
+         * Change Image Path
+         */
+        $this->changeImagePath($this->sourceCategory, $this->destinationCategory);
 
         // Update Data
         
-            $product = Product::where('product_code', $product_code)->first();
 
-            // products [Table]
+            $this->productUpdate();
 
-                $productData = [
-                    'product_category' => $category,
-                    'product_type' => $type,
-                    'updated_at' => now(),
-                ];
+            $destinationNameArray = $request->fullname;
+            $this->productNameUpdate($destinationNameArray);
 
-                $this->mode === "production" ? $product->update($productData) : '';
+            $destinationBrandArray = $request->brand;
+            $destinationBrandCodeArray = $request->input('brand-code');
+            $destinationFrozenCodeArray = $request->input('frozen-code');
 
-            // products_name [Table]
-
-                $oldNameRecord = DB::table('products_name')
-                    ->where('product_code', $product_code)
-                    ->get();
-
-                $oldRecordCollection = [];
-                foreach($oldNameRecord as $record){
-                    $oldRecordCollection[] = $record->name;
-                }
-
-                $deleteRecord = [];
-                $deleteRecord = array_diff($oldRecordCollection, $product_name_collection);
-
-                // Check deleted record
-                foreach($deleteRecord as $record){   
-                    if($this->mode === "production"){
-                        DB::table('products_name')
-                            ->where('name', $record)
-                            ->delete();
-                    }
-                }
-
-                foreach($product_name_collection as $name){
-
-                    // Check existent
-                    $existentCheck = DB::table('products_name')
-                                            ->where('product_code', $product_code)
-                                            ->where('name', $name)
-                                            ->exists();
-
-                    if($existentCheck){
-                        continue;
-                    }
-
-                    if($name == null){
-                        continue;
-                    }
-
-                    $productNameData = [
-                        'name' => $name,
-                        'product_code' => $product_code,
-                    ];
-
-                    $this->mode === "production" ? DB::table('products_name')->insert($productNameData) : '';
-                }
-
-            // products_brand [Table]
-
-                $oldBrandCodeRecord = DB::table('products_brand')
-                    ->where('product_code', $product_code)
-                    ->get('code');
-
-                $oldRecordCollection = [];
-                foreach($oldBrandCodeRecord as $record){
-                    $oldRecordCollection[] = $record->code;
-                }
-
-                $deleteRecord = [];
-                $deleteRecord = array_diff($oldRecordCollection, $product_brand_code_collection);
-                $newRecord = array_diff($product_brand_code_collection, $oldRecordCollection);
-
-                // Check deleted record
-                foreach($deleteRecord as $index => $record){   
-                    if($this->mode === "production"){
-                        DB::table('products_brand')
-                            ->where('product_code', $product_code)
-                            ->where('code', $record)
-                            ->delete();
-                    }
-                    if($this->mode === "production"){
-                        $oldFile = Storage::disk($disk)->move("$directory/$record/cover.png", "$directory/$newRecord[$index]/cover.png");
-                    }
-                }
-
-                foreach($product_brand_collection as $index => $brand){
-
-                    // Check existent
-                    $existentCheck = DB::table('products_brand')
-                    ->where('product_code', $product_code)
-                        ->where('code', $product_brand_code_collection[$index])
-                        ->exists();
-
-                    if($existentCheck){
-                        continue;
-                    }
-
-                    $productBrandData = [
-                        'sku_id' => $this->generatorSkuId(),
-                        'brand' => $brand,
-                        'code' => $product_brand_code_collection[$index],
-                        'frozen_code' => $product_frozen_code_collection[$index],
-                        'product_code' => $product_code,
-                    ];
-
-                    $this->mode === "production" ? DB::table('products_brand')->insert($productBrandData) : '';
-                }
+            $this->productBrandUpdate(
+                $destinationBrandArray,
+                $destinationBrandCodeArray,
+                $destinationFrozenCodeArray,
+            );
+                
 
         /*
          | Operation record 记录操作
@@ -250,10 +123,90 @@ class UpdateProductEvent{
             'operation_category' => 'Product',
         ];
 
-        $this->mode === "production" ? Operation::create($operationData) : '';
+        $this->mode === "production" ? Operation::create($operationData) : dd('debug');
 
         return redirect()->route('backend.admin.product.edit-product-more', ['productCode' => $product_code]);
     }
+
+
+    /**
+     * @method Update product cover
+     * @param object $product_cover
+     * @return void
+     */
+
+    public function productCoverUpdate(object $product_cover): void{
+
+        // product cover exists
+        if(!$product_cover){
+            return;
+        }
+
+        $newFileName = 'cover.' . $product_cover->getClientOriginalExtension();
+        $this->mode === "production" ? $product_cover->storeAs($this->sourceDirectory, $newFileName, $this->disk) : var_dump($product_cover);
+
+    }
+
+
+    /**
+     * @method Update product image
+     * @param array $productImageCollect
+     * @return void
+     */
+
+    public function productImageUpdate(array $productImageCollection): void{
+
+        // product cover exists
+        if(!$productImageCollection > 0){
+            return;
+        }
+
+        foreach($productImageCollection as $productImage){
+
+            $originalFileName = $productImage->getClientOriginalName();
+            $newFileName = str_replace('/', '_', $originalFileName);
+            $path = $this->sourceDirectory . '/' . $originalFileName;
+
+            // Check exists
+            if(Storage::disk($this->disk)->exists($path)){
+                continue;
+            }
+
+            $this->mode === "production" ? $productImage->storeAs($this->sourceDirectory, $newFileName, $this->disk) : var_dump($productImageCollection);
+        }
+
+
+    }
+
+    /**
+     * @method Update brand cover
+     * @param array $brandCoverCollect
+     * @return void
+     */
+
+    public function brandCoverUpdate(array $brandCoverCollection): void{
+
+        // product cover exists
+        if(!$brandCoverCollection > 0){
+            return;
+        }
+
+        foreach($brandCoverCollection as $brandCover){
+
+            $originalFileName = $brandCover->getClientOriginalName();
+            $newFileName = str_replace('/', '_', $originalFileName);
+            $path = $this->sourceDirectory . '/' . $originalFileName;
+
+            // Check exists
+            if(Storage::disk($this->disk)->exists($path)){
+                continue;
+            }
+
+            $this->mode === "production" ? $brandCover->storeAs($this->sourceDirectory, $newFileName, $this->disk) : var_dump($brandCoverCollection);
+        }
+
+    }
+
     
     public function generatorSkuId(): string{
         $skuID = Str::random(8);
@@ -265,5 +218,146 @@ class UpdateProductEvent{
         }
         return $skuID;
     }
+
+
+    public function productUpdate(){
+
+        $productData = [
+            'product_category' => $this->destinationCategory,
+            'product_type' => $this->destinationType,
+            'updated_at' => now(),
+        ];
+
+        $this->mode === "production" ? $this->product->update($productData) : var_dump($productData);
+
+    }
+
+
+    public function productNameUpdate(array $destinationNameArray): void{
+
+        // Get records collection
+        $sourceNameRecords = DB::table('products_name')
+                    ->where('product_code', $this->product_code)
+                    ->get();
+        
+        // Decode with Array
+        $sourceNameArray = [];
+        foreach($sourceNameRecords as $record){
+            $sourceNameArray[] = $record->name;
+        }
+
+        // Get deleted records array
+        $deletedRecords = array_diff($sourceNameArray, $destinationNameArray);
+
+        if(count($deletedRecords) > 0){
+            foreach($deletedRecords as $recordName){   
+                $this->mode === "production" ? DB::table('products_name')->where('name', $recordName)->delete() : var_dump($recordName);
+            }
+        }
+
+        if(count($destinationNameArray) > 0){
+
+            foreach($destinationNameArray as $recordName){
+
+                // check exists
+                $isRecordExists = DB::table('products_name')
+                                    ->where('product_code', $this->product_code)
+                                    ->where('name', $recordName)
+                                    ->exists();
+
+                if($isRecordExists || $recordName == null){
+                    continue;
+                }
+
+                $productNameData = [
+                    'name'=> $recordName,
+                    'product_code' => $this->product_code,
+                ];
+
+                $this->mode === "production" ? DB::table('products_name')->insert($productNameData) : var_dump($productNameData);
+
+            }
+
+        }
+
+    }
+
+
+    public function productBrandUpdate(array $destinationBrandArray, array $destinationBrandCodeArray, array $destinationFrozenCodeArray): void{
+
+        $sourceBrandCodeRecord = DB::table('products_brand')
+                    ->where('product_code', $this->product_code)
+                    ->get('code');
+
+        $sourceBrandCodeArray = [];
+        foreach($sourceBrandCodeRecord as $record){
+            $sourceBrandCodeArray[] = $record->code;
+        }
+
+        $deletedRecords = array_diff($sourceBrandCodeArray, $destinationBrandCodeArray);
+
+        if(count($deletedRecords) > 0){
+            foreach($deletedRecords as $recordCode){
+                if($this->mode === "production"){
+                    DB::table('products_brand')
+                        ->where('product_code', $this->product_code)
+                        ->where('code', $recordCode)
+                        ->delete();
+                }else{
+                    var_dump($recordCode);
+                }
+            }
+        }
+
+        foreach($destinationBrandArray as $index => $recordBrand){
+
+            // check exists
+            $isRecordExists = DB::table('products_brand')
+                ->where('product_code', $this->product_code)
+                ->where('code', $destinationBrandCodeArray[$index])
+                ->exists();
+            
+            if($isRecordExists){
+                continue;
+            }
+
+            $productBrandData = [
+                'sku_id' => $this->generatorSkuId(),
+                'brand' => $recordBrand,
+                'code' => $destinationBrandCodeArray[$index],
+                'frozen_code' => $destinationFrozenCodeArray[$index],
+                'product_code' => $this->product_code,
+            ];
+
+            $this->mode === "production" ? DB::table("products_brand")->insert($productBrandData) : var_dump($productBrandData);
+
+        }
+
+    }
+
+
+    /**
+     * @method change the image path
+     * @param string $category
+     * @return void
+     */
+
+    public function changeImagePath(string $sourceCategory, string $destinationCategory): void{
+
+        $sourceDirectory = "product/$sourceCategory/$this->product_code";
+        $destinationDirectory = "product/$destinationCategory/$this->product_code";
+
+        // check folder exists
+        if(!Storage::disk($this->disk)->exists($sourceDirectory)){
+            return;
+        }
+
+        $sourcePath = Storage::disk($this->disk)->path($sourceDirectory);
+        $destinationPath = Storage::disk($this->disk)->path($destinationDirectory);
+
+        if($this->mode === "production" ? File::moveDirectory($sourcePath, $destinationPath) : var_dump($sourcePath, $destinationPath));
+        
+    }
+
 
 }

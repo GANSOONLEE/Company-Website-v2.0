@@ -64,8 +64,8 @@ class DraggableImage{
 
         this.createCloseButton();
         this.initInstance();
-    }
-
+    } 
+    
     /**
      *  Init the instance method
      */
