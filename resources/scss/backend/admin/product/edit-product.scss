@@ -273,7 +273,16 @@ div.datalist{
 /* ———————————————————— Page Selector ———————————————————— */
 nav#page-selector{
     margin-right: 1rem;
+
+    ul.pagination{
+
+        li.page-item a.page-link.selected{
+            color: #2e2e2e;
+        }
+
+    }
 }
+
 
 div.page-input{
 

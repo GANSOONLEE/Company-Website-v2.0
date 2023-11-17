@@ -168,6 +168,7 @@
             <div class="mb-3 col-3">
                 {{-- <label class="form-label" for="brand-{{ $i }}">{{ __('product.brand') }}</label> --}}
                 <select class="form-control" name="brand-input-brand[]" id="brand-{{ $i }}">
+                    <option value="Default" disabled selected hidden></option>
                     @foreach($brandData as $brand)
                         <option value="{{$brand->name}}">{{$brand->name}}</option>
                     @endforeach
@@ -182,8 +183,11 @@
     
             <!-- Frozen Code -->
             <div class="mb-3 col-3">
-                {{-- <label class="form-label" for="frozen-code-{{ $i }}">{{ __('product.frozen-code') }}</label> --}}
-                <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-{{ $i }}">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">FZ-</span>
+                    {{-- <label class="form-label" for="frozen-code-{{ $i }}">{{ __('product.frozen-code') }}</label> --}}
+                    <input class="form-control" type="text" name="brand-input-frozen-code[]" id="frozen-code-{{ $i }}">
+                </div>
             </div>
 
             <!-- Delete Button -->

@@ -161,5 +161,10 @@ gotoButton.addEventListener('click', ()=>{
 
     let url = new URL(currentUrl);
     url.searchParams.set('pageIndex', currentPage);
+
+    url.searchParams.set('text', url.searchParams.get('text') || '');
+    url.searchParams.set('category', url.searchParams.get('category') || '');
+    url.searchParams.set('type', url.searchParams.get('type') || '');
+
     window.location.href = url.toString();
 })

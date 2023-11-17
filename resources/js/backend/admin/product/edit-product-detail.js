@@ -23,8 +23,10 @@ let deleteButtons = document.querySelectorAll('.delete-button');
 deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', (event)=>{
         event.preventDefault();
-        let closestInput = event.target.parentElement.parentElement.querySelector('input[type="file"]');
-        dataSlot = closestInput.getAttribute('data-slot');
+        event.stopPropagation();
+        
+        let closestInput = $(event.target).closest('.product-image-box.box-list').find('input[type="file"]');
+        dataSlot = closestInput.data('slot');
     })
 });
 
@@ -104,6 +106,9 @@ brandInputs.forEach((input) => {
  */
 
 function deleteImageAPI(imageSrc ,product_code){
+
+    console.info(imageSrc);
+    console.info(product_code);
 
     $.ajax({
         url: '/admin/product/image-delete-api',

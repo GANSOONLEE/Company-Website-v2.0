@@ -17,6 +17,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
     Route::post('image-delete-api', [DeleteProductImageEvent::class, 'deleteImage']);
 
     Route::post('search',  [SearchProductEvent::class, 'searchProduct'])->name('search');
+    Route::get('search',  [SearchProductEvent::class, 'searchProduct'])->name('search');
 
     Route::get('/delete/{product_code}', [DeleteProductEvent::class, 'deleteProduct'])->name('delete');
 });

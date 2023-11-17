@@ -1,13 +1,13 @@
 
 <div class="filter">
 
-    <form action="{{ route('backend.admin.product.search') }}" method="post" class="row">
-        @csrf
+    <form action="{{ route('backend.admin.product.search') }}" method="get" class="row">
 
         <!-- Name -->
         <div class="col">
             <label class="form-label" for="">{{ __('product.name') }}</label>
-            <input data-select-filter="name" class="form-control" type="text " name="text" id="" placeholder="{{ __('product.name') }}">
+            <input data-select-filter="name" class="form-control" type="text " name="text" id="" placeholder="{{ __('product.name') }}"
+            value="{{ isset($text) ? $text : "" }}">
         </div>
 
         <!-- Category -->
@@ -16,7 +16,7 @@
             <select data-select-filter="category" class="form-control" name="category" id="" placeholder="{{ __('product.category') }}">
                 <option value="">All</option>
                 @foreach ($categoryData as $data)
-                <option value="{{ $data->name }}">{{ $data->name }}</option>
+                <option value="{{ $data->name }}" {{ isset($category) ? $data->name == $category ? "selected" : "" : "" }}>{{ $data->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -27,7 +27,7 @@
             <select data-select-filter="type" class="form-control" name="type" id="" placeholder="{{ __('product.type') }}">
                 <option value="">All</option>
                 @foreach ($typeData as $data)
-                <option value="{{ $data->name }}">{{ $data->name }}</option>
+                <option value="{{ $data->name }}" {{ isset($type) ? $data->name == $type ? "selected" : "" : "" }}>{{ $data->name }}</option>
                 @endforeach
             </select>
         </div>
