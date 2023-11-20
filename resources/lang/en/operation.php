@@ -17,4 +17,5 @@ return array (
     'Create' => 'create',
     'Update' => 'update',
   ),
+  'status' => 'Status',
 );

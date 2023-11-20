@@ -13,8 +13,8 @@ async function getRequest(){
     const parameter  = {
         analysis: {
             total_record: true,
-            count_with_category: false,
-            count_with_type: true,
+            count_with_category: true,
+            count_with_type: false,
         }
     };
     
@@ -60,7 +60,7 @@ window.onload = async () =>{
     const labels = [];
     const datasetData = [];
 
-    let datasetDataOption = 'type';
+    let datasetDataOption = 'category';
 
     switch (datasetDataOption) {
 

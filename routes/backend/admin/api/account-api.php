@@ -6,6 +6,7 @@ use App\Domains\Account\Events\UserUpdateEvent;
 use App\Domains\Account\Events\RoleCreateEvent;
 use App\Domains\Account\Events\RoleUpdateEvent;
 use App\Domains\Account\Events\PermissionUpdateEvent;
+use App\Domains\Account\Events\BannedUnbannedEvent;
 
 Route::group(['prefix' => 'account', 'as' => 'account.'], function(){
 
@@ -16,5 +17,6 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function(){
     Route::post('update-role', [RoleUpdateEvent::class, 'updateRole'])->name('update-role');
     
     Route::post('update-permission', [PermissionUpdateEvent::class, 'updatePermission'])->name('update-permission');
+    Route::post('banned-unbanned-account', [BannedUnbannedEvent::class, 'bannedUnbanned']);
 
 });

@@ -3,6 +3,7 @@
 namespace App\Domains\Product\Events;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchProductEvent{
 
@@ -61,12 +62,29 @@ class SearchProductEvent{
             $searchTypeResult->pluck('product_code')->toArray()
         );
 
-        $productData = Product::whereIn('products.product_code', $commonEntities)
-            ->select("products.*", "products_name.name", "products_name.product_code")
-            ->join('products_name','products.product_code','=','products_name.product_code')
-            ->orderBy('products_name.name')
+        
+        $productData = DB::table('products_name')
+            ->select(
+                "products.*",
+                DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),
+                "products_brand.brand",
+                "products_brand.code",
+                "products_brand.frozen_code",
+            )
+            ->join('products', 'products.product_code', '=', 'products_name.product_code')
+            ->join('products_brand', 'products_brand.product_code', '=', 'products_name.product_code')
+            ->whereIn('products.product_code', $commonEntities)
+            ->groupBy(
+                'products_name.product_code',
+                // 'products_name.name',
+                'products.id',
+                "products_brand.brand",
+                "products_brand.code",
+                "products_brand.frozen_code"
+            )
+            ->orderBy('first_name', 'asc')
             ->get();
-
+            
         $categoryData = \App\Models\Category::all();
         $typeData = \App\Models\Type::all();
 

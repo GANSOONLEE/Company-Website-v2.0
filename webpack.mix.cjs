@@ -22,7 +22,8 @@ jsFiles.forEach(file => {
     const fileNameWithoutExtension = path.basename(relativePath, ".js");
     mix.js(file, `public/js/${path.dirname(relativePath)}/${fileNameWithoutExtension}.js`)
         .vue()
-        .sourceMaps();
+        .sourceMaps()
+        
 });
 
 // mix.setPublicPath('public')

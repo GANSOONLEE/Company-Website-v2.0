@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/register.js": "/js/auth/register.js",
+    "/js/backend/admin/account/banned-account.js": "/js/backend/admin/account/banned-account.js",
     "/js/backend/admin/account/operation-record.js": "/js/backend/admin/account/operation-record.js",
     "/js/backend/admin/account/permission-management.js": "/js/backend/admin/account/permission-management.js",
     "/js/backend/admin/account/role-management.js": "/js/backend/admin/account/role-management.js",

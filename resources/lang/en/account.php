@@ -173,4 +173,5 @@ return array (
   'avaiable-account' => 'Available accounts',
   'banned-account' => 'Banned Account',
   'unavaiable-account' => 'Unavailable account',
+  'unbanned' => 'unbanned',
 );

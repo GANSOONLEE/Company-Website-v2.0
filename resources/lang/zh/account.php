@@ -173,4 +173,5 @@ return array (
   'avaiable-account' => '可用的账号',
   'banned-account' => '封禁账号',
   'unavaiable-account' => '不可用的账号',
+  'unbanned' => '解禁',
 );

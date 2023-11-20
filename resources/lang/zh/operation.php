@@ -17,4 +17,5 @@ return array (
     'Create' => '创建',
     'Update' => '更新',
   ),
+  'status' => '状态',
 );

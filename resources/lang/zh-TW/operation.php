@@ -17,4 +17,5 @@ return array (
     'Create' => '創建',
     'Update' => '更新',
   ),
+  'status' => '狀態',
 );
