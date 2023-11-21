@@ -29,8 +29,6 @@
         </thead>
         <tbody>
             @foreach ($productData->slice($startIndex, $recordsPerPage) as $index => $data)
-            {{-- @foreach ($productData as $data) --}}
-
                 <tr data-product-code="{{ $data->product_code }}">
                     
                     <td>
@@ -40,11 +38,16 @@
                     @if(auth()->user()->email == "yipjwen0229@gmail.com")
                         <td data-search-column="brand">{{ $data->brand }}</td>
                     @endif
+                    <td data-search-column="code" hidden>{{ $data->code }}</td>
                     <td data-search-column="category">{{ $data->product_category }}</td>
-                    <td data-search-column="type">{{ $data->product_type }}</td>
-                    {{-- <td data-search-column="status">{{ $data->product_status }}</td> --}}
+                    @if(auth()->user()->email == "yipjwen0229@gmail.com")
+                        @php
+                            $data->updated_at = Carbon\Carbon::parse($data->updated_at)->addHours(8);
+                        @endphp
+                        <td data-search-column="type" class="{{ $data->updated_at > "2023-11-21 15:00:00"  ? 'new' : 'old'}}">{{ $data->updated_at }}</td>
+                    @endif
                     <td data-search-column="edit">
-                        <a href="{{ route('backend.admin.product.edit-product-more', ['productCode' => $data->product_code]) }}">
+                        <a target="_blank" href="{{ route('backend.admin.product.edit-product-more', ['productCode' => $data->product_code]) }}">
                             <button class="btn btn-primary">
                                 <i class="fa-solid fa-pen"></i>
                                 {{ __('product.edit') }}

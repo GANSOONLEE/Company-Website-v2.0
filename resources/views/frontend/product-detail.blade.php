@@ -5,10 +5,19 @@
 
 @section('app')
 
+    <div id="alert"></div>
+
     <div class="content">
 
         <div class="breadcrumbs">
-            {{ Breadcrumbs::render('productDetail', $productData, $productData) }}
+            @php
+                try {
+                    $model = explode(' ',($productData->getProductName()[0]->name))[0];
+                } catch (\Throwable $th) {
+                    $model = "NULL";
+                }
+            @endphp
+            {{ Breadcrumbs::render('productDetail', $productData, $model, $productData) }}
         </div>
 
         <!-- Product Detail -->
@@ -82,13 +91,17 @@
                         </ul>
                     </div>
 
-                    @php
-                        if(auth()->check()){
+                    @auth
+                        @php
                             $permission = auth()->user()->getRoleEntity()->hasPermission('user_backend') ? '' : 'disabled';
-                        }else{
+                        @endphp
+                    @endauth
+
+                    @guest
+                        @php
                             $permission = 'disabled';
-                        }
-                    @endphp
+                        @endphp
+                    @endguest
 
                     <!-- Action Area -->
                     <div class="action-area">
@@ -100,12 +113,19 @@
                             <!-- Booking -->
                             <div class="brand-selector">
 
+                                @php    
+                                    $auth = "false";
+                                    if(auth()->check()){
+                                        $auth = "true";
+                                    }
+                                @endphp
+
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [])
-                                <label for="{{ $brand->code }}" class="brand-label" data-image="{{ str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
+                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
                                 @else
-                                <label for="{{ $brand->code }}" class="brand-label" data-image="">  
+                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
                                     <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
                                     <div class="brand-box">

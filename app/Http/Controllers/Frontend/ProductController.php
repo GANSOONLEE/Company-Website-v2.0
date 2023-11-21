@@ -12,13 +12,17 @@ class ProductController extends Controller{
 
     public function product($category){
 
-        $productData = Product::where('product_category', $category)
-            ->where('product_status', 'Public')
-            ->orderBy(function ($query) {
-                $query->select(DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ',', 1)"))
-                    ->from('products_name')
-                    ->whereColumn('products_name.product_code', 'products.product_code');
-            })
+        $productData = Product::select(
+                DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),    
+                'products.*',
+                'products_name.product_code',
+                'products_name.name',
+            )
+            ->join('products_name', 'products.product_code', '=', 'products_name.product_code')
+            ->where('products.product_category', $category)
+            ->where('products.product_status', 'Public')
+            ->groupBy('products_name.product_code', 'products_name.name')
+            ->orderBy('first_name', 'asc')
             ->get();
 
         $directory = "storage/product/$category";

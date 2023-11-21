@@ -223,3 +223,31 @@ div.page-input button#gotoButton {
 div.page-input button#gotoButton:hover {
   background-color: #dadada;
 }
+
+.new {
+  color: #8f0e0e;
+  font-weight: bold;
+  text-align: center;
+  animation: glow 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  15% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4d4d, 0 0 40px #ff4d4d, 0 0 50px #ff4d4d, 0 0 60px #ff4d4d, 0 0 70px #ff4d4d, 0 0 80px #ff4d4d;
+  }
+  40% {
+    text-shadow: 0 0 30px #fff, 0 0 30px #ff944d, 0 0 40px #ff944d, 0 0 50px #ff944d, 0 0 60px #ff944d, 0 0 70px #ff944d, 0 0 80px #ff944d;
+  }
+  65% {
+    text-shadow: 0 0 30px #fff, 0 0 30px #d8ff4d, 0 0 40px #d8ff4d, 0 0 50px #d8ff4d, 0 0 60px #d8ff4d, 0 0 70px #d8ff4d, 0 0 80px #d8ff4d;
+  }
+  80% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #4d5fff, 0 0 40px #4d5fff, 0 0 50px #4d5fff, 0 0 60px #4d5fff, 0 0 70px #4d5fff, 0 0 80px #ff4da6;
+  }
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #be4dff, 0 0 30px #be4dff, 0 0 40px #be4dff, 0 0 50px #be4dff, 0 0 60px #be4dff, 0 0 70px #be4dff;
+  }
+}

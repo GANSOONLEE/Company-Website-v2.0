@@ -10,6 +10,13 @@
             value="{{ isset($text) ? $text : "" }}">
         </div>
 
+        <!-- Code -->
+        <div class="col">
+            <label class="form-label" for="">{{ __('product.brand-code') }}</label>
+            <input data-select-filter="code" class="form-control" type="text " name="code" id="" placeholder="{{ __('product.brand-code') }}"
+            value="{{ isset($code) ? $code : "" }}">
+        </div>
+
         <!-- Category -->
         <div class="col">
             <label class="form-label" for="">{{ __('product.category') }}</label>
@@ -21,26 +28,7 @@
             </select>
         </div>
 
-        <!-- Type -->
-        <div class="col">
-            <label class="form-label" for="">{{ __('product.type') }}</label>
-            <select data-select-filter="type" class="form-control" name="type" id="" placeholder="{{ __('product.type') }}">
-                <option value="">All</option>
-                @foreach ($typeData as $data)
-                <option value="{{ $data->name }}" {{ isset($type) ? $data->name == $type ? "selected" : "" : "" }}>{{ $data->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <!-- Status -->
         <div class="col button">
-            {{-- <label class="form-label" for="">{{ __('product.status') }}</label> --}}
-            {{-- <select data-select-filter="status" class="form-control" name="" id="" placeholder="{{ __('product.status') }}">
-                <option value="">All</option>
-                @foreach ($statusData as $data)
-                <option value="{{ $data }}">{{ $data }}</option>
-                @endforeach
-            </select> --}}
             <button class="btn btn-primary" type="submit">
                 {{ __('product.search') }}
             </button>

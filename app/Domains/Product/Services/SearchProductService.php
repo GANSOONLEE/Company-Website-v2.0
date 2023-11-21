@@ -51,6 +51,7 @@ class SearchProductService{
                 ->where('name', 'like', '%' . $model . '%')
                 ->where('products.product_category', $category)
                 ->groupBy('products.product_code')
+                ->orderBy('name', 'asc')
                 ->get();
             
             $products = [];
@@ -84,8 +85,10 @@ class SearchProductService{
         // Define variable
         $directory = "storage/product/$category";
 
-        $typeData = Type::all();
-        $modelData = CarModel::all();
+        $typeData = Type::orderBy('name', 'asc')
+                        ->get();
+        $modelData = CarModel::orderBy('name', 'asc')
+                        ->get();
 
         return view('frontend.product', compact('productData', 'directory', 'typeData', 'modelData', 'category'));
 

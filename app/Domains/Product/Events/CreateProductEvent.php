@@ -95,6 +95,10 @@ class CreateProductEvent{
                     continue;
                 }
 
+                if(!isset($modelSerial[$i])){
+                    $modelSerial[$i] = "";
+                }
+
                 $productNameData = [
                     'name' => $model[$i] . ' ' .$modelSerial[$i],
                     'product_code' => $code,

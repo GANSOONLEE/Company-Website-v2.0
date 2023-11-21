@@ -1,4 +1,28 @@
 
+// Vue Component Import
+
+import CustomAlert from '../backend/admin/components/CustomAlert.vue';
+
+window.onload = () =>{
+    const alert = createApp(CustomAlert);
+    const alertInstance = alert.mount('#alert');
+
+    // Alert
+    let form = document.querySelector('form');
+    let labels = form.querySelectorAll('label');
+    labels.forEach(label => {
+        label.addEventListener('click', ()=>{
+            let isAuth = label.getAttribute('data-auth');
+            if(isAuth == "false"){
+                console.log("in")
+                alertInstance.updateMessage('Please login to continue!', 'warning');
+                alertInstance.autoAlert();
+                console.log("out")
+            }
+        })
+    })
+}
+
 /** Init document */
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -270,7 +294,6 @@ brands.forEach(brand => {
         var req = new XMLHttpRequest();
         req.open('GET', relation, false);
         req.send();
-        console.log(req.status)
         if(req.status === 200){
             imagePreviewContainer[0].querySelector('img').src = relation;
         }else{

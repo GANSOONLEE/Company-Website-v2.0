@@ -1,4 +1,15 @@
 
+div.breadcrumbs{
+    padding: 1rem 2rem 0;
+    color: darkorange;
+    &:hover{
+        color: orange;
+    }
+    ol{
+        margin: 0;
+    }
+}
+
 /* —————————————————————— Layouts —————————————————————— */
 div.content{
     display: flex;

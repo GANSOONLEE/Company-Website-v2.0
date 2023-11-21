@@ -55,7 +55,7 @@
             <!-- Model Serial -->
             <div class="mb-3 col">
                 <label class="form-label" for="name-input-0">{{ __('product.model-serial') }}</label>
-                <input type="text" class="form-control" name="name-input-model-serial[]" id="name-input-0" required>
+                <input type="text" class="form-control" name="name-input-model-serial[]" id="name-input-0">
             </div>
 
             <!-- Button -->
@@ -223,18 +223,18 @@
     </section>
 
     <!-- Type -->
-    <section class="type col-6">
+    <!-- <section class="type col-6">
         {{-- <p class="section-title">{{ __('product.type-upload') }}</p> --}}
         <p class="form-label section-title" for="product-type">{{ __('product.type') }}</p>
         <div class="mb-3">
-            <select class="form-control" name="product-type" id="" required>
+            <select class="form-control" name="product-type" id="">
                 <option value="Default" disabled selected hidden>{!! __('product.plaese-select-type') !!}</option>
                 @foreach($typeData as $type)
                     <option value="{{$type->name}}">{{$type->name}}</option>
                 @endforeach
             </select>
         </div>
-    </section>
+    </section> -->
 
 </section>
 

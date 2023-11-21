@@ -164,7 +164,7 @@ gotoButton.addEventListener('click', ()=>{
 
     url.searchParams.set('text', url.searchParams.get('text') || '');
     url.searchParams.set('category', url.searchParams.get('category') || '');
-    url.searchParams.set('type', url.searchParams.get('type') || '');
+    url.searchParams.set('code', url.searchParams.get('code') || '');
 
     window.location.href = url.toString();
 })

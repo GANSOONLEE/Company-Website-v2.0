@@ -31,7 +31,7 @@ class CreateCartEvent{
             ];
         }
 
-        return response()->json($status);
+        return redirect()->back();
     }
 
 }

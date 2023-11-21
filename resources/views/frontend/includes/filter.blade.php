@@ -15,7 +15,7 @@
             </label>
             <input class="form-search" type="search" placeholder="Search" name="search" id="search-bar">
         </div> --}}
-
+{{-- 
         <div class="container type-container">
             @foreach ($typeData as $type)
             <label class="label" for="{{ $type->name }}">
@@ -25,7 +25,7 @@
                 </div>
             </label>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="container model-container">
             @foreach ($modelData as $model)
@@ -56,12 +56,12 @@
         </div> --}}
 
         <div class="container type-container">
-            <select name="type" id="">
+            {{-- <select name="type" id="">
                 <option name="type" value="" id="" hidden readonly></option>
                 @foreach ($typeData as $type)
                     <option name="type" value="{{ $type->name }}" id="{{ $type->name }}">{{ $type->name }}</option>
                 @endforeach
-            </select>
+            </select> --}}
             {{-- @foreach ($typeData as $type)
             <label class="label" for="{{ $type->name }}">
                 <input  type="radio" name="type" value="{{ $type->name }}" id="{{ $type->name }}">

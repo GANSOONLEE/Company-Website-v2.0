@@ -24,9 +24,9 @@ deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', (event)=>{
         event.preventDefault();
         event.stopPropagation();
-        
-        let closestInput = $(event.target).closest('.product-image-box.box-list').find('input[type="file"]');
-        dataSlot = closestInput.data('slot');
+
+        let closestInput = event.target.parentElement.parentElement.parentElement.querySelector('input[type="file"]');
+        dataSlot = closestInput.getAttribute('data-slot');
     })
 });
 

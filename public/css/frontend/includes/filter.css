@@ -1,6 +1,6 @@
 section.filter {
   width: 17%;
-  height: 89vh;
+  height: 80vh;
   position: sticky;
   border: 1.4px solid #b3b3b3;
   border-radius: 8px;
@@ -101,7 +101,7 @@ section.filter div.button button {
 }
 
 form {
-  height: 45vh;
+  height: 60vh;
 }
 
 form.top-side {

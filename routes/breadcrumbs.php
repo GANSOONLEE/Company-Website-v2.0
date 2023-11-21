@@ -22,15 +22,27 @@ Breadcrumbs::for('category', function (BreadcrumbTrail $trail) {
 // Home > [Category]
 Breadcrumbs::for('product', function (BreadcrumbTrail $trail, $product) {
     $trail->parent('category');
-    $trail->push($product->product_category, route('frontend.product', $product->product_category));
+
+    $trail->push($product, route('frontend.product', $product));
 });
 
-// Home > [Category] > [ProductDetail]
-Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $productData) {
+// Home > [Category] > [?Model]
+Breadcrumbs::for('model', function (BreadcrumbTrail $trail, $product, $model = null) {
     $trail->parent('product', $product);
-    if(count($productData->getProductName()) <= 0){
-        $trail->push('', route('frontend.product-detail', ''));
+    if(!isset($model)){
+        $trail->push('Unknown');
     }else{
+        $trail->push($model, route('frontend.product.search.post', ['productCategory' => $product, 'model' => $model]));
+    };
+});
+
+// Home > [Category] > [?Model] > [ProductDetail]
+Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $model, $productData) {
+    if(count($productData->getProductName()) <= 0){
+        $trail->parent('model', $product->product_category);
+        $trail->push('Unknown', route('frontend.product-detail', ''));
+    }else{
+        $trail->parent('model', $product->product_category, $model);
         $trail->push($productData->getProductName()[0]->name, route('frontend.product-detail', $productData->getProductName()[0]->name));
     };
 });

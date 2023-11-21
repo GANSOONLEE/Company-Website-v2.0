@@ -1,4 +1,15 @@
 @charset "UTF-8";
+div.breadcrumbs {
+  padding: 1rem 2rem 0;
+  color: darkorange;
+}
+div.breadcrumbs:hover {
+  color: orange;
+}
+div.breadcrumbs ol {
+  margin: 0;
+}
+
 /* —————————————————————— Layouts —————————————————————— */
 div.content {
   display: flex;

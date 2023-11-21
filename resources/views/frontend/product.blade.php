@@ -5,6 +5,22 @@
 
 @section('app')
 
+    @php
+    if (isset($_GET['model'])) {
+        $model = $_GET['model'];
+    }else{
+        $model = null;
+    }
+    @endphp
+
+    <div class="breadcrumbs">
+        @if (isset($model))
+        {{ Breadcrumbs::render('model', $category, $model) }}
+        @else
+        {{ Breadcrumbs::render('model', $category) }}
+        @endif
+    </div>
+
     <div class="content">
 
         <!-- Filter -->
@@ -12,14 +28,14 @@
 
         <section class="container">
 
-            <p class="container-title">Product</p>
+            <p class="container-title">{{ $category . ' ' . $model}} </p>
 
             <!-- Product Card -->
             <section class="product-list">
 
                 <!-- Unit -->
                 @foreach ($productData as $product)
-                <a class="product-detail-href" href="{{ route('frontend.product-detail', ['productCode' => $product->product_code]) }}">
+                <a target="_blank" class="product-detail-href" href="{{ route('frontend.product-detail', ['productCode' => $product->product_code]) }}">
                     <div class="custom-card">
                         <div class="custom-card-image">
                             <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
@@ -32,11 +48,11 @@
                                 <p>{{ $name->name }}</p>
                             @endforeach
                         </div>
-                        <div class="custom-card-information">
+                        {{-- <div class="custom-card-information">
                             @foreach (($product->getProductBrand()) as $brand)
                                 <p>{{ $brand->brand }}</p>
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
                 </a>
                 @endforeach
