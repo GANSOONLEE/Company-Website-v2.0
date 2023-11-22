@@ -61,40 +61,8 @@ class UpdateProductEvent{
         //     $this->destinationDirectory,
         // );
 
-        // Get image entities
-
-        /**
-         * Update Image
-         */
-        
-        $product_cover = $request->file("product-cover");
-        isset($product_cover) ? $this->productCoverUpdate($product_cover) : '';
-
-
-        $productImageCollection = [];
-        for($i = 0; $i < 10; $i++){
-            if($request->file("product-image-" . $i)){
-                $productImageCollection[$i] = $request->file("product-image-" . $i);
-            }
-        }
-        $productImageCollection > 0 ? $this->productImageUpdate($productImageCollection) : '';
-
-
-        $brandCoverCollection = [];
-        for($i = 0; $i < 10; $i++){
-            if($request->file("brand-image-" . $i)){
-                $brandCoverCollection[$i] = $request->file("brand-image-" . $i);
-            }
-        }
-        $brandCoverCollection > 0 ? $this->brandCoverUpdate($brandCoverCollection) : '';
-
-        /**
-         * Change Image Path
-         */
-        $this->changeImagePath($this->sourceCategory, $this->destinationCategory);
-
         // Update Data
-        
+    
 
             $this->productUpdate();
 
@@ -113,8 +81,8 @@ class UpdateProductEvent{
                 
 
         /*
-         | Operation record 记录操作
-         | 
+            | Operation record 记录操作
+            | 
         */
             
         $operationData = [
@@ -122,6 +90,38 @@ class UpdateProductEvent{
             'operation_type' => 'Update',
             'operation_category' => 'Product',
         ];
+
+        // Get image entities
+
+        /**
+         * Update Image
+         */
+        
+        $product_cover = $request->file("product-cover");
+        isset($product_cover) ? $this->productCoverUpdate($product_cover) : '';
+
+
+        $productImageCollection = [];
+        for($i = 0; $i < 10; $i++){
+            if($request->file("product-image-" . $i)){
+                $productImageCollection[$i] = $request->file("product-image-" . $i);
+            }
+        }
+        $productImageCollection > 0 ? $this->productImageUpdate($productImageCollection) : '';
+
+        
+        $brandCoverCollection = [];
+        for($i = 0; $i < 10; $i++){
+            if($request->file("brand-image-" . $i)){
+                $brandCoverCollection[$i] = $request->file("brand-image-" . $i);
+            }
+        }
+        $brandCoverCollection > 0 ? $this->brandCoverUpdate($brandCoverCollection, $destinationBrandCodeArray) : '';
+
+        /**
+         * Change Image Path
+         */
+        $this->changeImagePath($this->sourceCategory, $this->destinationCategory);
 
         $this->mode === "production" ? Operation::create($operationData) : dd('debug');
 
@@ -144,6 +144,8 @@ class UpdateProductEvent{
 
         $newFileName = 'cover.' . $product_cover->getClientOriginalExtension();
         $this->mode === "production" ? $product_cover->storeAs($this->sourceDirectory, $newFileName, $this->disk) : var_dump($product_cover);
+
+        // dd($product_cover->storeAs($this->sourceDirectory, $newFileName, $this->disk));
 
     }
 
@@ -184,25 +186,21 @@ class UpdateProductEvent{
      * @return void
      */
 
-    public function brandCoverUpdate(array $brandCoverCollection): void{
+    public function brandCoverUpdate(array $brandCoverCollection, array $destinationBrandCodeArray): void{
 
         // product cover exists
-        if(!$brandCoverCollection > 0){
+        if($brandCoverCollection < 0){
             return;
         }
+        
+        foreach($brandCoverCollection as $index => $brandCover){
 
-        foreach($brandCoverCollection as $brandCover){
+            $extension = $brandCover->getClientOriginalExtension();
+            $newFileName = "cover." . $extension;
+            $path = $this->sourceDirectory . '/' . $destinationBrandCodeArray[$index];
 
-            $originalFileName = $brandCover->getClientOriginalName();
-            $newFileName = str_replace('/', '_', $originalFileName);
-            $path = $this->sourceDirectory . '/' . $originalFileName;
-
-            // Check exists
-            if(Storage::disk($this->disk)->exists($path)){
-                continue;
-            }
-
-            $this->mode === "production" ? $brandCover->storeAs($this->sourceDirectory, $newFileName, $this->disk) : var_dump($brandCoverCollection);
+            $this->mode === "production" ? $brandCover->storeAs($path, $newFileName, $this->disk) : var_dump($brandCoverCollection);
+                 
         }
 
     }

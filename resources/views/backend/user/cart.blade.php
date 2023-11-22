@@ -96,6 +96,7 @@
                         $sku_id = $cart->getBrandInformation('sku_id');
                         $code = $cart->getBrandInformation('code');
                         $number = $cart->number;
+                        
                     @endphp
                     <tr>
                         {{-- <td>{{ $cart->sku_id }}</td> --}}
@@ -104,7 +105,11 @@
                         </td>
                         <td>
                             <a target="_product" href="{{ route('frontend.product-detail', ["productCode"=>$product_code]) }}">
+                                @if (file_exists(public_path("storage/product/$category/$product_code/$code/cover.png")))
                                 <img src="{{ asset("storage/product/$category/$product_code/$code/cover.png") }}" alt="">
+                                @else
+                                <img src="{{ asset("storage/product/$category/$product_code/$code/cover.jpg") }}" alt="">
+                                @endif
                             </a>
                         </td>
                         <td data-search-column="name">{{ $name }}</td>

@@ -29,15 +29,6 @@ class SearchProductService{
             return redirect()->route('frontend.product', ['category'=>$category]);
         }
 
-        $typeResult = [];
-
-        // build a query
-        if(!empty($type)){
-            $typeResult = Product::where('product_type', $type)
-                        ->where('product_category', $category)
-                        ->get();
-        }
-
         $modelResult = '';
 
         if(!empty($model)){
@@ -58,6 +49,9 @@ class SearchProductService{
             foreach($product_code as $code){
                 $product = Product::where('product_code', $code->product_code)
                     ->first();
+                if(!$product){
+                    continue;
+                }
                 $products[] = $product; 
             }
             $modelResult = $products;
@@ -65,32 +59,15 @@ class SearchProductService{
 
 
         $productData = [];
-
-
-        if(!empty($type) && !empty($model)){
-            foreach ($typeResult as $typeData) {
-                foreach ($modelResult as $modelData) {
-                    if ($typeData->product_code === $modelData->product_code) {
-                        $productData[] = $typeData;
-                        break;
-                    }
-                }
-            }
-        }elseif(!empty($type)){
-            $productData = $typeResult;
-        }elseif(!empty($model)){
-            $productData = $modelResult;
-        }
+        $productData = $modelResult;
 
         // Define variable
         $directory = "storage/product/$category";
-
-        $typeData = Type::orderBy('name', 'asc')
-                        ->get();
+                        
         $modelData = CarModel::orderBy('name', 'asc')
                         ->get();
 
-        return view('frontend.product', compact('productData', 'directory', 'typeData', 'modelData', 'category'));
+        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
 
     }
 

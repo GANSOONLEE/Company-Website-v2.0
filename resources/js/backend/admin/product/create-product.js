@@ -61,11 +61,9 @@ function validateForm(){
 
     // check dropdown list have be selected
     let brandList = document.querySelector('#brand-0')
-    let typeList = document.querySelector('[name="product-type"]')
     let categoryList = document.querySelector('[name="product-category"]')
 
     if(!(
-        typeList.value !== "Default" &&
         categoryList.value !== "Default" &&
         brandList.value !== "Default"
         )){

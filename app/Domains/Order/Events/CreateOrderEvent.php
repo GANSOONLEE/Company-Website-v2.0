@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Events\NewOrderEvent;
+use Pusher\Pusher;
 
 class CreateOrderEvent{
 
@@ -50,13 +51,21 @@ class CreateOrderEvent{
                         
             };
 
-            $orderNewCount = Order::where('order_status', 'New')->count(); 
-            event(new NewOrderEvent($orderNewCount));
+            $orderNewCount = Order::where('status', 'Placed')->count();
+            $pusher = new Pusher(
+                "a018306a14faf67a1d14",
+                "f20516edef6fc1ed85ff",
+                "1699531",
+                array('cluster' => 'ap1')
+            );
+
+            $pusher->trigger('admin-sidebar-channel', 'create-order-event', array('order' => $orderNewCount));
 
             $status = [
                 'status' => 'success',
                 'orderItems' => $orderItems,
                 'order_code' => $order_code,
+                // 'pusher' => $pusher,
             ];
 
         }catch(\Exception $err){

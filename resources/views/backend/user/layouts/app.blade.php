@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{asset('css/backend/user/layouts/page.css')}}">
     <link rel="stylesheet" href="{{asset('css/backend/user/includes/sidebar.css')}}">
 
+    <!-- Pusher -->
+    <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
+
     <!-- 要在 css 之后加載的文件 -->
     @stack('after-style')
 

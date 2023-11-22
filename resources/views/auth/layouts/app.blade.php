@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{asset('css/auth/global.css')}}">
     <script src="{{asset('js/auth/global.js')}}"></script>
 
+    <!-- Pusher -->
+    <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
 
     @stack('before-body')
 

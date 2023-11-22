@@ -122,8 +122,8 @@
 
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
-                                @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [])
-                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
+                                @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->code][0]) )
+                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ 'storage/' . str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
                                 @else
                                 <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
@@ -196,7 +196,7 @@
                     <a href="{{ route('backend.user.cart') }}">
                         <div class="cart-container">
                             @if(auth()->user()->getCartNumber() > 0)
-                                <div class="notification">{{ auth()->user()->getCartNumber() }}</div>
+                                <div class="notification" id="notification-total-cart">{{ auth()->user()->getCartNumber() }}</div>
                             @endif
                             <i class="icon fa-solid fa-cart-shopping"></i>
                         </div>

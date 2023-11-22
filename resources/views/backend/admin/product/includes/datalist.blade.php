@@ -32,15 +32,17 @@
                 <tr data-product-code="{{ $data->product_code }}">
                     
                     <td>
-                        <img src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
+                        <a href="{{ route('frontend.product-detail', ["productCode" => $data->product_code]) }}">
+                            <img src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
+                        </a>
                     </td>
                     <td data-search-column="name">{{ $data->first_name }}</td>
-                    @if(auth()->user()->email == "yipjwen0229@gmail.com")
+                    @if(auth()->user()->email == "yipjwen0229@gmail.com" || auth()->user()->email = "vincentgan0402@gmail.com")
                         <td data-search-column="brand">{{ $data->brand }}</td>
                     @endif
                     <td data-search-column="code" hidden>{{ $data->code }}</td>
                     <td data-search-column="category">{{ $data->product_category }}</td>
-                    @if(auth()->user()->email == "yipjwen0229@gmail.com")
+                    @if(auth()->user()->email == "yipjwen0229@gmail.com" || auth()->user()->email = "vincentgan0402@gmail.com")
                         @php
                             $data->updated_at = Carbon\Carbon::parse($data->updated_at)->addHours(8);
                         @endphp

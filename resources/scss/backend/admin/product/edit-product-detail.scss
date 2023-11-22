@@ -121,9 +121,13 @@ div.delete-button.btn.btn-danger{
     right: .4rem;
     top: .4rem;
     padding: .08rem .4rem;
-    display: none;
+    $size: 20px;
+    height: $size;
+    width: $size;
     transition: all .12s ease-in-out;
+    display: none;
     i{
+        display: none;
         font-size: var(--font-remark);
     }
 }

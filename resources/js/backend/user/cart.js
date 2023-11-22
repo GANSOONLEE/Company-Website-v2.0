@@ -1,10 +1,9 @@
 
-// Search DOM
+// Import Vue Component
 
 import CustomAlert from '../admin/components/CustomAlert.vue';
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount('#alert');
-
 
 /**
  *  Helper Function

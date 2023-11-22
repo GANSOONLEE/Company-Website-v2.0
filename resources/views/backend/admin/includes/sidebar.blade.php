@@ -104,7 +104,7 @@
                     <li>
                         {{ __('sidebar.order-process') }}
                         @if (\App\Models\Order::getOrderNew() > 0)
-                            <div class="notification">{{ \App\Models\Order::getOrderNew() }}</div>
+                            <div class="notification" id="notification-total-cart">{{ \App\Models\Order::getOrderNew() }}</div>
                         @endif
                     </li>
                     

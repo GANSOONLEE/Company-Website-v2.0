@@ -14,14 +14,28 @@ window.onload = () =>{
         label.addEventListener('click', ()=>{
             let isAuth = label.getAttribute('data-auth');
             if(isAuth == "false"){
-                console.log("in")
                 alertInstance.updateMessage('Please login to continue!', 'warning');
                 alertInstance.autoAlert();
-                console.log("out")
             }
         })
     })
 }
+
+// Pusher
+// var pusher = new Pusher("a018306a14faf67a1d14", {
+//     channelAuthorization:{
+//         endpoint: "/pusher/auth",
+//         headers: { "X-CSRF-Token":  $('meta[name="csrf-token"]').attr('content') },
+//     },
+//     cluster: "ap1",
+// });
+
+// var privateChannel = pusher.subscribe("private-product-detail-channel");
+// privateChannel.bind('App\\Events\\TestMessageSend', (data) => {
+//     console.log(data)
+//     document.querySelector('#notification-total-cart').innerText = data.total_cart;
+//     document.querySelector('form').reset();
+// });
 
 /** Init document */
 
@@ -36,15 +50,34 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 $('.form').submit(function(event) {
     event.preventDefault();
 
-    if (validateForm()) {
-        this.submit();
-    }else{
-        setTimeout(()=>{
-            tooltipList.forEach(tooltip => {
-                tooltip.hide();
-            });
-        }, 3000)
+    if (!validateForm()) {
+        return false;
     }
+
+    let form = document.querySelector('form');
+    let brandSelector = document.querySelector('input:checked').value;
+    let numberInput = document.querySelector('input[type=number]').value;
+
+    $.ajax({
+        url:  form.getAttribute('action'),
+        data: {
+            brand: brandSelector,
+            quantity: numberInput,
+        },
+        dataType: 'json',
+        type: 'post',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success(data){
+            document.querySelector('#notification-total-cart').innerText = data.total_cart;
+            document.querySelector('form').reset();
+            console.log(data)
+        },
+        error(data){
+            console.log(data)
+        }
+    })
 });
 
 function validateForm(){
@@ -285,11 +318,8 @@ brands.forEach(brand => {
         if (src.includes('#')) {
             src = encodeURIComponent(src);
         }
-
-        let category = brand.querySelector('input').getAttribute('data-category')
-        let code = brand.querySelector('input').getAttribute('data-product')
-
-        let relation = `/storage/product/${category}/${code}/${src}/cover.png`;
+        
+        let relation = '/' + brand.getAttribute('data-image');
 
         var req = new XMLHttpRequest();
         req.open('GET', relation, false);

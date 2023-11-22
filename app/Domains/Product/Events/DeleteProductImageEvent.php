@@ -15,6 +15,7 @@ class DeleteProductImageEvent{
             // Define variable
             $imageName = urldecode($request->imageName);
             $product_code = $request->product_code;
+            $brand_code = $request->brandCode;
 
             // Get Product Information
             $productInstance = Product::where('product_code', $product_code)->first();
@@ -25,14 +26,14 @@ class DeleteProductImageEvent{
             $directory = "product/$category/$product_code/";
 
             // Verify validation
-            $oldImage = Storage::disk($diskName)->exists($directory . '/' . $imageName);
+            $oldImage = Storage::disk($diskName)->exists($directory . $brand_code . '/' . $imageName);
             if(!$oldImage){
                 new \Exception('Can\'t find this image');
                 return false;
             }
 
             // Delete Image
-            $result = Storage::disk($diskName)->delete($directory . '/'. $imageName);
+            $result = Storage::disk($diskName)->delete($directory . $brand_code . '/'. $imageName);
             
             // Record Operation
             $operationData = [
@@ -51,7 +52,6 @@ class DeleteProductImageEvent{
         }catch(\Exception $e){
 
             $status = [
-                "result" => "failure",
                 "file" => $e->getFile(),
                 "line" => $e->getLine(),
                 "message" => $e->getMessage()

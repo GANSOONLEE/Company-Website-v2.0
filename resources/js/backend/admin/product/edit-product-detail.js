@@ -48,9 +48,11 @@ deleteImageButton.addEventListener('click', ()=>{
     let slotImage = document.querySelector(`[data-slot="${dataSlot}"]`);
     let image = slotImage.closest('.box-list').querySelector('img');
     let imageSrc = image.src;
-    let fileName = imageSrc.match(/\/([^/]+)$/)[1];
+    let fileName = imageSrc.match(/\/([^/]+)$/)[0];
+    let brandCode = image.getAttribute('data-brand-code')
+
     image.src = "";
-    deleteImageAPI(fileName, product_code)
+    deleteImageAPI(fileName, product_code, brandCode)
 })
 
 /**
@@ -105,14 +107,14 @@ brandInputs.forEach((input) => {
  * 
  */
 
-function deleteImageAPI(imageSrc ,product_code){
+function deleteImageAPI(imageSrc ,product_code, brandCode){
 
     console.info(imageSrc);
     console.info(product_code);
 
     $.ajax({
         url: '/admin/product/image-delete-api',
-        data: {'imageName' : imageSrc, 'product_code' : product_code},
+        data: {'imageName' : imageSrc, 'product_code' : product_code, 'brandCode' : brandCode},
         dataType: 'json',
         type: 'post',
         headers: {
@@ -123,8 +125,8 @@ function deleteImageAPI(imageSrc ,product_code){
             vm.updateMessage('Success delete Image', 'success');
             vm.autoAlert();
         },
-        error(){
-            console.error('Error')
+        error(response){
+            console.info(response)
         }
     })
 

@@ -15,13 +15,19 @@ $(document).ready(function($){
 
 });
 
-// pusher
-let pusher = new Pusher('a5467f403d2b33859816', {
-    encrypted: true,
-    cluster: 'ap1'
+
+console.log('in')
+
+// Pusher
+let pusher = new Pusher("a018306a14faf67a1d14", {
+    cluster: "ap1",
 });
 
-let channel = pusher.subscribe('create-order-channel');
-channel.bind('App\\Events\\NewOrderEvent', (data) => {
-    console.log('pusher');
+let channel = pusher.subscribe("admin-sidebar-channel");
+channel.bind("create-order-event", (data) => {
+    console.log('middle')
+    console.log(data)
+    document.querySelector('#notification-total-cart').innerText = data.order;
 });
+
+console.log('out')

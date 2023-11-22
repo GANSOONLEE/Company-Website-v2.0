@@ -14,8 +14,6 @@ class DeleteProductEvent{
         // check product existent
         $product = Product::where('product_code', $product_code)->first();
 
-        dd($product);
-
         if(!$product){
             return false;
         }

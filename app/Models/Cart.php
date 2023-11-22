@@ -43,8 +43,8 @@ class Cart extends Model
 
     public function getProductInformationEntity(){
         $brand = DB::table('products_brand')
-        ->where('sku_id', $this->sku_id)
-        ->first();
+            ->where('sku_id', $this->sku_id)
+            ->first();
 
         $product = Product::where('product_code', $brand->product_code)
                 ->first();

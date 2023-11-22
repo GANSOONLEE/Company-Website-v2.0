@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Domains\Notification\Services\RegisterVerifyService;
 use App\Http\Controllers\LocaleController;
-
+use App\Http\Controllers\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +83,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
     includeRouteFiles(__DIR__ . '/service/');
 });
+
+
+Route::post('pusher/auth', [Test::class, 'test']);

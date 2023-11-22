@@ -33,14 +33,14 @@
         <div class="content">
 
             <!-- Cover -->
-            <div class="product-cover">
-                <input type="file" name="product-cover" id="product-cover" class="product-cover product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
+            <div class="product-cover box-list">
+                <input data-slot="product-cover" type="file" name="product-cover" id="product-cover" class="product-cover product-image" accept=".jpg, .jpeg, .bmp, .png, .svg">
                 <label for="product-cover" class="form-label">
                     <div class="upload-cover preview">
                         @if (Storage::disk('public')->exists("product/$product->product_category/$product->product_code/cover.png"))
-                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
+                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="" onerror="this.style.display='none'" onload="this.style.display='block'">
                         @else
-                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.jpg") }}" alt="">
+                            <img class="image-preview" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.jpg") }}" alt="" onerror="this.style.display='none'" onload="this.style.display='block'">
                         @endif
                         <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
                             <i class="fa-solid fa-trash"></i>
@@ -129,9 +129,9 @@
                         <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image-{{ $index }}" id="brand-image-{{ $index }}">
                         <label for="brand-image-{{ $index }}">
                             @if (Storage::disk('public')->exists("/product/$product->product_category/$product->product_code/". str_replace(' ', '%20', urlencode($brand->code)) . "/cover.jpg"))
-                                <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.jpg") }}" alt="" class="image-upload">
+                                <img data-brand-code="{{ $brand->code }}" class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.jpg") }}" alt="" class="image-upload">
                             @else
-                                <img class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.png") }}" alt="" class="image-upload">
+                                <img data-brand-code="{{ $brand->code }}" class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.png") }}" alt="" class="image-upload">
                             @endif
 
                             <div class="delete-button btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
