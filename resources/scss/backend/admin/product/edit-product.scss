@@ -237,9 +237,11 @@ div.datalist{
         // td Global
         td{
             padding: 1rem 1.8rem;
+            text-wrap: nowrap;
+            white-space: nowrap;
 
             &[data-search-column="name"]{
-                text-wrap: wrap;
+                text-wrap: nowrap;
             }
 
             // Product Cover

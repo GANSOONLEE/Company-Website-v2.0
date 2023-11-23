@@ -126,7 +126,7 @@
 
                     <!-- Brand Image 品牌照片 -->
                     <div class="image box-list">
-                        <input class="brand-image" data-slot="brand-{{ $index+1 }}" type="file" name="brand-image-{{ $index }}" id="brand-image-{{ $index }}">
+                        <input class="brand-image" data-slot="brand-{{ $index }}" type="file" name="brand-image-{{ $index }}" id="brand-image-{{ $index }}">
                         <label for="brand-image-{{ $index }}">
                             @if (Storage::disk('public')->exists("/product/$product->product_category/$product->product_code/". str_replace(' ', '%20', urlencode($brand->code)) . "/cover.jpg"))
                                 <img data-brand-code="{{ $brand->code }}" class="brand-preview" onerror="this.style.display='none'" onload="this.style.display ='block'" src="{{ asset("storage/product/$product->product_category/$product->product_code/". str_replace('+', '%20', urlencode($brand->code)) . "/cover.jpg") }}" alt="" class="image-upload">
@@ -174,9 +174,9 @@
             
             <!-- blank record -->
             @php
-                $i = count($product->getProductBrand())+2;
+                $i = count($product->getProductBrand())+1;
             @endphp
-            @for ($i = (count($product->getProductBrand())+1); $i < 10; $i++)
+            @for ($i = (count($product->getProductBrand())); $i < 10; $i++)
             
             <div class="brand-box">
                 

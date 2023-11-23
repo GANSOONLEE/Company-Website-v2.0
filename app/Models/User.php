@@ -4,12 +4,19 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Faker\Core\Number;
+// Laravel Support
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+
 use Laravel\Sanctum\HasApiTokens;
+use Faker\Core\Number;
+
+// Model
+use App\Models\Role;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -84,6 +91,40 @@ class User extends Authenticatable
         $roleOfUser = Role::where('name', $role)->first();
 
         return $roleOfUser;
+    }
+
+    /**
+     * Get the role relationship role instance
+     * @return Role
+     */
+
+    public function roles(): Role
+    {
+        return $this->belongsToMany(Role::class, 'users_roles', 'user_email', 'role_name', 'email', 'name')->first();
+    }
+
+    /**
+     * Get the user when the role weight are below it
+     * @param string $role
+     * @return Collection
+     */
+
+    public function getRoleWithWeight(?string $weight = null): Collection
+    {
+        $weight =  $weight ? $weight : auth()->user()->roles()->weight;
+
+        return User::join('users_roles', 'users.email', '=', 'users_roles.user_email')
+            ->join('roles', 'users_roles.role_name', '=', 'roles.name')
+            ->select(
+                'users.*',
+                'users_roles.role_name',
+                'roles.name as role_name',
+                'roles.weight',
+            )
+            ->where('roles.weight', '<=' , $weight)
+            ->orderBy('roles.weight', 'desc')
+            ->get();
+
     }
 
     public function isAdmin(){

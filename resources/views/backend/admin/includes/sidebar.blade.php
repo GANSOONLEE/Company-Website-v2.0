@@ -154,11 +154,18 @@
 
     <div class="account-area">
         <div class="avatar">
-            <img src="{{asset('image/logo-square.png')}}" alt="" class="avatar-image">
+            @if (auth()->user()->email == "vincentgan0402@gmail.com" || auth()->user()->email == "yipjwen0229@gmail.com")
+                <img src="{{asset('jingwen.png')}}" alt="" class="avatar-image">
+            @else
+                <img src="{{asset('image/logo-square.png')}}" alt="" class="avatar-image">
+            @endif
             <a class="logout-href" href="{{ route('auth.logout') }}">
                 <i class="logout-icon fa-solid fa-sign-out"></i>
             </a>
         </div>
+        @if (auth()->user()->email == "vincentgan0402@gmail.com" || auth()->user()->email == "yipjwen0229@gmail.com")
+            <span style="color: white; font-size: 16px">加油~<br>辛苦了</span>
+        @endif
         <div class="action">
             <p class="name">{{ auth()->user()->name }}</p>
             <p class="logout"><a href="{{ route('auth.logout') }}">{{ trans('sidebar.logout') }}</a></p>

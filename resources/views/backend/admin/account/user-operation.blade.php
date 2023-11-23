@@ -30,10 +30,6 @@
 
                 @php
                     $pageNumber = 1; // init Page Index
-                @endphp
-
-                <!-- Page -->
-                @php
                     $recordsPerPage = 10; // Display record per page
                     $pageIndex = request('pageIndex', 1); // get PageIndex, default 1
                     $startIndex = ($pageIndex - 1) * $recordsPerPage; // 计算起始索引

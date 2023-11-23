@@ -44,11 +44,11 @@ export default {
                         }]
                     },
                     options: {
-                        // plugins: {
-                        //     legend: {
-                        //         position: "right",
-                        //     },
-                        // },
+                        plugins: {
+                            legend: {
+                                position: "bottom",
+                            },
+                        },
                         locale: "zh-CN",
                     },
                 });
@@ -76,11 +76,11 @@ export default {
                     },
                     options: {
                         responsive: true,
-                        // plugins: {
-                        //     legend: {
-                        //         position: "right",
-                        //     },
-                        // },
+                        plugins: {
+                            legend: {
+                                position: "bottom",
+                            },
+                        },
                         locale: "zh-CN",
                     },
                 });

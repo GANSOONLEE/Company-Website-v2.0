@@ -123,7 +123,7 @@
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->code][0]) )
-                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ 'storage/' . str_replace('_', '/', $brandCover[$brand->code][0]) }}">  
+                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ 'storage/' . $brandCover[$brand->code][0] }}">  
                                 @else
                                 <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif

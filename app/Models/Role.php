@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+// Laravel Support
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+
+
+// Model
+use App\Models\User;
+use Illuminate\Support\Collection;
 
 class Role extends Model
 {
@@ -20,10 +26,21 @@ class Role extends Model
     /**
      * Relationship
      */
-    public function permissions()
+    public function permissions(): Collection
     {
-        return $this->belongsToMany(Permission::class, 'roles_permissions', 'role_name', 'permission_name');
+        return $this->belongsToMany(Permission::class, 'roles_permissions', 'role_name', 'permission_name', 'name', 'name')->get();
     }
+
+    /**
+     * Get user relationship with user
+     */
+
+    public function users(): Collection
+    {
+        return $this->belongsToMany(User::class, 'users_roles', 'role_name', 'user_email', 'name', 'email')
+            ->get();
+    }
+
 
      /**
      * Get permissions

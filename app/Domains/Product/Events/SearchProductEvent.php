@@ -42,39 +42,81 @@ class SearchProductEvent{
                 ->orderBy("products_name.name", "asc")
                 ->get();
         }else{
-            $searchTextResult = Product::all();
+            $searchTextResult = Product::select(
+                "products.*", 
+                "products_name.product_code",
+                "products_name.name"
+            )
+            ->join("products_name", "products.product_code","=","products_name.product_code")
+            ->groupBy("products_name.product_code", "products_name.name")
+            ->orderBy("products_name.name", "asc")
+            ->get();
         }
 
         if(isset($this->searchCategory)){
-            $searchCategoryResult = Product::where('product_category', $searchCategory)->get();
+            $searchCategoryResult = Product::select(
+                    "products.*",
+                    DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),
+                    "products_name.name",
+                )
+                ->join('products_name', 'products_name.product_code', '=', 'products.product_code')
+                ->where('product_category', $searchCategory)
+                ->groupBy("products.id", 'products_name.name')
+                ->orderBy("first_name", "asc")
+                ->get();
         }else{
-            $searchCategoryResult = Product::all();
+            $searchCategoryResult = Product::select(
+                "products.*",
+                DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),
+                "products_name.name",
+            )
+            ->join('products_name', 'products_name.product_code', '=', 'products.product_code')
+            ->groupBy("products.id", 'products_name.name')
+            ->orderBy("first_name", "asc")
+            ->get();
         }
 
         if(isset($this->searchCode)){
-            $searchCodeResult = Product::select(
-                    "products.*", 
-                    "products_brand.product_code",
-                    "products_brand.code"
-                )
-                ->join("products_brand", "products.product_code","=","products_brand.product_code")
-                ->where("products_brand.code", "LIKE", "%$this->searchText%")
-                // ->orderBy("products_brand.code", "asc")
-                ->get();
+            // $searchCodeResult = Product::select(
+            //         "products.*", 
+            //         "products_brand.product_code",
+            //         "products_brand.code"
+            //     )
+            //     ->join("products_brand", "products.product_code","=","products_brand.product_code")
+            //     ->where("products_brand.code", "LIKE", "%$this->searchText%")
+            //     ->orderBy("products_brand.code", "asc")
+            //     ->get();
 
             $searchCodeResult = DB::table('products_brand')
                 ->select(
-                    "products.*", 
+                    "products.*",
+                    DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),
                     "products_brand.product_code",
                     "products_brand.code"
                 )
                 ->where("products_brand.code", "LIKE", "%$this->searchCode%")
+                ->join('products_name', 'products_name.product_code', '=', 'products_brand.product_code')
                 ->join("products", "products.product_code","=","products_brand.product_code")
                 ->orderBy("products_brand.code", "asc")
+                ->groupBy('products.id', 'products_brand.code')
                 ->get();
         }else{
-            $searchCodeResult = Product::all();
-        }
+            $searchCodeResult = DB::table('products_brand')
+                ->select(
+                    "products.*",
+                    DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),
+                    "products_brand.product_code",
+                    "products_brand.code"
+                )
+                ->join('products_name', 'products_name.product_code', '=', 'products_brand.product_code')
+                ->join("products", "products.product_code", "=", "products_brand.product_code")
+                ->groupBy(
+                    'products.id',
+                    'products_brand.code'
+                )
+                ->orderBy("products_brand.code", "asc")
+                ->get();
+            }
         
         $commonEntities = array_intersect(
             $searchTextResult->pluck('product_code')->toArray(),
@@ -111,12 +153,13 @@ class SearchProductEvent{
                 ->orderBy('first_name', 'asc')
                 ->first();
         
-            if ($result) {
+            
+
+            if ($result && !$productData->contains('product_code', $result->product_code)) {
                 $productData->push($result);
             }
-
         }
-        
+
         // 现在 $productData 包含了每个 $commonEntities 对应的第一个符合条件的记录
         // 
         // auth()->user()->email == "vincentgan0402@gmail.com" ? dd($commonEntities, count($commonEntities), $productData) : '';

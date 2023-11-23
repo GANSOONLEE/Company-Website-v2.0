@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class UpdateProductEvent{
 
@@ -116,7 +117,16 @@ class UpdateProductEvent{
                 $brandCoverCollection[$i] = $request->file("brand-image-" . $i);
             }
         }
+
         $brandCoverCollection > 0 ? $this->brandCoverUpdate($brandCoverCollection, $destinationBrandCodeArray) : '';
+
+        if($this->mode == 'debug'){
+            dd(
+                $product_cover,
+                $productImageCollection,
+                $brandCoverCollection,
+            );
+        }
 
         /**
          * Change Image Path
@@ -192,16 +202,33 @@ class UpdateProductEvent{
         if($brandCoverCollection < 0){
             return;
         }
+
+        $debug = [];
         
         foreach($brandCoverCollection as $index => $brandCover){
 
+            // dd($destinationBrandCodeArray, $brandCoverCollection);
+
             $extension = $brandCover->getClientOriginalExtension();
+            $originalFileName = $brandCover->getClientOriginalName();
             $newFileName = "cover." . $extension;
             $path = $this->sourceDirectory . '/' . $destinationBrandCodeArray[$index];
+
+            // $debug[] = [
+            //     'index' => $index,
+            //     'brand_code' => $destinationBrandCodeArray[$index],
+            //     'originalFileName' => $originalFileName,
+            //     'path' => $path,
+            //     'newFileName' => $newFileName,
+            // ];
+
+            // dd($debug[]);
 
             $this->mode === "production" ? $brandCover->storeAs($path, $newFileName, $this->disk) : var_dump($brandCoverCollection);
                  
         }
+
+        // dd($brandCoverCollection, $debug, $destinationBrandCodeArray);
 
     }
 
@@ -295,12 +322,22 @@ class UpdateProductEvent{
         $deletedRecords = array_diff($sourceBrandCodeArray, $destinationBrandCodeArray);
 
         if(count($deletedRecords) > 0){
-            foreach($deletedRecords as $recordCode){
+            foreach($deletedRecords as $index => $recordCode){
                 if($this->mode === "production"){
                     DB::table('products_brand')
                         ->where('product_code', $this->product_code)
                         ->where('code', $recordCode)
-                        ->delete();
+                        ->update([
+                            'code' => $destinationBrandCodeArray[$index],
+                            'frozen_code' => $destinationBrandCodeArray[$index],
+                        ]);
+
+                        $disk = 'public';
+                        $oldFolderPath = "product/$this->sourceCategory/$this->product_code/$sourceBrandCodeArray[$index]";
+                        $newFolderPath = "product/$this->destinationCategory/$this->product_code/$destinationBrandCodeArray[$index]";
+                        
+                        // 更改文件夾名稱
+                        Storage::disk($disk)->move($oldFolderPath, $newFolderPath);
                 }else{
                     var_dump($recordCode);
                 }

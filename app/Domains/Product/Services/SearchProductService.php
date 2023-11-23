@@ -14,22 +14,14 @@ class SearchProductService{
 
     public function searchProduct($category, Request $request){
         
-        $search = $request->search;
-        $type = $request->type;
         $model = $request->model;
 
-        // dd(
-        //     "您的 Category 為： $category",
-        //     "您的 Type 為：$type",
-        //     "您的 Model 為：$model",
-        // );
-
         // check are empty filter
-        if(empty($search) && empty($type) && empty($model)){
+        if(empty($model)){
             return redirect()->route('frontend.product', ['category'=>$category]);
         }
 
-        $modelResult = '';
+        $productData = [];
 
         if(!empty($model)){
             $product_code = DB::table('products_name')
@@ -37,9 +29,9 @@ class SearchProductService{
                     'products.product_code',
                     DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'),
                     'products_name.product_code'
-                    )
+                )
                 ->join('products','products.product_code','=','products_name.product_code')
-                ->where('name', 'like', '%' . $model . '%')
+                ->where('name', 'like', "%$model%")
                 ->where('products.product_category', $category)
                 ->groupBy('products.product_code')
                 ->orderBy('name', 'asc')
@@ -52,14 +44,9 @@ class SearchProductService{
                 if(!$product){
                     continue;
                 }
-                $products[] = $product; 
+                $productData[] = $product; 
             }
-            $modelResult = $products;
         }
-
-
-        $productData = [];
-        $productData = $modelResult;
 
         // Define variable
         $directory = "storage/product/$category";

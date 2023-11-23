@@ -186,9 +186,11 @@ div.datalist table tr:hover {
 }
 div.datalist table td {
   padding: 1rem 1.8rem;
+  text-wrap: nowrap;
+  white-space: nowrap;
 }
 div.datalist table td[data-search-column=name] {
-  text-wrap: wrap;
+  text-wrap: nowrap;
 }
 div.datalist table td img {
   height: 8vh;
