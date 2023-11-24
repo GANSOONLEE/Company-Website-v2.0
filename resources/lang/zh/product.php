@@ -36,4 +36,5 @@ return array (
                     （注意！此操作<b>无法恢复！</b>）',
   'upload-successful' => '上传成功',
   'search' => '搜索',
+  'upload-failure' => '上传失败！',
 );

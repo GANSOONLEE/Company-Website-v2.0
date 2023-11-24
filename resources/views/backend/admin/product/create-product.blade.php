@@ -4,9 +4,8 @@
 
 @section('main')
 
-    <div id="alert">
-        <bootstrap-alert></bootstrap-alert>
-    </div>
+    <div id="alert"></div>
+    @include('backend.admin.product.includes.feedback')
 
     <form action="{{ route('backend.admin.product.create') }}" method="POST" class="form" id="form" enctype="multipart/form-data">
         @csrf
@@ -18,6 +17,7 @@
 @push('after-style')
     <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product.css') }}">
     <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product-form.css') }}">
+    
 @endpush
 
 @push('after-script')

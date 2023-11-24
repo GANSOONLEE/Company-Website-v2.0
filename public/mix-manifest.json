@@ -46,6 +46,7 @@
     "/css/backend/user/includes/sidebar.css": "/css/backend/user/includes/sidebar.css",
     "/css/backend/user/data.css": "/css/backend/user/data.css",
     "/css/backend/user/cart.css": "/css/backend/user/cart.css",
+    "/css/backend/admin/product/includes/feedback.css": "/css/backend/admin/product/includes/feedback.css",
     "/css/backend/admin/product/edit-product.css": "/css/backend/admin/product/edit-product.css",
     "/css/backend/admin/product/edit-product-form.css": "/css/backend/admin/product/edit-product-form.css",
     "/css/backend/admin/product/edit-product-detail.css": "/css/backend/admin/product/edit-product-detail.css",

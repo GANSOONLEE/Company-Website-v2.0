@@ -30,4 +30,5 @@ return array (
   'language' => '語言',
   'logout' => '登出',
   'edit-product-detail' => '編輯產品詳細',
+  'report-bug' => '報告錯誤？',
 );

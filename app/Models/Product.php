@@ -20,6 +20,7 @@ class Product extends Model
         'product_category',
         'product_type',
         'product_status',
+        'faker',
         'updated_at'
     ];
 
@@ -55,5 +56,17 @@ class Product extends Model
 
         // Product
         $this->delete();
+    }
+
+    public function deleteWithRelatedRecordsForce(){
+
+        // Brand
+        DB::table('products_brand')->where('product_code', $this->product_code)->delete();
+
+        // Name
+        DB::table('products_name')->where('product_code', $this->product_code)->delete();
+
+        // Product
+        $this->forceDelete();
     }
 }

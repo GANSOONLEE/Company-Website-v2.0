@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="{{asset('css/backend/admin/layouts/page.css')}}">
     <link rel="stylesheet" href="{{asset('css/backend/admin/includes/sidebar.css')}}">
+    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\includes\feedback.css') }}">
 
     <!-- Pusher -->
     <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>

@@ -126,7 +126,7 @@ class SearchProductEvent{
 
         
         $productData = collect();
-
+        
         foreach ($commonEntities as $key => $entity) {
             $result = DB::table('products_name')
                 ->select(

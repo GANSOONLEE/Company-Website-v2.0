@@ -356,11 +356,15 @@ class UpdateProductEvent{
                 continue;
             }
 
+            if(!$destinationBrandCodeArray[$index]){
+                continue;
+            }
+
             $productBrandData = [
                 'sku_id' => $this->generatorSkuId(),
                 'brand' => $recordBrand,
                 'code' => $destinationBrandCodeArray[$index],
-                'frozen_code' => $destinationFrozenCodeArray[$index],
+                'frozen_code' => 'FZ-' . $destinationFrozenCodeArray[$index],
                 'product_code' => $this->product_code,
             ];
 

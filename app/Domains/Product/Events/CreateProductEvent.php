@@ -1,169 +1,286 @@
 <?php
 
 namespace App\Domains\Product\Events;
+
+// Models
 use App\Models\Product;
 use App\Models\Operation;
+
+// Laravel Support
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class CreateProductEvent{
 
+    public $product;
+
+    public $directory;
+
+    public $productImages;
+    public $productModel;
+    public $productModelSerial;
+    public $productBrandImages;
+    public $productBrand;
+    public $productBrandCode;
+    public $productFrozenCode;
+    public $productCategory;
+    
+
+    public $productCode;
+
     public function createProduct(Request $request){
 
-        // Define text input variable
-
-            // products
-            $code = $this->generatorCode();
-            $category = $request->input('product-category');
-            $type = $request->input('product-type');
-
-            // products_name
-            $model = $request->input('name-input-model');
-            $modelSerial = $request->input('name-input-model-serial');
-
-            // products_brand
-            $brand = $request->input('brand-input-brand');
-            $brandCode = $request->input('brand-input-brand-code');
-            $frozenCode = $request->input('brand-input-frozen-code');
-
-            // Define image input variable
-            $productCover = $request->file('product-cover');
-            $productImageArray = $request->file('product-image');
-            $brandCover = $request->file('brand-cover');
-
-            // Define directory
-            $disk = 'public';
-            $directory = "product/$category/$code";
-
-            // image
-            $productCover = $request->file('product-cover');
-            $productImage = $request->file('product-image');
-            $brandCover = $request->file('brand-cover');
-
         /**
-         * save product information
+         * blade view file => backend.admin.product.create-product-test.blade.php
+         * 
+         * Product Image =  product-0 ~ product-9
+         * 
+         * Product Model = product-model-0 ~ product-model-9
+         * Product Model Serial = product-model-serial-0 ~ product-model-serial-9
+         * 
+         * Brand Image = brand-0 ~ brand-9
+         * Brand name = product-brand-0 ~ product-brand-9
+         * Brand code = product-brand-code-0 ~ product-brand-code-9
+         * Brand frozen code = product-frozen-code-0 ~ product-frozen-code-9
+         * 
+         * Product Category = product-category
          */
+   
+        /* -------------------- get parameters and defined it -------------------- */
+
+            // Product Image
+            $productImages = [];
+            for($i = 0; $i < 10; $i++){
+                $productImages[] = $request->file("product-$i");
+            }
+
+            // Product Model
+            $productModel = [];
+            for($i = 0; $i < 10; $i++){
+                $productModel[] = $request->input("product-model-$i");
+            }
+
+            $productModelSerial = [];
+            for($i = 0; $i < 10; $i++){
+                $productModelSerial[] = $request->input("product-model-serial-$i");
+            }
+
+            // Brand Image
+
+            $productBrandImages = [];
+            for($i = 0; $i < 10; $i++){
+                $productBrandImages[] = $request->file("brand-$i");
+            }
+
+            $productBrand = [];
+            for($i = 0; $i < 10; $i++){
+                $productBrand[] = $request->input("product-brand-$i");
+            }
+
+            $productBrandCode = [];
+            for($i = 0; $i < 10; $i++){
+                $productBrandCode[] = $request->input("product-brand-code-$i");
+            }
+
+            $productFrozenCode = [];
+            for($i = 0; $i < 10; $i++){
+                $productFrozenCode[] = $request->input("product-frozen-code-$i");
+            }
+
+            // Product Category
+            $productCategory = $request->input("product-category");
+
+
+        /* -------------------- encapsulated parameters -------------------- */
+
+        
+        $productCode = $this->generatorCode();
+        $this->productCode = $productCode;
+
+        $this->directory = "product/$productCategory/$productCode/";
+
+        $this->productImages = $productImages;
+        $this->productModel = $productModel;
+        $this->productModelSerial = $productModelSerial;
+        $this->productBrandImages = $productBrandImages;
+        $this->productBrand = $productBrand;
+        $this->productBrandCode = $productBrandCode;
+        $this->productFrozenCode = $productFrozenCode;
+        $this->productCategory = $productCategory;
+
+        // if throw error, rollback operation
         try{
+            $this->createImagePath();
+            $this->createProductBase();
+            $this->createProductName();
+            $this->createProductBrand();
 
-            // save image
-            if (!$productCover) {
-                return response()->json([
-                    'status' => trans('product.please-upload-cover'),
-                    'icon' => 'error'
-                ]);
-            }
-            
-            $originalName = $productCover->getClientOriginalName();
-            $newFileName = 'cover.' . $productCover->getClientOriginalExtension();
-            $path = $productCover->storeAs($directory, $newFileName, $disk);
+            $data = ['status' => 'upload-successful'];
+        }catch (\Exception $e){
+            $this->createProductFailureRollback();
+            Log::error($e->getMessage());
+            Log::error($e->getLine());
+            Log::error($e->getFile());
 
-            if ($productImage) {
-                foreach($productImage as $image){
-                    $originalName = $image->getClientOriginalName();
-                    $modifierName = str_replace('/', '_', $originalName);
-                    $path = $image->storeAs($directory, $modifierName, $disk);
-                }
-            }
+            $data = ['status' => 'upload-failure'];
+        }
 
-            if($brandCover){
-                foreach($brandCover as $index => $cover){
-                    // $originalName = $cover->getClientOriginalName();
-                    // $originalExtension = $cover->getClientOriginalExtension();
-                    // $originalName = $cover->getClientOriginalName();
-                    $newName = 'cover.png';
-                    $modifierBrandCode = str_replace('/', '_', $brandCode);
-                    $path = $cover->storeAs("$directory/$modifierBrandCode[$index]", $newName, $disk);
-                }
-            }
+        
+        return redirect()->back()->withCookie(cookie(
+            'sessionData',
+            json_encode($data),
+            0.05,
+            null,
+            null,
+            false,
+            false,
+            true
+        ));
 
-            // products
-            $productData = [
-                'product_code' => $code,
-                'product_category' => $category,
-                'product_type' => $type,
-            ];
+    }
 
-            Product::create($productData);
+    public function createImagePath(){
 
-            // products_name
-            $debugName = [];
-            for ($i = 0; $i < count($model); $i++) {
+        // Global
+        $disk = 'public';
+        $baseDirectory = $this->directory;
 
-                // filter empty input
-                if(!isset($model[$i])){
-                    continue;
-                }
+        $productImages = $this->productImages;
+        foreach($productImages as $index => $productImage){
 
-                if(!isset($modelSerial[$i])){
-                    $modelSerial[$i] = "";
-                }
-
-                $productNameData = [
-                    'name' => $model[$i] . ' ' .$modelSerial[$i],
-                    'product_code' => $code,
-                ];
-                
-                // insert data
-                // $debugName[] = $productNameData;
-                DB::table('products_name')
-                     ->insert($productNameData);
+            if(!isset($productImage)){
+                break;
             }
 
-            // products_brand
-            $debugBrand = [];
-            for ($i = 0; $i < count($brand); $i++) {
+            $fileExtension = $productImage->getClientOriginalExtension();
 
-                // filter empty input
-                if(!isset($brandCode[$i])){
-                    continue;
-                }
-
-                $brandCodeEncode = str_replace('/', '_', $brandCode[$i]);
-
-                $productBrandData = [
-                    'sku_id' => $this->generatorSkuId(),
-                    'brand' => $brand[$i],
-                    'code' => $brandCodeEncode,
-                    'frozen_code' => 'FZ-' . $frozenCode[$i],
-                    'product_code' => $code,
-                ];
-            
-                // insert data
-                DB::table('products_brand')
-                    ->insert($productBrandData);
+            if($index==0){
+                $newFileName = "cover.$fileExtension";
+            }else{
+                $newFileName =
+                    $this->productModel[0] . ' ' .
+                    $this->productModelSerial[0] . '-' .
+                    $index . ".$fileExtension";
             }
 
-            $operation = [
-                'email' => auth()->user()->email,
-                'operation_type' => 'Create',
-                'operation_category' => 'Product',
-            ];
+            $productImage->storeAs($baseDirectory, $newFileName, $disk);
 
-            Operation::create($operation);
-
-            $status = [
-                'status' => trans('product.create-product-success'),
-                'icon' => 'error',
-            ];
-
-        }catch(\Exception $e){
-
-            $status = [
-                'status' => trans('product.create-product-error'),
-                'icon' => 'error',
-                'debugMessage' => $e->getMessage(),
-                'debugLine' => $e->getLine(),
-                'debugFile' => $e->getFile(),
-            ];
         }
         
-        $status = [
-            'status' => 'Success',
-            'icon' => 'success',
+        $productBrandImages = $this->productBrandImages;
+
+        $productBrand = $this->productBrand;
+        $productBrandCode = $this->productBrandCode;
+        $productFrozenCode = $this->productFrozenCode;
+        foreach($productBrandImages as $index => $productBrandImage){
+
+            if(
+                !isset($productBrandImage)
+            ){
+                break;
+            }
+
+            if(
+                !isset($productBrand) ||
+                !isset($productBrandCode) ||
+                !isset($productFrozenCode)
+            ){
+                break;
+            }
+
+            $fileExtension = $productBrandImage->getClientOriginalExtension();
+            $newFileName = "cover.$fileExtension";
+
+            $productBrandImage->storeAs($baseDirectory . "/$productBrandCode[$index]/", $newFileName, $disk);
+
+        }
+    }
+
+    public function createProductBase(): void{
+
+        $productCode = $this->productCode;
+        $productCategory = $this->productCategory;
+
+        $productBasicData = [
+            'product_code' => $productCode,
+            'product_category' => $productCategory,
         ];
-    
-        return redirect()->back();
+
+        $product = Product::create($productBasicData);
+        $this->product = $product;
+    }
+
+    public function createProductName(): void{
+
+        $productModel = $this->productModel;
+        $productModelSerial = $this->productModelSerial;
+
+        $productNames = [];
+        foreach($productModel as $index => $model){
+
+            if(!$model || !isset($model)){
+                break;
+            }
+
+            $productNames = $model . ' ' .  $productModelSerial[$index];
+
+            $productNameData = [
+                'name' => $productNames,
+                'product_code' => $this->productCode,
+            ];
+
+            DB::table('products_name')
+                ->insert($productNameData);
+        }
+
+    }
+
+    public function createProductBrand(): void{
+
+        $productBrand = $this->productBrand;
+        $productBrandCode = $this->productBrandCode;
+        $productFrozenCode = $this->productFrozenCode;
+
+        foreach($productBrandCode as $index => $brand_code){
+
+            if(
+                !isset($productBrand[$index]) ||
+                !isset($brand_code) ||
+                !isset($productFrozenCode[$index])
+            ){
+                break;
+            }
+
+            $productBrandData = [
+                'sku_id' => $this->generatorSkuId(),
+                'brand' => $productBrand[$index],
+                'code' => $brand_code,
+                'frozen_code' => $productFrozenCode[$index],
+                'product_code' => $this->productCode,
+            ];
+
+            DB::table('products_brand')->insert($productBrandData);
+        }
+    }
+
+    public function createProductFailureRollback(): void{
+        $product = $this->product;
+        $product->deleteWithRelatedRecordsForce();
+
+        $directory = $this->directory;
+
+        // delete Image
+        if(
+            strpos($directory, $this->productCategory) &&
+            strpos($directory, $this->productCode)
+        ){
+            $result = Storage::disk('public')->deleteDirectory($directory);
+        }
+
     }
 
     public function generatorCode(): string{

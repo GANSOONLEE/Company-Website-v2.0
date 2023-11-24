@@ -8,6 +8,9 @@ use App\Domains\Product\Events\DeleteProductImageEvent;
 use App\Domains\Product\Events\DeleteProductEvent;
 use App\Domains\Product\Events\SearchProductEvent;
 
+// test
+use App\Domains\Product\Events\CreateProductTestEvent;
+
 Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
 
     Route::post('product-create-post', [CreateProductEvent::class, 'createProduct'])->name('create');

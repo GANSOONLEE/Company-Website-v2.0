@@ -51,7 +51,7 @@ div.nav ul.nav-links a li.nav-link:hover::before {
 
 /* ———————————————————— Panel Setting ———————————————————— */
 section.panel {
-  margin: 3rem 2rem;
+  margin: 3rem 0;
   box-shadow: 0 0 20px #bbb;
   border: 1px solid #ddd;
   border-radius: 10px;

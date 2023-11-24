@@ -39,7 +39,6 @@
                 <!-- Unit -->
                 @if (count($productData) > 0)
                     @foreach ($productData as $product)
-                    {{-- {{ dd($productData, $product) }} --}}
                     <a class="product-detail-href" href="{{ route('frontend.product-detail', ['productCode' => $product->product_code]) }}">
                         <div class="custom-card">
                             <div class="custom-card-image">
@@ -53,11 +52,6 @@
                                     <p>{{ $name->name }}</p>
                                 @endforeach
                             </div>
-                            {{-- <div class="custom-card-information">
-                                @foreach (($product->getProductBrand()) as $brand)
-                                    <p>{{ $brand->brand }}</p>
-                                @endforeach
-                            </div> --}}
                         </div>
                     </a>
                     @endforeach

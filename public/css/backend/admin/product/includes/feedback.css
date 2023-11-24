@@ -1,0 +1,30 @@
+section.feedback {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  right: -200px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.0666666667);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  padding: 0.8rem;
+  background-color: #ee4d2d;
+  transform: translateX(35px);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+section.feedback:hover {
+  transform: translateX(-80px);
+}
+section.feedback div.feedback-icon {
+  width: 37px;
+  color: white;
+}
+section.feedback div.feedback-information {
+  width: 220px;
+}
+section.feedback div.feedback-information p {
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0;
+}

@@ -240,14 +240,6 @@ section.create-product-form > div.panel > div.panel-body > div.product-category-
   -moz-column-gap: 0.8rem;
        column-gap: 0.8rem;
 }
-section.create-product-form > div.panel > div.panel-body #product-name-input-add-button {
-  margin-top: 1.4rem;
-  max-width: 120px;
-}
-section.create-product-form > div.panel > div.panel-body #product-brand-input-add-button {
-  margin-top: 1.4rem;
-  max-width: 120px;
-}
 section.create-product-form button#submit-button {
   margin-top: 2rem;
   width: 100%;

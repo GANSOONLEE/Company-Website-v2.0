@@ -30,4 +30,5 @@ return array (
   'category-create' => 'Create Category',
   'category-edit' => 'Edit Category',
   'edit-product-detail' => 'Edit product details',
+  'report-bug' => 'Report Bug ?',
 );

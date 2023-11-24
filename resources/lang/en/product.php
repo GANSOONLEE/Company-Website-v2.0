@@ -36,4 +36,5 @@ return array (
                     (Attention! This operation <b>can\'t be restore!</b>)',
   'upload-successful' => 'Upload Successful !',
   'search' => 'Search',
+  'upload-failure' => 'Upload Failure !',
 );
