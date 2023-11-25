@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Backend\Admin\Product;
+
+// Laravel Support
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+
+// Model
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Type;
-use Illuminate\Support\Facades\Storage;
+use App\Models\CarModel;
 
 class EditProductDetailsController extends Controller{
 
@@ -16,34 +22,55 @@ class EditProductDetailsController extends Controller{
                     ->first();
 
         $disk = "public";
-        $directory = "product/$product->product_category/$productCode";
-        $productCover = '';
+        $baseDirectory = "product/$product->product_category/$productCode";
+
+        if(!$productCode){
+            abort(404);
+        }
+        
+        $productMedia = [];
         $productImages = [];
-        $brandCover = [];
 
         // Group Image
-        $productImage = Storage::disk($disk)->files($directory);
-        foreach($productImage as $image){
-            // Are Product Cover
-            if(strpos($image, 'cover')){
-                $productCover = $image;
-                continue;
-            }else{
-                $productImages[] = $image;
-            }
+        $productMedia = Storage::disk($disk)->files($baseDirectory);
+
+        $productCoverArray = array_filter($productMedia, function ($image) {
+            return strpos($image, 'cover') !== false;
+        });
+        foreach($productCoverArray as $index => $image){
+            $imageInstance = new UploadedFile(Storage::disk($disk)->path($image), $image);
+            $productImages["product-0"] = (object)[
+                "path" => 'storage/' . $image,
+                "name" => $imageInstance->getClientOriginalName(),
+                "extension" => $imageInstance->getClientOriginalExtension(),
+            ];
+        }
+        
+
+        $productImagesArray = array_filter($productMedia, function ($image) {
+            return strpos($image, 'cover') === false;
+        });
+
+        foreach($productImagesArray as $index => $image){
+            $imageInstance =  new UploadedFile(Storage::disk($disk)->path($image), $image);
+            $productImages["product-" . $index + 1] = (object)[
+                "path" => 'storage/' . $image,
+                "name" => $imageInstance->getClientOriginalName(),
+                "extension" => $imageInstance->getClientOriginalExtension(),
+            ];
         }
 
-        $categories = Category::orderBy('name', 'asc')
+        $categoryData = Category::orderBy('name', 'asc')
                         ->get();
                         
-        $brands = Brand::orderBy('name', 'asc')
+        $brandData = Brand::orderBy('name', 'asc')
                         ->get();
                         
-        $types = Type::orderBy('name', 'asc')
+        $modelData = CarModel::orderBy('name', 'asc')
                         ->get();
                         
 
-        return view('backend.admin.product.edit-product-detail', compact('product', 'categories' ,'types', 'brands', 'productImages'));
+        return view('backend.admin.product.edit-product-detail', compact('product', 'categoryData' , 'brandData' , 'modelData', 'productImages'));
     }
 
 }

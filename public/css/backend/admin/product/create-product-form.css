@@ -44,9 +44,9 @@ section.create-product-form > div.panel > div.panel-body.column {
 section.create-product-form > div.panel > div.panel-body > div.product-media-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  height: 160px;
+  height: 200px;
   width: 120px;
 }
 section.create-product-form > div.panel > div.panel-body > div.product-media-container > label.product-media-upload {

@@ -37,4 +37,5 @@ return array (
   'upload-successful' => '上傳成功',
   'search' => '尋找',
   'upload-failure' => '上傳失敗！',
+  'update-successful' => '更新成功！',
 );

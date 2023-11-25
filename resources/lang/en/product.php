@@ -37,4 +37,5 @@ return array (
   'upload-successful' => 'Upload Successful !',
   'search' => 'Search',
   'upload-failure' => 'Upload Failure !',
+  'update-successful' => 'Updated successful !',
 );

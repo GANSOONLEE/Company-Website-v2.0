@@ -1,222 +1,344 @@
 
-/* ———————————————————— Layouts ———————————————————— */
+/* ------------------------------ Create Product Form ------------------------------ */
 
-form{
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-section.container{
-    box-shadow: 0 0 10px #00000022;
-    border-radius: 6px;
-    border: 1px solid #dadada;
-    padding: 1rem 1.2rem;
-
-    &.child{
-        display: flex;
-    }
-
-    div.section-title{
-        p.section-title-text{
-            font-size: var(--font-h6);
-            font-weight: bold;
-        }
-    }
-
-    div.content{
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        font-size: var(--font-subtitle);
-        column-gap: 1.2rem;
-        row-gap: 1.4rem;
-        overflow-x: auto;
-        padding: .2rem 1.2rem;
-    }
-}
-
-/* ———————————————————— Image Upload ———————————————————— */
-
-// Global image
-input[type="file"]{
-    display: none;
-}
-
-@mixin upload-area{
-    background-color: #dadada44;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all .12s ease-in-out;
-    &:hover{
-        background-color: transparent;
-        border: 1px solid #dadada;
-        & > i, > p{
-            opacity: 0;
-        }
-        img:not([src=""]) + .delete-button.btn.btn-danger{
-            display: block;
-        }
-    }
-}
-
-// Product Cover
-div.product-cover{
-    div.upload-cover{
-        $size: 120px;
-        height: $size;
-        width: $size;
-        @include upload-area;
-        position: relative;
-        img{
-            z-index: -1;
-            position: absolute;
-            overflow: hidden;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-        p{
-            font-weight: bold;
-            margin-bottom: 0;
-        }
-    }
-}
-
-// Product Image
-div.product-image{
-    display: flex;
-    column-gap: 1.2rem;
-
-    // Unit
-    div.product-image-box{
-        div.upload-image{
-            $size: 120px;
-            height: $size;
-            width: $size;
-            @include upload-area;
-            position: relative;
-            img{
-                z-index: -1;
-                position: absolute;
-                overflow: hidden;
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-            }
-            p{
-                margin-bottom: 0;
-            }
-        }
-    }
-}
-
-div.delete-button.btn.btn-danger{
-    position: absolute;
-    right: .4rem;
-    top: .4rem;
-    padding: .08rem .4rem;
-    $size: 20px;
-    height: $size;
-    width: $size;
-    transition: all .12s ease-in-out;
-    display: none;
-    i{
-        display: none;
-        font-size: var(--font-remark);
-    }
-}
-
-/* ———————————————————— Name Upload ———————————————————— */
-
-div.name-content{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-div.name{ 
-    width: 33%;
-}
-
-/* ———————————————————— Brand Upload ———————————————————— */
-
-div.brand-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    column-gap: 2.3rem;
+section.create-product-form {
+    margin-top: 1rem;
     width: 100%;
 
-    // Brand Image 品牌照片
-    div.image{
-        
-        input[type="file"]{
-
+    > div.panel {
+        box-shadow: 0 0 20px #00000044;
+        border: 1px solid #00000022;
+        border-radius: 6px;
+        height: auto;
+        width: 100%;
+        padding: 1.8rem 2.2rem;
+        margin: 2.4rem 0 0;
+        &:first-child{
+            margin: 0 0 2.4rem;
         }
 
-        label{
-            position: relative;
-            $size: 75px;
-            height: $size;
-            width: $size;
-            @include upload-area;
-            img{
-                z-index: -1;
-                position: absolute;
-                overflow: hidden;
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-            }
-            p{
-                margin-bottom: 0;
+        /* Header */
+        > div.panel-header{
+            margin-bottom: 1rem;
+
+            > h4.panel-title{
+                font-weight: bold;
             }
         }
 
+        /* Body */
+        > div.panel-body{
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            column-gap: 1.4rem;
+            padding: 0 .8rem 1rem .2rem;
+            overflow-x: auto;
+            overflow-y: initial;
+            height: auto;
+
+            // hide scroll bar
+            // &::-webkit-scrollbar{
+            //     display: none;
+            // }
+
+            &.column{
+                flex-direction: column;
+            }
+
+            /* Product media */
+            > div.product-media-container{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                row-gap: 1rem;
+                $size: 120px;
+                height: calc($size + 80px);
+                width: $size;
+
+                > label.product-media-upload{
+                    position: relative;
+                    min-height: $size;
+                    min-width: $size;
+                    max-height: $size;
+                    max-width: $size;
+                    border-radius: 6px;
+                    border: 1px dashed #d8d8d8;
+                    background-color: #fafafa;
+                    transition: border-color .17s ease-in-out;
+                    overflow: hidden;
+
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgba(238,77,45,.03);
+                        border: 1px dashed #ee4d2d;
+                    }
+
+                    input{
+                        display: none;
+                    }
+                    
+                    > i.upload-icon{
+                        position: absolute;
+                        display: inline-block;
+                        fill: #ee4d2d;
+                        $size: 28px;
+                        width: $size;
+                        height: $size;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-45%) translateY(-35%);
+                    }
+
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+
+                    button.delete-button, img[hidden]{
+                        position: absolute;
+                        display: none;
+                        $position: .6rem;
+                        top: $position;
+                        right: $position;
+                        $size: 26px;
+                        height: $size;
+                        width: $size;
+
+                        i{
+                            position: relative;
+                            top: -50%;
+                            transform: translateX(-45%);
+                        }
+                    }
+
+                    & img:not([hidden]) + i.upload-icon{
+                        display: none;
+                    }
+
+                    & img:not([hidden]):hover ~ button.delete-button, button.delete-button:hover{
+                        display: block;
+                    }
+
+                }
+
+                > div.product-media-information{
+                    width: 100%;
+                    
+                    > p.product-media-name{
+                        width: 100%;
+                        height: auto;
+                        font-size: var(--font-remark);
+                        text-align: left;
+                        text-wrap: wrap;
+                        margin-bottom: 0;
+                    }
+                }
+
+            }
+
+            /* Product name */
+            > div.product-name-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                column-gap: 1.4rem;
+
+                div.col{
+
+                }
+
+                div.col-2{
+                    button{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        column-gap: .8rem;
+                        i{
+
+                        }
+                    }
+                }
+            }
+
+            /* Product brand */
+            > div.product-brand-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                column-gap: .4rem;
+
+                label.brand-media-upload{
+                    position: relative;
+                    $size: 120px;
+                    min-height: $size;
+                    min-width: $size;
+                    max-height: $size;
+                    max-width: $size;
+                    align-self: flex-end;
+                    border-radius: 2px;
+                    border: 1px dashed #d8d8d8;
+                    background-color: #fafafa;
+                    transition: border-color .17s ease-in-out;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgba(238,77,45,.03);
+                        border: 1px dashed #ee4d2d;
+                    }
+
+                    input{
+                        display: none;
+                    }
+
+                    > i.upload-icon{
+                        position: absolute;
+                        display: inline-block;
+                        fill: #ee4d2d;
+                        $size: 28px;
+                        width: $size;
+                        height: $size;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-45%) translateY(-35%);
+                    }
+
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+
+                    button.delete-button, img[hidden]{
+                        position: absolute;
+                        display: none;
+                        $position: .6rem;
+                        top: $position;
+                        right: $position;
+                        $size: 26px;
+                        height: $size;
+                        width: $size;
+
+                        i{
+                            position: relative;
+                            top: -50%;
+                            transform: translateX(-45%);
+                        }
+                    }
+
+                    & img:not([hidden]) + i.upload-icon{
+                        display: none;
+                    }
+
+                    & img:not([hidden]):hover ~ button.delete-button, button.delete-button:hover{
+                        display: block;
+                    }
+                
+                }
+
+                div.col{
+
+                }
+
+                div.col-2{
+                    max-width: 110px;
+                    button{
+                        // font-size: var(--font-remark);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        column-gap: .4rem;
+                        text-wrap: nowrap;
+                        i{
+                            // font-size: var(--font-remark);
+                        }
+                    }
+                }
+            }
+
+            /* Product category */
+            > div.product-category-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                column-gap: 1.4rem;
+
+                label.brand-media-upload{
+                    position: relative;
+                    $size: 36px;
+                    min-height: $size;
+                    min-width: $size;
+                    max-height: $size;
+                    max-width: $size;
+                    align-self: flex-end;
+                    border-radius: 2px;
+                    border: 1px dashed #d8d8d8;
+                    background-color: #fafafa;
+                    transition: border-color .17s ease-in-out;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgba(238,77,45,.03);
+                        border: 1px dashed #ee4d2d;
+                    }
+
+                    input{
+                        display: none;
+                    }
+
+                    img{
+                        
+                    }
+                    
+                    i{
+                        position: absolute;
+                        display: inline-block;
+                        fill: #ee4d2d;
+                        $size: 28px;
+                        width: $size;
+                        height: $size;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-45%) translateY(-35%);
+                    }
+
+                }
+
+                div.col{
+
+                }
+
+                div.col-2{
+                    button{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        column-gap: .8rem;
+                        i{
+
+                        }
+                    }
+                }
+            }
+
+            #product-name-input-add-button{
+                margin-top: 1.4rem;
+                max-width: 120px;
+            }
+
+            #product-brand-input-add-button{
+                margin-top: 1.4rem;
+                max-width: 120px;
+            }
+        }
+
     }
 
-    // Brand 品牌
-    div.brand{
-        width: 20%;
+    button#submit-button{
+        margin-top: 2rem;
+        width: 100%;
     }
 
-    // Brand Code 品牌編號
-    div.brand-code{
-        width: 40%;
-    }
-
-    // Frozen Code Frozen編號
-    div.frozen-code{
-        width: 40%;
-    }
-
-}
-
-/* ———————————————————— Category & Type Upload ———————————————————— */
-section.sub-container{
-    width: 50%;
-    div.content{
-        padding: 0;
-        padding-right: .8rem;
-    }
-}
-
-/* ———————————————————— Button ———————————————————— */
-
-
-/* ———————————————————— Alert ———————————————————— */
-
-.alert{
-    z-index: 100;
-    position: fixed;
-    height: 9vh;
-    width: 77.2vw;
-    top: 1rem;
-    left: 20.4vw;
-    column-gap: 1.2rem;
 }

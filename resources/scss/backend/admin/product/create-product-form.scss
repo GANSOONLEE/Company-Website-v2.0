@@ -50,10 +50,10 @@ section.create-product-form {
             > div.product-media-container{
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
+                justify-content: flex-start;
                 align-items: center;
                 $size: 120px;
-                height: calc($size + 40px);
+                height: calc($size + 80px);
                 width: $size;
 
                 > label.product-media-upload{

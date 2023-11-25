@@ -69,4 +69,18 @@ class Product extends Model
         // Product
         $this->forceDelete();
     }
+
+    public static function forceDeleteRemarkRecords($day = 3){
+        
+        $thresholdDate = now()->subDays($day)->addHours(8);
+        $products = Product::withTrashed()
+                        ->where('deleted_at', '<' , $thresholdDate)
+                        ->orderBy('deleted_at', 'asc')
+                        ->get();
+
+        foreach($products as $product){
+            $product->deleteWithRelatedRecords();
+            $product->forceDelete();
+        }
+    }
 }

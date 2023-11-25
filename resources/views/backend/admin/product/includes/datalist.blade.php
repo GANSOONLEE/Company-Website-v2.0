@@ -23,6 +23,25 @@
         </div>
     </div>
 
+    <section class="view-slider-container">
+        <div class="view-slider">
+            <div>
+                <input type="radio" name="view" id="image" value="image">
+                <label for="image">
+                    <i class="fa-regular fa-image"></i>
+                </label>
+            </div>
+    
+            <div>
+                <input type="radio" name="view" id="list" value="list">
+                <label for="list">
+                    <i class="fa-solid fa-list"></i>
+                </label>
+            </div>
+        </div>
+    
+    </section>
+
     <table>
         <thead>
 
@@ -33,21 +52,17 @@
                     
                     <td>
                         <a href="{{ route('frontend.product-detail', ["productCode" => $data->product_code]) }}">
-                            <img src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
+                            <img class="product-cover" src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
                         </a>
                     </td>
                     <td data-search-column="name">{{ $data->first_name }}</td>
-                    @if(auth()->user()->email == "yipjwen0229@gmail.com" || auth()->user()->email = "vincentgan0402@gmail.com")
-                        <td data-search-column="brand">{{ $data->brand }}</td>
-                    @endif
+                    <td data-search-column="brand">{{ $data->brand }}</td>
                     <td data-search-column="code" hidden>{{ $data->code }}</td>
                     <td data-search-column="category">{{ $data->product_category }}</td>
-                    @if(auth()->user()->email == "yipjwen0229@gmail.com" || auth()->user()->email = "vincentgan0402@gmail.com")
-                        @php
-                            $data->updated_at = Carbon\Carbon::parse($data->updated_at)->addHours(8);
-                        @endphp
-                        <td data-search-column="type" class="{{ $data->updated_at > "2023-11-21 15:00:00"  ? 'new' : 'old'}}">{{ $data->updated_at }}</td>
-                    @endif
+                    @php
+                        $data->updated_at = Carbon\Carbon::parse($data->updated_at)->addHours(8);
+                    @endphp
+                    <td data-search-column="type" class="{{ $data->updated_at > "2023-11-21 15:00:00"  ? 'new' : 'old'}}">{{ $data->updated_at }}</td>
                     <td data-search-column="edit">
                         <a target="_blank" href="{{ route('backend.admin.product.edit-product-more', ['productCode' => $data->product_code]) }}">
                             <button class="btn btn-primary">
@@ -57,7 +72,7 @@
                         </a>
                     </td>
                     <td data-search-column="delete">
-                        <a button-event="delete" style="display: none" href="{{ route('backend.admin.product.delete', ['product_code' => $data->product_code]) }}">
+                        <a button-event="delete" href="{{ route('backend.admin.product.delete', ['product_code' => $data->product_code]) }}">
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="fa-solid fa-trash"></i>
                                 {{ __('product.delete') }}

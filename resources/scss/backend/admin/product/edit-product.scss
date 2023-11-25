@@ -48,9 +48,10 @@ section.filter{
 section.datalist{
     // background-color: yellow;
     @include panel-effect;
-    padding: 1rem 0;
+    padding: 0 0 1rem 0;
     height: 64vh;
     overflow-y: auto;
+    font-size: var(--font-remark);
 }
 
 
@@ -206,6 +207,58 @@ div.filter{
 /* ———————————————————————————————— Datalist Table ————————————————————————————————— */
 
 div.datalist{
+    display: flex;
+    flex-direction: column;
+
+    // view-slider
+    section.view-slider-container{
+        position: relative;
+        width: 100%;
+
+        div.view-slider{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 80px;
+            position: sticky;
+            top: .5rem;
+            left: .6rem;
+            padding: .4rem 0;
+            margin: .6rem .6rem;
+            align-self: flex-start;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+    
+            div{
+                input{
+                    display: none;
+                }
+    
+                input:checked + label{
+                    background-color: #fff;
+                    color: #ff944d;
+                }
+    
+                label{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    padding: .2rem;
+                    border-radius: 3px;
+                    $size: 28px;
+                    height: $size;
+                    width: $size;
+                    transition: all .1s ease-in-out;
+                    i{
+                        line-height: unset;
+                    }
+                }
+            }
+            
+        }
+    }
 
     // Table
     table{
@@ -265,7 +318,12 @@ div.datalist{
                     }
                 }
             }
+        }
 
+        &[data-view-mode="list"]{
+            td{
+                padding: .2rem 1.8rem;
+            }
         }
 
     }

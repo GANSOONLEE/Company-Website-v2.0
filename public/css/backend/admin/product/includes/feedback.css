@@ -3,25 +3,28 @@ section.feedback {
   justify-content: flex-start;
   align-items: center;
   position: fixed;
-  right: -200px;
+  right: -130px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.0666666667);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2666666667);
   padding: 0.8rem;
   background-color: #ee4d2d;
-  transform: translateX(35px);
   transition: all 0.2s ease-in-out;
+  z-index: 999;
   cursor: pointer;
 }
 section.feedback:hover {
-  transform: translateX(-80px);
+  right: -10px;
 }
 section.feedback div.feedback-icon {
-  width: 37px;
+  width: 32px;
   color: white;
 }
 section.feedback div.feedback-information {
-  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
 }
 section.feedback div.feedback-information p {
   font-weight: bold;

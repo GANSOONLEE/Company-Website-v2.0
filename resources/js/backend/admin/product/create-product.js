@@ -13,10 +13,10 @@ window.onload = () => {
         const [name, value] = cookie.trim().split('=');
         if (name === 'sessionData') {
             sessionData = JSON.parse(value);
-            if (sessionData.status === "upload-successful"){
-                alertInstance.updateMessage(sessionData.status, 'success');
+            if (sessionData.status === "successful"){
+                alertInstance.updateMessage(sessionData.message, 'success');
             }else{
-                alertInstance.updateMessage(sessionData.status, 'error');
+                alertInstance.updateMessage(sessionData.message, 'error');
             }
             alertInstance.autoAlert();
         }

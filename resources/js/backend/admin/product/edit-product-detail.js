@@ -1,149 +1,162 @@
 
-// Import Vue Components
+// Import Vue Component
 
-import BootstrapModal from '../components/BootstrapModal.vue';
-
-app.component('bootstrap-modal', BootstrapModal);
-app.mount('#modal');
-
-import CustomAlert from '../components/CustomAlert.vue';
-
+import CustomAlert from '../components/CustomAlert.vue'
 const alert = createApp(CustomAlert);
-const vm = alert.mount('#alert')
+const alertInstance = alert.mount('#alert')
 
-// Delete Button Listener
-
-    // Website Current Url
-    let currentURL = window.location.href;
-    var parts = currentURL.split('/');
-    let product_code = parts[parts.length - 1];
-
-let dataSlot;
-let deleteButtons = document.querySelectorAll('.delete-button');
-deleteButtons.forEach(deleteButton => {
-    deleteButton.addEventListener('click', (event)=>{
-        event.preventDefault();
-        event.stopPropagation();
-
-        let closestInput = event.target.parentElement.parentElement.parentElement.querySelector('input[type="file"]');
-        dataSlot = closestInput.getAttribute('data-slot');
-    })
-});
-
-
-let ImageUploadCollection = document.querySelectorAll('input[type="file"]');
-ImageUploadCollection.forEach(ImageUpload => {
-    ImageUpload.addEventListener('click', (event)=>{    
-        let imageClosest = event.target.closest('.box-list').querySelector('img');
-        if(imageClosest.src !== currentURL){
-            event.preventDefault();
-            vm.updateMessage('You must delete the image first !', 'error');
-            vm.autoAlert();
-        }
-    })
-});
-
-let deleteImageButton = document.querySelector('#deleteImageButton');
-deleteImageButton.addEventListener('click', ()=>{
-    let slotImage = document.querySelector(`[data-slot="${dataSlot}"]`);
-    let image = slotImage.closest('.box-list').querySelector('img');
-    let imageSrc = image.src;
-    let fileName = imageSrc.match(/\/([^/]+)$/)[0];
-    let brandCode = image.getAttribute('data-brand-code')
-
-    image.src = "";
-    deleteImageAPI(fileName, product_code, brandCode)
-})
-
-/**
- * Thumbnails
- */
-
-let imageInputs = document.querySelectorAll('.product-image');
-
-imageInputs.forEach((input) => {
-    input.addEventListener('change', function (event) {
-        let file = event.target.files[0];
-        let previewImage = event.target.nextElementSibling.querySelector('.image-preview');
-
-        if (file) {
-            let reader = new FileReader();
-
-            reader.onload = function (e) {
-                previewImage.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            previewImage.src = '';
+/* ------------------------ Image Render ------------------------ */
+window.onload = () => {
+    let cookies = document.cookie.split(';');
+    let sessionData;
+    cookies.forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'sessionData') {
+            sessionData = JSON.parse(value);
+            if (sessionData.status === "successful"){
+                alertInstance.updateMessage(sessionData.message, 'success');
+            }else{
+                alertInstance.updateMessage(sessionData.message, 'error');
+            }
+            alertInstance.autoAlert();
         }
     });
-});
 
-let brandInputs = document.querySelectorAll('.brand-image');
-
-brandInputs.forEach((input) => {
-    input.addEventListener('change', function (event) {
-        let file = event.target.files[0];
-        let previewImage = event.target.nextElementSibling.querySelector('.brand-preview');
-
-        if (file) {
-            let reader = new FileReader();
-
-            reader.onload = function (e) {
-                previewImage.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            previewImage.src = '';
-        }
-    });
-});
-
-
-/**
- * API Delete Image
- * 
- */
-
-function deleteImageAPI(imageSrc ,product_code, brandCode){
-
-    console.info(imageSrc);
-    console.info(product_code);
-
-    $.ajax({
-        url: '/admin/product/image-delete-api',
-        data: {'imageName' : imageSrc, 'product_code' : product_code, 'brandCode' : brandCode},
-        dataType: 'json',
-        type: 'post',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success(response){
-            console.info(response)
-            vm.updateMessage('Success delete Image', 'success');
-            vm.autoAlert();
-        },
-        error(response){
-            console.info(response)
-        }
-    })
-
+    updateImageCount();
 }
 
-// form
-const form = document.querySelector('form');
+/* ------------------------ Image Render ------------------------ */
 
-form.addEventListener('submit', (event)=>{
+const uploadImages = document.querySelectorAll('input[type="file"]');
+uploadImages.forEach(image => {
 
-    event.preventDefault();
+    image.addEventListener('change', e => {
+        // get render windows
+        const imageRenderWindow = document.querySelector(`img[data-preview-media=${image.name}]`);
 
-    vm.updateMessage('Success Edit !', 'success')
-    vm.autoAlert();
+        // get icon
+        const icon = imageRenderWindow.parentElement.querySelector('i');
 
-    setTimeout(()=>{
-        form.submit();
-    }, 1700)
+        // get name container
+        const nameContainer = imageRenderWindow.parentElement.parentElement.querySelector(`[data-image-name="${image.name}"]`);
+
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+            icon.hidden = true;
+            imageRenderWindow.hidden = false;
+            imageRenderWindow.src = e.target.result;
+            updateImageCount();
+
+            nameContainer.innerText = file.name;
+        }
+    })
 
 })
+
+function updateImageCount() {
+    const images = document.querySelectorAll('img.product-image[data-preview-media]:not([hidden])');
+    const imageCount = images.length;
+    document.querySelector('#product-image-uploaded-count').innerHTML = imageCount;
+}
+
+const deleteButton = document.querySelectorAll('.delete-button');
+deleteButton.forEach(button => {
+    button.addEventListener('click', e => {
+
+        const image = button.parentElement.querySelector('img[data-preview-media]');
+        const uploadInput = button.parentElement.querySelector('input[type="file"]');
+        const icon = button.parentElement.querySelector('i.upload-icon');
+        const nameContainer = button.parentElement.parentElement.querySelector(`[data-image-name]`);
+
+        image.src = '';
+        image.hidden = true;
+        nameContainer.innerText = '';
+        icon.hidden = false;
+        uploadInput.value = '';
+
+        updateImageCount();
+    })
+})
+
+/* ------------------------ Name Input ------------------------ */
+
+const productNameInputs= document.querySelectorAll('.product-name-container[data-index]');
+productNameInputs.forEach((input, index) => {
+
+    if(index == 0){
+        return;
+    }
+
+    // input.hidden = true;
+});
+
+let addNameInputButton = document.querySelector('#product-name-input-add-button');
+addNameInputButton.addEventListener('click', () => {
+    const productNameInputs = document.querySelectorAll('.product-name-container');
+    const productNameInputCount = document.querySelectorAll('.product-name-container:not([hidden])');
+
+    if(productNameInputCount.length >= productNameInputs.length){
+        alertInstance.updateMessage('Maximum input 10 name only!', 'warning');
+        alertInstance.autoAlert();
+        return false;
+    }
+
+    productNameInputs[productNameInputCount.length].hidden = false;
+})
+
+let deleteNameInputButtons = document.querySelectorAll('#product-name-input-delete-button');
+deleteNameInputButtons.forEach(deleteNameInputButton => {
+    deleteNameInputButton.addEventListener('click', () => {
+        const productNameInputs = document.querySelectorAll('.product-name-container');
+        const productNameInputCount = document.querySelectorAll('.product-name-container:not([hidden])');
+    
+        if(productNameInputCount.length > productNameInputs.length){
+            return;
+        }
+    
+        productNameInputs[productNameInputCount.length-1].hidden = true;
+    })
+});
+
+/* ------------------------ Brand Input ------------------------ */
+
+const productBrandInputs= document.querySelectorAll('.product-brand-container[data-index]');
+productBrandInputs.forEach((input, index) => {
+
+    if(index == 0){
+        return;
+    }
+
+    // input.hidden = true;
+
+});
+
+let addBrandInputButton = document.querySelector('#product-brand-input-add-button');
+addBrandInputButton.addEventListener('click', () => {
+    const productBrandInputs = document.querySelectorAll('.product-brand-container');
+    const productBrandInputCount = document.querySelectorAll('.product-brand-container:not([hidden])');
+
+    if(productBrandInputCount.length >= productBrandInputs.length){
+        alertInstance.updateMessage('Maximum input 10 brand only!', 'warning');
+        alertInstance.autoAlert();
+        return false;
+    }
+
+    productBrandInputs[productBrandInputCount.length].hidden = false;
+})
+
+let deleteBrandInputButtons = document.querySelectorAll('#product-brand-input-delete-button');
+deleteBrandInputButtons.forEach(deleteBrandInputButton => {
+    deleteBrandInputButton.addEventListener('click', () => {
+        const productBrandInputs = document.querySelectorAll('.product-brand-container');
+        const productBrandInputCount = document.querySelectorAll('.product-brand-container:not([hidden])');
+    
+        if(productBrandInputCount.length > productBrandInputs.length){
+            return;
+        }
+    
+        productBrandInputs[productBrandInputCount.length-1].hidden = true;
+    })
+});

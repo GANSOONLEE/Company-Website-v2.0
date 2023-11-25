@@ -111,7 +111,6 @@
 
 @push('after-style')
     <link rel="stylesheet" href="{{ asset('css\backend\admin\product\edit-product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\edit-product-form.css') }}">
 @endpush
 
 @push('after-script')

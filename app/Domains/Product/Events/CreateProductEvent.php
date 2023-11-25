@@ -119,15 +119,27 @@ class CreateProductEvent{
             $this->createProductName();
             $this->createProductBrand();
 
-            $data = ['status' => 'upload-successful'];
+            $data = [
+                'status' => 'successful',
+                'message' => trans('product.upload-successful'),
+            ];
         }catch (\Exception $e){
             $this->createProductFailureRollback();
             Log::error($e->getMessage());
             Log::error($e->getLine());
             Log::error($e->getFile());
 
-            $data = ['status' => 'upload-failure'];
+            $data = [
+                'status' => 'failure',
+                'message' => trans('product.upload-failure'),
+            ];
         }
+
+        Operation::create([
+            'email' => auth()->user()->email,
+            'operation_type' => 'Create',
+            'operation_category' => 'Product'
+        ]);
 
         
         return redirect()->back()->withCookie(cookie(
@@ -280,6 +292,8 @@ class CreateProductEvent{
         ){
             $result = Storage::disk('public')->deleteDirectory($directory);
         }
+
+        Log::error("The Product $this->productCode has be deleted");
 
     }
 
