@@ -37,6 +37,10 @@ class RegisterEvent{
             return false;
         }
 
+        if($whatsapp_phone == "" || $whatsapp_phone == null){
+            $whatsapp_phone = $contact_phone;
+        }
+
         // Create new user
         $userData = [
             'name' => $name,

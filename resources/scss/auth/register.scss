@@ -14,17 +14,87 @@
 /* ———————————————————— Layouts ———————————————————— */
 
 .app{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+
+    > div.container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: unset;
+        width: 100vw;
+        padding: 0;
+
+        
+        > form{
+            margin-left: 15vw;
+            background-color: var(--color-white);
+        }
+    
+        > a{
+            width: 30%;
+            height: 100vh;
+            box-shadow: 0 0 20px rgba(255, 255, 255, .2);
+            backdrop-filter: brightness(.8) blur(3px) !important;
+            padding-right: 15vw;
+            padding-left: 3vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all .1s ease-in-out;
+
+            &:hover{
+                backdrop-filter: brightness(.7) blur(3px) !important;
+            }
+
+            img.form-header-logo{
+                max-width: 120px;
+                width: 120px;
+                height: auto;
+                transition: all .12s ease-in-out;
+                filter: brightness(1.4) !important;
+                &:hover{
+                   transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+img.background-image{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+    width: 110%;
+    object-fit: cover;
+    filter: brightness(.8) !important;
+    transform-style: preserve-3d;
+    transform-origin: bottom center;
+    animation: fisheyeEffect 10s infinite ease-in-out;
+}
+
+@keyframes fisheyeEffect {
+  0%, 100% {
+    transform: translateX(12px) rotateY(4deg) rotateX(4deg);
+  }
+  50% {
+    transform:translateX(-12px) rotateY(-4deg) rotateX(-4deg);
+  }
 }
 
 form.form#form{
     width: auto;
-    max-width: 80%;
-    height: auto;
+    max-width: 32%;
+    min-width: 32%;
+    max-height: 88vh;
+    min-height: 88vh;
+    height: max-content;
     padding: 1rem 2rem;
     box-shadow: 0 0 20px #00000022;
     border-radius: 4px;
@@ -34,37 +104,33 @@ form.form#form{
     > div.form-header{
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
-        > p.form-header-title{
-            font-size: var(--font-h4);
-            text-align: center;
-            margin-bottom: .5rem;
-        }
-        > a{
-            img.form-header-logo{
-                max-width: 100px;
-                transition: all .12s ease-in-out;
-                &:hover{
-                   transform: scale(1.1);
-                }
-            }
-        }
-    }
+        margin-bottom: .8rem;
 
-    // Body
-
-
-
-    // Footer
-    > div.form-footer{
-        font-size: var(--font-remark);
-        p.login-text{
+        p{
             margin-bottom: 0;
         }
-        a{
-            color: blue;
-            margin-left: .6rem;
+        > p.form-header-title{
+            font-size: var(--font-h5);
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: .2rem;
+        }
+        > p.login-text{
+            display: flex;
+            font-size: var(--font-remark);
+            font-family: .4rem;
+            margin-bottom: 0;
+            a{
+                color: blue;
+                font-size: var(--font-remark);
+                font-family: .4rem;
+                margin-left: .4rem;
+                &:hover{
+                    color: rgb(0, 0, 178);
+                }
+            }
         }
     }
 }
@@ -76,12 +142,15 @@ form.form#form{
     align-items: center;
     width: 100%;
     padding: 1rem 0;
+
     .steps {
         display: flex;
         width: 100%;
         align-items: center;
         justify-content: space-around;
         position: relative;
+        margin-bottom: .8rem;
+
         .circle {
             display: flex;
             align-items: center;
@@ -124,9 +193,10 @@ form.form#form{
         display: flex;
         justify-content: space-between;
         width: 100%;
+        margin-top: auto;
+
         button {
             padding: .4rem .8rem;
-            // background: #4070f4;
             border: none;
             border-radius: 4px;
             color: #fff;
@@ -159,7 +229,14 @@ section.input-area{
     *:placeholder{
         font-size: calc(var(--font-remark));
     }
-    
+    .flex-row{
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: .4rem;
+        label[for="same-phone-number"]{
+            font-size: calc(var(--font-remark) - .1rem);
+        }   
+    }
 }
 
 /* ==================== RWD ==================== */

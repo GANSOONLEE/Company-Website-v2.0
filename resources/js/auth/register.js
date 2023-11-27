@@ -104,3 +104,13 @@ $("#form").submit(function (event) {
         }
     });
 });
+
+// show / hide input
+let input = document.querySelector('#same-phone-number');
+input.addEventListener('change', ()=>{
+    if(input.checked){
+        document.querySelector('#whatsapp_phone').parentElement.parentElement.style.display = 'block';
+    }else{
+        document.querySelector('#whatsapp_phone').parentElement.parentElement.style.display = 'none';
+    }
+})

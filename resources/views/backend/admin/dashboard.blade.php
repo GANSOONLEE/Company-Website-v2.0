@@ -25,9 +25,9 @@
 @push('after-script')
 
     <!-- Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Components -->
-    <script src="{{ asset('js/backend/admin/dashboard.js') }}"></script>
+    <script defer src="{{ asset('js/backend/admin/dashboard.js') }}"></script>
     
 @endpush

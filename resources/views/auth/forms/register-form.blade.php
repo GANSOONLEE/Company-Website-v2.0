@@ -17,17 +17,28 @@
             </div>
             
             <div class="flex-row group-column">
-                <div class="mb-3 flex-column">
+                <div class="mb-3 flex-column col">
                     <label for="contact_phone" class="form-label required">Contact Phone</label>
-                    <input type="text" class="form-control" name="contact_phone" id="contact_phone" placeholder="Contact Phone" required>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">+60</span>
+                        <input type="text" class="form-control" name="contact_phone" id="contact_phone" placeholder="Contact Phone" required>
+                    </div>
                 </div>
                 
-                <div class="mb-3 flex-column">
+                <div class="mb-3 flex-column col" style="display: none">
                     <label for="whatsapp_phone" class="form-label required">Whatsapp Phone</label>
-                    <input type="text" class="form-control" name="whatsapp_phone" id="whatsapp_phone" placeholder="Whatsapp Phone" required>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">+60</span>
+                        <input type="text" class="form-control" name="whatsapp_phone" id="whatsapp_phone" placeholder="Whatsapp Phone" required>
+                    </div>
                 </div>
             </div>
-        
+
+            <div class="flex-row mb-3">
+                <input type="checkbox" name="" id="same-phone-number">
+                <label for="same-phone-number">My contact phone and whatsapp phone aren't same.</label>
+            </div>
+
             <div class="mb-3">
                 <label for="email" class="form-label required">Email</label>
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
@@ -36,12 +47,12 @@
             <div class="flex-row group-column">
                 <div class="mb-3 flex-column">
                     <label for="password" class="form-label required">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                    <input autocomplete="new-passowrd" type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                 </div>
                 
                 <div class="mb-3 flex-column">
                     <label for="confirm_password" class="form-label required">Confirm Password</label>
-                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+                    <input autocomplete="new-passowrd" type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                 </div>
             </div>
             
