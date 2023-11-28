@@ -94,11 +94,11 @@ export default {
         closeAlert(){
             this.show = false;
         },
-        autoAlert(){
+        autoAlert(time = 3){
             this.showAlert();
             setTimeout(()=>{
                 this.closeAlert()
-            }, 3000)
+            }, time * 1000)
         }
     },
 };

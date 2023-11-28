@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/auth/global.js": "/js/auth/global.js",
+    "/js/auth/login.js": "/js/auth/login.js",
     "/js/auth/register.js": "/js/auth/register.js",
     "/js/backend/admin/account/banned-account.js": "/js/backend/admin/account/banned-account.js",
     "/js/backend/admin/account/operation-record.js": "/js/backend/admin/account/operation-record.js",
@@ -20,6 +21,7 @@
     "/js/backend/admin/product/create-product.js": "/js/backend/admin/product/create-product.js",
     "/js/backend/admin/product/edit-product-detail.js": "/js/backend/admin/product/edit-product-detail.js",
     "/js/backend/admin/product/edit-product.js": "/js/backend/admin/product/edit-product.js",
+    "/js/backend/admin/report-bug.js": "/js/backend/admin/report-bug.js",
     "/js/backend/user/cart.js": "/js/backend/user/cart.js",
     "/js/backend/user/data.js": "/js/backend/user/data.js",
     "/js/backend/user/includes/sidebar.js": "/js/backend/user/includes/sidebar.js",
@@ -46,6 +48,7 @@
     "/css/backend/user/includes/sidebar.css": "/css/backend/user/includes/sidebar.css",
     "/css/backend/user/data.css": "/css/backend/user/data.css",
     "/css/backend/user/cart.css": "/css/backend/user/cart.css",
+    "/css/backend/admin/report-bug.css": "/css/backend/admin/report-bug.css",
     "/css/backend/admin/product/includes/feedback.css": "/css/backend/admin/product/includes/feedback.css",
     "/css/backend/admin/product/edit-product.css": "/css/backend/admin/product/edit-product.css",
     "/css/backend/admin/product/edit-product-form.css": "/css/backend/admin/product/edit-product-form.css",

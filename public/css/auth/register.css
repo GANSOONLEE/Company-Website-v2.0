@@ -1,4 +1,9 @@
 @charset "UTF-8";
+/* ———————————————————— Global Setting ———————————————————— */
+textarea {
+  resize: none;
+}
+
 /* ———————————————————— Global Class ———————————————————— */
 .group-column {
   -moz-column-gap: 1.4rem;
@@ -12,6 +17,18 @@
 }
 
 /* ———————————————————— Layouts ———————————————————— */
+#alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#alert .alert {
+  width: 95vw;
+  margin-left: unset;
+  top: 1.4rem;
+  left: unset;
+}
+
 .app {
   width: 100%;
   height: 100vh;
@@ -37,18 +54,14 @@
   width: 30%;
   height: 100vh;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: brightness(0.8) blur(3px) !important;
-          backdrop-filter: brightness(0.8) blur(3px) !important;
+  -webkit-backdrop-filter: brightness(1.25) blur(3px) !important;
+          backdrop-filter: brightness(1.25) blur(3px) !important;
   padding-right: 15vw;
   padding-left: 3vw;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.1s ease-in-out;
-}
-.app > div.container > a:hover {
-  -webkit-backdrop-filter: brightness(0.7) blur(3px) !important;
-          backdrop-filter: brightness(0.7) blur(3px) !important;
 }
 .app > div.container > a img.form-header-logo {
   max-width: 120px;
@@ -154,7 +167,7 @@ form.form#form > div.form-header > p.login-text a:hover {
   color: #999;
   font-size: var(--font-remark);
   font-weight: 500;
-  border-radius: 50%;
+  border-radius: 4px;
   background: #fff;
   border: 4px solid #e0e0e0;
   transition: all 200ms ease;
@@ -179,6 +192,9 @@ form.form#form > div.form-header > p.login-text a:hover {
   min-width: 25%;
   background: #4070f4;
   transition: all 300ms ease;
+}
+.container .content {
+  width: 100%;
 }
 .container .buttons {
   display: flex;

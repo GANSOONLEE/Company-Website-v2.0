@@ -174,4 +174,5 @@ return array (
   'banned-account' => '封禁賬號',
   'unavaiable-account' => '不可用的賬號',
   'unbanned' => '解禁',
+  'password-or-email-wrong' => '電子郵件或密碼錯誤！請檢查再填寫！',
 );

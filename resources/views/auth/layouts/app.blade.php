@@ -38,6 +38,8 @@
 </head>
 <body>
 
+    <div id="alert"></div>
+
     <div class="app">
 
         @yield('app')

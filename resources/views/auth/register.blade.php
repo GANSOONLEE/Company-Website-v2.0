@@ -41,7 +41,7 @@
 @endsection
 
 @push('before-body')
-    <link rel="preload stylesheet" href="{{ asset('css\auth\register.css') }}">
+    <link rel="preload stylesheet" as="style" href="{{ asset('css\auth\register.css') }}">
 @endpush
 
 @push('after-body')

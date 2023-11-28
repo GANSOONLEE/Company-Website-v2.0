@@ -39,7 +39,28 @@
                 </label>
             </div>
         </div>
+        <div class="sort-by">
+            <div>
+                <input type="radio" name="sort" id="car" value="car">
+                <label for="car">
+                    <i class="fa-solid fa-car"></i>
+                </label>
+            </div>
+
+            <div>
+                <input type="radio" name="sort" id="asc" value="asc">
+                <label for="asc">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                </label>
+            </div>
     
+            <div>
+                <input type="radio" name="sort" id="desc" value="desc">
+                <label for="desc">
+                    <i class="fa-solid fa-arrow-up-wide-short"></i>
+                </label>
+            </div>
+        </div>
     </section>
 
     <table>
@@ -47,6 +68,17 @@
 
         </thead>
         <tbody>
+            @php
+                $sortBy = request('sortBy', 'car'); // get sortBy
+                if ($sortBy == "car") {
+                    $productData = $productData;
+                }else if ($sortBy == "asc") {
+                    $productData = $productData->sortBy('updated_at');
+                }else{
+                    $productData = $productData->sortByDesc('updated_at');
+                }
+            @endphp
+
             @foreach ($productData->slice($startIndex, $recordsPerPage) as $index => $data)
                 <tr data-product-code="{{ $data->product_code }}">
                     

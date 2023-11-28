@@ -130,27 +130,36 @@
 
     <div class="panel">
         <div class="panel-header">
-            <h4 class="panel-title">{{ __('product.model-upload') }}</h4>
+            <h4 class="panel-title">{{ __('product.brand-upload') }}</h4>
         </div>
         <div class="panel-body column">
 
             @php
                 $productBrandArray = [];
                 $productBrandCollection = $product->getProductBrand();
+
+                if(count($productBrandCollection) < 0){
+                    return;
+                };
+
                 foreach ($productBrandCollection as $index => $productBrand) {
 
+                    
                     // add brand cover path
                     $baseDirectory = "/product/$product->product_category/$product->product_code/$productBrand->code";
                     $brandCover = \Illuminate\Support\Facades\Storage::disk('public')->files($baseDirectory);
-                    $productBrand->brand_media = '/storage/' . $brandCover[0];
+                    if(count($brandCover) > 0){
+                        $productBrand->brand_media = '/storage/' . $brandCover[0];
 
-                    // add brand cover name
-                    $imageInstance = new \Illuminate\Http\UploadedFile(\Illuminate\Support\Facades\Storage::disk('public')->path($brandCover[0]), $brandCover[0]);
-                    $productBrand->brand_media_name = $imageInstance->getClientOriginalName();
+                        // add brand cover name
+                        $imageInstance = new \Illuminate\Http\UploadedFile(\Illuminate\Support\Facades\Storage::disk('public')->path($brandCover[0]), $brandCover[0]);
+                        $productBrand->brand_media_name = $imageInstance->getClientOriginalName();
+    
+                        // filter "FZ-" at frozen_code
+                        $productBrand->frozen_code = str_replace('FZ-', '', $productBrand->frozen_code);
+                        $productBrandArray[] = $productBrand;
+                    }
 
-                    // filter "FZ-" at frozen_code
-                    $productBrand->frozen_code = str_replace('FZ-', '', $productBrand->frozen_code);
-                    $productBrandArray[] = $productBrand;
                 }
 
                 for ($i = count($productBrandCollection); $i < 10; $i++) { 

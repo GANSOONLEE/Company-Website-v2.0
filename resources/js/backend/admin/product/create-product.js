@@ -5,7 +5,7 @@ import CustomAlert from '../components/CustomAlert.vue'
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount('#alert')
 
-/* ------------------------ Image Render ------------------------ */
+/* ------------------------ detect Cookie ------------------------ */
 window.onload = () => {
     let cookies = document.cookie.split(';');
     let sessionData;

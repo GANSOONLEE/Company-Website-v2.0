@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
+// Laravel Support
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+// Model
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\CarModel;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller{
 
     public function product($category){
-
-        // $productData = Product::select(
-        //         DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(products_name.name ORDER BY products_name.product_code), ',', 1) as first_name"),    
-        //         'products.*',
-        //         'products_name.product_code',
-        //         'products_name.name',
-        //     )
-        //     ->join('products_name', 'products.product_code', '=', 'products_name.product_code')
-        //     ->where('products.product_category', $category)
-        //     ->where('products.product_status', 'Public')
-        //     ->groupBy('products_name.name', 'products_name.product_code')
-        //     ->orderBy('first_name', 'asc')
-        //     ->get();
 
         $productData = [];
 
@@ -34,7 +25,7 @@ class ProductController extends Controller{
                 'products_name.product_code'
                 )
             ->join('products','products.product_code','=','products_name.product_code')
-            ->when(auth()->user()->getRoleEntity()->name != "root", function ($query){
+            ->when(!auth()->user() || auth()->user()->getRoleEntity()->name != "root", function ($query){
                 $query->where('products.product_status', 'Public');
             })
             ->where('products.product_category', $category)
@@ -45,8 +36,36 @@ class ProductController extends Controller{
         foreach($product_code as $code){
             $product = Product::where('product_code', $code->product_code)
                 ->first();
+
             if(!$product){
                 continue;
+            }
+
+            // Defined variable
+            $category = $product->product_category;
+            $code = $product->product_code;
+
+            // Get Image
+            if(auth()->user()->email == 'vincentgan0402@gmail.com'){
+
+                $images = Storage::disk('public')->files("product/$category/$code");
+                $product_cover = '' ; 
+                $product_image = [] ; 
+                $brand_cover = [] ;
+    
+                foreach($images as $image){
+    
+                }
+    
+    
+                // $product->product_image = 
+                
+                // if(){
+    
+                // }
+    
+                // dd($product);
+                
             }
             $productData[] = $product; 
         }

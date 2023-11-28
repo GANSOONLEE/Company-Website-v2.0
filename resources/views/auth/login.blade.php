@@ -46,5 +46,5 @@
 @endpush
 
 @push('after-body')
-    {{-- <script src="{{ asset('js\auth\login.js') }}"></script> --}}
+    <script defer src="{{ asset('js\auth\login.js') }}"></script>
 @endpush

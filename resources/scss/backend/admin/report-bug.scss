@@ -1,0 +1,15 @@
+
+/* ---------------------------- Layouts ---------------------------- */
+
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form#form.form{
+    width: 80%;
+}

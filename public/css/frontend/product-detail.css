@@ -46,6 +46,8 @@ section.product-media {
 section.product-media div.image-preview-container {
   min-height: 300px;
   max-height: 300px;
+  min-width: 300px;
+  max-width: 300px;
   width: 100%;
   overflow: hidden;
   display: flex;

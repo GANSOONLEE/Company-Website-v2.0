@@ -29,13 +29,28 @@ class LoginEvent{
             Auth::login($user);
     
             if($user->isAdmin() || $user->getRole()[0] == "root"){
-                return redirect()->route('backend.admin.dashboard')->withCookie($cookie);
+                return redirect()->route('backend.admin.dashboard')
+                    ->withCookie($cookie);
             }else{
-                return redirect()->route('backend.user.cart')->withCookie($cookie);
+                return redirect()->route('backend.user.cart')
+                    ->withCookie($cookie);
             }
 
         } else {
-            return back()->withErrors(['email' => 'Login Failure, please check your email address and password.']);
+            $data = [
+                'status' => 'failure',
+                'message' => trans('account.password-or-email-wrong'),
+            ];
+            return back()->withCookie(cookie(
+                'sessionData',
+                json_encode($data),
+                0.05,
+                null,
+                null,
+                false,
+                false,
+                true
+            ));
         }
 
     }

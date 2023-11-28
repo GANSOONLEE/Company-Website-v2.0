@@ -174,4 +174,5 @@ return array (
   'banned-account' => '封禁账号',
   'unavaiable-account' => '不可用的账号',
   'unbanned' => '解禁',
+  'password-or-email-wrong' => '电子邮件或密码错误！请检查再填写！',
 );

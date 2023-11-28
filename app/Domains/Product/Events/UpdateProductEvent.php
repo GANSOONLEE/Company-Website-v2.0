@@ -143,6 +143,8 @@ class UpdateProductEvent{
             Log::error($e->getLine());
             Log::error($e->getFile());
 
+            dd($e->getMessage(), $e->getLine(), $e->getFile());
+
             $data = [
                 'status' => 'failure',
                 'message' => trans('product.update-failure'),
@@ -235,13 +237,14 @@ class UpdateProductEvent{
 
         $productCode = $this->productCode;
         $productCategory = $this->productCategory;
+        $product = Product::where('product_code', $productCode)->first();
 
         $productBasicData = [
-            'product_code' => $productCode,
             'product_category' => $productCategory,
+            'updated_at' => now(),
         ];
 
-        $this->product->update($productBasicData);
+        $product->update($productBasicData);
         
     }
 
@@ -250,6 +253,15 @@ class UpdateProductEvent{
         $productModel = $this->productModel;
         $productModelSerial = $this->productModelSerial;
 
+        $productModel = array_filter($productModel);
+        $productModelSerial = array_filter($productModelSerial);
+
+        $productFullNameArray = [];
+        foreach($productModel as $index => $model){
+            $productFullNameArray[] = $model. " ". $productModelSerial[$index];
+        }
+        
+        $productNameArray = [];
         $currentProductName = $this->product->getProductName();
         foreach ($currentProductName as $index => $productName) {
 
@@ -270,35 +282,58 @@ class UpdateProductEvent{
             ];
         }
 
+        $sourceProductName = [];
+        // arraying product brand code
+        foreach($productFullNameArray as $name){
+            $sourceProductName[] = $name;
+        }
 
-        foreach($productModel as $index => $model){
+        $currentProductNameCode = [];
+        // arraying product brand code
+        foreach($currentProductName as $name){
+            $currentProductNameCode[] = $name->name;
+        }
 
-            if(!$model || !isset($model)){
-                break;
-            }
+        // diff at current and new 
+        $differenceArray = array_diff($currentProductNameCode, $sourceProductName);
 
-            foreach($productNameArray as $index => $productName){
+        $sourcesDifferenceArray = array_diff($sourceProductName, $currentProductNameCode);
 
-                // check are existent record
-                if($productName->model == $model && $productName->serial == $productModelSerial[$index]){
-                    continue;
-                }else{
-
-                    dd($model . ' ' .  $productModelSerial[$index]);
-
-                    $productFullName = $model . ' ' .  $productModelSerial[$index];
+        // if(auth()->user()->email == "vincentgan0402@gmail.com"){
+            // dd(
+            //     $differenceArray, // 要刪除的數據
+            //     $sourcesDifferenceArray, // 要新增的數據
+            //     $sourceProductName, // 最終數據
+            //     $currentProductNameCode, // 原本數據
+            // );
+        // }
         
-                    $productNameData = [
-                        'name' => $productFullName,
-                        'product_code' => $this->productCode,
-                    ];
-        
-                    DB::table('products_name')
-                        ->insert($productNameData);
-                }
+        if(count($differenceArray) > 0){
+
+            foreach($differenceArray as $name){
+                DB::table('products_name')
+                    ->where('name', $name)
+                    ->delete();
             }
 
         }
+
+
+
+        foreach($sourcesDifferenceArray as $index => $productName){
+
+            // check are existent record
+            $productFullName = $productName;
+
+            $productNameData = [
+                'name' => $productFullName,
+                'product_code' => $this->productCode,
+            ];
+
+            DB::table('products_name')
+                ->insert($productNameData);
+        }
+
 
     }
 
@@ -308,38 +343,68 @@ class UpdateProductEvent{
         $productBrandCode = $this->productBrandCode;
         $productFrozenCode = $this->productFrozenCode;
 
-        $currentProductName = $this->product->getProductBrand();
+        $productBrand = array_filter($productBrand);
+        $productBrandCode = array_filter($productBrandCode);
+        $productFrozenCode = array_filter($productFrozenCode);
 
-        foreach($productBrandCode as $index => $brand_code){
+        $currentProductBrand = $this->product->getProductBrand();
 
-            if(
-                !isset($productBrand[$index]) ||
-                !isset($brand_code) ||
-                !isset($productFrozenCode[$index])
-            )
-            {
-                continue;
+        $sourceProductBrandCode = [];
+        // arraying product brand code
+        foreach($productBrandCode as $index => $code){
+
+            $sourceProductBrandCode[$code] = (object)[ 
+                "brand" => $productBrand[$index],
+                "code" => $code,
+                "frozen_code" => $productFrozenCode[$index],
+            ];
+        }
+
+        $currentProductBrandCode = [];
+        // arraying product brand code
+        foreach($currentProductBrand as $code){
+            $currentProductBrandCode[] = $code->code;
+        }
+
+        // diff at current and new 
+        $differenceArray = array_diff($currentProductBrandCode, array_column($sourceProductBrandCode, 'code'));
+
+        // diff at new and current
+        $updateDifferenceArray = array_diff(array_column($sourceProductBrandCode, 'code'), $currentProductBrandCode);
+
+        if(count($differenceArray) > 0){
+
+            
+            foreach($differenceArray as $code){
+
+                $path = DB::table('products_brand')
+                    ->where('code', $code)
+                    ->delete();
+
+                $fileDirectory = "product/$this->productCategory/$this->productCode/$code";
+
+                Storage::disk('public')->deleteDirectory($fileDirectory);
+
             }
+            
+        }
 
-            // check are existent record
-            if(
-                $currentProductName[$index]->brand == $productBrand[$index] &&
-                $currentProductName[$index]->code == $brand_code &&
-                $currentProductName[$index]->frozen_code == $productFrozenCode[$index]
-            ){
-                continue;
-            }else{
+        if(count($updateDifferenceArray) > 0){
+
+            foreach($updateDifferenceArray as $code){
                 $productBrandData = [
                     'sku_id' => $this->generatorSkuId(),
-                    'brand' => $productBrand[$index],
-                    'code' => $brand_code,
-                    'frozen_code' => $productFrozenCode[$index],
+                    'brand' => $sourceProductBrandCode[$code]->brand,
+                    'code' => $sourceProductBrandCode[$code]->code,
+                    'frozen_code' => "FZ-" . $sourceProductBrandCode[$code]->frozen_code,
                     'product_code' => $this->productCode,
                 ];
-
+            
                 DB::table('products_brand')->insert($productBrandData);
             }
+            
         }
+        
     }
 
     public function updateProductFailureRollback(): void{
@@ -348,12 +413,12 @@ class UpdateProductEvent{
         $directory = $this->directory;
 
         // delete Image
-        if(
-            strpos($directory, $this->productCategory) &&
-            strpos($directory, $this->productCode)
-        ){
-            $result = Storage::disk('public')->deleteDirectory($directory);
-        }
+        // if(
+        //     strpos($directory, $this->productCategory) &&
+        //     strpos($directory, $this->productCode)
+        // ){
+        //     $result = Storage::disk('public')->deleteDirectory($directory);
+        // }
 
     }
 

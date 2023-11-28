@@ -174,4 +174,5 @@ return array (
   'banned-account' => 'Banned Account',
   'unavaiable-account' => 'Unavailable account',
   'unbanned' => 'unbanned',
+  'password-or-email-wrong' => 'Wrong email or password! Please check and fill in again!',
 );

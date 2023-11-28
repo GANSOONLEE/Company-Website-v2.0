@@ -212,6 +212,8 @@ div.datalist{
 
     // view-slider
     section.view-slider-container{
+        display: flex;
+        justify-content: space-between;
         position: relative;
         width: 100%;
 
@@ -258,6 +260,51 @@ div.datalist{
             }
             
         }
+
+        div.sort-by{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            width: auto;
+            min-width: 100px;
+            position: sticky;
+            top: .5rem;
+            right: .6rem;
+            padding: .4rem 0;
+            margin: .6rem .6rem;
+            align-self: flex-end;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+    
+            div{
+                input{
+                    display: none;
+                }
+    
+                input:checked + label{
+                    background-color: #fff;
+                    color: #ff944d;
+                }
+    
+                label{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    padding: .2rem;
+                    border-radius: 3px;
+                    $size: 28px;
+                    height: $size;
+                    width: $size;
+                    transition: all .1s ease-in-out;
+                    i{
+                        line-height: unset;
+                    }
+                }
+            }
+            
+        }
     }
 
     // Table
@@ -265,6 +312,7 @@ div.datalist{
         width: 100%;
         table-layout: auto;
         word-break: break-all;
+        font-size: calc(var(--font-remark) - .1rem);
 
         // tr
         tr{

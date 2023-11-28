@@ -2,6 +2,17 @@
 
 import $ from 'jquery';
 
+// Vue Component Import
+
+import CustomAlert from '../backend/admin/components/CustomAlert.vue'
+let alert = createApp(CustomAlert);
+let alertInstance = alert.mount('#alert')
+
+function showMessage(message, icon = 'info') {
+    alertInstance.updateMessage(message, icon)
+    alertInstance.autoAlert();
+}
+
 /**
  * Multi Step Program Bar
  */
@@ -80,7 +91,8 @@ $("#form").submit(function (event) {
 
     // check the password are same
     if (password !== confirmPassword) {
-        alert("Password nad Comfirm Password aren't same!");
+        alert("");
+        showMessage('Password nad confirm Password aren\'t same!', 'error')
         return;
     }
 
@@ -94,13 +106,13 @@ $("#form").submit(function (event) {
         },
         success: function (response) {
             if (response.emailExists) {
-                alert("This email address already have.");
+                showMessage('This email address are existents.', 'error')
             } else {
                 $("#form").unbind('submit').submit();
             }
         },
         error: function () {
-            alert("Something error");
+            showMessage('Something happened', 'warning')
         }
     });
 });
@@ -108,9 +120,15 @@ $("#form").submit(function (event) {
 // show / hide input
 let input = document.querySelector('#same-phone-number');
 input.addEventListener('change', ()=>{
+
+    let inputWhatsappPhone = document.querySelector('#whatsapp_phone');
+    let inputContainer = inputWhatsappPhone.parentElement.parentElement;
+
     if(input.checked){
-        document.querySelector('#whatsapp_phone').parentElement.parentElement.style.display = 'block';
+        inputWhatsappPhone.required = true;
+        inputContainer.style.display = 'block';
     }else{
-        document.querySelector('#whatsapp_phone').parentElement.parentElement.style.display = 'none';
+        inputWhatsappPhone.required = false;
+        inputContainer.style.display = 'none';
     }
 })

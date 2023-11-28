@@ -29,7 +29,7 @@
                     <label for="whatsapp_phone" class="form-label required">Whatsapp Phone</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">+60</span>
-                        <input type="text" class="form-control" name="whatsapp_phone" id="whatsapp_phone" placeholder="Whatsapp Phone" required>
+                        <input type="text" class="form-control" name="whatsapp_phone" id="whatsapp_phone" placeholder="Whatsapp Phone">
                     </div>
                 </div>
             </div>
@@ -60,16 +60,14 @@
 
         <section class="input-area" data-page="2">
 
-            <div class="flex-row group-column">
-                <div class="mb-3">
-                    <label for="birthday" class="form-label required">Birthday</label>
-                    <input type="date" class="form-control" name="birthday" id="birthday" placeholder="Birthday" required>
-                </div>
-            
-                <div class="mb-3">
-                    <label for="address" class="form-label required">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
-                </div>
+            <div class="mb-3 col">
+                <label for="birthday" class="form-label required">Birthday</label>
+                <input type="date" class="form-control" name="birthday" id="birthday" placeholder="Birthday" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="address" class="form-label required">Address</label>
+                <textarea type="text" class="form-control" name="address" id="address" placeholder="Address" required></textarea>
             </div>
 
             <div class="mb-3">

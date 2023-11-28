@@ -1,4 +1,9 @@
 
+/* ———————————————————— Global Setting ———————————————————— */
+textarea{
+    resize: none;
+}
+
 /* ———————————————————— Global Class ———————————————————— */
 
 .group-column{
@@ -12,6 +17,19 @@
 }
 
 /* ———————————————————— Layouts ———————————————————— */
+
+#alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .alert{
+        width: 95vw;
+        margin-left: unset;
+        top: 1.4rem;
+        left: unset;
+    }
+}
 
 .app{
     width: 100%;
@@ -40,17 +58,13 @@
             width: 30%;
             height: 100vh;
             box-shadow: 0 0 20px rgba(255, 255, 255, .2);
-            backdrop-filter: brightness(.8) blur(3px) !important;
+            backdrop-filter: brightness(1.25) blur(3px) !important;
             padding-right: 15vw;
             padding-left: 3vw;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all .1s ease-in-out;
-
-            &:hover{
-                backdrop-filter: brightness(.7) blur(3px) !important;
-            }
 
             img.form-header-logo{
                 max-width: 120px;
@@ -162,7 +176,7 @@ form.form#form{
             color: #999;
             font-size: var(--font-remark);
             font-weight: 500;
-            border-radius: 50%;
+            border-radius: 4px;
             background: #fff;
             border: 4px solid #e0e0e0;
             transition: all 200ms ease;
@@ -188,6 +202,9 @@ form.form#form{
                 transition: all 300ms ease;
             }
         }
+    }
+    .content{
+        width: 100%;
     }
     .buttons {
         display: flex;

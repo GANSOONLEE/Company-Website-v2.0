@@ -96,12 +96,29 @@ function getCookie(cname)
 
 
 // check view mode
-let allRadio = document.querySelectorAll('input[type="radio"]');
+let viewRadio = document.querySelectorAll('input[type="radio"][name="view"]');
 
-allRadio.forEach(radio => {
+viewRadio.forEach(radio => {
     radio.addEventListener('click', ()=>{
         setCookie('view-mode', radio.id, 30);
         checkProductCover();
+    });
+});
+
+// check sortBy mode
+let sortRadio = document.querySelectorAll('input[type="radio"][name="sort"]');
+
+sortRadio.forEach(radio => {
+    radio.addEventListener('click', ()=>{
+        console.log(radio)
+        setCookie('sort-by', radio.id, 30);
+
+        // Get Current Url
+        let currentUrl = window.location.href;
+        let url = new URL(currentUrl);
+
+        url.searchParams.set('sortBy', radio.id);
+        window.location.href = url.toString();
     });
 });
 
@@ -112,6 +129,11 @@ window.onload = () => {
         document.querySelector(`#${mode}`).checked = true;
     }else{
         document.querySelector('#image').checked = true;;
+    }
+
+    if(getCookie('sort-by')){
+        let sort = getCookie('sort-by');
+        document.querySelector(`#${sort}`).checked = true;
     }
 
     checkProductCover();
