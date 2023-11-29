@@ -352,6 +352,14 @@ class UpdateProductEvent{
         $sourceProductBrandCode = [];
         // arraying product brand code
         foreach($productBrandCode as $index => $code){
+            
+            if(
+                !isset($productBrand[$index]) &&
+                !isset($productBrandCode[$index]) &&
+                !isset($productFrozenCode[$index])
+            ){
+                continue;
+            }
 
             $sourceProductBrandCode[$code] = (object)[ 
                 "brand" => $productBrand[$index],

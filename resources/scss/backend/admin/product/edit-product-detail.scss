@@ -1,5 +1,5 @@
 
-/* ------------------------------ Create Product Form ------------------------------ */
+/* ------------------------------ Edit Product Form ------------------------------ */
 
 section.create-product-form {
     margin-top: 1rem;
@@ -224,7 +224,7 @@ section.create-product-form {
                         i{
                             position: relative;
                             top: -50%;
-                            transform: translateX(-45%);
+                            transform: translateX(-50%);
                         }
                     }
 
@@ -341,4 +341,9 @@ section.create-product-form {
         width: 100%;
     }
 
+}
+
+.warning{
+    color: red;
+    font-weight: bold;
 }

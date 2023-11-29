@@ -110,9 +110,9 @@
 @endsection
 
 @push('after-style')
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\edit-product.css') }}">
+    <link rel="preload stylesheet" as="style" href="{{ asset('css\backend\admin\product\edit-product.css') }}">
 @endpush
 
 @push('after-script')
-    <script defer src="{{ asset('js\backend\admin\product\edit-product.js') }}"></script>
+    <script src="{{ asset('js\backend\admin\product\edit-product.js') }}"></script>
 @endpush

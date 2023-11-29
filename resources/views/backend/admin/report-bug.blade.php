@@ -20,27 +20,56 @@
 </head>
 <body>
 
-    <form id="form" class="form" action="" method="post">
+    <div id="alert"></div>
 
+    <form id="form" class="form" action="{{ route('backend.admin.bug.bug-report.post') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        
         <div class="row">
 
             <div class="col mb-3">
-                <label for="email" class="form-label">{{ __('bug.email') }}</label>
-                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" disabled required>
+                <label for="email" class="form-label required">{{ __('bug.email') }}</label>
+                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly required>
             </div>
             
             <div class="col mb-3">
-                <label for="datetime" class="form-label">{{ __('bug.datetime') }}</label>
-                <input type="datetime" class="form-control" id="datetime" name="datetime" value="{{ now() }}" disabled required>
+                <label for="datetime" class="form-label required">{{ __('bug.datetime') }}</label>
+                <input type="datetime" class="form-control" id="datetime" name="datetime" value="{{ now() }}" readonly required>
             </div>
 
         </div>
 
         <div class="row">
-            <input type="file" accept="image/png, image/jpeg">
-            <label for="image-upload" class="form-label">{{ __('bug.screenshot') }}</label>
-            <div data-remark="image-upload" data-area="drop & drag">
+            <input type="file" id="image-upload" accept="image/png, image/jpeg" class="required" name="screenshot">
+            <label for="image-upload" class="form-label">
+                {{ __('bug.screenshot') }}
+                <div data-remark="image-upload" data-area="drop & drag">
+                    <img class="image-preview" src="" alt="" hidden>
+                    <div class="tips">
+                        <p>{{ __('bug.select-or-drag-your-image-here') }}</p>
+                        <i class="fa-solid fa-file"></i>
+                    </div>
+                </div>
+            </label>
+        </div>
 
+        <div class="row">
+            <div class="col mb-3">
+                <label for="description" class="form-label required">{{ __('bug.description') }} {{ __('bug.description-example') }}</label>
+                <textarea class="form-control" id="description" placeholder="{{ __('bug.description-example') }}" name="description" required></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+                <label for="additional" class="form-label">{{ __('bug.additional') }}</label>
+                <input type="text" class="form-control" placeholder="{{ __('bug.additional') }}" id="additional" name="additional">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+                <button type="submit" class="btn btn-primary">{{ __('bug.submit') }}</button>
             </div>
         </div>
 

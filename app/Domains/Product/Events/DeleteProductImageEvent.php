@@ -15,7 +15,13 @@ class DeleteProductImageEvent{
             // Define variable
             $imageName = urldecode($request->imageName);
             $product_code = $request->product_code;
-            $brand_code = $request->brandCode;
+            $type = $request->type;
+            
+            if($type === "brand"){
+                $brand_code = $request->brand_code;
+            }else{
+                $brand_code = '';
+            }
 
             // Get Product Information
             $productInstance = Product::where('product_code', $product_code)->first();
@@ -23,17 +29,28 @@ class DeleteProductImageEvent{
 
             // Define Path Parameter
             $diskName = 'public';
-            $directory = "product/$category/$product_code/";
+            $directory = "product/$category/$product_code";
+            $path = "";
 
-            // Verify validation
-            $oldImage = Storage::disk($diskName)->exists($directory . $brand_code . '/' . $imageName);
-            if(!$oldImage){
-                new \Exception('Can\'t find this image');
-                return false;
+            if($type === "brand"){
+                $oldBrandCover = Storage::disk($diskName)->exists($directory . '/'. $brand_code . '/' . $imageName);
+
+                if($oldBrandCover){
+                    // Verify validation
+                    $path = Storage::disk($diskName)->delete($directory . '/'. $brand_code . '/'. $imageName);
+                }
+            }else{
+                $path = Storage::disk($diskName)->exists($directory . '/' . $imageName);
+
+                if($path){
+                    // Verify validation
+                    $path = Storage::disk($diskName)->delete($directory . '/' . $imageName);
+                }
             }
 
+            
+
             // Delete Image
-            $result = Storage::disk($diskName)->delete($directory . $brand_code . '/'. $imageName);
             
             // Record Operation
             $operationData = [
@@ -46,7 +63,10 @@ class DeleteProductImageEvent{
 
             // Response
             $status = [
-                "result" => "success",
+                "name" => $imageName,
+                "path" => $path,
+                "message" => trans('product.update-successful'),
+                "status" => true,
             ];
 
         }catch(\Exception $e){
@@ -54,7 +74,9 @@ class DeleteProductImageEvent{
             $status = [
                 "file" => $e->getFile(),
                 "line" => $e->getLine(),
-                "message" => $e->getMessage()
+                "error" => $e->getMessage(),
+                "message" => trans('product.update-failure'),
+                "status" => false,
             ];
 
         }

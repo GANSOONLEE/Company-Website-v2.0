@@ -97,9 +97,10 @@ class SearchProductEvent{
                 ->where("products_brand.code", "LIKE", "%$this->searchCode%")
                 ->join('products_name', 'products_name.product_code', '=', 'products_brand.product_code')
                 ->join("products", "products.product_code","=","products_brand.product_code")
-                ->orderBy("products_brand.code", "asc")
+                ->orderBy("first_name", "asc")
                 ->groupBy('products.id', 'products_brand.code')
                 ->get();
+
         }else{
             $searchCodeResult = DB::table('products_brand')
                 ->select(
@@ -114,7 +115,7 @@ class SearchProductEvent{
                     'products.id',
                     'products_brand.code'
                 )
-                ->orderBy("products_brand.code", "asc")
+                ->orderBy("first_name", "asc")
                 ->get();
             }
         
@@ -152,7 +153,6 @@ class SearchProductEvent{
                 )
                 ->orderBy('first_name', 'asc')
                 ->first();
-        
             
 
             if ($result && !$productData->contains('product_code', $result->product_code)) {
@@ -162,7 +162,7 @@ class SearchProductEvent{
 
         // 现在 $productData 包含了每个 $commonEntities 对应的第一个符合条件的记录
         // 
-        // auth()->user()->email == "vincentgan0402@gmail.com" ? dd($commonEntities, count($commonEntities), $productData) : '';
+        // auth()->user()->email == "vincentgan0402@gmail.com" ? dd($searchCodeResult, $commonEntities, count($commonEntities), $productData) : '';
 
         $categoryData = \App\Models\Category::all();
         $typeData = \App\Models\Type::all();

@@ -14,13 +14,3 @@ $(document).ready(function($){
     });
 
 });
-
-// Pusher
-let pusher = new Pusher("a018306a14faf67a1d14", {
-    cluster: "ap1",
-});
-
-let channel = pusher.subscribe("admin-sidebar-channel");
-channel.bind("create-order-event", (data) => {
-    document.querySelector('#notification-total-cart').innerText = data.order;
-});

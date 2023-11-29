@@ -2,8 +2,8 @@
 
     <!-- Logo -->
     <div class="sidebar-logo">
-        <a href="{{ route('frontend.home') }}">
-            <img src="{{ asset('image/logo-white.png') }}" alt="Logo" class="sidebar-logo-image">
+        <a href="{{ route('frontend.home') }}" aria-label="home">
+            <img src="{{ asset('image/logo-white.webp') }}" alt="Logo" class="sidebar-logo-image">
             <i class="sidebar-home-icon fa-solid fa-home"></i>
         </a>
     </div>
@@ -158,7 +158,7 @@
             @else
                 <img src="{{asset('image/logo-square.png')}}" alt="" class="avatar-image">
             @endif
-            <a class="logout-href" href="{{ route('auth.logout') }}">
+            <a class="logout-href" href="{{ route('auth.logout') }}" aria-label="logout">
                 <i class="logout-icon fa-solid fa-sign-out"></i>
             </a>
         </div>

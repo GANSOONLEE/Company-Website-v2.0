@@ -8,7 +8,7 @@ section.feedback {
   border: 1px solid rgba(0, 0, 0, 0.0666666667);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2666666667);
   padding: 0.8rem;
-  background-color: #ee4d2d;
+  background-color: #ff2a00;
   transition: all 0.2s ease-in-out;
   z-index: 999;
   cursor: pointer;

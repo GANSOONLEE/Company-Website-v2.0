@@ -1,4 +1,4 @@
-/* ------------------------------ Create Product Form ------------------------------ */
+/* ------------------------------ Edit Product Form ------------------------------ */
 section.create-product-form {
   margin-top: 1rem;
   width: 100%;
@@ -184,7 +184,7 @@ section.create-product-form > div.panel > div.panel-body > div.product-brand-con
 section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload button.delete-button i, section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload img[hidden] i {
   position: relative;
   top: -50%;
-  transform: translateX(-45%);
+  transform: translateX(-50%);
 }
 section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload img:not([hidden]) + i.upload-icon {
   display: none;
@@ -258,4 +258,9 @@ section.create-product-form > div.panel > div.panel-body #product-brand-input-ad
 section.create-product-form button#submit-button {
   margin-top: 2rem;
   width: 100%;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
 }

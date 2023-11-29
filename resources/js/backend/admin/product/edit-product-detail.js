@@ -2,8 +2,14 @@
 // Import Vue Component
 
 import CustomAlert from '../components/CustomAlert.vue'
+import { createApp } from 'vue'
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount('#alert')
+
+function showMessage(message, icon = 'info') {
+    alertInstance.updateMessage(message, icon)
+    alertInstance.autoAlert(7);
+}
 
 /* ------------------------ Image Render ------------------------ */
 window.onload = () => {
@@ -70,6 +76,29 @@ deleteButton.forEach(button => {
         const icon = button.parentElement.querySelector('i.upload-icon');
         const nameContainer = button.parentElement.parentElement.querySelector(`[data-image-name]`);
 
+        let brandCode = button.parentElement.parentElement.parentElement.querySelector('input[data-column="brand-code"]')
+        let brand_code = "";
+        let type = "";
+
+        if(brandCode){
+            brand_code = brandCode.value;
+            type = "brand";
+        }else{
+            brand_code = '';
+            type = "product";
+        }
+
+        let path = window.location.pathname;
+        let pathSegments = path.split('/');
+        let lastSegment = pathSegments[pathSegments.length - 1];
+
+        let data = {
+            imageName: nameContainer.innerText,
+            product_code: lastSegment,
+            brand_code: brand_code,
+            type: type
+        }
+
         image.src = '';
         image.hidden = true;
         nameContainer.innerText = '';
@@ -77,6 +106,35 @@ deleteButton.forEach(button => {
         uploadInput.value = '';
 
         updateImageCount();
+
+
+        $.ajax({
+            url:'/admin/product/image-delete-api',
+            method: "POST",
+            dataType: 'json',
+            data: data,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                if (response.status == true) {
+                    showMessage(response.message, 'success')
+                    console.info(response.name)
+                    console.info(response.path)
+                }else{
+                    showMessage(response.message, 'error')
+                    console.error(response.file);
+                    console.error(response.line);
+                    console.error(response.error);
+                }
+                return;
+            },
+            error: function (response) {
+                console.error(response)
+                showMessage('Something happened', 'warning')
+            }
+        })
+
     })
 })
 
@@ -125,12 +183,23 @@ deleteNameInputButtons.forEach(deleteNameInputButton => {
 const productBrandInputs= document.querySelectorAll('.product-brand-container[data-index]');
 productBrandInputs.forEach((input, index) => {
 
-    if(index == 0){
-        return;
-    }
-
     // input.hidden = true;
+    input.addEventListener('keyup', e => {
 
+        let context = input.querySelector(`#product-brand-code-${index}`).value;
+        let warning = input.querySelector('.warning');
+
+        let array = ['\\', '/', ':', '*', '?', '"', '<', '>', '|'];
+        let matches = array.filter(char => context.includes(char));
+
+        if (matches.length > 0) {
+            warning.style.display = 'block';
+            input.querySelector('#matchedText').innerText = matches.join(', ');
+        }else{
+            warning.style.display = 'none';
+        }
+
+    })
 });
 
 let addBrandInputButton = document.querySelector('#product-brand-input-add-button');
@@ -160,3 +229,39 @@ deleteBrandInputButtons.forEach(deleteBrandInputButton => {
         productBrandInputs[productBrandInputCount.length-1].hidden = true;
     })
 });
+
+// form valid
+
+const form = document.querySelector('form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    let valid = false;
+    let matchesArray = [];
+
+    let array = ['\\', '/', ':', '*', '?', '"', '<', '>', '|'];
+    productBrandInputs.forEach((productBrandInput, index) => {
+
+        let context = productBrandInput.querySelector(`#product-brand-code-${index}`).value;
+        let matches = array.filter(char => context.includes(char));
+        let warningText = productBrandInput.querySelector('.warning').innerText;
+
+        if (matches.length > 0) {
+            alertInstance.updateMessage(warningText, 'warning');
+            alertInstance.autoAlert(5);
+            valid = false;
+        }else if(matches.length === 0){
+            valid = true;
+        }
+
+        return matchesArray.push(valid);
+    
+    })
+
+    let isValid = false;
+    let checkValid = matchesArray.includes(false);
+    isValid = checkValid ? false : true;
+
+    isValid ? form.submit() : '';
+
+})

@@ -104,12 +104,12 @@
                         </a>
                     </td>
                     <td data-search-column="delete">
-                        <a button-event="delete" href="{{ route('backend.admin.product.delete', ['product_code' => $data->product_code]) }}">
-                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-url="{{ route('backend.admin.product.delete', ['product_code' => $data->product_code]) }}">
+                            <a button-event="delete">
                                 <i class="fa-solid fa-trash"></i>
                                 {{ __('product.delete') }}
-                            </button>
-                        </a>
+                            </a>
+                        </button>
                     </td>
                 </tr>    
             @endforeach

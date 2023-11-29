@@ -38,4 +38,5 @@ return array (
   'search' => '搜索',
   'upload-failure' => '上传失败！',
   'update-successful' => '更新成功！',
+  'can\'t-include' => '警告！不能包含:letter 这个符号！',
 );

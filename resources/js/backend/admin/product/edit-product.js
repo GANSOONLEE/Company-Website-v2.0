@@ -11,19 +11,16 @@ const alertInstance = alert.mount("#alert")
 let buttons = document.querySelectorAll('a[button-event="delete"]');
 let deleteConfirmButton = document.querySelector('#deleteButtonConfirm');
 
-window.onload = ()=>{
+buttons.forEach(button=>{
 
-    buttons.forEach(button=>{
+    button.parentElement.style.display = "table-cell";
 
-        button.style.display = "table-cell";
-
-        button.addEventListener('click', (event)=>{
-            event.preventDefault();
-            deleteConfirmButton.setAttribute('data-link', button.href)
-        })
+    button.parentElement.addEventListener('click', event =>{
+        let href = button.parentElement.getAttribute('data-url');
+        deleteConfirmButton.setAttribute('data-link', href)
+        return false;
     })
-
-}
+})
 
 deleteConfirmButton.addEventListener('click', ()=>{
 

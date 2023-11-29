@@ -15,11 +15,11 @@
 @endsection
 
 @push('after-style')
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\backend\admin\product\create-product-form.css') }}">
+    <link rel="preload stylesheet" as="style" href="{{ asset('css\backend\admin\product\create-product.css') }}">
+    <link rel="preload stylesheet" as="style" href="{{ asset('css\backend\admin\product\create-product-form.css') }}">
     
 @endpush
 
 @push('after-script')
-    <script src="{{ asset('js\backend\admin\product\create-product.js') }}"></script>
+    <script async src="{{ asset('js\backend\admin\product\create-product.js') }}"></script>
 @endpush

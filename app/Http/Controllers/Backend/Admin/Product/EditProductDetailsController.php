@@ -45,7 +45,6 @@ class EditProductDetailsController extends Controller{
                 "extension" => $imageInstance->getClientOriginalExtension(),
             ];
         }
-        
 
         $productImagesArray = array_filter($productMedia, function ($image) {
             return strpos($image, 'cover') === false;

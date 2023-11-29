@@ -114,8 +114,8 @@ class CreateProductEvent{
 
         // if throw error, rollback operation
         try{
-            $this->createImagePath();
             $this->createProductBase();
+            $this->createImagePath();
             $this->createProductName();
             $this->createProductBrand();
 
@@ -124,23 +124,16 @@ class CreateProductEvent{
                 'message' => trans('product.upload-successful'),
             ];
         }catch (\Exception $e){
-            $this->createProductFailureRollback();
             Log::error($e->getMessage());
             Log::error($e->getLine());
             Log::error($e->getFile());
+            $this->createProductFailureRollback();
 
             $data = [
                 'status' => 'failure',
                 'message' => trans('product.upload-failure'),
             ];
         }
-
-        Operation::create([
-            'email' => auth()->user()->email,
-            'operation_type' => 'Create',
-            'operation_category' => 'Product'
-        ]);
-
         
         return redirect()->back()->withCookie(cookie(
             'sessionData',
@@ -290,7 +283,7 @@ class CreateProductEvent{
             strpos($directory, $this->productCategory) &&
             strpos($directory, $this->productCode)
         ){
-            $result = Storage::disk('public')->deleteDirectory($directory);
+            Storage::disk('public')->deleteDirectory($directory);
         }
 
         Log::error("The Product $this->productCode has be deleted");

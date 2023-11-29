@@ -38,4 +38,5 @@ return array (
   'search' => 'Search',
   'upload-failure' => 'Upload Failure !',
   'update-successful' => 'Updated successful !',
+  'can\'t-include' => 'Warning ! You can\'t include :letter this letter !',
 );

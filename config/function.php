@@ -16,5 +16,5 @@ return [
     */
 
     'email_verify' => false,
-    
+    'email_developer' => 'axundeveloper0402@gmail.com',
 ];

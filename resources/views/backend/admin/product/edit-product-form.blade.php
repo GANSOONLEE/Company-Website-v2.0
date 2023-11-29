@@ -143,22 +143,25 @@
                 };
 
                 foreach ($productBrandCollection as $index => $productBrand) {
-
                     
                     // add brand cover path
                     $baseDirectory = "/product/$product->product_category/$product->product_code/$productBrand->code";
                     $brandCover = \Illuminate\Support\Facades\Storage::disk('public')->files($baseDirectory);
+
                     if(count($brandCover) > 0){
                         $productBrand->brand_media = '/storage/' . $brandCover[0];
 
                         // add brand cover name
                         $imageInstance = new \Illuminate\Http\UploadedFile(\Illuminate\Support\Facades\Storage::disk('public')->path($brandCover[0]), $brandCover[0]);
                         $productBrand->brand_media_name = $imageInstance->getClientOriginalName();
-    
-                        // filter "FZ-" at frozen_code
-                        $productBrand->frozen_code = str_replace('FZ-', '', $productBrand->frozen_code);
-                        $productBrandArray[] = $productBrand;
+                    }else{
+                        $productBrand->brand_media = '/storage/product/placeholder.png';
+                        $productBrand->brand_media_name = '';
                     }
+
+                    // filter "FZ-" at frozen_code
+                    $productBrand->frozen_code = str_replace('FZ-', '', $productBrand->frozen_code);
+                    $productBrandArray[] = $productBrand;
 
                 }
 
@@ -211,9 +214,11 @@
                     <input class="form-control" placeholder="{{ __('product.brand-code') }}"
                         type="text"
                         name="product-brand-code-{{ $index }}"
+                        data-column="brand-code"
                         id="product-brand-code-{{ $index }}"
                         value="{{ is_object($productBrand) ? $productBrand->code : '' }}"
                     >
+                    <p class="warning" style="display: none">{!! __('product.can\'t-include', [ "letter" => '[<span id="matchedText"></span>]' ]) !!}</p>
                 </div>
                 <!-- Frozen code -->
                 <div class="col-3">

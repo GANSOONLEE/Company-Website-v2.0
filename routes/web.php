@@ -85,4 +85,6 @@ Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
 });
 
 
-Route::post('pusher/auth', [Test::class, 'test']);
+Route::get('/email/test', function () {
+    return view('emails.bug.report');
+});

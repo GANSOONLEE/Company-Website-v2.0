@@ -115,7 +115,7 @@
                 <div class="col-2">
                     <label for="product-brand-{{ $i }}" class="form-label"></label>
                     {{-- <input class="form-control"  type="text" name="brand-{{ $i }}" id="product-brand-{{ $i }}"> --}}
-                    <select class="form-control" name="product-brand-{{ $i }}" id="product-brand-{{ $i }}">
+                    <select aria-label="brand" class="form-control" name="product-brand-{{ $i }}" id="product-brand-{{ $i }}">
                         <option value="" disabled selected hidden>{{ __('product.brand') }}</option>
                         @foreach($brandData as $brand)
                             <option value="{{$brand->name}}">{{$brand->name}}</option>
@@ -172,7 +172,7 @@
                 <div class="col">
                     <label for="product-category" class="form-label"></label>
                     {{-- <input class="form-control" placeholder="{{ __('product.category') }}" type="text" name="product-category" id="product-category"> --}}
-                    <select class="form-control" name="product-category" id="" required>
+                    <select aria-label="category" class="form-control" name="product-category" id="product-category" required>
                         <option value="" disabled selected hidden>{!! __('product.plaese-select-category') !!}</option>
                         @foreach($categoryData as $category)
                             <option value="{{$category->name}}">{{$category->name}}</option>
