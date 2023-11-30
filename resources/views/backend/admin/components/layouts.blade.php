@@ -40,9 +40,21 @@
 
         <div class="sub-card">
             <div class="card-title">
-                <h3 class="card-title-text">
+                <h4 class="card-title-text">
+                    {{ ('dashboard.product-count') }}
+                </h4>
+            </div>
+
+            <div class="card-body">
+                <div id="order-status">
+
+                </div>
+                <div id="product-status">
+
+                </div>
+                <div id="user-status">
                     
-                </h3>
+                </div>
             </div>
         </div>
 

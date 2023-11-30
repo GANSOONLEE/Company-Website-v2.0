@@ -3,9 +3,9 @@
   z-index: 100;
   position: fixed;
   height: 9vh;
-  width: 77.2vw;
-  top: 1rem;
-  left: 19.2vw;
+  width: 76vw;
+  top: 0.4rem;
+  left: 20.35vw;
   -moz-column-gap: 1.2rem;
        column-gap: 1.2rem;
 }
@@ -81,6 +81,26 @@ section.custom-card div.sub-card-container div.sub-card {
   padding: 1.4rem;
   height: 40vh;
   width: 50%;
+}
+section.custom-card div.sub-card-container div.sub-card div.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+section.custom-card div.sub-card-container div.sub-card div.card-title h4.card-title-text {
+  margin-bottom: 0;
+  margin-left: 1.4rem;
+  height: 100%;
+}
+section.custom-card div.sub-card-container div.sub-card div.card-title h4.card-title-text::before {
+  content: "";
+  left: 0;
+  background-color: #2fb25f;
+  height: 100%;
+  width: 4px;
+  position: absolute;
 }
 
 button[disabled] {

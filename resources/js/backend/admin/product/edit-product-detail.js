@@ -175,6 +175,9 @@ deleteNameInputButtons.forEach(deleteNameInputButton => {
         }
     
         productNameInputs[productNameInputCount.length-1].hidden = true;
+        productNameInputs[productNameInputCount.length-1].querySelectorAll('input').forEach(input => {
+            input.value = '';
+        })
     })
 });
 
@@ -227,6 +230,20 @@ deleteBrandInputButtons.forEach(deleteBrandInputButton => {
         }
     
         productBrandInputs[productBrandInputCount.length-1].hidden = true;
+        productBrandInputs[productBrandInputCount.length-1].querySelectorAll('input[type="text"]').forEach(input => {
+            input.value = '';
+        })
+
+        let elements = productBrandInputs[productBrandInputCount.length-1].querySelectorAll('option');
+        for(let i = 0; i < elements.length; i++){
+            elements[i].selected = false;
+        }
+
+        productBrandInputs[productBrandInputCount.length-1].querySelector('input[type="file"]').value = '';
+        productBrandInputs[productBrandInputCount.length-1].querySelector('img').src = '';
+        productBrandInputs[productBrandInputCount.length-1].querySelector('img').hidden = true;
+        productBrandInputs[productBrandInputCount.length-1].querySelector('i.upload-icon').hidden = false;
+        productBrandInputs[productBrandInputCount.length-1].querySelector('[data-image-name]').innerText = '';
     })
 });
 

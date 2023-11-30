@@ -312,9 +312,13 @@ class UpdateProductEvent{
 
             foreach($differenceArray as $name){
                 DB::table('products_name')
+                    ->where('product_code', $this->productCode)
                     ->where('name', $name)
                     ->delete();
+
+                Log::info("$name 被刪除了");
             }
+
 
         }
 
@@ -386,12 +390,15 @@ class UpdateProductEvent{
             foreach($differenceArray as $code){
 
                 $path = DB::table('products_brand')
+                    ->where('product_code', $this->productCode)
                     ->where('code', $code)
                     ->delete();
 
                 $fileDirectory = "product/$this->productCategory/$this->productCode/$code";
 
                 Storage::disk('public')->deleteDirectory($fileDirectory);
+
+                Log::info("$code 被刪除了");
 
             }
             

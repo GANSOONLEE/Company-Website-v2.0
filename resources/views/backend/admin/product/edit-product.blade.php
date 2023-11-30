@@ -7,7 +7,7 @@
     <div id="alert"></div>
 
     @php
-        $recordsPerPage = 25; // Display record per page
+        $recordsPerPage = 20; // Display record per page
         $pageIndex = request('pageIndex', 1); // get PageIndex, default 1
         $startIndex = ($pageIndex - 1) * $recordsPerPage; // 计算起始索引
     @endphp

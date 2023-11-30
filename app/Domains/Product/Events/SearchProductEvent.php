@@ -77,15 +77,6 @@ class SearchProductEvent{
         }
 
         if(isset($this->searchCode)){
-            // $searchCodeResult = Product::select(
-            //         "products.*", 
-            //         "products_brand.product_code",
-            //         "products_brand.code"
-            //     )
-            //     ->join("products_brand", "products.product_code","=","products_brand.product_code")
-            //     ->where("products_brand.code", "LIKE", "%$this->searchText%")
-            //     ->orderBy("products_brand.code", "asc")
-            //     ->get();
 
             $searchCodeResult = DB::table('products_brand')
                 ->select(
@@ -118,7 +109,7 @@ class SearchProductEvent{
                 ->orderBy("first_name", "asc")
                 ->get();
             }
-        
+
         $commonEntities = array_intersect(
             $searchTextResult->pluck('product_code')->toArray(),
             $searchCategoryResult->pluck('product_code')->toArray(),

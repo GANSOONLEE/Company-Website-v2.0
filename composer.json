@@ -38,7 +38,8 @@
         },
         "files": [
             "app/helpers.php",
-            "app/Helpers/node.php"
+            "app/Helpers/node.php",
+            "app/Helpers/Global/UrlDecodeHelper.php"
         ]
     },
     "autoload-dev": {

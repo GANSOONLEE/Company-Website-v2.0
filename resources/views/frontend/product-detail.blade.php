@@ -49,7 +49,7 @@
                         <!-- Item -->
                         @foreach ($productImages as $productImage)
                         <div class="item" data-item="image-selector">
-                            <img data-item="image-selector" src="{{ asset('storage/'.$productImage) }}" alt="" class="item-image" data-image="image-selector">
+                            <img data-item="image-selector" src="{{ str_replace('#', '%23', asset('storage/'.$productImage)) }}" alt="" class="item-image" data-image="image-selector">
                         </div>
                         @endforeach
 
@@ -123,7 +123,7 @@
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->code][0]) )
-                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ 'storage/' . $brandCover[$brand->code][0] }}">  
+                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ "storage/" . url_encode($brandCover[$brand->code][0]) }}">  
                                 @else
                                 <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
@@ -131,11 +131,11 @@
                                     <div class="brand-box">
                                         <p class="brand-name">{{ str_replace('_', '/', $brand->code) }}</p>
                                         @if (file_exists(public_path("storage/brand/$brand->brand.svg")))
-                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.svg") }}" alt="">
+                                            <img class="brand-logo" src="{{ asset(url_encode("storage/brand/$brand->brand.svg")) }}" alt="">
                                         @elseif(file_exists(public_path("storage/brand/$brand->brand.png")))
-                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.png") }}" alt="">
+                                            <img class="brand-logo" src="{{ asset(url_encode("storage/brand/$brand->brand.png")) }}" alt="">
                                         @else
-                                            <img class="brand-logo" src="{{ asset("storage/brand/$brand->brand.jpg") }}" alt="">
+                                            <img class="brand-logo" src="{{ asset(url_encode("storage/brand/$brand->brand.jpg")) }}" alt="">
                                         @endif
                                     </div>
                                 </label>

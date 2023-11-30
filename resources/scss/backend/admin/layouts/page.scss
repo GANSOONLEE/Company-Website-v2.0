@@ -15,9 +15,11 @@ div.page{
 /* ==================== RWD ==================== */
 
 // Phone
-@media only screen and (max-width: 867px) {
+// @media only screen and (max-width: 867px) {
+@media only screen and (max-width: 2040px) {
 
-    $sidebar-width: 55px;
+    // $sidebar-width: 55px;
+    $sidebar-width: 4vw;
 
     div.page{
         width: calc(100vw - $sidebar-width);
