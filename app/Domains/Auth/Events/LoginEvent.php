@@ -32,7 +32,7 @@ class LoginEvent{
                 return redirect()->route('backend.admin.dashboard')
                     ->withCookie($cookie);
             }else{
-                return redirect()->route('backend.user.cart')
+                return redirect()->route('frontend.home')
                     ->withCookie($cookie);
             }
 

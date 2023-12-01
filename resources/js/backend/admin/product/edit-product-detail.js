@@ -282,3 +282,99 @@ form.addEventListener('submit', e => {
     isValid ? form.submit() : '';
 
 })
+
+/* ------------------------------ Drag & Drop ------------------------------ */
+
+// category-cover => upload-button
+// image-display => image-display
+// container => container
+
+let uploadButtons = document.querySelectorAll('input[type="file"]');
+let containers = document.querySelectorAll('.container-custom');
+
+const fileHandle = (file, name, type, id) => {
+
+    console.log(file)
+    console.log(type)
+
+    if (type.split("/")[0] !== "image"){
+        return false;
+    }
+
+    console.log(id)
+    let img = document.querySelector(`[data-preview-media="${id}"]`);
+    console.log(img)
+
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+        img.src = reader.result;
+        img.hidden = false;
+    }
+}
+
+uploadButtons.forEach(button => {
+    button.addEventListener('change', () => {
+        Array.from(button.files).forEach(file => {
+            fileHandle(file, file.name, file.type, button.id)
+        });
+    })
+})
+
+containers.forEach(container => {
+
+    container.addEventListener(
+        'dragenter',
+        e => {
+            e.preventDefault();
+            e.stopPropagation();
+            container.classList.add("active");
+        },
+        false
+    )
+
+    container.addEventListener(
+        'dragleave',
+        e => {
+            e.preventDefault();
+            e.stopPropagation();
+            container.classList.remove("active");
+        },
+        false
+    )
+
+    container.addEventListener(
+        'dragover',
+        e => {
+            e.preventDefault();
+            e.stopPropagation();
+            container.classList.add("active");
+        },
+        false
+    )
+
+    container.addEventListener(
+        'drop',
+        e => {
+            e.preventDefault();
+
+            e.stopPropagation();
+            container.classList.remove("active");
+            let draggedData = e.dataTransfer;
+            let files = draggedData.files;
+            Array.from(files).forEach(file => {
+                fileHandle(file, file.name, file.type, container.querySelector('input[type="file"]').id)
+            })
+
+
+            container.querySelector('input[type="file"]').files = files;
+        },
+        false
+    )
+
+});
+
+window.onload = () => {
+
+};

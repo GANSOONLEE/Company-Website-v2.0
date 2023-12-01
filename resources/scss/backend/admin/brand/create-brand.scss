@@ -31,6 +31,12 @@ form.form#form{
                 object-fit: cover;
                 pointer-events: none;
             }
+
+            &.container-custom{
+                &.active{
+                    border: 1px dashed #9d2a00;
+                }
+            }
         }
 
         // Upload

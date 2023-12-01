@@ -105,6 +105,9 @@ section.create-product-form > div.panel > div.panel-body > div.product-media-con
 section.create-product-form > div.panel > div.panel-body > div.product-media-container > label.product-media-upload img:not([hidden]):hover ~ button.delete-button, section.create-product-form > div.panel > div.panel-body > div.product-media-container > label.product-media-upload button.delete-button:hover {
   display: block;
 }
+section.create-product-form > div.panel > div.panel-body > div.product-media-container > label.product-media-upload .container-custom.active {
+  border: 1px dashed #9d2a00;
+}
 section.create-product-form > div.panel > div.panel-body > div.product-media-container > div.product-media-information {
   width: 100%;
 }
@@ -191,6 +194,9 @@ section.create-product-form > div.panel > div.panel-body > div.product-brand-con
 }
 section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload img:not([hidden]):hover ~ button.delete-button, section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload button.delete-button:hover {
   display: block;
+}
+section.create-product-form > div.panel > div.panel-body > div.product-brand-container label.brand-media-upload .container-custom.active {
+  border: 1px dashed #9d2a00;
 }
 section.create-product-form > div.panel > div.panel-body > div.product-brand-container div.col-2 {
   max-width: 110px;
