@@ -12,13 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('operations', function (Blueprint $table) {
-            $table->string('email');
+            // $table->string('email');
+            // $table->string('operation_type');
+            // $table->string('operation_category');
 
-            $table->foreign('email')
-                ->references('email')
-                ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            // $table->foreign('email')
+            //     ->references('email')
+            //     ->on('users')
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade');
+
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

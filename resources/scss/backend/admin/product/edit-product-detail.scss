@@ -1,6 +1,7 @@
 
 /* ------------------------------ Edit Product Form ------------------------------ */
 
+
 section.create-product-form {
     margin-top: 1rem;
     width: 100%;
@@ -122,6 +123,13 @@ section.create-product-form {
                         display: block;
                     }
 
+                    .container-custom{
+                        &.active{
+                            border: 1px dashed #9d2a00;
+                        }
+                    }
+                    
+
                 }
 
                 > div.product-media-information{
@@ -235,6 +243,13 @@ section.create-product-form {
                     & img:not([hidden]):hover ~ button.delete-button, button.delete-button:hover{
                         display: block;
                     }
+
+                    .container-custom{
+                        &.active{
+                            border: 1px dashed #9d2a00;
+                        }
+                    }
+                    
                 
                 }
 

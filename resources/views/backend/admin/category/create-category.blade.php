@@ -12,15 +12,16 @@
             <button type="submit" class="btn btn-primary">{{ __('category.submit') }}</button>
         </div>
 
-        <div class="mb-3 category-cover-area">
-            <div class="preview">
-                <img class="category-cover-preview" src="" alt="">
+        <div id="dropBox" class="mb-3 category-cover-area">
+            <div id="image-display" class="preview container-custom">
+                <img class="category-cover-preview" id="category-cover-preview" src="" alt="">
             </div>
             <div class="upload">
                 <p class="required">{{ __('category.category-cover') }}</p>
                 <label class="form-label" for="category-cover">{{ __('category.upload-cover') }}</label>
                 <input type="file" class="category-cover" name="category-cover" id="category-cover" request>
             </div>
+            <p id="error"></p>
         </div>
 
         <div class="mb-3 category-name-area">

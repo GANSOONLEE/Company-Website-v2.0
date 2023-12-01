@@ -20,7 +20,7 @@ permissionCheckboxes.forEach(checkbox => {
                 const otherSection = otherCheckbox.closest('section[data-role-level]');
                 const otherLevel = parseInt(otherSection.getAttribute('data-role-level'));
                 
-                if (otherCheckbox.name.startsWith(permissionName) && otherLevel >= level) {
+                if (otherCheckbox.name.test(permissionName) && otherLevel >= level) {
                     otherCheckbox.checked = true;
                 }
             });
@@ -29,7 +29,7 @@ permissionCheckboxes.forEach(checkbox => {
                 const otherSection = otherCheckbox.closest('section[data-role-level]');
                 const otherLevel = parseInt(otherSection.getAttribute('data-role-level'));
                 
-                if (otherCheckbox.name.startsWith(permissionName) && otherLevel <= level) {
+                if (otherCheckbox.name.test(permissionName) && otherLevel <= level) {
                     otherCheckbox.checked = false;
                 }
             });
