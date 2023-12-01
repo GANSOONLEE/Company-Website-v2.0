@@ -42,12 +42,9 @@ class EditProductController extends Controller
         $categoryData = Category::orderBy('name', 'asc')
                             ->get();
 
-        $typeData = Type::orderBy('name', 'asc')
-                            ->get();
-
         $productStatuses = Product::pluck('product_status');
         $statusData = collect($productStatuses)->unique();
 
-        return view('backend.admin.product.edit-product', compact('categoryData', 'typeData', 'productData', 'statusData', 'product'));
+        return view('backend.admin.product.edit-product', compact('categoryData', 'productData', 'statusData', 'product'));
     }
 }

@@ -22,11 +22,9 @@ class CreateProductController extends Controller
                             ->get();
         $brandData = Brand::orderBy('name', 'asc')
                             ->get();
-        $typeData = Type::orderBy('name', 'asc')
-                            ->get();
         $modelData = CarModel::orderBy('name', 'asc')
                             ->get();
 
-        return view('backend.admin.product.create-product', compact('categoryData', 'brandData', 'typeData', 'modelData'));
+        return view('backend.admin.product.create-product', compact('categoryData', 'brandData', 'modelData'));
     }
 }

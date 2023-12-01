@@ -6,6 +6,8 @@ use App\Domains\Notification\Services\RegisterVerifyService;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Test;
 
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,6 +87,16 @@ Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
 });
 
 
-Route::get('/email/test', function () {
-    return view('emails.bug.report');
-});
+Route::get('/translation/', function () {
+    $groups = DB::table('ltm_translations')
+                ->select('group')
+                ->groupBy('group')
+                ->pluck('group');
+
+    $locales = DB::table('ltm_translations')
+                ->select('locale')
+                ->groupBy('locale')
+                ->pluck('locale');
+
+    return view('vendor.translation-manager.index', ["groups" => $groups, "group" => "", "locales" => $locales]);
+})->name('translation');

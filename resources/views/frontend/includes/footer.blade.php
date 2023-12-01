@@ -105,7 +105,7 @@
             {{ env('APP_NAME') }} - All Rights Reserved
         </p>
         <p class="website-author">
-            <a href="https://gansoonlee.github.io">Development by Frank Gan</a>
+            <a href="https://github.frankgan.com">Development by Frank Gan</a>
         </p>
     </div>
 

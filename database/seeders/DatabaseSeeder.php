@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $mode = ''; // "create faker data", "clear faker data"
+        $mode = 'create faker data'; // "create faker data", "clear faker data"
 
         if(config('app.env') === 'production'){
             print('Only can use in local mode!');
@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
                     DB::table('products')->insert([
                         'product_code' => $productCode,
                         'product_category' => DB::table('categories')->inRandomOrder()->first()->name,
-                        'product_type' => DB::table('types')->inRandomOrder()->first()->name,
                         'product_status' => 'Public',
                         'faker' => true,
                     ]);
@@ -50,11 +49,11 @@ class DatabaseSeeder extends Seeder
                 break;
             
             case 'clear faker data':
-                $fakeUsers = Product::where('faker', true)->get();
+                $fakeProduct = Product::where('faker', true)->get();
                 $number = Product::where('faker', true)->count();
-                foreach ($fakeUsers as $user)
+                foreach ($fakeProduct as $product)
                 {
-                    $user->deleteWithRelatedRecords();
+                    $product->deleteWithRelatedRecords();
                 }
                 print("Successful delete faker record, total $number");
                 break;
