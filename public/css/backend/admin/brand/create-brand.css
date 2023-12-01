@@ -25,6 +25,9 @@ form.form#form div.brand-cover-area div.preview img.brand-cover-preview {
      object-fit: cover;
   pointer-events: none;
 }
+form.form#form div.brand-cover-area div.preview.container-custom.active {
+  border: 1px dashed #9d2a00;
+}
 form.form#form div.brand-cover-area div.upload {
   display: flex;
   flex-direction: column;

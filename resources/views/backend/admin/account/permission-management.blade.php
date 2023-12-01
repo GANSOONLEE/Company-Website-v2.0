@@ -16,53 +16,38 @@
     </div>
 
     <!-- role -->
-    @foreach ($roleData as $role)
+    @foreach ($roleData as $index => $role)
+        {{ $index }}{{ $role->weight }}{{ $role->name }}
         <section class="panel" data-role-level="{{ $role->weight }}" id="{{ $role->name }}">
             <p class="panel-title">{{ __("account.roles.$role->name") }}</p>
             <div class="panel-content">
                 @foreach ($permissionsData as $permissionsCategoryName => $permissionsName)
-                <div class="permission-category">
-                    <p class="permission-category-title">{{ __('account.category.' . $permissionsCategoryName) }}</p>
-                    <div class="permission-category-content">
-                        @foreach ($permissionsName as $permissionName)
-                            <?php $hasPermission = false; ?>
-                            @foreach ($role->getPermissions() as $permission)
-                                @if ($permission['name'] === $permissionName)
-                                    <?php $hasPermission = true; ?>
-                                    <div class="switch-box" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __("account.permission.$permissionName.description") }}">
-                                        <input type="checkbox" name="{{ $permission['name'] }}" id="{{ $permission['name'] }}" {{ $permission['inherited'] ? '' : 'disabled' }} checked>
-                                        <label for="{{ $permission['name'] }}" class="switch-label">
-                                            {{ __('account.permission.' . $permission['name'] . ".name") }}
-                                            <div class="switch-button">
-                                                <div class="switch-marker">
-                                                    <p class="label"></p>
-                                                </div>                                    
-                                            </div>
-                                        </label>
-                                    </div>
-                                @endif
-                            @endforeach
-
-                            @if (!$hasPermission)
-                                <div class="switch-box" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('account.permission.'.$permissionName.'.description') }}">
-                                    <input type="checkbox" name="{{ $permissionName }}" id="{{ $role->name . '-' . $permissionName }}">
-                                    <label for="{{ $role->name . '-' . $permissionName }}" class="switch-label">
-                                        {{ __("account.permission." . $permissionName . ".name") }}
-                                        <div class="switch-button flex-row">
+                    <div class="permission-category">
+                        <p class="permission-category-title">{{ __('account.category.' . $permissionsCategoryName) }}</p>
+                        <div class="permission-category-content">
+                            @foreach ($permissionsName as $singlePermission)
+                                <?php
+                                    $hasPermission = collect($role->getPermissions())->contains('name', $singlePermission);
+                                    $labelId = $role->name . '-' . $singlePermission;
+                                ?>
+                                <div class="switch-box" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __("account.permission.$singlePermission.description") }}">
+                                    <input type="checkbox" name="{{ $singlePermission }}" id="{{ $labelId }}" {{ $hasPermission ? 'checked' : '' }}>
+                                    <label for="{{ $labelId }}" class="switch-label">
+                                        {{ __("account.permission." . $singlePermission . ".name") }}
+                                        <div class="switch-button">
                                             <div class="switch-marker">
                                                 <p class="label"></p>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </label>
                                 </div>
-                            @endif
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-success submit-button" class="" data-role="{{ $role->name }}">{{ __('account.renew') }}</button>
+                <button type="button" class="btn btn-success submit-button" data-role="{{ $role->name }}">{{ __('account.renew') }}</button>
             </div>
         </section>
     @endforeach

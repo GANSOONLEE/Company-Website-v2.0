@@ -22,7 +22,7 @@
 
             <div class="product-media-container" data-index="{{ $key }}">
 
-                <label for="{{ $key }}" class="product-media-upload">
+                <label for="{{ $key }}" class="product-media-upload container-custom" data-image-display>
                     <input type="file" name="{{ $key }}" id="{{ $key }}">
                     <img class="product-image" data-preview-media="{{ $key }}" src="{{ asset(url_encode(is_object($image) ? $image->path : '' ))}}" alt="" {{ is_object($image) ? '' : 'hidden' }}>
                     <i class="upload-icon">
@@ -177,7 +177,7 @@
                 <!-- Brand cover -->
                 <div class="col-2">
                     <label for="brand-{{ $index }}" class="form-label"></label>
-                    <label for="brand-{{ $index }}" class="form-control brand-media-upload">
+                    <label for="brand-{{ $index }}" class="form-control brand-media-upload container-custom" data-image-display>
                         <input type="file" name="brand-{{ $index }}" id="brand-{{ $index }}">
                         <img data-preview-media="brand-{{ $index }}"
                             src="{{ is_object($productBrand) ? url_encode($productBrand->brand_media) : '' }}" alt=""
