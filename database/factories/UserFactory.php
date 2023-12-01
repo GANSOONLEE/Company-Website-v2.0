@@ -14,6 +14,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->userName,
+            'status' => 'Available',
             'contact_phone' => $this->faker->numberBetween(10000000000000, 99999999999999),
             'whatsapp_phone' => $this->faker->numberBetween(10000000000000, 99999999999999),
             'email' => $this->faker->unique()->safeEmail,

@@ -13,5 +13,9 @@ class FakeUserDataSeeder extends Seeder
         foreach ($fakeUsers as $user) {
             $user->deleteWithRelatedRecords();
         }
+
+        // User::factory()->count(10)->create([
+        //     'is_fake' => true,
+        // ]);
     }
 }

@@ -18,16 +18,21 @@ class AdminTest extends TestCase
     public function test_admin(): void
     {
 
-        $user = User::factory()->create();
+        for($i = 0; $i < 20; $i++){
 
-        $roles = ['new_user', 'approve_user', 'admin', 'super_admin'];
-        $randomRole = $roles[array_rand($roles)];
-        $user->assignRole($randomRole);
+            $user = User::factory()->create();
+    
+            $roles = ['new_user', 'approve_user', 'admin', 'super_admin'];
+            $randomRole = $roles[array_rand($roles)];
+            $user->assignRole($randomRole);
+    
+            $this->actingAs($user);
+    
+            $response = $this->get('/admin/category/category-create');
 
-        $this->actingAs($user);
+            $response->assertStatus(200);
+            
+        }
 
-        $response = $this->get('/admin/category/category-create');
-
-        $response->assertStatus(200);
     }
 }
