@@ -312,6 +312,8 @@ const fileHandle = (file, name, type, id) => {
         img.src = reader.result;
         img.hidden = false;
     }
+
+    document.querySelector(`[data-image-name="${id}"]`).innerText = name;
 }
 
 uploadButtons.forEach(button => {
@@ -374,7 +376,3 @@ containers.forEach(container => {
     )
 
 });
-
-window.onload = () => {
-
-};
