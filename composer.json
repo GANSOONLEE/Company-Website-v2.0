@@ -19,7 +19,7 @@
         "laravel/ui": "^4.2",
         "pusher/pusher-php-server": "^7.2",
         "tanmuhittin/laravel-google-translate": "^2.2",
-        "yajra/laravel-datatables": "10.0"
+        "yajra/laravel-datatables": "10.1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
