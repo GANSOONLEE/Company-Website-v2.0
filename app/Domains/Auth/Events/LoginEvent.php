@@ -28,13 +28,15 @@ class LoginEvent{
     
             Auth::login($user);
     
-            if($user->isAdmin() || $user->getRole()[0] == "root"){
-                return redirect()->route('backend.admin.dashboard')
-                    ->withCookie($cookie);
-            }else{
-                return redirect()->route('frontend.home')
-                    ->withCookie($cookie);
-            }
+            // if($user->isAdmin() || $user->getRole()[0] == "root"){
+            //     return redirect()->route('backend.admin.dashboard')
+            //         ->withCookie($cookie);
+            // }else{
+            //     return redirect()->route('frontend.home')
+            //         ->withCookie($cookie);
+            // }
+
+            return redirect()->route('frontend.home')->withCookie($cookie);
 
         } else {
             $data = [

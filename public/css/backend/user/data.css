@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /* ———————————————————— Global ———————————————————— */
+#alert .alert {
+  z-index: 99999;
+}
+
 textarea {
   resize: none;
 }
