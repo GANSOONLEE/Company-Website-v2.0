@@ -53,8 +53,6 @@ uploadImages.forEach(image => {
             icon.hidden = true;
             imageRenderWindow.hidden = false;
             imageRenderWindow.src = e.target.result;
-            updateImageCount();
-
             nameContainer.innerText = file.name;
         }
     })
@@ -62,8 +60,8 @@ uploadImages.forEach(image => {
 })
 
 function updateImageCount() {
-    const images = document.querySelectorAll('img.product-image[data-preview-media]:not([hidden])');
-    const imageCount = images.length;
+    let images = document.querySelectorAll('img.product-image[data-preview-media]:not([hidden])');
+    let imageCount = images.length;
     document.querySelector('#product-image-uploaded-count').innerHTML = imageCount;
 }
 
@@ -294,26 +292,22 @@ let containers = document.querySelectorAll('.container-custom');
 
 const fileHandle = (file, name, type, id) => {
 
-    console.log(file)
-    console.log(type)
-
     if (type.split("/")[0] !== "image"){
         return false;
     }
 
-    console.log(id)
     let img = document.querySelector(`[data-preview-media="${id}"]`);
-    console.log(img)
-
 
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
         img.src = reader.result;
         img.hidden = false;
+        updateImageCount();
     }
-
     document.querySelector(`[data-image-name="${id}"]`).innerText = name;
+
+
 }
 
 uploadButtons.forEach(button => {
@@ -368,7 +362,6 @@ containers.forEach(container => {
             Array.from(files).forEach(file => {
                 fileHandle(file, file.name, file.type, container.querySelector('input[type="file"]').id)
             })
-
 
             container.querySelector('input[type="file"]').files = files;
         },
