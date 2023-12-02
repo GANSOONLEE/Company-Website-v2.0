@@ -1,7 +1,6 @@
 
 /* ------------------------------ Edit Product Form ------------------------------ */
 
-
 section.create-product-form {
     margin-top: 1rem;
     width: 100%;
@@ -79,17 +78,53 @@ section.create-product-form {
                     input{
                         display: none;
                     }
+
+                    &:hover i.upload-icon p,
+                    &:hover i.upload-icon #upload-icon{
+                        display: block;
+                    }
+
+                    &:hover i.upload-icon #image-icon{
+                        display: none;
+                    }
+
+                    @mixin animation {
+                        transition: all .12s ease-in-out;
+                    }
                     
                     > i.upload-icon{
                         position: absolute;
-                        display: inline-block;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
                         fill: #ee4d2d;
-                        $size: 28px;
-                        width: $size;
-                        height: $size;
+                        color: #ee4d2d;
+                        width: 90%;
                         top: 50%;
                         left: 50%;
-                        transform: translateX(-45%) translateY(-35%);
+                        transform: translateX(-50%) translateY(-35%);
+
+                        svg{
+                            $size: 28px;
+                            width: $size;
+                            height: $size;
+                            @include animation;
+                        }
+
+                        p{
+                            font-style: normal;
+                            font-size: var(--font-remark);
+                            text-align: center;
+                            text-wrap: wrap;
+                            margin-bottom: none;
+                            @include animation;
+                        }
+
+                        p, #upload-icon{
+                            display: none;
+                        }
+
                     }
 
                     img{
@@ -123,7 +158,7 @@ section.create-product-form {
                         display: block;
                     }
 
-                    .container-custom{
+                    &.container-custom{
                         &.active{
                             border: 1px dashed #9d2a00;
                         }
@@ -201,16 +236,55 @@ section.create-product-form {
                         display: none;
                     }
 
+                    &:hover i.upload-icon p,
+                    &:hover i.upload-icon #upload-icon{
+                        display: block;
+                    }
+
+                    &:hover i.upload-icon #image-icon{
+                        display: none;
+                    }
+
+                    @mixin animation {
+                        transition: all .12s ease-in-out;
+                    }
+
                     > i.upload-icon{
                         position: absolute;
-                        display: inline-block;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
                         fill: #ee4d2d;
-                        $size: 28px;
-                        width: $size;
-                        height: $size;
+                        color: #ee4d2d;
+                        width: 90%;
                         top: 50%;
                         left: 50%;
-                        transform: translateX(-45%) translateY(-35%);
+                        transform: translateX(-50%) translateY(-35%);
+
+                        p{
+                            margin-bottom: none;
+                        }
+
+                        svg{
+                            $size: 28px;
+                            width: $size;
+                            height: $size;
+                            @include animation;
+                        }
+
+                        p{
+                            font-style: normal;
+                            font-size: var(--font-remark);
+                            text-align: center;
+                            text-wrap: wrap;
+                            margin-bottom: none;
+                            @include animation;
+                        }
+
+                        p, #upload-icon{
+                            display: none;
+                        }
                     }
 
                     img{
@@ -243,13 +317,12 @@ section.create-product-form {
                     & img:not([hidden]):hover ~ button.delete-button, button.delete-button:hover{
                         display: block;
                     }
-
-                    .container-custom{
+                    
+                    &.container-custom{
                         &.active{
                             border: 1px dashed #9d2a00;
                         }
                     }
-                    
                 
                 }
 
