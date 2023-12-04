@@ -12,6 +12,7 @@
             <div class="flex-column">
                 <label for="password" class="form-label required">Password</label>
                 <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="Password" required>
+                <a href="{{ route('auth.forget-password') }}" class="forget-password">Forget Password ?</a>
             </div>
                 
         </section>

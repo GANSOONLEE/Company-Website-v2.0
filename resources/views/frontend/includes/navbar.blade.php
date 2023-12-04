@@ -48,13 +48,13 @@
                     <a href="{{ route('backend.admin.dashboard') }}" class="navbar-link primary">
                         <li class="navbar-link-label">Dashborad</li>
                     </a>
-                @elseif(auth()->user()->isUser())
+                {{-- @elseif(auth()->user()->isUser())
                     <!-- user -->
                     @if(auth()->user()->getRoleEntity()->hasPermission('user_backend'))
                     <a href="{{ route('backend.user.cart') }}" class="navbar-link primary">
                         <li class="navbar-link-label">Dashborad</li>
                     </a>
-                    @endif
+                    @endif --}}
                 @endif
 
                 <a href="{{ route('auth.logout') }}" class="navbar-link">

@@ -23,14 +23,7 @@ class UserChangePasswordPostController extends Controller
             $password = $request->input("new-password");
             $user = auth()->user();
 
-            if (!Auth::attempt(['email' => $user->email, 'password' => $currentPassword])) {
-
-                $result = [
-                    'status' => 'Password error',
-                    'icon' => 'error',
-                ];
-
-            }else{
+            if (Auth::attempt(['email' => $user->email, 'password' => $currentPassword])) {
 
                 $user->update([
                     'password' => $password,
@@ -39,6 +32,23 @@ class UserChangePasswordPostController extends Controller
                 $result = [
                     'status' => 'Successful save!', 
                     'icon' => 'success',
+                ];
+
+            }else if($user->password == null){
+                $user->update([
+                    'password' => $password,
+                ]);
+
+                $result = [
+                    'status' => 'Successful reset!',
+                    'icon' => 'success',
+                ];
+            }
+            else{
+
+                $result = [
+                    'status' => 'Password error',
+                    'icon' => 'error',
                 ];
 
             }

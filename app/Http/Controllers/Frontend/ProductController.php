@@ -72,12 +72,10 @@ class ProductController extends Controller{
 
         $directory = "storage/product/$category";
 
-        $typeData = Type::orderBy('name', 'asc')
-                        ->get();
         $modelData = CarModel::orderBy('name', 'asc')
                         ->get();
 
-        return view('frontend.product', compact('productData', 'directory', 'typeData', 'modelData', 'category'));
+        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
 
     }
 

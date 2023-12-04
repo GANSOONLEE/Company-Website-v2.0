@@ -12,11 +12,10 @@
                 <form action="{{ route('backend.user.data.change-password-post') }}" id="information" class="form" method="POST">
                     @csrf
 
-                    <div class="mb-3">
+                    <div class="mb-3" {{ $user->password === null ? 'hidden' : '' }}>
                         <label for="" class="form-label">Current Password :</label>
-                        <input type="password" name="current-password"  class="form-control" autocomplete="current-password">
+                        <input type="password" name="current-password" class="form-control" autocomplete="current-password" value="{{ $user->password === null ? null : '' }}">
                     </div>
-
 
                     <div class="mb-3">
                         <label for="" class="form-label">New Password :</label>

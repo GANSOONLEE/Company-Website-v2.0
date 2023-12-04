@@ -2,8 +2,14 @@
 /* ———————————————————— Global ———————————————————— */
 
 #alert .alert{
-    z-index: 99999;
+    z-index: 1;
+
+    &.show{
+        z-index: 99999;
+    }
 }
+
+
 
 textarea{
     resize: none;
@@ -72,8 +78,4 @@ section.data{
             }
         }
     }
-}
-
-form.form#information{
-
 }

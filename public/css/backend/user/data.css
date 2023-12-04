@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* ———————————————————— Global ———————————————————— */
 #alert .alert {
+  z-index: 1;
+}
+#alert .alert.show {
   z-index: 99999;
 }
 

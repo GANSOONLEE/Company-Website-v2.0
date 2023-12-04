@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/auth/forget-password.js": "/js/auth/forget-password.js",
     "/js/auth/global.js": "/js/auth/global.js",
     "/js/auth/login.js": "/js/auth/login.js",
     "/js/auth/register.js": "/js/auth/register.js",
@@ -31,9 +32,9 @@
     "/js/frontend/includes/carousel.js": "/js/frontend/includes/carousel.js",
     "/js/frontend/includes/navbar.js": "/js/frontend/includes/navbar.js",
     "/js/frontend/product-detail.js": "/js/frontend/product-detail.js",
-    "/css/auth/register.css": "/css/auth/register.css",
     "/css/auth/login.css": "/css/auth/login.css",
     "/css/auth/global.css": "/css/auth/global.css",
+    "/css/auth/forget-password.css": "/css/auth/forget-password.css",
     "/css/app.css": "/css/app.css",
     "/css/frontend/product.css": "/css/frontend/product.css",
     "/css/frontend/product-detail.css": "/css/frontend/product-detail.css",
@@ -73,5 +74,6 @@
     "/css/backend/admin/account/role-managemenet.css": "/css/backend/admin/account/role-managemenet.css",
     "/css/backend/admin/account/permission-management.css": "/css/backend/admin/account/permission-management.css",
     "/css/backend/admin/account/operation-record.css": "/css/backend/admin/account/operation-record.css",
-    "/css/backend/admin/account/banned-account.css": "/css/backend/admin/account/banned-account.css"
+    "/css/backend/admin/account/banned-account.css": "/css/backend/admin/account/banned-account.css",
+    "/css/auth/register.css": "/css/auth/register.css"
 }

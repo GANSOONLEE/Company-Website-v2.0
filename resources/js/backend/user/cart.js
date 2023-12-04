@@ -190,37 +190,51 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
 let createOrderBtn = document.querySelector('#create-order');
 createOrderBtn.addEventListener('click', ()=>{
 
-    let items = document.querySelectorAll('input[type="checkbox"]')
-    let checkedItems = [];
+    // let items = document.querySelectorAll('input[type="checkbox"]')
+    // let checkedItems = [];
+    // let status = true;
+
+    // items.forEach(item => {
+    //     if(item.checked){
+    //         let skuId = item.getAttribute('data-sku-id');
+    //         let number = item.getAttribute('data-number');
+
+    //         if(number == 0){
+    //             alertInstance.updateMessage('The items you select have 0');
+    //             alertInstance.showAlert();
+    //             $('#alert').css('display', 'block')
+    //             status = false;
+    //             return false;
+    //         }
+   
+    //         checkedItems.push({
+    //             'sku_id': skuId,
+    //             'number': number,
+    //         })
+    //     }
+
+    // })
+
+    const storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
+    const checkedItems = [];
     let status = true;
 
-    items.forEach(item => {
-        if(item.checked){
-            let skuId = item.getAttribute('data-sku-id');
-            let number = item.getAttribute('data-number');
+    storedItems.forEach(skuId => {
+        const item = document.querySelector(`input[data-sku-id="${skuId}"]`);
 
-            if(number == 0){
-                alertInstance.updateMessage('The items you select have 0');
-                alertInstance.showAlert();
-                $('#alert').css('display', 'block')
-                status = false;
-                return false;
-            }
-   
-            checkedItems.push({
-                'sku_id': skuId,
-                'number': number,
-            })
-        }
+        checkedItems.push({
+            'sku_id': skuId["skuId"],
+            'number': skuId["quantity"],
+        });
+    });
 
-    })
+    console.log(checkedItems.length)
 
-    if(checkedItems.length === 0){
-        alertInstance.updateMessage('Please select 1 or more item');
+    if (checkedItems.length === 0) {
+        alertInstance.updateMessage('Please select 1 or more items');
         alertInstance.showAlert();
-        $('#alert').css('display', 'block')
+        $('#alert').css('display', 'block');
         status = false;
-        return false;
     }
 
     if(!status){
@@ -246,4 +260,43 @@ createOrderBtn.addEventListener('click', ()=>{
         }
     })
 
+    localStorage.clear();
+
 })
+
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', e => {
+        const skuId = checkbox.dataset.skuId;
+        const quantity = checkbox.dataset.number;
+
+        if (checkbox.checked) {
+            addToLocalStorage(skuId, quantity);
+        } else {
+            removeFromLocalStorage(skuId);
+        }
+    });
+});
+
+function addToLocalStorage(skuId, quantity) {
+    let storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
+
+    // 避免重复添加
+    const existingItem = storedItems.find(item => item.skuId === skuId);
+    if (!existingItem) {
+        storedItems.push({ skuId, quantity });
+    } else {
+        existingItem.quantity = quantity;
+    }
+
+    localStorage.setItem("checkedBoxes", JSON.stringify(storedItems));
+}
+
+function removeFromLocalStorage(skuId) {
+    let storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
+
+    // 找到并移除指定的 skuId
+    storedItems = storedItems.filter(item => item.skuId !== skuId);
+
+    localStorage.setItem("checkedBoxes", JSON.stringify(storedItems));
+}

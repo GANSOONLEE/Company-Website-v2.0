@@ -70,6 +70,13 @@
 
         <div class="cart-list-body">
 
+            @php
+                $pageNumber = 1; // init Page Index
+                $recordsPerPage = 8; // Display record per page
+                $pageIndex = request('pageIndex', 1); // get PageIndex, default 1
+                $startIndex = ($pageIndex - 1) * $recordsPerPage; // 计算起始索引
+            @endphp
+
             <table data-select-table="table">
                 <thead>
                     <tr>
@@ -85,13 +92,14 @@
                     </tr>
                 </thead>
                 <tbody style="max-height: 70vh;">
+
                     <!-- Cart -->
-                    @foreach ($cartData as $cart)
+                    @foreach ($cartData->slice($startIndex, $recordsPerPage) as $index => $cart)
                     @php
                         $name = $cart->getProductInformationEntity()->getProductName()[0]->name;
                         $product_code = $cart->getProductInformation('product_code');
                         $category = $cart->getProductInformation('product_category');
-                        $type = $cart->getProductInformation('product_type');
+                        // $type = $cart->getProductInformation('product_type');
                         $brand = $cart->getBrandInformation('brand');
                         $sku_id = $cart->getBrandInformation('sku_id');
                         $code = $cart->getBrandInformation('code');
@@ -116,7 +124,7 @@
                         <td data-search-column="sku-id" class="sku-id" style="display: none" id="{{ $sku_id }}">{{ $sku_id }}</td>
                         {{-- <td data-search-column="product_code">{{ $product_code }}</td> --}}
                         <td data-search-column="category">{{ $category }}</td>
-                        <td data-search-column="type">{{ $type }}</td> 
+                        {{-- <td data-search-column="type">{{ $type }}</td>  --}}
                         <td data-search-column="code">{{ $code }}</td>
                         <td data-search-column="number">
                             <div class="editable popovers-edit">
@@ -128,8 +136,59 @@
                         </td>
                     </tr>
                     @endforeach
+
                 </tbody>
             </table>
+
+            <!-- Pagination -->
+            <section id="pagination-footer" class="flex-row">
+
+                @php
+                    $totalRecords = count($cartData); // Total record
+                    $totalPages = ceil($totalRecords / $recordsPerPage); // Total page
+                    $displayPages = 5; // Page display
+                    $range = floor($displayPages / 2); // Range
+                    $start = max(1, $pageIndex - $range); // Start Page
+                    $end = min($totalPages, $start + $displayPages - 1); // End Page
+                @endphp
+        
+                <!-- Page Selector -->
+                <nav id="page-selector" aria-label="Page navigation">
+                    <ul class="pagination">
+    
+                        <!-- Previous Button -->
+                        <li class="page-item {{ $pageIndex == 1 ? 'disabled' : '' }}"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $pageIndex - 1 }}">Previous</a></li>
+            
+                        <!-- Previous ... -->
+                        @if($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex=1">1</a></li>
+                            @if($start > 2)
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url()->current() }}?pageIndex={{ $start-1 }}">...</a>
+                                </li>
+                            @endif
+                        @endif
+            
+                        @for ($i = $start; $i <= $end; $i++)
+                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $i }}" class="page-link @if($i == $pageIndex) active @endif">{{ $i }}</a></li>
+                        @endfor
+            
+                        <!-- Next ... -->
+                        @if($end < $totalPages)
+                            @if($end < $totalPages - 1)
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url()->current() }}?pageIndex={{ $end+1 }}">...</a>
+                                </li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $totalPages }}">{{ $totalPages }}</a></li>
+                        @endif
+            
+                        <!-- Next Button -->
+                        <li class="page-item {{ $pageIndex < $totalPages ? '' : 'disabled' }}"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $pageIndex + 1 }}">Next</a></li>
+                    </ul>
+                </nav>
+                
+            </section>
 
         </div>
 
@@ -168,3 +227,4 @@
     <script src="{{ asset('js\backend\user\cart.js') }}"></script>
 @endpush
 
+jingwen handsome
