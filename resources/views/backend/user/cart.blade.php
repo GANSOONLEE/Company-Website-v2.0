@@ -226,5 +226,3 @@
 @push('after-script')
     <script src="{{ asset('js\backend\user\cart.js') }}"></script>
 @endpush
-
-jingwen handsome

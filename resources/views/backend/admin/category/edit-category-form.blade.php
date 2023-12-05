@@ -15,6 +15,7 @@
             <!-- Form -->
             <form class="edit-category-form" id="form" action="{{ route('backend.admin.category.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 
                 <!-- Cover -->
                 <div class="category-cover">

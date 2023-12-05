@@ -1,7 +1,7 @@
 
 <div class="filter">
 
-    <form action="{{ route('backend.admin.product.search') }}" method="get" class="row">
+    <form action="{{ route('backend.admin.product.search-product') }}" method="get" class="row">
 
         <!-- Name -->
         <div class="col">

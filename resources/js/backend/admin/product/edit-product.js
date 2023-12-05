@@ -6,6 +6,7 @@ import CustomAlert from '../components/CustomAlert.vue';
 const alert = createApp(CustomAlert);
 const alertInstance = alert.mount("#alert")
 
+
 // Delete Confirm
 
 let buttons = document.querySelectorAll('a[button-event="delete"]');
@@ -24,8 +25,32 @@ buttons.forEach(button=>{
 
 deleteConfirmButton.addEventListener('click', ()=>{
 
-    window.location.href = deleteConfirmButton.getAttribute('data-link')
+    // window.location.href = deleteConfirmButton.getAttribute('data-link')
+    
+    let url = deleteConfirmButton.getAttribute('data-link')
 
+    let xhr = new XMLHttpRequest();
+    xhr.open(
+        'delete',
+        url,
+        true
+    );
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // csrf token
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // let response = JSON.parse(xhr.responseText);
+            // alertInstance.updateMessage(response.status, response.icon);
+            // alertInstance.autoAlert();
+            location.reload();
+        }
+    };
+
+    xhr.send();
 });
 
 // Function
@@ -134,6 +159,18 @@ window.onload = () => {
     }
 
     checkProductCover();
+
+    
+    let cookies = document.cookie.split(';');
+    let sessionData;
+    cookies.forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'sessionData') {
+            sessionData = JSON.parse(value);
+            alertInstance.updateMessage(sessionData.status, sessionData.icon);
+            alertInstance.autoAlert();
+        }
+    });
 };
 
 function checkProductCover(){

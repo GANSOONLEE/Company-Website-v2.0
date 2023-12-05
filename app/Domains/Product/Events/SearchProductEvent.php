@@ -18,6 +18,7 @@ class SearchProductEvent{
         $searchText = $request->text;
         $searchCategory = $request->category;
         $searchCode = $request->code;
+
         $this->searchText = $searchText;
         $this->searchCategory = $searchCategory;
         $this->searchCode = $searchCode;
@@ -27,7 +28,7 @@ class SearchProductEvent{
         $searchCodeResult = '';
 
         if(!isset($this->searchText) && !isset($this->searchCategory) && !isset($this->searchCode)){
-            return redirect()->route('backend.admin.product.product-edit');
+            return redirect()->route('backend.admin.product.edit-product');
         }
 
         if(isset($this->searchText)){

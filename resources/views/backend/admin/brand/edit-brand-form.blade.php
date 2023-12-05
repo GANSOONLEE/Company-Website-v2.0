@@ -15,6 +15,7 @@
             <!-- Form -->
             <form class="edit-brand-form" id="form" action="{{ route('backend.admin.brand.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 
                 <!-- Cover -->
                 <div class="brand-cover">

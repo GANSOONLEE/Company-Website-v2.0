@@ -7,7 +7,7 @@
     <div id="alert"></div>
     @include('backend.admin.product.includes.feedback')
 
-    <form action="{{ route('backend.admin.product.create') }}" method="POST" class="form" id="form" enctype="multipart/form-data">
+    <form action="{{ route('backend.admin.product.create-product-post') }}" method="POST" class="form" id="form" enctype="multipart/form-data">
         @csrf
         @include('backend.admin.product.create-product-form')
     </form>

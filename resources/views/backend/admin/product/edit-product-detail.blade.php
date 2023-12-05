@@ -7,8 +7,9 @@
     <div id="alert"></div>
     @include('backend.admin.product.includes.feedback')
 
-    <form action="{{ route('backend.admin.product.edit', ['product_code'=>$product->product_code]) }}" method="POST" class="form" id="form" enctype="multipart/form-data">
+    <form action="{{ route('backend.admin.product.edit-product-detail-put', ['product_code'=>$product->product_code]) }}" method="POST" class="form" id="form" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         @include('backend.admin.product.edit-product-form')
     </form>
 
