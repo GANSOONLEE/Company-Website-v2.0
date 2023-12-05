@@ -9,33 +9,49 @@ use Illuminate\Support\Facades\Log;
 
 class DeleteProductEvent{
 
-    public function deleteProduct(Request $request, $product_code){
+    public function deleteProduct(Request $request){
 
-        // check product existent
-        $product = Product::where('product_code', $product_code)->first();
+        try{
+            // check product existent
+            $product = Product::where('product_code', $request->product_code)->first();
+    
+            if(!$product){
+                return false;
+            }
+    
+            $user = auth()->user()->email;
+    
+            // check product brand information
+            $brands = DB::table('products_brand')
+                        ->where('product_code', $request->product_code)
+                        ->get();
+    
+            // check product name information
+            $names = DB::table('products_name')
+                        ->where('product_code', $request->product_code)
+                        ->get();    
+    
+            // delete product
+            $product->delete();
+    
+            Log::info("$request->product_code 被賬號 $user 刪除");
 
-        if(!$product){
-            return false;
+            $state = [
+                'status' => trans('product.update-success'),
+                'icon' => 'success',
+            ];
+
+        }catch (\Exception $e){
+
+            $state = [
+                'status' => trans('product.update-failure'),
+                'icon' => 'warning',
+            ];
+
         }
 
-        $user = auth()->user()->email;
+        return response()->json($state);
 
-        // check product brand information
-        $brands = DB::table('products_brand')
-                    ->where('product_code', $product_code)
-                    ->get();
-
-        // check product name information
-        $names = DB::table('products_name')
-                    ->where('product_code', $product_code)
-                    ->get();    
-
-        // delete product
-        $product->delete();
-
-        Log::info("$product_code 被賬號 $user 刪除");
-
-        return redirect()->back();
     }
 
 

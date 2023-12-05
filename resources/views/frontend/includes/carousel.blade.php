@@ -4,7 +4,7 @@
         @foreach ($promotionImages as $index => $promotionImage)
         <promotion-controls-button :index="{{ $index }}"></promotion-controls-button>
         @endforeach
-      </div>
+    </div>
     <div class="carousel-inner">
         @foreach ($promotionImages as $index => $promotionImage)
         <div class="carousel-item {{$index==0?'active':''}}">

@@ -12,7 +12,7 @@
     <div class="link-section">
 
         <!-- Data 用戶數據 -->
-        @if(auth()->user()->getRoleEntity()->hasPermission('admin_dashboard'))
+        @if(auth()->user()->getRoleEntity()->hasPermission('user_backend'))
         <section class="link-container">
             <div class="link-title">
                 <i class="link-title-icon fa-solid fa-user"></i>

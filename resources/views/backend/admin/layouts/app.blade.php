@@ -46,7 +46,7 @@
     <!-- 要在 javascript 之前加載的文件 -->
     @stack('before-script')
 
-    <script src="{{mix('/js/app.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/backend/admin/includes/sidebar.js')}}"></script>
     
     <!-- jQuery -->

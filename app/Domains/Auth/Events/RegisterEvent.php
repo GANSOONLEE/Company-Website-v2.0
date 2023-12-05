@@ -77,7 +77,7 @@ class RegisterEvent{
         
         // Login it
         Auth::login($user);
-        return redirect()->route('backend.user.dashboard')->withCookie($cookie);
+        return redirect()->route('frontend.home')->withCookie($cookie);
 
     }
     

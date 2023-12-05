@@ -87,6 +87,14 @@
                         Frozenaircond.noreply@gmail.com
                     </a>
                 </p>
+                <button data-button-action="change" class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#changePassword">
+                    <i class="fa-solid fa-lock"></i>
+                    @if ($user->password !== null)
+                        Change Password
+                    @else
+                        Reset Password
+                    @endif
+                </button>
                 <button data-button-action="edit" class="btn btn-secondary" type="button">
                     <i class="fa-solid fa-pen"></i>
                     Edit
@@ -98,6 +106,8 @@
             </div>
 
         </form>
+
+        @include('backend.user.change-passowrd')
 
     </section>
 

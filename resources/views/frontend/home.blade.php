@@ -5,15 +5,55 @@
 
 @section('app')
 
+<div class="container">
+
+    <div class="background-image"></div>
+
     @include('frontend.includes.carousel')
 
     <div class="content">
 
         <!-- #TODO 加入新内容 -->
+        <h2>Frozen Aircond Sdn. Bhd.</h2>
+
+        <div class="section">
+
+            <div class="area">
+                <h4 class="section-title">Who are we</h4>
+
+                <div class="section-body">
+                    Frozen Air Cond Sdn Bhd, is an automatic air conditioning spare part supply to supplier or mechanic.
+                </div>
+            </div>
+
+            <div class="area">
+                <img src="{{ asset('image/frozen air cond.webp') }}" alt="">
+            </div>
+        </div>
+
+        {{-- <div class="section">
+
+            <div class="area">
+                <img src="{{ asset('image/frozen air cond.webp') }}" alt="">
+            </div>
+
+            <div class="area">
+                <h4 class="section-title">Who are we</h4>
+
+                <div class="section-body">
+                    Frozen Air Cond Sdn Bhd, is an automatic air conditioning spare part supply to supplier or mechanic.
+                </div>
+            </div>
+            
+        </div> --}}
 
     </div>
 
 @endsection
+
+@push('before-body')
+    <link rel="preload stylesheet" as="style" href="{{asset('css/frontend/home.css')}}">
+@endpush
 
 @push('after-body')
     <script src="{{asset('js/frontend/includes/carousel.js')}}"></script>

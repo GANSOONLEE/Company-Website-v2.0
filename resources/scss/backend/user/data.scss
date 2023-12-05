@@ -1,5 +1,16 @@
 
 /* ———————————————————— Global ———————————————————— */
+
+#alert .alert{
+    z-index: 1;
+
+    &.show{
+        z-index: 99999;
+    }
+}
+
+
+
 textarea{
     resize: none;
 }

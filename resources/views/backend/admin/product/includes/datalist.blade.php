@@ -96,7 +96,7 @@
                     @endphp
                     <td data-search-column="type" class="{{ $data->updated_at > "2023-11-21 15:00:00"  ? 'new' : 'old'}}">{{ $data->updated_at }}</td>
                     <td data-search-column="edit">
-                        <a target="_blank" href="{{ route('backend.admin.product.edit-product-more', ['productCode' => $data->product_code]) }}">
+                        <a target="_blank" href="{{ route('backend.admin.product.edit-product-detail', ['productCode' => $data->product_code]) }}">
                             <button class="btn btn-primary">
                                 <i class="fa-solid fa-pen"></i>
                                 {{ __('product.edit') }}
@@ -104,7 +104,7 @@
                         </a>
                     </td>
                     <td data-search-column="delete">
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-url="{{ route('backend.admin.product.delete', ['product_code' => $data->product_code]) }}">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-url="{{ route('backend.admin.product.delete-product', ['product_code' => $data->product_code]) }}">
                             <a button-event="delete">
                                 <i class="fa-solid fa-trash"></i>
                                 {{ __('product.delete') }}

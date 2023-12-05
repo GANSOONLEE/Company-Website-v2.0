@@ -36,8 +36,8 @@
                 <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="">
-                <a href="{{ route('backend.admin.product.product-create') }}"><li>{{ __('sidebar.create-product') }}</li></a>
-                <a href="{{ route('backend.admin.product.product-edit') }}"><li>{{ __('sidebar.edit-product') }}</li></a>
+                <a href="{{ route('backend.admin.product.create-product') }}"><li>{{ __('sidebar.create-product') }}</li></a>
+                <a href="{{ route('backend.admin.product.edit-product') }}"><li>{{ __('sidebar.edit-product') }}</li></a>
             </ul>
         </section>
         @endif
