@@ -27,7 +27,7 @@ class RoleCreateEvent{
             'weight' => $roleWeight,
         ];
 
-        Role::create($roleData);
+        // Role::create($roleData);
 
         /**
          * Add translation
@@ -45,11 +45,18 @@ class RoleCreateEvent{
             ]
         );
 
-        $controller->postAdd('account', $requestAdd);
+        $controllers = $controller->postAdd('account', $requestAdd);
 
         $requestEditZH = Request::create('translation/edit/account', 'POST',
             [
                 'name' => 'zh|' . "roles.$roleID",
+                'group' => 'account',
+                'value' => $roleNameZH,
+            ]
+        );
+        $requestEditZH_TW = Request::create('translation/edit/account', 'POST',
+            [
+                'name' => 'zh-TW|' . "roles.$roleID",
                 'group' => 'account',
                 'value' => $roleNameZH,
             ]
@@ -63,6 +70,7 @@ class RoleCreateEvent{
         );
 
         $controller->postEdit('account', $requestEditZH);
+        $controller->postEdit('account', $requestEditZH_TW);
         $controller->postEdit('account', $requestEditEN);
 
         $controller->postPublish('account');

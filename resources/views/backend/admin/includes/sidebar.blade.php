@@ -140,8 +140,8 @@
             <ul>
                 <a href="{{ route('locale.change', ['lang' => 'en']) }}"><li>English</li></a>
                 <a href="{{ route('locale.change', ['lang' => 'zh']) }}"><li>中文</li></a>
-                @if (auth()->user()->getRoleEntity()->hasPermission('zh-tw'))
-                    <a href="{{ route('locale.change', ['lang' => 'zh-tw']) }}"><li>繁體中文</li></a>
+                @if (auth()->user()->getRoleEntity()->hasPermission('zh-TW'))
+                    <a href="{{ route('locale.change', ['lang' => 'zh-TW']) }}"><li>繁體中文</li></a>
                 @endif
                 @if (auth()->user()->getRoleEntity()->hasPermission('translation'))
                     <a target="_translation" href="{{ route('translation') }}"><li>Translation</li></a>

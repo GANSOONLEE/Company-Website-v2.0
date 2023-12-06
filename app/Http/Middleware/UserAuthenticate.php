@@ -18,7 +18,7 @@ class UserAuthenticate
         }
 
         if ($user->status != "Available"){
-            return redirect()->route('auth.login');
+            abort(403, 'Your account is inactive or banned');
         }
 
         $roles = $user->getRole();
