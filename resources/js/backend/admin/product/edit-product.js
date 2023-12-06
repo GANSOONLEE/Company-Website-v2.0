@@ -27,13 +27,11 @@ deleteConfirmButton.addEventListener('click', ()=>{
 
     // window.location.href = deleteConfirmButton.getAttribute('data-link')
     
-    let url = deleteConfirmButton.getAttribute('data-link')
+    let url = deleteConfirmButton.getAttribute('data-link');
 
     let xhr = new XMLHttpRequest();
     xhr.open(
-        'delete',
-        url,
-        true
+        'post', url, true
     );
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 

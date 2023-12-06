@@ -149,7 +149,7 @@ class UpdateProductEvent{
                 'status' => 'failure',
                 'message' => trans('product.update-failure'),
             ];
-        }
+        };
 
         Operation::create([
             'email' => auth()->user()->email,
@@ -201,7 +201,8 @@ class UpdateProductEvent{
                     $index . ".$fileExtension";
             }
 
-            $productImage->storeAs($baseDirectory, $newFileName, $disk);
+            
+            $productImage->storeAs($baseDirectory, str_replace('/', '-', $newFileName), $disk);
         }
         
         $productBrandImages = $this->productBrandImages;
