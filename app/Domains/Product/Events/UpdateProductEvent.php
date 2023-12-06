@@ -385,7 +385,6 @@ class UpdateProductEvent{
         $updateDifferenceArray = array_diff(array_column($sourceProductBrandCode, 'code'), $currentProductBrandCode);
 
         if(count($differenceArray) > 0){
-
             
             foreach($differenceArray as $code){
 
@@ -407,6 +406,16 @@ class UpdateProductEvent{
         if(count($updateDifferenceArray) > 0){
 
             foreach($updateDifferenceArray as $code){
+
+                $checkExists = DB::table('products_brand')
+                                ->where('product_code', $this->productCode)
+                                ->where('code', $code)
+                                ->exists();
+
+                if($checkExists){
+                    continue;
+                }
+
                 $productBrandData = [
                     'sku_id' => $this->generatorSkuId(),
                     'brand' => $sourceProductBrandCode[$code]->brand,

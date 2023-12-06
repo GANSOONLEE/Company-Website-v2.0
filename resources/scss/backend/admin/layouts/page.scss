@@ -1,5 +1,6 @@
 
 div.page{
+    position: relative;
     $sidebar-width: 18vw;
     // width: calc(100vw - $sidebar-width);
     margin-left: $sidebar-width;

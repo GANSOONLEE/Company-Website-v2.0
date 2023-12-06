@@ -31,4 +31,7 @@ return array (
   'category-edit' => 'Edit Category',
   'edit-product-detail' => 'Edit product details',
   'report-bug' => 'Report Bug ?',
+  'model' => 'Car Model',
+  'model-create' => 'Create Car Model',
+  'model-edit' => 'Edit Car Model',
 );

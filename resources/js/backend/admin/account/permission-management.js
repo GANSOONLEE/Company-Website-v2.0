@@ -85,7 +85,7 @@ class AjaxAPI{
 
         $.ajax({
             url: url,
-            type: 'POST',
+            type: 'PUT',
             data: data,
             dataType: 'html',
             headers: {

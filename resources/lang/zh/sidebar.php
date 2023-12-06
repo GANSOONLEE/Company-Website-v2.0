@@ -31,4 +31,7 @@ return array (
   'logout' => '登出',
   'edit-product-detail' => '编辑产品详细',
   'report-bug' => '报告错误？',
+  'model' => '车款',
+  'model-create' => '创建车款',
+  'model-edit' => '编辑车款',
 );

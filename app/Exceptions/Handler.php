@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Exceptions\GeneralException;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +27,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if($exception instanceof GeneralException){
+            return redirect()->back()->withErrors([$exception->getMessage()]);
+        }
+
+        return parent::render($request, $exception);
     }
 }
