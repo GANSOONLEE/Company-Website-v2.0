@@ -12,7 +12,7 @@ const alertInstance = alert.mount('#alert');
  */
 
 function findFilter(filterName){
-
+    
     let filter = document.querySelector(`[data-select-filter=${filterName}]`);
     
     if(!filter){
@@ -34,7 +34,6 @@ let filters = {};
 function initFilter(columnId, mode, trigger = "change") {
     let column = findFilter(columnId);
     filters[columnId] = new Filter(column, mode, trigger);
-
     filters[columnId].setChangeCallback(applyFilters);
 }
 
@@ -185,11 +184,13 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
 
 // Ajax Request Create Order
 
-
 const storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
 
 storedItems.forEach(skuId => {
-    const item = document.querySelector(`input[data-sku-id="${skuId}"]`);
+    const item = document.querySelector(`input[data-sku-id="${skuId['skuId']}"]`);
+    if (!item){
+        return false;
+    }
     item.checked = true;
 });
 

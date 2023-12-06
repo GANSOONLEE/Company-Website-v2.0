@@ -48,8 +48,6 @@ class DeleteProductImageEvent{
                 }
             }
 
-            
-
             // Delete Image
             
             // Record Operation

@@ -21,6 +21,7 @@ return array (
     'root' => '根管理员',
     'testing_engineer' => '测试工程师',
     'test' => '测试',
+    'tester_admin' => '測試管理員',
   ),
   'submit' => '提交',
   'create-role' => '新建身分组',

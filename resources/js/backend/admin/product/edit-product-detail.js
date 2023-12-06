@@ -108,7 +108,7 @@ deleteButton.forEach(button => {
 
         $.ajax({
             url:'/admin/product/delete-image',
-            method: "delete",
+            method: "DELETE",
             dataType: 'json',
             data: data,
             headers: {
@@ -119,6 +119,7 @@ deleteButton.forEach(button => {
                     showMessage(response.message, 'success')
                     console.info(response.name)
                     console.info(response.path)
+                    console.info(response)
                 }else{
                     showMessage(response.message, 'error')
                     console.error(response.file);

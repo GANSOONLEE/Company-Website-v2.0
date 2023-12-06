@@ -24,7 +24,7 @@ class BannedUnbannedEvent{
         }
         $user->update($data);
 
-        return redirect()->back();
+        return response()->json();
 
     }
 

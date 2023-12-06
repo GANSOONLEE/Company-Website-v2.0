@@ -25,6 +25,9 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
 
     Route::get('update-product/{productCode}', [EditProductDetailsController::class, 'editProductMoreDetails'])
         ->name('edit-product-detail');
+    
+    Route::get('create-product', [CreateProductController::class, 'createProduct'])
+        ->name('create-product');
 
     // Post
     Route::post('create-product', [CreateProductEvent::class, 'createProduct'])
@@ -41,11 +44,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function(){
     Route::post('delete-product/{product_code}', [DeleteProductEvent::class, 'deleteProduct'])
         ->name('delete-product');
 
-    // Route::post('search-product',  [SearchProductEvent::class, 'searchProduct'])
-    //     ->name('search-product');
-
     Route::get('search-product',  [SearchProductEvent::class, 'searchProduct'])
         ->name('search-product');
-
     
 });

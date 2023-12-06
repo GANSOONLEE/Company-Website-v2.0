@@ -201,8 +201,7 @@ class UpdateProductEvent{
                     $index . ".$fileExtension";
             }
 
-            
-            $productImage->storeAs($baseDirectory, str_replace('/', '-', $newFileName), $disk);
+            $productImage->storeAs($baseDirectory, file_path_encode($newFileName), $disk);
         }
         
         $productBrandImages = $this->productBrandImages;
@@ -230,7 +229,7 @@ class UpdateProductEvent{
             $fileExtension = $productBrandImage->getClientOriginalExtension();
             $newFileName = "cover.$fileExtension";
 
-            $path = $productBrandImage->storeAs($baseDirectory . "/$productBrandCode[$index]", $newFileName, $disk);
+            $path = $productBrandImage->storeAs($baseDirectory . "/" . file_path_encode($productBrandCode[$index]), $newFileName, $disk);
         }
     }
 

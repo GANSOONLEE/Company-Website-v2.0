@@ -17,7 +17,6 @@
 
     <!-- role -->
     @foreach ($roleData as $index => $role)
-        {{ $index }}{{ $role->weight }}{{ $role->name }}
         <section class="panel" data-role-level="{{ $role->weight }}" id="{{ $role->name }}">
             <p class="panel-title">{{ __("account.roles.$role->name") }}</p>
             <div class="panel-content">

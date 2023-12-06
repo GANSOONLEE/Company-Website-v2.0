@@ -5,9 +5,13 @@
   top: 5rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: -1;
 }
 #alert .alert .btn-close {
   padding: 1.4rem 1rem;
+}
+#alert .alert.show {
+  z-index: 100;
 }
 
 div.content {
