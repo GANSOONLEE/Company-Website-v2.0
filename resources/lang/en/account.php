@@ -21,6 +21,7 @@ return array (
     'root' => 'Root Administrator',
     'testing_engineer' => 'Testing Engineer',
     'test' => 'test',
+    'tester_admin' => 'Tester Admin',
   ),
   'submit' => 'Submit',
   'create-role' => 'New identity group',

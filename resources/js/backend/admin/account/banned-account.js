@@ -77,21 +77,17 @@ class AjaxRequest{
     sendData(email, method){
         $.ajax({
             url: "/admin/account/banned-unbanned-account",
-            method: "POST",
+            method: "PUT",
             data: { email: email, method: method },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (response) {
-                if (response.emailExists) {
-                    alert("This email address already have.");
-                } else {
-                    $("#form").unbind('submit').submit();
-                }
                 location.reload();
             },
-            error: function () {
-                alert("Something error");
+            error: function (response) {
+                console.error(response);
+                console.error("Something error");
             }
         })
     }

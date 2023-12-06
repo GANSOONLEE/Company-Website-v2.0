@@ -31,7 +31,7 @@ deleteConfirmButton.addEventListener('click', ()=>{
 
     let xhr = new XMLHttpRequest();
     xhr.open(
-        'delete',
+        'post',
         url,
         true
     );

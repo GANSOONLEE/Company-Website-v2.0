@@ -12,7 +12,7 @@ const alertInstance = alert.mount('#alert');
  */
 
 function findFilter(filterName){
-
+    
     let filter = document.querySelector(`[data-select-filter=${filterName}]`);
     
     if(!filter){
@@ -34,8 +34,6 @@ let filters = {};
 function initFilter(columnId, mode, trigger = "change") {
     let column = findFilter(columnId);
     filters[columnId] = new Filter(column, mode, trigger);
-    console.log('初始化成功')
-
     filters[columnId].setChangeCallback(applyFilters);
 }
 
@@ -43,7 +41,6 @@ initFilter('category', 'strict');
 initFilter('type', 'strict');
 
 function applyFilters() {
-    console.log('調用中')
     let categoryValue = filters['category'].getValue();
     let typeValue = filters['type'].getValue();
 
@@ -187,35 +184,19 @@ document.querySelector('#popover-update').addEventListener('click', ()=>{
 
 // Ajax Request Create Order
 
+const storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
+
+storedItems.forEach(skuId => {
+    const item = document.querySelector(`input[data-sku-id="${skuId['skuId']}"]`);
+    if (!item){
+        return false;
+    }
+    item.checked = true;
+});
+
 let createOrderBtn = document.querySelector('#create-order');
 createOrderBtn.addEventListener('click', ()=>{
 
-    // let items = document.querySelectorAll('input[type="checkbox"]')
-    // let checkedItems = [];
-    // let status = true;
-
-    // items.forEach(item => {
-    //     if(item.checked){
-    //         let skuId = item.getAttribute('data-sku-id');
-    //         let number = item.getAttribute('data-number');
-
-    //         if(number == 0){
-    //             alertInstance.updateMessage('The items you select have 0');
-    //             alertInstance.showAlert();
-    //             $('#alert').css('display', 'block')
-    //             status = false;
-    //             return false;
-    //         }
-   
-    //         checkedItems.push({
-    //             'sku_id': skuId,
-    //             'number': number,
-    //         })
-    //     }
-
-    // })
-
-    const storedItems = JSON.parse(localStorage.getItem("checkedBoxes")) || [];
     const checkedItems = [];
     let status = true;
 
@@ -227,8 +208,6 @@ createOrderBtn.addEventListener('click', ()=>{
             'number': skuId["quantity"],
         });
     });
-
-    console.log(checkedItems.length)
 
     if (checkedItems.length === 0) {
         alertInstance.updateMessage('Please select 1 or more items');

@@ -45,28 +45,6 @@ class ProductController extends Controller{
             $category = $product->product_category;
             $code = $product->product_code;
 
-            // Get Image
-            if(auth()->user()->email == 'vincentgan0402@gmail.com'){
-
-                $images = Storage::disk('public')->files("product/$category/$code");
-                $product_cover = '' ; 
-                $product_image = [] ; 
-                $brand_cover = [] ;
-    
-                foreach($images as $image){
-    
-                }
-    
-    
-                // $product->product_image = 
-                
-                // if(){
-    
-                // }
-    
-                // dd($product);
-                
-            }
             $productData[] = $product; 
         }
 
