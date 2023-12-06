@@ -11,17 +11,22 @@ const alertInstance = alert.mount('#alert');
  *  @param {String} filterName - filter name you want to select 
  */
 
-function findFilter(filterName){
-    
-    let filter = document.querySelector(`[data-select-filter=${filterName}]`);
-    
-    if(!filter){
-        console.error(`Filter ${filterName} not find`)
-    }
+// Function
 
-    return filter;
+const hrefButton = document.querySelectorAll('a.page-link');
+hrefButton.forEach(button => {
+    button.addEventListener('click', ()=>{
+        let currentUrl = window.location.href;
 
-}
+        let url = new URL(currentUrl);
+        url.searchParams.set('pageIndex', currentPage);
+
+        url.searchParams.set('name', url.searchParams.get('name') || '');
+        url.searchParams.set('category', url.searchParams.get('category') || '')
+
+        window.location.href = url.toString();
+    })
+})
 
 /**
  * Init Filter

@@ -12,35 +12,37 @@
 
     <!-- filter -->
     <section class="filter flex-column">
-
+        
         <p class="filter-title">Filter</p>
+        
+        <form action="{{ route('backend.user.cart.search-cart') }}" method="get">
+    
+            <div class="filter-container flex-row">
+                <div class="filter name-filter flex-column">
+        
+                    <label class="form-label" for="">Name</label>
+                    <input type="text" class="form-control" data-select-filter="name" name="name" id="" value="{{ isset($name) ? $name : "" }}">
+        
+                </div>
+                <div class="filter category-filter flex-column">
+        
+                    <label class="form-label" for="">Category</label>
+                    <select class="form-select" data-select-filter="category" name="category" id="">
+                        <option value=""> -- Clear Filter -- </option>
+                        @foreach ($categoryData as $data)
+                            <option value="{{ $data->name }}" {{ isset($category) ? $data->name == $category ? "selected" : "" : "" }}>{{ $data->name }}</option>
+                        @endforeach
+                    </select>
+        
+                </div>
 
-        <div class="filter-container flex-row">
-            <div class="filter category-filter flex-column">
-    
-                <label class="form-label" for="">Category</label>
-                <select class="form-select" data-select-filter="category" name="" id="">
-                    <option value=""> -- Clear Filter -- </option>
-                    @foreach ($categoryData as $category)
-                        <option value="{{ $category->name }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-    
+                <div class="filter category-filter flex-column">
+                    <label class="form-label" for="" aira-label="search">Search</label>
+                    <button class="form-control btn btn-success" type="submit" style="justify-self: flex-end">Search</button>
+                </div>
             </div>
-    
-            <div class="filter type-filter flex-column">
-    
-                <label class="form-label" for="">Type</label>
-                <select class="form-select" data-select-filter="type" name="" id="">
-                    <option value=""> -- Clear Filter -- </option>
-                    @foreach ($typeData as $typeData)
-                        <option value="{{ $typeData->name }}">{{ $typeData->name }}</option>
-                    @endforeach
-                </select>
-    
-            </div>
-        </div>
 
+        </form>
 
     </section>
 
@@ -96,15 +98,25 @@
                     <!-- Cart -->
                     @foreach ($cartData->slice($startIndex, $recordsPerPage) as $index => $cart)
                     @php
-                        $name = $cart->getProductInformationEntity()->getProductName()[0]->name;
-                        $product_code = $cart->getProductInformation('product_code');
-                        $category = $cart->getProductInformation('product_category');
-                        // $type = $cart->getProductInformation('product_type');
-                        $brand = $cart->getBrandInformation('brand');
-                        $sku_id = $cart->getBrandInformation('sku_id');
-                        $code = $cart->getBrandInformation('code');
-                        $number = $cart->number;
-                        
+                        if($cart instanceof \App\Models\Cart){
+
+                            $name = $cart->getProductInformationEntity()->getProductName()[0]->name;
+                            $product_code = $cart->getProductInformation('product_code');
+                            $category = $cart->getProductInformation('product_category');
+                            $brand = $cart->getBrandInformation('brand');
+                            $sku_id = $cart->getBrandInformation('sku_id');
+                            $code = $cart->getBrandInformation('code');
+                            $number = $cart->number;
+                            
+                        }else{
+                            $name = $cart->first_name;
+                            $product_code = $cart->product_code;
+                            $category = $cart->product_category;
+                            $brand = $cart->brand;
+                            $sku_id = $cart->sku_id;
+                            $code = $cart->code;
+                            $number = $cart->number;
+                        }
                     @endphp
                     <tr>
                         {{-- <td>{{ $cart->sku_id }}</td> --}}
@@ -150,41 +162,70 @@
                     $range = floor($displayPages / 2); // Range
                     $start = max(1, $pageIndex - $range); // Start Page
                     $end = min($totalPages, $start + $displayPages - 1); // End Page
+
+                    if (!function_exists('updateUrlParameter')) {
+                        function updateUrlParameter($url, $key, $value)
+                        {
+                            $parsedUrl = parse_url($url);
+                            parse_str($parsedUrl['query'] ?? '', $query);
+
+                            // 更新或添加指定参数
+                            $query[$key] = $value;
+
+                            $parsedUrl['query'] = http_build_query($query);
+
+                            return buildUrl($parsedUrl);
+                        }
+                    }
+
+                    if (!function_exists('buildUrl')) {
+                        function buildUrl($parsedUrl)
+                        {
+                            return $parsedUrl["path"] . '?' . $parsedUrl["query"];
+                        }
+                    }
                 @endphp
         
                 <!-- Page Selector -->
                 <nav id="page-selector" aria-label="Page navigation">
                     <ul class="pagination">
-    
+        
                         <!-- Previous Button -->
-                        <li class="page-item {{ $pageIndex == 1 ? 'disabled' : '' }}"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $pageIndex - 1 }}">Previous</a></li>
-            
+                        <li class="page-item {{ $pageIndex == 1 ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $pageIndex - 1) }}">Previous</a>
+                        </li>
+                        
                         <!-- Previous ... -->
                         @if($start > 1)
-                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex=1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', 1) }}">1</a></li>
                             @if($start > 2)
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url()->current() }}?pageIndex={{ $start-1 }}">...</a>
+                                    <a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $start - 1) }}">...</a>
                                 </li>
                             @endif
                         @endif
-            
+                        
                         @for ($i = $start; $i <= $end; $i++)
-                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $i }}" class="page-link @if($i == $pageIndex) active @endif">{{ $i }}</a></li>
+                            <li class="page-item">
+                                <a class="page-link {{$pageIndex == $i? 'selected' : '' }}" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $i) }}" class="page-link @if($i == $pageIndex) active @endif">{{ $i }}</a>
+                            </li>
                         @endfor
-            
+                        
                         <!-- Next ... -->
                         @if($end < $totalPages)
                             @if($end < $totalPages - 1)
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url()->current() }}?pageIndex={{ $end+1 }}">...</a>
+                                    <a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $end + 1) }}">...</a>
                                 </li>
                             @endif
-                            <li class="page-item"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $totalPages }}">{{ $totalPages }}</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $totalPages) }}">{{ $totalPages }}</a></li>
                         @endif
-            
+                        
                         <!-- Next Button -->
-                        <li class="page-item {{ $pageIndex < $totalPages ? '' : 'disabled' }}"><a class="page-link" href="{{ url()->current() }}?pageIndex={{ $pageIndex + 1 }}">Next</a></li>
+                        <li class="page-item {{ $pageIndex < $totalPages ? '' : 'disabled' }}">
+                            <a class="page-link" href="{{ updateUrlParameter(url()->full(), 'pageIndex', $pageIndex + 1) }}">Next</a>
+                        </li>
+                        
                     </ul>
                 </nav>
                 
