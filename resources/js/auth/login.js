@@ -34,29 +34,29 @@ window.onload = () => {
  * Before Submit Verify
  */
 
-$("#form").submit(function (event) {
-    event.preventDefault();
+// $("#form").submit(function (event) {
+//     event.preventDefault();
 
-    const email = $("#email").val();
+//     const email = $("#email").val();
 
-    // request the email name-list from backend
-    $.ajax({
-        url: "/auth/register/valid",
-        method: "POST",
-        data: { email: email },
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (response) {
-            if (response.emailExists) {
-                $("#form").unbind('submit').submit();
-            } else {
-                showMessage('This email address aren\'t existents !', 'error')
-            }
-            return;
-        },
-        error: function () {
-            showMessage('Something happened', 'warning')
-        }
-    });
-});
+//     // request the email name-list from backend
+//     $.ajax({
+//         url: "/auth/login/post",
+//         method: "POST",
+//         data: { email: email },
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//         success: function (response) {
+//             if (response.emailExists) {
+//                 $("#form").unbind('submit').submit();
+//             } else {
+//                 showMessage('This email address aren\'t existents !', 'error')
+//             }
+//             return;
+//         },
+//         error: function () {
+//             showMessage('Something happened', 'warning')
+//         }
+//     });
+// });

@@ -50,6 +50,8 @@
     "/css/backend/user/includes/sidebar.css": "/css/backend/user/includes/sidebar.css",
     "/css/backend/user/data.css": "/css/backend/user/data.css",
     "/css/backend/user/cart.css": "/css/backend/user/cart.css",
+    "/css/backend/layouts/layout.css": "/css/backend/layouts/layout.css",
+    "/css/backend/components/navbar.css": "/css/backend/components/navbar.css",
     "/css/backend/admin/report-bug.css": "/css/backend/admin/report-bug.css",
     "/css/backend/admin/product/includes/feedback.css": "/css/backend/admin/product/includes/feedback.css",
     "/css/backend/admin/product/edit-product.css": "/css/backend/admin/product/edit-product.css",

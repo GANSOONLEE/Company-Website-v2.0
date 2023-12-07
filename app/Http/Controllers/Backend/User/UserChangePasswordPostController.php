@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use App\Http\Controllers\Controller;
 
 class UserChangePasswordPostController extends Controller

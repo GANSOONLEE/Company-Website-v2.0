@@ -8,7 +8,6 @@ use App\Domains\Model\Request\CreateModelRequest;
 use App\Domains\Model\Services\ModelService;
 
 use App\Models\CarModel as Model;
-
 use Illuminate\Http\Request;
 
 class ModelController extends Controller
@@ -16,7 +15,8 @@ class ModelController extends Controller
 
     protected $modelService;
 
-    public function __construct(ModelService $modelService) {
+    public function __construct(ModelService $modelService)
+    {
         $this->modelService = $modelService;
     }
 
@@ -57,8 +57,6 @@ class ModelController extends Controller
     public function store(CreateModelRequest $request){
 
         $model = $this->modelService->store($request->validated());
-
-        dd($model);
 
         return redirect()->back();
 

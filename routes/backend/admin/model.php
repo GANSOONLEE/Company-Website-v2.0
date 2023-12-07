@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Backend\Admin\Model\ModelController;
 
-Route::group(['prefix' => 'model', 'as' => 'model.'], function(){
+Route::group(['prefix' => 'model', 'as' => 'model.'], function()
+{
 
     Route::get('/', [ModelController::class, 'index'])
         ->name('index');

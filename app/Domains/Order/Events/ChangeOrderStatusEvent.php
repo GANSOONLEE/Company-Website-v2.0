@@ -4,7 +4,7 @@ namespace App\Domains\Order\Events;
 
 use App\Models\Operation;
 use App\Models\Order;
-use App\Models\UserOperation;
+use App\Domains\Auth\Models\UserOperation;
 use Illuminate\Http\Request;
 use App\Events\NewOrderEvent;
 use Illuminate\Support\Facades\Log;

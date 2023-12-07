@@ -90,7 +90,6 @@ form.form#form {
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: auto;
   padding: 2rem;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1333333333);

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 
 class UserResetPasswordEvent {
 

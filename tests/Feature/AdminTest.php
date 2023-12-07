@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Database\Factories\UserFactory;
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 
 // Model
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Support\Collection;
 
 class Role extends Model

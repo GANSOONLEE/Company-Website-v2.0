@@ -2,7 +2,7 @@
 
 namespace App\Domains\Auth\Valid;
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Http\Request;
 
 class CheckEmailDuplication{

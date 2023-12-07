@@ -2,7 +2,7 @@
 
 namespace App\Domains\Account\Events;
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Http\Request;
 
 class UserUpdateEvent{

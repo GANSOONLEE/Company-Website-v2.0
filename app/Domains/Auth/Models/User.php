@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Auth\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 use Laravel\Sanctum\HasApiTokens;
 use Faker\Core\Number;
+use App\Models\Order;
+
+use App\Domains\Auth\Models\Traits\Scope\UserScope;
 
 // Model
 use App\Models\Role;
@@ -20,7 +23,10 @@ use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        UserScope;
 
     /**
      * The attributes that are mass assignable.
