@@ -1,0 +1,107 @@
+@charset "UTF-8";
+.alert {
+  z-index: 100;
+  position: fixed;
+  height: 9vh;
+  width: 77.2vw;
+  top: 1rem;
+  left: 20.4vw;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+}
+
+/* ———————————————————— Component ———————————————————— */
+div#pagination {
+  /* Filter */
+  /* Body */
+  /* Page Selector */
+}
+div#pagination section#pagination-header {
+  height: 0;
+}
+div#pagination section#pagination-body {
+  border: 1px solid #dadada;
+  box-shadow: 0 0 15px #dadada;
+  border-radius: 6px;
+  background-color: #fdfdff;
+  padding: 0.6rem 2rem;
+  /* Column Name */
+  /* Record */
+}
+div#pagination section#pagination-body section#column-name {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+}
+div#pagination section#pagination-body section#column-name div.column-title {
+  display: table-row;
+  background-color: red;
+}
+div#pagination section#pagination-body section#column-name div.column-title p {
+  display: table-cell;
+  width: auto;
+}
+div#pagination section#pagination-body section#record-list {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  --color-brand: #bbfaff;
+  --color-product: #bbffbb;
+  --color-category: #ffbbfa;
+  --color-permission: #fabbbb;
+  --color-order: #ffbbff;
+}
+div#pagination section#pagination-body section#record-list div.record-row[data-identify=Brand] {
+  background-color: var(--color-brand);
+}
+div#pagination section#pagination-body section#record-list div.record-row[data-identify=Product] {
+  background-color: var(--color-product);
+}
+div#pagination section#pagination-body section#record-list div.record-row[data-identify=Category] {
+  background-color: var(--color-category);
+}
+div#pagination section#pagination-body section#record-list div.record-row[data-identify=Permission] {
+  background-color: var(--color-permission);
+}
+div#pagination section#pagination-body section#record-list div.record-row[data-identify=Order] {
+  background-color: var(--color-order);
+}
+div#pagination section#pagination-body section#record-list div.record-row, div#pagination section#pagination-body section#record-list div.column-title {
+  display: table-row;
+  padding: 1rem 0;
+}
+div#pagination section#pagination-body section#record-list div.record-row p, div#pagination section#pagination-body section#record-list div.column-title p {
+  padding: 0.6rem 0.4rem;
+  display: table-cell;
+  width: auto;
+}
+div#pagination section#pagination-body section#record-list div.record-row p.title, div#pagination section#pagination-body section#record-list div.column-title p.title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1333333333);
+  font-weight: bold;
+  padding-bottom: 0.6rem;
+}
+div#pagination section#pagination-footer {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+}
+div#pagination section#pagination-footer nav#page-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div#pagination section#pagination-footer nav#page-selector ul.pagination {
+  width: auto;
+}
+div#pagination section#pagination-footer div.page-input {
+  display: flex;
+  width: 120px;
+}
+div#pagination section#pagination-footer div.page-input button {
+  padding: 0 0.6rem;
+}

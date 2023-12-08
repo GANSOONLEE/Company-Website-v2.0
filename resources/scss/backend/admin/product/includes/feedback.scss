@@ -1,0 +1,37 @@
+
+section.feedback{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    right: -130px;
+    border-radius: 4px;
+    border: 1px solid #00000011;
+    box-shadow: 0 0 20px #00000044;
+    padding: .8rem;
+    background-color: #ff2a00;
+    transition: all .2s ease-in-out;
+    z-index: 999;
+    cursor: pointer;
+
+    &:hover{
+        right: -10px;
+    }
+
+    div.feedback-icon{
+        width: 32px;
+        color: white
+    }
+    div.feedback-information{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+
+        p{
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0;
+        }
+    }
+}

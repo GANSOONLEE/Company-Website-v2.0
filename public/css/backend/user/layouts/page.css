@@ -1,0 +1,23 @@
+div.page {
+  width: 82vw;
+  margin-left: 18vw;
+  padding: 1rem 2rem;
+}
+div.page p.page-title {
+  margin: 0;
+  margin-bottom: 2.2rem;
+  font-size: var(--font-h4);
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  div.page {
+    width: calc(100vw - 55px);
+    margin-left: 55px;
+    padding: 0.8rem 1.4rem;
+  }
+  div.page p.page-title {
+    margin-bottom: 0.6rem;
+    font-size: var(--font-h6);
+  }
+}

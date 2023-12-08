@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+*.blade.php diff=blade
+*.css diff=css
+*.scss diff=scss
+*.js diff=js
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+*.vue diff=vue
+
+# Don't diff or textually merge source maps
+*.map   binary
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore

@@ -1,0 +1,229 @@
+
+/* ———————————————————— footer ———————————————————— */
+footer.footer#footer{
+    padding-top: 2rem;
+    background-color: #f8f7ff;
+    // footer header
+    > div.footer-header{
+        font-size: var(--font-h4);
+        text-align: center;
+    }
+
+    // footer body
+    > div.footer-body{
+        display: flex;
+        padding: 0 2rem;
+        // footer links
+        > div.footer-link-container{
+            width: 50%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            column-gap: calc(20%);
+            > section.footer-link-section{
+                padding: 1rem 0;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                > p.footer-link-section-title{
+                    margin-bottom: .6rem;
+                    color: rgb(10, 16, 55);
+                    font-size: var(--font-h6);
+                    font-weight: bold;
+                }
+
+                > ul.footer-link-section-list{
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: .4rem;
+                    color: rgb(36, 36, 41);
+                    font-size: var(--font-subtitle);
+                    i{
+                        margin-right: 1rem;
+                    }
+                }
+            }
+
+        }
+
+        // company information
+        > div.company-information{
+            width: 50%;
+            // company name
+            > div.company-name{
+                > p.company-name-text{
+                    margin-bottom: 0;
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+
+            // information area
+            > div.information-area{
+                display: flex;
+                justify-content: space-between;
+                padding-top: 1rem;
+                // address & phone number
+                >div{
+
+                    // global
+                    >div{
+                        display: flex;
+                        justify-content: flex-start;
+                        column-gap: 1rem;
+                        >p{
+                            margin-bottom: 0;
+                        }
+                    }
+                    >div.contact-number{
+                        align-items: center;
+                    }
+                    >div.address{
+                        margin-top: 1rem;
+                        align-items: flex-start;
+                    }
+                }
+
+                // google map
+                div.google-map{
+                    padding: 0 2rem 2rem;
+                    > iframe{
+                        height: 100%;
+                    }
+                }
+            }
+            
+        }   
+    }
+
+    // copyright & author
+    > div.footer-footer{
+        padding: .4rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        background-color: #17171a;
+        color: var(--color-white);
+        > p{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0;
+            font-size: calc(var(--font-remark) - .1rem);
+        }
+        > p.copy-right{
+            
+        }
+
+        > p.website-author{
+            
+        }
+    }
+
+}
+
+/* ==================== RWD ==================== */
+
+@media only screen and (max-width: 867px) {
+
+    /* ———————————————————— footer ———————————————————— */
+    footer.footer#footer{
+        
+        // footer header
+        > div.footer-header{
+            
+        }
+
+        // footer body
+        > div.footer-body{
+            flex-direction: column;
+            align-items: center;
+            // footer links
+            > div.footer-link-container{
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                > section.footer-link-section{
+                    > p.footer-link-section-title{
+                        
+                    }
+
+                    > ul.footer-link-section-list{
+                        
+                        i{
+                            
+                        }
+                    }
+                }
+
+            }
+
+            // company information
+            > div.company-information{
+                margin-top: .6rem;
+                align-items: center;
+                // company name
+                > div.company-name{
+                    > p.company-name-text{
+                        
+                    }
+                }
+
+                // information area
+                > div.information-area{
+                    flex-direction: column;
+
+                    // address & phone number
+                    >div{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        @mixin phone-mode-footer-information-area {
+                            flex-direction: column;
+                            align-items: center;
+                            row-gap: .2rem;
+                        }
+
+                        // global
+                        >div{
+                            margin-bottom: .4rem;
+                            >p{
+                                text-align: center
+                            }
+                        }
+                        >div.contact-number{
+                            @include phone-mode-footer-information-area;
+                        }
+                        >div.address{
+                            @include phone-mode-footer-information-area;
+                        }
+                    }
+
+                    // google map
+                    div.google-map{
+                        
+                        > iframe{
+                            
+                        }
+                    }
+                }
+                
+            }   
+        }
+
+        // copyright & author
+        > div.footer-footer{
+            flex-direction: column;
+            > p{
+                
+            }
+            > p.copy-right{
+                
+            }
+
+            > p.website-author{
+                
+            }
+        }
+
+    }
+
+}

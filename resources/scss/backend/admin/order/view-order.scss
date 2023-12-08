@@ -1,0 +1,256 @@
+
+/* ———————————————————— Tab ———————————————————— */
+
+section.tab{
+    border: 1px solid #0d0d2819;
+    border-radius: 6px;
+    box-shadow: 0 0 20px #0d0d2819;
+    padding: 2rem;
+
+    // section title
+    p.section-title{
+        font-size: var(--font-h4);
+        color: #0b0b18;
+    }
+
+    // tab bar
+    section.tab-bar{
+        display: flex;
+        border-bottom: .5px solid #bbb;
+        column-gap: 1rem;
+        margin-bottom: 1rem;
+
+        // tab
+        a.tab-link{
+            padding: .4rem 3rem;
+            border-bottom: 2px solid transparent;
+            transition: all .17s ease-in-out;
+
+            // active
+            &.active{
+                color: blue;
+                border-bottom-color: blue;
+            }
+        }
+
+    }
+
+    @mixin table{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 1rem;
+        padding-right: 10%;
+        text-align: left
+    }
+
+    @mixin cell{
+        min-width: auto;
+        width: calc(20%);
+        max-width: calc(20%);
+        margin-bottom: 0;
+        text-wrap: nowrap;
+    }
+
+    // tab header
+    section.tab-header{
+        padding: 1rem 0;
+        background-color: #d2d2d2;
+        @include table;
+
+        p.header-text{
+            @include cell;
+            text-align: left;
+            font-weight: bold;
+            &:not(:first-child){
+                margin-left: 5rem;
+            }
+            &:first-child{
+                width: 30%;
+                max-width: 30%;
+            }
+        }
+    }
+
+    // tab container
+    section.tab-container{
+        padding: 1rem 0;
+
+        // tab content
+        div.tab-content{
+            display: none;
+            max-height: 40vh;
+            overflow-y: auto;
+
+            // order-link
+            a.order-link{
+                @include table;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+
+                > p{
+                    @include cell;
+                    &:not(:first-child){
+                        
+                    } 
+                    &:first-child{
+                        font-size: var(--font-remark);
+                        width: 30%;
+                        max-width: 30%;
+                    }
+                }
+
+                // odd
+                &:nth-child(odd){
+                    background-color: #efefef;
+                }
+
+                // even
+                &:nth-child(even){
+                    background-color: #fcfcfc;
+                }
+            }
+
+        }
+
+    }
+
+}
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+    
+        
+    /* ———————————————————— Tab ———————————————————— */
+
+    section.tab{
+        width: 100%;
+        height: auto;
+        overflow-x: hidden;
+
+        // section title
+        p.section-title{
+            
+        }
+
+        // tab bar
+        section.tab-bar{
+            display: flex;
+            flex-direction: column;
+           
+            // tab
+            a.tab-link{
+                padding: 0.4rem 0;
+
+                // active
+                &.active{
+
+                }
+            }
+
+        }
+
+        @mixin table{
+           
+        }
+
+        @mixin cell{
+          
+        }
+
+        // tab header
+        section.tab-header{
+            flex-direction: column;
+            padding: 0;
+            justify-content: flex-start;
+            align-items: center;
+            overflow-x: auto;
+
+            p.header-text{
+                @include cell;
+                width: 100%;
+                max-width: unset;
+                padding: .4rem .8rem;
+                font-weight: unset;
+
+                &:not(:first-child){
+                    margin-left: 0;
+                }
+                &:first-child{
+                    @include cell;
+                    width: 100%;
+                    max-width: unset;
+                }
+            }
+        }
+
+        // tab container
+        section.tab-container{     
+            overflow-x: auto;
+
+            // tab content
+            div.tab-content{
+                
+                // order-link
+                a.order-link{
+                    @include table;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    overflow-x: auto;
+                    padding-right: .4rem;
+                    
+                    > p{
+                        @include cell;
+
+                        &:not(:first-child){
+                            
+                        } 
+                        &:first-child{
+                        
+                        }
+
+                        &.user-company{
+                            font-size: var(--font-title);
+                            font-weight: bold;
+                        }
+
+                        &.user-phone{
+
+                        }
+
+                        &.order-code{
+
+                        }
+
+                        &.item-count{
+
+                        }
+
+                        &.create{
+                            font-size: var(--font-remark);
+                            color: #2d2d2d;
+                            text-align: end;
+                        }
+                    }
+
+                    // odd
+                    &:nth-child(odd){
+
+                    }
+
+                    // even
+                    &:nth-child(even){
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+}

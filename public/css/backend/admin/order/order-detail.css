@@ -1,0 +1,165 @@
+@charset "UTF-8";
+/* ———————————————————— Layouts ———————————————————— */
+/* —————————————————————— Order ———————————————————— */
+section.order {
+  padding: 2rem;
+  box-shadow: 0 0 20px #ddd;
+}
+section.order div.order-header {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+section.order div.order-header p {
+  margin-bottom: 0;
+}
+section.order div.order-header div.customer-information {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+section.order div.order-header div.customer-information p#customer-shop-name {
+  font-size: var(--font-h6);
+  font-weight: bold;
+  color: rgb(22, 25, 36);
+}
+section.order div.order-header div.customer-information p#customer-whatsapp-phone {
+  font-size: var(--font-h6);
+  font-weight: bold;
+  color: rgb(22, 25, 36);
+}
+section.order div.order-header div.order-information {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+section.order div.order-header div.order-information p#order-status {
+  font-size: var(--font-content);
+  color: rgb(22, 25, 36);
+}
+section.order div.order-header div.order-information p#created_at {
+  font-size: var(--font-content);
+  color: rgb(22, 25, 36);
+}
+section.order div.order-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.6rem;
+  background-color: #e8e8e8;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+section.order div.order-title p {
+  padding: 0.8rem 0;
+  margin-bottom: 0;
+  width: 25%;
+}
+section.order div.order-content {
+  display: flex;
+  flex-direction: column;
+}
+section.order div.order-content a.item-box {
+  display: flex;
+  padding: 0.6rem 1.6rem;
+}
+section.order div.order-content a.item-box div.item-information {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+section.order div.order-content a.item-box div.item-information p {
+  margin-bottom: 0;
+  width: 25%;
+}
+section.order div.order-content a.item-box:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+section.order div.order-content a.item-box:nth-child(even) {
+  background-color: #ededed;
+}
+section.order div.order-content a.item-box:hover {
+  background-color: #e2e2e2;
+}
+section.order div.order-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 0.6rem;
+  padding: 0.6rem 0;
+}
+section.order div.order-footer p {
+  margin-bottom: 0;
+}
+section.order div.order-footer div.button-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: flex-end;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  width: 100%;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  /* ———————————————————— Layouts ———————————————————— */
+  aside.sidebar {
+    display: none;
+  }
+  div#page.page {
+    margin-left: 0;
+    width: 100%;
+  }
+  /* —————————————————————— Order ———————————————————— */
+  section.order div.order-header div.customer-information {
+    flex-direction: column;
+  }
+  section.order div.order-header div.customer-information p#customer-shop-name {
+    font-size: calc(var(--font-remark) + 0.2rem);
+  }
+  section.order div.order-header div.customer-information p#customer-whatsapp-phone {
+    font-size: calc(var(--font-remark) + 0.2rem);
+  }
+  section.order div.order-header div.order-information p#order-status {
+    color: #888;
+  }
+  section.order div.order-header div.order-information p#created_at {
+    color: #888;
+  }
+  section.order div.order-table {
+    position: relative;
+    overflow-x: auto;
+  }
+  section.order div.order-title {
+    position: sticky;
+    top: 0;
+    min-width: 600px;
+  }
+  section.order div.order-title p {
+    min-width: 140px;
+    max-width: 25%;
+    width: auto;
+    font-size: 0.8rem;
+  }
+  section.order div.order-content {
+    min-width: 600px;
+    max-height: 80vh;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+  section.order div.order-content a.item-box {
+    width: 100%;
+  }
+  section.order div.order-content a.item-box div.item-information p {
+    min-width: 140px;
+    max-width: 25%;
+    width: auto;
+    font-size: 0.8rem;
+  }
+}

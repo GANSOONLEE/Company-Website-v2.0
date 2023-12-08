@@ -1,0 +1,99 @@
+
+// Background
+
+div.background-form{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: none;
+    z-index: 10;
+    background-color: #00000077;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    cursor: pointer;
+}
+
+// Section
+section.form{
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px #000000aa;
+    border-radius: 6px;
+    width: 20%;
+    height: auto;
+    padding: .4rem;
+    cursor: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 2rem;
+    // Form Header
+    div.form-header{
+        p.form-header-text{
+            font-size: var(--font-h4);
+        }
+    }
+
+    *{
+        margin: 0;
+    }
+
+    // Form Body
+    div.form-body{
+
+        // Form
+        form#form{
+
+
+            // Cover
+            div.brand-cover{
+                width: 100%;
+                margin-bottom: 1rem;
+                img.brand-cover-image{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            // Upload
+            div.brand-upload{
+                margin-bottom: 1rem;
+                label.brand-cover{
+                    cursor: pointer;
+                    border: 1px solid #e33d00;
+                    border-radius: 4px;
+                    padding: .4rem .8rem;
+                    color: #e33d00;
+                    width: 100%;
+                    &:hover{
+                        background-color: #ffdbce;
+                    }
+                }
+                input#brand-cover{
+                    display: none;  
+                }
+            }
+
+            // Category Name
+            label.form-label{
+
+            }
+            input.form-control{
+                
+            }
+
+            button.update-button{
+                margin-top: .8rem;
+                padding: .4rem .8rem;
+                width: 100%;
+                font-size: var(--font-remark);
+            }
+        }
+
+    }
+}

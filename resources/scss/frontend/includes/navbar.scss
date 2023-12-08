@@ -1,0 +1,236 @@
+
+@use "sass:color";
+
+/* ———————————————————— Navbar ———————————————————— */
+nav.navbar#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.6rem;
+    box-shadow: 0 0 10px #00000022;
+    position: sticky;
+    top: 0;
+    height: 8vh;
+    width: 100%;
+    z-index: 101;
+    background-color: var(--color-white);
+    // Company Logo 
+    >div.company-logo {
+        width: 8%;
+        height: 100%;
+
+        >img.company-logo-image {
+            height: inherit;
+        }
+    }
+
+    // Navbar Link
+    >div.menu {
+        width: 92%;
+        display: flex;
+        >ul.navbar-links {
+            column-gap: 2.6rem;
+            display: flex;
+
+            // global
+            a.navbar-link {
+                display: flex;
+                align-items: center;
+                padding: .4rem 1.2rem;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                transition: all .12s ease-in-out;
+
+                &:hover{
+                    border: 1px solid blue;
+                }
+
+                li.navbar-link-label {
+                    font-size: var(--font-title);
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-weight: 600;
+                }
+            }
+
+            // common function
+            &.common {
+                margin-right: auto;
+
+                a.navbar-link {
+
+                    li.navbar-link-label {}
+                }
+            }
+
+            /* auth function */
+            &.auth {
+                a.navbar-link {
+
+                    $primary: #3636ff;
+                    $primary-hover: color.scale($primary, $lightness: 20%);
+
+                    &.primary {
+                        // border: 1px solid $primary;
+                        // background-color: $primary;
+                        // color: white;
+                        color: $primary;
+                        &:hover{
+                            
+                            // border: 1px solid $primary-hover;
+                            // background-color: $primary-hover;
+                        }
+                    }
+
+                    $secondary: #878787;
+                    $secondary-hover: color.scale($secondary, $lightness: -20%);
+                    &.secondary {
+                        // border: 1px solid $secondary;
+                        // background-color: $secondary;
+                        // color: white;
+                        color: $primary;
+                        &:hover{
+                            // border: 1px solid $secondary-hover;
+                            // background-color: $secondary-hover;
+                        }
+                    }
+
+                    li.navbar-link-label {}
+                }
+            }
+
+        }
+    }
+
+    // Phone menu button
+    >label[for="menu-button"] {
+        /* If not phone, hide it */
+        display: none;
+    }
+
+    >input[type="checkbox"][name="menu-button"]#menu-button {
+        display: none;
+        /* Default hidden */
+
+        /* Active */
+
+    }
+
+}
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+    /* ———————————————————— Navbar ———————————————————— */
+    nav.navbar#navbar {
+        justify-content: flex-start;
+        flex-direction: column;
+        height: auto;
+
+        $logo-size: 10vw;
+        // Company Logo 
+        >div.company-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            >img.company-logo-image {
+                width: $logo-size;
+                height: auto;
+            }
+        }
+
+        // Navbar Link
+        >div.menu {
+            flex-direction: column;
+            position: absolute;
+            background-color: var(--color-white);
+            width: 100%;
+            height: auto;
+            top: $logo-size;
+            left: -100%;
+            border-top: 1px solid #777;
+            transition: all .12s ease-in-out;
+            >ul.navbar-links {
+                flex-direction: column;
+
+                // global
+                a.navbar-link {
+                    justify-content: center;
+                    align-items: center;
+                    padding: .4rem 0;
+                    border: none;
+                    li.navbar-link-label {
+                        text-align: center;
+
+                    }
+
+                    &:hover{
+                        border: none;
+                    }
+
+                }
+
+                // common function
+                &.common {
+                    margin-right: unset;
+                    a.navbar-link {
+                        li.navbar-link-label {
+
+                        }
+                    }
+                }
+
+                // auth function
+                &.auth {
+                    a.navbar-link {
+
+                        // primary options
+                        &.primary {
+
+                            &:hover{
+                               
+                            }
+                        }
+
+                        // secondary options
+                        &.secondary {
+
+                            &:hover{
+                                
+                            }
+                        }
+                    }
+
+                    li.navbar-link-label {
+
+                    }
+                }
+            }
+
+        }
+
+        // Phone menu button
+        >label[for="menu-button"] {
+            /* If not phone, hide it */
+    
+            /* If phone, display it */
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 3.5vw;
+            transform: translateY(-50%);
+            font-size: var(--font-subtitle);
+        }
+    
+        >input[type="checkbox"][name="menu-button"]#menu-button {
+            // Default hidden
+
+            // Active 
+            &:checked ~ div.menu{
+                left: 0;
+            }
+        }
+    }
+
+}

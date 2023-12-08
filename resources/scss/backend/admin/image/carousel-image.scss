@@ -1,0 +1,111 @@
+
+@use "sass:color";
+
+/* ———————————————————— Layouts —————————————————— */
+div.page{
+    display: flex;
+    flex-direction: column;
+}
+
+form.add-new-panel{
+    div{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        label{
+            margin-bottom: 0;
+            margin-right: .7rem;
+        }
+        input#new-panel{
+            overflow: hidden;
+            border-radius: 4px 0 0 4px;
+            margin-left: .7rem;
+        }
+        button{
+
+        }
+    }
+}
+
+section.panel{
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    margin: .7rem 0;
+    border: 1px solid #00000022;
+    box-shadow: 0 0 10px #00000022;
+    border-radius: 6px;
+    div.panel-header{
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        p.panel-title{
+            margin-bottom: 0;
+            font-size: var(--font-h5);
+        }
+        label.upload-label{
+            cursor: pointer;
+            border-radius: 6px;
+            $color: rgb(255, 210, 193);
+            $hover-color: color.scale($color, $lightness: -20%);
+            border: 1px solid $color;
+            background-color: $color;
+            padding: .4rem 1rem;
+            transition: all .12s ease;
+            &:hover{
+                color: var(--color-white);
+                border-color: $hover-color;
+                background-color: $hover-color;
+            }
+        }
+        input[type="file"]{
+            display: none;
+        }
+    }
+    div.image-container{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 1.4rem;    
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+        overflow-x: auto;
+        background-color: rgba(7, 10, 31, 0.015);
+        border-radius: 6px;
+        transition: all .12s ease-in-out;
+        &.active{
+            background-color: rgba(7, 10, 31, 0.075);
+        }
+
+        // Image Box
+        div.image-box{
+            height: 7rem;
+            cursor: move;
+            position: relative;
+            &:hover div.delete-button{
+                background-color: #ffffffaa;
+            }
+            img.image-preview{
+                height: 100%;
+            }
+            div.delete-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff75;
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 5%;
+                right: 5%;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all .12s ease-in-out;
+            }
+            p.image-name{
+
+            }
+        }
+    }
+}

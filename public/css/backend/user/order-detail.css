@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* ———————————————————— Layouts ———————————————————— */
+body {
+  background-color: #f5f5ff;
+  padding: 2rem;
+}
+
+/* ———————————————————— Breadcrumbs ———————————————————— */
+div.breadcrumbs {
+  padding-bottom: 1rem;
+}
+div.breadcrumbs nav ol.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item {
+  color: rgb(255, 111, 0);
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item.active {
+  color: rgb(45, 45, 45);
+  font-weight: bold;
+}
+div.breadcrumbs nav ol.breadcrumb li.breadcrumb-item::before {
+  font-weight: normal;
+}
+
+/* ———————————————————— Order Section ———————————————————— */
+section.order {
+  padding: 2rem;
+  background-color: #fff;
+  border: 1.6px solid #e4e4fc;
+  box-shadow: 0 0 15px #f5f5ff;
+  border-radius: 12px 12px 0 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+section.order div.order-header {
+  padding: 1rem 0;
+}
+section.order div.order-header div.order-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section.order div.order-header div.order-information div.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+section.order div.order-header div.order-information div.info p {
+  margin-bottom: 0;
+}
+section.order div.order-header div.order-information div.info p.key {
+  color: #1c1c1c;
+  font-weight: bold;
+  font-size: var(--font-h6);
+}
+section.order div.order-header div.order-information div.info p.value {
+  color: #434343;
+  font-size: var(--font-subtitle);
+}
+section.order div.order-content {
+  border-radius: 6px;
+}
+section.order div.order-content div.order-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.6rem;
+}
+section.order div.order-content div.order-container a.order-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+section.order div.order-content div.order-container a.order-item div.item-image {
+  height: 6vh;
+  width: 6vw;
+  margin-right: 2.6rem;
+}
+section.order div.order-content div.order-container a.order-item div.item-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.order div.order-content div.order-container a.order-item div.item-information {
+  display: flex;
+  -moz-column-gap: 2.2rem;
+       column-gap: 2.2rem;
+  margin-right: 2rem;
+  width: 60%;
+}
+section.order div.order-content div.order-container a.order-item div.item-information p {
+  margin-bottom: 0;
+}
+section.order div.order-content div.order-container a.order-item div.item-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+section.order div.order-content div.order-container a.order-item:nth-child(odd) {
+  background-color: #fefefe;
+}
+section.order div.order-content div.order-container a.order-item:nth-child(even) {
+  background-color: #fafafa;
+}
+section.order div.order-content div.order-container a.order-item:hover {
+  background-color: #f2f2f2;
+}

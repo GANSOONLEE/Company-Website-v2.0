@@ -1,0 +1,14 @@
+
+/* ———————————————————— pie chart ———————————————————— */
+
+div#pie-chart{
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+
+    canvas#myChart{
+        width: auto;
+        height: 100%;
+    }
+}
+

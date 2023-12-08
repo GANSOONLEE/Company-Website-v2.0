@@ -1,0 +1,42 @@
+section.user-role {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  border: 1px solid rgba(0, 0, 0, 0.1333333333);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 1.4rem;
+  margin-bottom: 2rem;
+}
+section.user-role p.section-title {
+  font-size: var(--font-h5);
+}
+section.user-role table {
+  border: 1px solid rgba(0, 0, 0, 0.2666666667);
+  border-collapse: collapse;
+}
+section.user-role table tr {
+  width: 100%;
+}
+section.user-role table thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1333333333);
+}
+section.user-role table thead tr th {
+  padding: 0.7rem 1.3rem;
+}
+section.user-role table tbody {
+  overflow-y: auto;
+}
+section.user-role table tbody tr.user-row-data:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.062745098);
+}
+section.user-role table tbody tr.user-row-data:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.0196078431);
+}
+section.user-role table tbody tr.user-row-data td {
+  padding: 0.7rem 1.3rem;
+}
+section.user-role table tbody tr.user-row-data td#action {
+  width: auto;
+  display: flex;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}

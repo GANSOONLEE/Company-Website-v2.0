@@ -1,0 +1,251 @@
+aside.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18vw;
+  height: 100vh;
+  background-color: #47576B;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  /* Logo */
+  /* Link */
+}
+aside.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+aside.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+aside.sidebar div.sidebar-logo {
+  background-color: rgba(116, 124, 133, 0.3333333333);
+}
+aside.sidebar div.sidebar-logo img.sidebar-logo-image {
+  padding: 1rem 4rem;
+  height: auto;
+  width: 100%;
+}
+aside.sidebar div.sidebar-logo i.sidebar-home-icon {
+  display: none;
+}
+aside.sidebar div.link-section {
+  width: 100%;
+  margin-bottom: auto;
+}
+aside.sidebar div.link-section section.link-container div.link-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1.4rem;
+  width: 100%;
+  color: #fff;
+  background-color: #314158;
+  position: relative;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  font-size: var(--font-content);
+}
+aside.sidebar div.link-section section.link-container div.link-title i.link-title-icon {
+  font-size: 0.8rem;
+  margin-right: 1.2rem;
+  position: relative;
+}
+aside.sidebar div.link-section section.link-container div.link-title i.link-title-icon div.notification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(50%) translateY(-50%);
+  border-radius: 100%;
+  background-color: red;
+  height: 8px;
+  width: 8px;
+}
+aside.sidebar div.link-section section.link-container div.link-title p.link-title-text {
+  margin-bottom: 0;
+  margin: 0;
+  margin-right: auto;
+}
+aside.sidebar div.link-section section.link-container div.link-title i.fa-angle-up {
+  transition: all 0.12s ease-in-out;
+}
+aside.sidebar div.link-section section.link-container div.link-title.active i.fa-angle-up {
+  transform: rotateZ(180deg);
+}
+aside.sidebar div.link-section section.link-container div.link-title:hover, aside.sidebar div.link-section section.link-container div.link-title.active {
+  background-color: #242f3d;
+  color: #fff;
+}
+aside.sidebar div.link-section section.link-container ul {
+  display: none;
+  flex-direction: column;
+  color: white;
+  font-size: 1.4rem;
+  padding: 0;
+  background-color: red;
+  font-size: var(--font-remark);
+}
+aside.sidebar div.link-section section.link-container ul a {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+aside.sidebar div.link-section section.link-container ul a li {
+  background-color: #1F2D3E;
+  padding: 0.8rem 2rem;
+  width: 100%;
+}
+aside.sidebar div.link-section section.link-container ul a li div.notification {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  transform: translateY(-50%) translateX(50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: red;
+  height: 20px;
+  width: 20px;
+  color: white;
+}
+aside.sidebar div.link-section section.link-container ul a li:hover {
+  background-color: #17202b;
+}
+aside.sidebar div.account-area {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.1333333333);
+  display: flex;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+  justify-content: flex-start;
+  align-items: center;
+  justify-self: flex-end;
+}
+aside.sidebar div.account-area div.avatar {
+  height: 3rem;
+}
+aside.sidebar div.account-area div.avatar img.avatar-image {
+  border-radius: 6px;
+  height: 100%;
+  padding: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.4666666667);
+}
+aside.sidebar div.account-area div.avatar i.logout-icon {
+  display: none;
+}
+aside.sidebar div.account-area div.action p {
+  margin: 0;
+  margin-bottom: 0;
+}
+aside.sidebar div.account-area div.action p.name {
+  font-size: var(--font-content);
+  font-weight: bold;
+  color: #fff;
+}
+aside.sidebar div.account-area div.action p.logout {
+  font-size: var(--font-remark);
+  color: white;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  aside.sidebar {
+    overflow: visible;
+    width: 55px;
+    row-gap: 0;
+    position: fixed;
+    top: 0;
+    /* Logo */
+    /* Link */
+  }
+  aside.sidebar.open {
+    min-width: 25vw;
+  }
+  aside.sidebar div.sidebar-logo img.sidebar-logo-image {
+    display: none;
+  }
+  aside.sidebar div.sidebar-logo i.sidebar-home-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    width: 55px;
+    color: var(--color-white);
+  }
+  aside.sidebar div.link-section {
+    position: relative;
+    margin-bottom: 0;
+  }
+  aside.sidebar div.link-section section.link-container {
+    display: flex;
+    position: relative;
+    height: 55px;
+  }
+  aside.sidebar div.link-section section.link-container div.link-title {
+    width: 55px;
+    min-width: 55px;
+    justify-content: center;
+  }
+  aside.sidebar div.link-section section.link-container div.link-title i.link-title-icon {
+    margin-right: 0;
+  }
+  aside.sidebar div.link-section section.link-container div.link-title p.link-title-text {
+    display: none;
+  }
+  aside.sidebar div.link-section section.link-container div.link-title i.fa-angle-up {
+    display: none;
+  }
+  aside.sidebar div.link-section section.link-container ul {
+    z-index: 99;
+  }
+  aside.sidebar div.link-section section.link-container ul a {
+    text-wrap: nowrap;
+    width: auto;
+  }
+  aside.sidebar div.link-section section.link-container ul a li {
+    padding: 1rem 2.2em;
+  }
+  aside.sidebar div.link-section section.link-container ul a li div.notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-50%) translateX(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    color: white;
+  }
+  aside.sidebar div.account-area {
+    padding: 0;
+    margin-top: calc(auto - 55px);
+  }
+  aside.sidebar div.account-area div.avatar {
+    height: unset;
+  }
+  aside.sidebar div.account-area div.avatar img.avatar-image {
+    display: none;
+  }
+  aside.sidebar div.account-area div.avatar a.logout-href:hover {
+    background-color: #242f3d;
+  }
+  aside.sidebar div.account-area div.avatar a.logout-href i.logout-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+  }
+  aside.sidebar div.account-area div.avatar a.logout-href i.logout-icon:hover {
+    color: #dcdcdc;
+  }
+  aside.sidebar div.account-area div.action {
+    display: none;
+  }
+}

@@ -1,0 +1,315 @@
+
+/* ———————————————————— Layouts ———————————————————— */
+
+
+
+
+
+/* —————————————————————— Order ———————————————————— */
+
+section.order{
+    padding: 2rem;
+    box-shadow: 0 0 20px #ddd;
+
+    // Header
+    div.order-header{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 1rem;
+
+        // p Global
+        p{
+            margin-bottom: 0;
+        }
+
+        // @mixin information
+        @mixin information{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        // Customer
+        div.customer-information{
+            @include information;
+            align-items: flex-start;
+
+            @mixin customer-information{
+                font-size: var(--font-h6);
+                font-weight: bold;
+                color: rgb(22, 25, 36);
+            }
+
+            p#customer-shop-name{
+                @include customer-information;
+            }
+
+            p#customer-whatsapp-phone{
+                @include customer-information;
+            }
+        }
+
+        // Order
+        div.order-information{
+            @include information;
+            align-items: flex-end;
+
+            @mixin order-information{
+                font-size: var(--font-content);
+                color: rgb(22, 25, 36);
+            }
+
+            p#order-status{
+                @include order-information;
+            }
+            p#created_at{
+                @include order-information;
+            }
+        }
+
+    }
+
+    @mixin column{
+        width: 25%;
+    }
+
+    // Table
+    div.order-table{
+        
+    }
+    
+    // Title
+    div.order-title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.6rem;
+        background-color: #e8e8e8;
+        border-radius: 4px 4px 0 0;
+        overflow: hidden;
+        p{
+            padding: .8rem 0;
+            margin-bottom: 0;
+            @include column;
+        }
+    }
+
+    // Content
+    div.order-content{
+        display: flex;
+        flex-direction: column;
+
+        // Item
+        a.item-box{
+            display: flex;
+            padding: .6rem 1.6rem;
+
+            @mixin item{
+                display: flex;
+            }
+
+            // Information
+            div.item-information{
+                @include item;
+                width: 100%;
+                justify-content: space-between;
+                
+                p{
+                    margin-bottom: 0;
+                    @include column;
+                }
+            }
+
+            // odd & even background-color
+            &:nth-child(odd){
+                background-color: #f9f9f9;
+            }
+
+            &:nth-child(even){
+                background-color: #ededed;
+            }
+
+            &:hover{
+                background-color: #e2e2e2;
+            }
+
+        }
+
+    }
+
+    // Footer
+    div.order-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        row-gap: .6rem;
+        padding: .6rem 0;
+        p{
+            margin-bottom: 0;
+        }
+        div.button-area{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-self: flex-end;
+            column-gap: 2rem;
+            width: 100%;
+        }
+    }
+
+}
+
+
+/* ==================== RWD ==================== */
+
+// Phone
+@media only screen and (max-width: 867px) {
+
+        
+    /* ———————————————————— Layouts ———————————————————— */
+
+    aside.sidebar{
+        display: none;
+    }
+
+    div#page.page{
+        margin-left: 0;
+        width: 100%;
+    }
+
+
+
+    /* —————————————————————— Order ———————————————————— */
+
+    section.order{
+        // Header
+        div.order-header{
+           
+            // p Global
+            p{
+                
+            }
+
+            // @mixin information
+            @mixin information{
+                
+            }
+
+            // Customer
+            div.customer-information{
+                flex-direction: column;
+                @include information;
+
+                @mixin customer-information{
+                    font-size: calc(var(--font-remark) + .2rem);
+                }
+
+                p#customer-shop-name{
+                    @include customer-information;
+                }
+
+                p#customer-whatsapp-phone{
+                    @include customer-information;
+                }
+            }
+
+            // Order
+            div.order-information{
+                @include information;
+
+                @mixin order-information{
+                   color: #888
+                }
+
+                p#order-status{
+                    @include order-information;
+                }
+                p#created_at{
+                    @include order-information;
+                }
+            }
+
+        }
+
+        @mixin column{
+            min-width: 140px;
+            max-width: 25%;
+            width: auto;
+            font-size: .8rem;
+        }
+
+        // Table
+        div.order-table{
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        // Title
+        div.order-title{
+            position: sticky;
+            top: 0;
+            min-width: 600px;
+            
+            p{
+                @include column;
+            }
+        }
+
+        // Content
+        div.order-content{  
+            min-width: 600px;
+            max-height: 80vh;
+            // overflow-y: auto;
+            column-gap: 2rem;
+            
+            // Item
+            a.item-box{
+                width: 100%;
+               
+                @mixin item{
+
+                }
+
+                // Information
+                div.item-information{
+                    @include item;
+
+                    p{
+                        @include column;
+                    }
+                }
+
+                // odd & even background-color
+                &:nth-child(odd){
+
+                }
+
+                &:nth-child(even){
+
+                }
+
+                &:hover{
+
+                }
+
+            }
+
+        }
+
+        // Footer
+        div.order-footer{
+
+            p{
+
+            }
+            div.button-area{
+
+            }
+        }
+
+    }
+
+}

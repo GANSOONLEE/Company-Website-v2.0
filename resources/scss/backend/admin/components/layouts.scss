@@ -1,0 +1,134 @@
+
+@use 'sass:color';
+
+.alert{
+    z-index: 100;
+    position: fixed;
+    height: 9vh;
+    width: 76vw;
+    top: .4rem;
+    left: 20.35vw;
+    column-gap: 1.2rem;
+}
+
+/* ———————————————————— Card ———————————————————— */
+
+/*
+    ┌────────────┐
+    │    Main    │
+    └────────────┘
+    ┌─────┐┌─────┐
+    │ Sub ││ Sub │
+    └─────┘└─────┘
+*/
+
+$theme-color: #2f43b2;
+
+@mixin card-panel{
+    box-shadow: 0 0 20px rgba($theme-color, .2);
+    border: 1px solid rgba($theme-color, .1);
+    border-radius: 6px;
+    
+    padding: 1.4rem;
+}
+
+section.custom-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    $spacing: 1rem;
+    row-gap: $spacing;
+
+    // Main Card
+    div.main-card{
+        @include card-panel;
+        height: 60vh;
+
+        div.card-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+            position: relative;
+
+            h4.card-title-text{
+                margin-bottom: 0;
+                margin-left: 1.4rem;
+                height: 100%;
+                &::before{
+                    content: '';
+                    left: 0;
+                    background-color: #2f43b2;
+                    height: 78%;
+                    width: 4px;
+                    position: absolute;
+                }
+            }
+
+            button#refresh-button{
+                padding: .3rem .7rem;
+                border-radius: 4px;
+                background-color: green;
+                color: white;
+                transition: all .12s ease-in-out;
+                &:hover{
+                    background-color: color.scale(green, $lightness: -20%);
+                }
+                &:active{
+                    background-color: color.scale(green, $lightness: -40%);
+                }
+            }
+        }
+        div.card-body#pie-chart{
+            height: 80%;
+            width: auto;
+        }
+    }
+
+    // Sub Card Container
+    div.sub-card-container{
+        display: flex;
+        column-gap: $spacing;
+
+        // Sub Card
+        div.sub-card{
+            @include card-panel;
+            height: 40vh;
+            width: 50%;
+
+            div.card-title{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0;
+                position: relative;
+    
+                h4.card-title-text{
+                    margin-bottom: 0;
+                    margin-left: 1.4rem;
+                    height: 100%;
+                    &::before{
+                        content: '';
+                        left: 0;
+                        background-color: #2fb25f;
+                        height: 100%;
+                        width: 4px;
+                        position: absolute;
+                    }
+                }
+    
+                
+            }
+
+        }
+
+    }
+
+}
+
+// Button Status
+button[disabled]{
+    cursor: not-allowed;
+    background-color: #686b68 !important;
+}
+

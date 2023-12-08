@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/* ———————————————————— Panel ———————————————————— */
+div.panel-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 20%;
+  box-shadow: 0 0 15px rgba(83, 83, 255, 0.3);
+  border-radius: 4px;
+  border: rgba(83, 83, 255, 0.5);
+  padding: 0.8rem 1.8rem;
+  margin: 0;
+}
+
+/* ———————————————————— Component ———————————————————— */
+div#pagination {
+  /* Filter */
+  /* Body */
+  /* Page Selector */
+}
+div#pagination section#pagination-header {
+  height: 0;
+}
+div#pagination section#pagination-body {
+  border: 1px solid #dadada;
+  box-shadow: 0 0 15px #dadada;
+  border-radius: 6px;
+  background-color: #fdfdff;
+  padding: 0.6rem 2rem;
+  /* Column Name */
+  /* Record */
+}
+div#pagination section#pagination-body section#column-name {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+}
+div#pagination section#pagination-body section#column-name div.column-title {
+  display: table-row;
+  background-color: red;
+}
+div#pagination section#pagination-body section#column-name div.column-title p {
+  display: table-cell;
+  width: auto;
+}
+div#pagination section#pagination-body section#record-list {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  --color-brand: #bbfaff;
+  --color-product: #bbffbb;
+  --color-category: #ffbbfa;
+  --color-permission: #fabbbb;
+  --color-order: #ffbbff;
+}
+div#pagination section#pagination-body section#record-list div.record-row {
+  display: flex;
+}
+div#pagination section#pagination-body section#record-list div.record-row, div#pagination section#pagination-body section#record-list div.column-title {
+  display: table-row;
+  padding: 1rem 0;
+}
+div#pagination section#pagination-body section#record-list div.record-row div, div#pagination section#pagination-body section#record-list div.column-title div {
+  display: table-cell;
+}
+div#pagination section#pagination-body section#record-list div.record-row p, div#pagination section#pagination-body section#record-list div.column-title p {
+  padding: 0.6rem 0.4rem;
+  display: table-cell;
+  width: auto;
+}
+div#pagination section#pagination-body section#record-list div.record-row p.title, div#pagination section#pagination-body section#record-list div.column-title p.title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1333333333);
+  font-weight: bold;
+  padding-bottom: 0.6rem;
+}
+div#pagination section#pagination-footer {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1.2rem;
+       column-gap: 1.2rem;
+}
+div#pagination section#pagination-footer nav#page-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div#pagination section#pagination-footer nav#page-selector ul.pagination {
+  width: auto;
+}
+div#pagination section#pagination-footer div.page-input {
+  display: flex;
+  width: 120px;
+}
+div#pagination section#pagination-footer div.page-input button {
+  padding: 0 0.6rem;
+}
+
+div.status-point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  width: 10px;
+  background: radial-gradient(transparent, rgba(0, 0, 0, 0.2));
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1333333333);
+  border-radius: 100%;
+}
+div.status-point.available {
+  animation: available 0.5s steps(3) infinite;
+}
+div.status-point.unavailable {
+  animation: unavailable 0.5s steps(3) infinite;
+}
+
+@keyframes available {
+  0% {
+    background: radial-gradient(rgb(0, 218, 0), rgb(0, 81, 0));
+  }
+  100% {
+    background: radial-gradient(rgb(0, 97, 0), rgb(0, 72, 0));
+  }
+}
+@keyframes unavailable {
+  0% {
+    background: radial-gradient(rgb(218, 0, 0), rgb(81, 0, 0));
+  }
+  100% {
+    background: radial-gradient(rgb(97, 0, 0), rgb(72, 0, 0));
+  }
+}

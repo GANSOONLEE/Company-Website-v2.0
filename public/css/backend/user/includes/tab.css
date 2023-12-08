@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* ———————————————————— Tab ———————————————————— */
+section.tab {
+  border: 1px solid rgba(13, 13, 40, 0.0980392157);
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(13, 13, 40, 0.0980392157);
+  padding: 2rem;
+}
+section.tab p.section-title {
+  font-size: var(--font-h4);
+  color: #0b0b18;
+}
+section.tab section.tab-bar {
+  display: flex;
+  border-bottom: 0.5px solid #bbb;
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
+  margin-bottom: 1rem;
+}
+section.tab section.tab-bar a.tab-link {
+  padding: 0.4rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.17s ease-in-out;
+}
+section.tab section.tab-bar a.tab-link.active {
+  color: blue;
+  border-bottom-color: blue;
+}
+section.tab section.tab-header {
+  padding: 1rem 0;
+  background-color: #d2d2d2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 30%;
+  text-align: left;
+}
+section.tab section.tab-header p.header-text {
+  min-width: auto;
+  width: 40%;
+  max-width: 45%;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+section.tab section.tab-container {
+  padding: 1rem 0;
+}
+section.tab section.tab-container div.tab-content {
+  display: none;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+section.tab section.tab-container div.tab-content a.order-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 30%;
+  text-align: left;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+section.tab section.tab-container div.tab-content a.order-link > p {
+  min-width: auto;
+  width: 40%;
+  max-width: 45%;
+  margin-bottom: 0;
+}
+section.tab section.tab-container div.tab-content a.order-link:nth-child(odd) {
+  background-color: #efefef;
+}
+section.tab section.tab-container div.tab-content a.order-link:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+/* ==================== RWD ==================== */
+@media only screen and (max-width: 867px) {
+  /* ———————————————————— Tab ———————————————————— */
+  section.tab section.tab-bar {
+    flex-direction: column;
+  }
+  section.tab section.tab-bar a.tab-link {
+    width: 100%;
+  }
+  section.tab section.tab-header {
+    flex-direction: column;
+    padding: unset;
+    align-items: unset;
+  }
+  section.tab section.tab-header p.header-text {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.4rem;
+  }
+  section.tab section.tab-container div.tab-content a.order-link {
+    flex-direction: column;
+    padding: unset;
+    align-items: unset;
+  }
+  section.tab section.tab-container div.tab-content a.order-link > p {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.4rem;
+  }
+}

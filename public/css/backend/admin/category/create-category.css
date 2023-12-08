@@ -1,0 +1,53 @@
+form.form#form div.button-area {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+form.form#form div.category-cover-area {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+form.form#form div.category-cover-area div.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: calc(16vw + 10%);
+  height: 16vw;
+  margin-right: 2rem;
+  overflow: hidden;
+}
+form.form#form div.category-cover-area div.preview img.category-cover-preview {
+  width: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+form.form#form div.category-cover-area div.preview.container-custom.active {
+  border: 1px dashed #9d2a00;
+}
+form.form#form div.category-cover-area div.upload {
+  display: flex;
+  flex-direction: column;
+}
+form.form#form div.category-cover-area div.upload label.form-label {
+  cursor: pointer;
+  border: 1px solid #9d2a00;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  color: #9d2a00;
+  width: 100%;
+}
+form.form#form div.category-cover-area div.upload label.form-label:hover {
+  background-color: #ffdbce;
+}
+form.form#form div.category-cover-area div.upload input[type=file].category-cover {
+  display: none;
+}
+.required::after {
+  content: "*";
+  color: red;
+  margin-left: 0.6rem;
+}
