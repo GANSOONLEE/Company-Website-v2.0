@@ -5,6 +5,7 @@ namespace App\Domains\Auth\Http\Controllers;
 use App\Domains\Auth\Request\CreateUserRequest;
 use App\Domains\Auth\Services\UserService;
 
+
 use App\Domains\Auth\Models\User;
 use Illuminate\Http\Request;
 
@@ -47,13 +48,16 @@ class UserController
      * url: admin/user/management
      * method: get
      * name: backend.admin.user.management
+     * @param int|bool $page
      * 
      * @return mixed
      */
 
-    public function management()
+    public function management(Request $request, int|bool $page = false): mixed
     {
-        return view('backend.admin.auth.user.management');
+        $recordPerPage = $request->recordPerPage;
+        $users = $this->userService->getByPage($page);
+        return view('backend.admin.auth.user.management', compact('users', 'page'));
     }
 
     /**

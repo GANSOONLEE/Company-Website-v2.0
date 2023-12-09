@@ -6,6 +6,8 @@ use App\Domains\Auth\Http\Controllers\UserController;
 use App\Domains\Auth\Http\Controllers\RoleController;
 use App\Domains\Auth\Http\Controllers\PermissionController;
 
+use Yajra\DataTables;
+
 Route::group(['prefix' =>'user', 'as' =>'user.'], function()
 {
 
@@ -15,7 +17,7 @@ Route::group(['prefix' =>'user', 'as' =>'user.'], function()
     Route::get('create', [UserController::class, 'create'])
         ->name('create');
 
-    Route::get('management', [UserController::class, 'management'])
+    Route::get('management/{page?}', [UserController::class, 'management'])
         ->name('management');
 
     Route::get('permission', [UserController::class, 'permission'])

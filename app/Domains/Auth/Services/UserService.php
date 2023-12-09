@@ -28,15 +28,17 @@ class UserService extends BaseService
      * @param $state
      * @param bool|int $perPage
      *
+     * @document https://learnku.com/docs/laravel/9.x/pagination/12247#ed54e0
+     * 
      * @return mixed
      */
-    public function getByState($state, $perPage = false)
+    public function getByPage($perPage = false)
     {
         if(is_numeric($perPage)){
-            return $this->model::byState($state)->paginate($perPage);
+            return $this->model::byPage()->paginate($perPage);
         }
 
-        return $this->model::byState($state)->get();
+        return $this->model::byPage()->get();
     }
 
     /**

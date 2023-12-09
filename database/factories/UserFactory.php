@@ -23,8 +23,6 @@ class UserFactory extends Factory
             'address' => $this->faker->address,
             'profession' => $this->faker->word,
             'shop_name' => $this->faker->company,
-            'provider_id' => null,
-            'avatar' => null,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'is_fake' => true,

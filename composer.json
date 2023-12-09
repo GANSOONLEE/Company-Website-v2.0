@@ -20,7 +20,7 @@
         "livewire/livewire": "^3.2",
         "pusher/pusher-php-server": "^7.2",
         "tanmuhittin/laravel-google-translate": "^2.2",
-        "yajra/laravel-datatables": "10.1.0"
+        "yajra/laravel-datatables": "10.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -41,6 +41,9 @@
             "app/helpers.php",
             "app/Helpers/node.php",
             "app/Helpers/Global/UrlDecodeHelper.php"
+        ],
+        "classmap": [
+            "database/factories"
         ]
     },
     "autoload-dev": {

@@ -7,14 +7,12 @@ trait UserScope
  
     /**
      * @param $query
-     * @param $state
      * 
      * @return mixed
      */
-    public function scopeByState($query, $state)
+    public function scopeByPage($query)
     {
-        return $query->where('status', $state);
+        return $query;
     }
 
-    
 }

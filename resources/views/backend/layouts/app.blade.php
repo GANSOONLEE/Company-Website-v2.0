@@ -68,12 +68,8 @@
 
     <script src="{{asset('js/app.js')}}"></script>
     
-    <!-- jQuery -->
-    <link rel="preload stylesheet" as="style" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script>
-        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+
         if (
           localStorage.getItem('color-theme') === 'dark' ||
           (!('color-theme' in localStorage) &&

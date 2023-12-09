@@ -5,14 +5,12 @@ namespace App\Domains\Auth\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 // Laravel Support
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 use Laravel\Sanctum\HasApiTokens;
-use Faker\Core\Number;
 use App\Models\Order;
 
 use App\Domains\Auth\Models\Traits\Attribute\UserAttribute;
@@ -50,8 +48,6 @@ class User extends Authenticatable
         'address',
         'profession',
         'shop_name',
-        'provider_id',
-        'avatar',
         'remember_token'
     ];
 

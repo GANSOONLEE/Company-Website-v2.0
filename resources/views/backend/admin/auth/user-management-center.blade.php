@@ -7,7 +7,7 @@
 
 @section('main')
 
-    <div class="flex flex-wrap space-x-between mb-4">
+    <div class="flex flex-wrap space-x-between mb-4 dm:sm:flex-nowrap dm:sm:flex-col">
         
         <x-control-panel title="{{ __('user.create-panel') }}" showButton="true" button-href="{{ route('backend.admin.user.create') }}" button-text="{{ __('user.create-panel-label') }}">
             @lang('user.create-panel-description')

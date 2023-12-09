@@ -14,6 +14,8 @@ use App\View\Components\Sidebar\SidebarDropdownItem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
+use App\Domains\Auth\Models\User;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,7 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
+        }
+    
+        // Add the following line
+        $this->app->alias(User::class, 'User');
     }
 
     /**

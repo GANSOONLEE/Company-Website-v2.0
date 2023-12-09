@@ -1,4 +1,4 @@
-<div class="p-6 bg-gray-10 c-bg-white border border-gray-200 c-w-48 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+<div class="p-6 bg-gray-10 c-bg-white border border-gray-200 c-w-49 sm:w-full rounded-lg dark:bg-gray-800 dark:border-gray-700">
 
     @unless (!$attributes['title'])
         <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $attributes['title'] }}</h5>
