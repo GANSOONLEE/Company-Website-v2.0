@@ -1,0 +1,18 @@
+
+#alert{
+    position: relative;
+    width: 100%;
+
+    .alert{
+        position: relative;
+        width: 100%;
+        height: unset;
+        ul{
+            padding: .4rem 0;
+        }
+    }
+}
+
+.breadcrumb{
+    margin-bottom: .6rem;
+}

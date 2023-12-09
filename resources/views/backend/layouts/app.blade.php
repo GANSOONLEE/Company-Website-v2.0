@@ -37,12 +37,27 @@
 
         <div class="page" id="page">
 
-            <p class="page-title">@yield('title')</p>
-            <p class="page-subtitle">@yield('subtitle', 'Subtitle')</p>
+          <div class="breadcrumbs">
+            {{ Breadcrumbs::render() }}
+          </div>
 
-            <div class="content">
-              @yield('main')
-            </div>
+          <p class="page-title">@yield('title')</p>
+          <p class="page-subtitle">@yield('subtitle', 'Subtitle')</p>
+
+          <div id="alert">
+            @if ($errors->any())
+              <x-alert :state="'danger'">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </x-alert>
+            @endif
+          </div>
+
+          <div class="content">
+
+            @yield('main')
+          </div>
 
         </div>
 

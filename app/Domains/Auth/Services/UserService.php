@@ -70,24 +70,28 @@ class UserService extends BaseService
     public function store(array $data = []): User
     {
         DB::beginTransaction();
-
+       
         try{
             $user = $this->createUser([
                 'name' => $data['name'],
-                'contact_phone' => $data['contact_phone'],
-                'whatsapp_phone' => $data['whatsapp_phone'],
+                'contact_phone' => $data['contact_phone'] ?? null,
+                'whatsapp_phone' => $data['whatsapp_phone'] ?? null,
                 'email' => $data['email'],
-                'password' => $data['password'],
-                'birthday' => $data['birthday'],
-                'address' => $data['address'],
-                'profession' => $data['profession'],
-                'shop_name' => $data['shop_name'],
+                'password' => $data['password'] ?? 'frozen',
+                'birthday' => $data['birthday'] ?? null,
+                'address' => $data['address'] ?? null,
+                'profession' => $data['profession'] ?? null,
+                'shop_name' => $data['shop_name'] ?? null,
             ]);
 
+            $user->roles()->attach($data['role'] ?? null);
+
         }catch(Exception $e){
+            dd($e->getMessage());
             DB::rollBack();
             throw new GeneralException(__('There was a problem creating your account. Please try again.'));
         }
+
 
         event(new UserCreated($user));
 

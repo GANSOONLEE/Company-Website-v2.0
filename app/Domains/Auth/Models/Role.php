@@ -14,10 +14,12 @@ use App\Models\Permission;
 use Illuminate\Support\Collection;
 
 use App\Domains\Auth\Models\Traits\Scope\RoleScope;
+use App\Domains\Auth\Models\Traits\Relationship\RoleRelationship;
 
 class Role extends Model
 {
     use HasFactory,
+        RoleRelationship,
         RoleScope;
 
     protected $table = 'roles';

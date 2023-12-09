@@ -12,17 +12,6 @@ return array (
   'banned' => 'Deactivate',
   'yourself' => '(Yourself)',
   'create-role-panel' => 'Identity group creation panel',
-  'roles' => 
-  array (
-    'new_user' => 'New user',
-    'approve_user' => 'Approved users',
-    'admin' => 'Administrator',
-    'super_admin' => 'Super Administrator',
-    'root' => 'Root Administrator',
-    'testing_engineer' => 'Testing Engineer',
-    'test' => 'test',
-    'tester_admin' => 'Tester Admin',
-  ),
   'submit' => 'Submit',
   'create-role' => 'New identity group',
   'form' => 
@@ -176,4 +165,13 @@ return array (
   'unavaiable-account' => 'Unavailable account',
   'unbanned' => 'unbanned',
   'password-or-email-wrong' => 'Wrong email or password! Please check and fill in again!',
+  'roles' => 
+  array (
+    'new_user' => 'New user',
+    'approve_user' => 'Approved users',
+    'admin' => 'Administrator',
+    'super_admin' => 'Super Administrator',
+    'root' => 'Root Administrator',
+    'tester_admin' => 'Test Administrator',
+  ),
 );

@@ -15,6 +15,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Faker\Core\Number;
 use App\Models\Order;
 
+use App\Domains\Auth\Models\Traits\Attribute\UserAttribute;
+use App\Domains\Auth\Models\Traits\Relationship\UserRelationship;
+use App\Domains\Auth\Models\Traits\Method\UserMethod;
 use App\Domains\Auth\Models\Traits\Scope\UserScope;
 
 // Model
@@ -26,6 +29,9 @@ class User extends Authenticatable
     use HasApiTokens,
         HasFactory,
         Notifiable,
+        UserAttribute,
+        UserRelationship,
+        UserMethod,
         UserScope;
 
     /**
@@ -100,16 +106,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the role relationship role instance
-     * @return Role
-     */
-
-    public function roles(): Role
-    {
-        return $this->belongsToMany(Role::class, 'users_roles', 'user_email', 'role_name', 'email', 'name')->first();
-    }
-
-    /**
      * Get the user when the role weight are below it
      * @param string $role
      * @return Collection
@@ -154,10 +150,10 @@ class User extends Authenticatable
      * @return void
      */
 
-    public function assignRole($roleName)
-    {
-        $this->attachRole($roleName); 
-    }
+    // public function assignRole($roleName)
+    // {
+    //     $this->attachRole($roleName); 
+    // }
 
     /**
      * asset method（Create）

@@ -6,6 +6,8 @@
 @import 'tailwindcss/utilities';
 @import 'class.scss';
 
+@import 'components.scss';
+
 /* ———————————————————— Clear Default Style ———————————————————— */
 
 *{
@@ -67,6 +69,14 @@ h1, h2, h3, h4, h5, h6, p{
 
 .border-t-solid{
     border-top-style: solid;
+}
+
+.required{
+    &::after{
+        content: '*';
+        margin-left: .4rem;
+        color: red;
+    }
 }
 
 /* ———————————————————— Global Variable ———————————————————— */

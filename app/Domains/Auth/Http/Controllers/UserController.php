@@ -21,7 +21,7 @@ class UserController
     /**
      * url: admin/user/
      * method: get
-     * name: backend.admin.account.index
+     * name: backend.admin.user.index
      * 
      * @return \Illuminate\View\View;
      */
@@ -33,30 +33,69 @@ class UserController
     /**
      * url: admin/user/create
      * method: get
-     * name: backend.admin.account.create
+     * name: backend.admin.user.create
      * 
      * @return mixed
      */
 
     public function create()
     {
-        return view('backend.admin.auth.create');
+        return view('backend.admin.auth.user.create');
+    }
+
+    /**
+     * url: admin/user/management
+     * method: get
+     * name: backend.admin.user.management
+     * 
+     * @return mixed
+     */
+
+    public function management()
+    {
+        return view('backend.admin.auth.user.management');
+    }
+
+    /**
+     * url: admin/user/permission
+     * method: get
+     * name: backend.admin.user.permission
+     * 
+     * @return mixed
+     */
+
+    public function permission()
+    {
+        return view('backend.admin.auth.user.permission');
+    }
+
+    /**
+     * url: admin/user/ban
+     * method: get
+     * name: backend.admin.user.ban
+     * 
+     * @return mixed
+     */
+
+    public function ban()
+    {
+        return view('backend.admin.auth.user.ban');
     }
 
     /**
      * url: admin/user/
      * method: post
-     * name: backend.admin.account.store
+     * name: backend.admin.user.store
      * 
      * @param CreateUserRequest $request
      * 
      * @return mixed
      * @throws \Throwable
      */
-    public function store(CreateUserRequest $request)
+    public function store(CreateUserRequest $request): mixed
     {
-        $user = $this->userService->store($request->validated());
-
+        $this->userService->store($request->validated());
+        
         return redirect()->back();
     }
 

@@ -70,3 +70,36 @@ Breadcrumbs::for('orderDetail-admin', function (BreadcrumbTrail $trail, $order){
     $trail->parent('order-admin');
     $trail->push($order->code, route('backend.admin.order.order-detail', $order->code));
 });
+
+/* ------------------------------------- Backend ------------------------------------- */
+
+// Breadcrumbs for the 'backend' home
+Breadcrumbs::for('backend', function (BreadcrumbTrail $trail) {
+    // Define breadcrumbs for the backend home
+});
+
+// Breadcrumbs for 'backend.admin'
+Breadcrumbs::for('backend.admin', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend');
+    $trail->push(__('Backend'));
+});
+
+/* ------------------------------------- User Management Center ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.user.index'
+Breadcrumbs::for('backend.admin.user.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.user-management-center'), route('backend.admin.user.index'));
+});
+
+// Breadcrumbs for 'backend.admin.user.create'
+Breadcrumbs::for('backend.admin.user.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.user.index');
+    $trail->push(__('user.create-panel'), route('backend.admin.user.create')); // Use the correct route for create
+});
+
+// Breadcrumbs for 'backend.admin.user.create'
+Breadcrumbs::for('backend.admin.user.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.user.index');
+    $trail->push(__('user.management-panel'), route('backend.admin.user.management')); // Use the correct route for create
+});
