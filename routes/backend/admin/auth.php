@@ -15,6 +15,15 @@ Route::group(['prefix' =>'user', 'as' =>'user.'], function()
     Route::get('create', [UserController::class, 'create'])
         ->name('create');
 
+    Route::get('management', [UserController::class, 'management'])
+        ->name('management');
+
+    Route::get('permission', [UserController::class, 'permission'])
+        ->name('permission');
+
+    Route::get('ban', [UserController::class, 'ban'])
+        ->name('ban');
+
     Route::post('/', [UserController::class,'store'])
         ->name('store');
 

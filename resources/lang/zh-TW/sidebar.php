@@ -46,4 +46,8 @@ return array (
   'data-center' => '數據中心',
   'ban-account' => '違紀賬號',
   'management-center' => '管理中心',
+  'import-data' => '匯入數據',
+  'export-data' => '匯出數據',
+  'create-panel' => '創建面板',
+  'user-management-center-description' => '管理用戶的身分組和用戶相關的行爲',
 );

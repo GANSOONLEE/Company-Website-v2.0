@@ -2,7 +2,7 @@
 
 namespace App\Domains\Account\Events;
 
-use App\Domains\Auth\Models\Role;
+use App\Models\Role;
 use Barryvdh\TranslationManager\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;

@@ -46,4 +46,8 @@ return array (
   'data-center' => 'Data Center',
   'ban-account' => 'Disciplinary account',
   'management-center' => 'Management Center',
+  'import-data' => 'Import data',
+  'export-data' => 'Export data',
+  'user-management-center-description' => 'Manage user identity groups and user-related behaviors',
+  'create-panel' => 'Create panel',
 );
