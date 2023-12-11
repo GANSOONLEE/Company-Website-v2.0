@@ -50,4 +50,5 @@ return array (
   'export-data' => '匯出數據',
   'create-panel' => '創建面板',
   'user-management-center-description' => '管理用戶的身分組和用戶相關的行爲',
+  'product-description' => '創建、編輯和刪除產品',
 );

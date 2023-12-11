@@ -29,6 +29,8 @@
 </head>
 <body>
 
+    @routes
+
     <x-navbar />
     
     <div class="app" id="app">
@@ -57,6 +59,7 @@
           <div class="content">
 
             @yield('main')
+            
           </div>
 
         </div>

@@ -2,12 +2,16 @@
 
 namespace App\Domains\Auth\Http\Controllers;
 
+// Request
 use App\Domains\Auth\Request\CreateUserRequest;
+use App\Domains\Auth\Request\UpdateUserRequest;
+use Illuminate\Http\Request;
+
+// Service
 use App\Domains\Auth\Services\UserService;
 
-
+// Model
 use App\Domains\Auth\Models\User;
-use Illuminate\Http\Request;
 
 class UserController
 {
@@ -48,14 +52,13 @@ class UserController
      * url: admin/user/management
      * method: get
      * name: backend.admin.user.management
-     * @param int|bool $page
+     * @param int $page
      * 
      * @return mixed
      */
 
-    public function management(Request $request, int|bool $page = false): mixed
+    public function management(Request $request, int $page = 10): mixed
     {
-        $recordPerPage = $request->recordPerPage;
         $users = $this->userService->getByPage($page);
         return view('backend.admin.auth.user.management', compact('users', 'page'));
     }
@@ -84,6 +87,21 @@ class UserController
     public function ban()
     {
         return view('backend.admin.auth.user.ban');
+    }
+
+    /**
+     * url: admin/user/get/{userID}
+     * method: get
+     * name: backend.admin.user.get
+     * 
+     * @param string $email
+     * 
+     * @return mixed
+     */
+
+    public function get(string $email)
+    {
+        return $this->userService->getUser($email);
     }
 
     /**
@@ -120,9 +138,15 @@ class UserController
      * url: admin/user/{user}
      * method: patch
      * name: backend.admin.user.update
+     * @param UpdateUserRequest $request
+     * 
+     * @return mixed
+     * @throws \Throwable
      */
-    public function update(Request $request){
-
+    public function update(UpdateUserRequest $request){
+        $this->userService->update($request->validated());
+        
+        return redirect()->back();
     }
 
     /**

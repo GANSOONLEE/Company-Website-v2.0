@@ -50,4 +50,5 @@ return array (
   'export-data' => '导出数据',
   'create-panel' => '创建面板',
   'user-management-center-description' => '管理用户的身分组和用户相关的行为',
+  'product-description' => '创建、编辑和删除产品',
 );

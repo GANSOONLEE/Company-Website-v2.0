@@ -1,5 +1,13 @@
 {
+    "Login": "登录",
+    "Register": "注册",
+    "Home": "首页",
+    "Privacy Policy": "隐私政策",
+    "Terms and Conditions": "协议与使用条款",
     "Logout": "登出",
     "Submit": "提交",
-    "Backend": "后台"
+    "Backend": "后台",
+    "Close": "关闭",
+    "Edit": "编辑",
+    "Create": "创建"
 }

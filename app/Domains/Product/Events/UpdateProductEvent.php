@@ -3,7 +3,7 @@
 namespace App\Domains\Product\Events;
 
 // Models
-use App\Models\Product;
+use App\Domains\Product\Models\Product;
 use App\Models\Operation;
 
 // Laravel Support

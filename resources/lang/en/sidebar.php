@@ -50,4 +50,5 @@ return array (
   'export-data' => 'Export data',
   'user-management-center-description' => 'Manage user identity groups and user-related behaviors',
   'create-panel' => 'Create panel',
+  'product-description' => 'Create, edit and delete products',
 );

@@ -166,19 +166,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Modifier role （Update）
-     * 
-     * @param string $newRoleName New role name
-     * @return void
-     */
-
-    public function updateRole($newRoleName){
-        DB::table('users_roles')
-            ->where('user_email', $this->email)
-            ->update(['role_name' => $newRoleName]);
-    }
-
-    /**
      * Delete record from relation table（Delete）
      *
      * @return void

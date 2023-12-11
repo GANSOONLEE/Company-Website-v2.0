@@ -1,5 +1,13 @@
 {
     "Logout": "登出",
     "Submit": "提交",
-    "Backend": "後臺"
+    "Backend": "後臺",
+    "Close": "關閉",
+    "Edit": "編輯",
+    "Create": "創建",
+    "Home": "首頁",
+    "Login": "登入",
+    "Privacy Policy": "隱私政策",
+    "Register": "注冊",
+    "Terms and Conditions": "協議與使用條款"
 }

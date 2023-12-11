@@ -12,9 +12,9 @@ trait UserRelationship
      * @return mixed
      */
 
-     public function roles(): mixed
-     {
-         return $this->belongsToMany(Role::class, 'users_roles', 'user_email', 'role_name', 'email', 'name');
-     }
+    public function roles(): mixed
+    {
+        return $this->belongsToMany(Role::class, 'users_roles', 'user_email', 'role_name', 'email', 'name');
+    }
 
 }

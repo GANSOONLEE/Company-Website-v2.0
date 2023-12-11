@@ -38,5 +38,10 @@ return array (
   'search' => '尋找',
   'upload-failure' => '上傳失敗！',
   'update-successful' => '更新成功！',
-  'can\'t-include' => '警告！不能包含 :letter 字元！',
+  'create-panel' => '產品創建面板',
+  'create-panel-label' => '創建產品',
+  'create-panel-description' => '創建產品',
+  'management-panel' => '產品編輯面板',
+  'management-panel-label' => '編輯產品',
+  'management-panel-description' => '編輯產品',
 );

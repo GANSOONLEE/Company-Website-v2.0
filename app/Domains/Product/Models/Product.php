@@ -1,16 +1,25 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Product\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+use App\Domains\Product\Models\Traits\Attribute\ProductAttribute;
+use App\Domains\Product\Models\Traits\Method\ProductMethod;
+use App\Domains\Product\Models\Traits\Relationship\ProductRelationship;
+use App\Domains\Product\Models\Traits\Scope\ProductScope;
+
 class Product extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory,
+        ProductAttribute,
+        ProductMethod,
+        ProductRelationship,
+        ProductScope,
+        SoftDeletes;
 
     protected $table = "products";
     protected $primaryKey = "product_code";

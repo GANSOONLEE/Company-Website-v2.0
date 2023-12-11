@@ -1,14 +1,11 @@
 
-<aside id="sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
+<aside id="sidebar" class="pt-12 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto">
       <ul class="space-y-2 font-medium">
 
          <x-sidebar-item href="{{ route('backend.admin.dashboard') }}" icon="dashboard" label="{{ __('sidebar.dashboard') }}"/>
-
-         <x-sidebar-dropdown icon="shopping-cart" label="{{ __('sidebar.product') }}">
-            <x-sidebar-dropdown-item href="item1-icon" label="{{ __('sidebar.create-product') }}" />
-            <x-sidebar-dropdown-item href="item2-icon" label="{{ __('sidebar.edit-product') }}" />
-         </x-sidebar-dropdown>
+         
+         <x-sidebar-item href="{{ route('backend.admin.product.index') }}" icon="shopping-cart" label="{{ __('sidebar.product') }}"/>
 
          <x-sidebar-dropdown icon="car" label="{{ __('sidebar.model') }}">
             <x-sidebar-dropdown-item href="item1-icon" label="{{ __('sidebar.create-model') }}" />

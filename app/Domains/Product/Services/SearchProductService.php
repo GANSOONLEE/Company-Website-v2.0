@@ -5,7 +5,7 @@ namespace App\Domains\Product\Services;
 use App\Models\CarModel;
 use App\Models\Type;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Domains\Product\Models\Product;
 
 use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isNull;

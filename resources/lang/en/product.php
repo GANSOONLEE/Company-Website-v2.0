@@ -38,5 +38,10 @@ return array (
   'search' => 'Search',
   'upload-failure' => 'Upload Failure !',
   'update-successful' => 'Updated successful !',
-  'can\'t-include' => 'Warning ! You can\'t include :letter this letter !',
+  'create-panel' => 'Product Create Panel',
+  'create-panel-label' => 'Create product',
+  'create-panel-description' => 'Create product',
+  'management-panel' => 'Product Edit Panel',
+  'management-panel-label' => 'Edit product',
+  'management-panel-description' => 'Edit product',
 );

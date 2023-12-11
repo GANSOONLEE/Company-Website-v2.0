@@ -16,6 +16,9 @@ use App\Domains\Auth\Events\User\UserDestroyed;
 
 class UserService extends BaseService
 {
+
+    public $model;
+
     /**
      * @param User $user
      */
@@ -35,7 +38,7 @@ class UserService extends BaseService
     public function getByPage($perPage = false)
     {
         if(is_numeric($perPage)){
-            return $this->model::byPage()->paginate($perPage);
+            return $this->model::with('roles')->byPage()->paginate($perPage);
         }
 
         return $this->model::byPage()->get();
@@ -60,6 +63,17 @@ class UserService extends BaseService
 
         DB::commit();
         return $user;
+    }
+
+    /**
+     * @param string $email
+     * 
+     * @return mixed
+     */
+    public function getUser(string $email): mixed
+    {
+        $user = User::where('email', $email)->with('roles')->first();
+        return response()->json($user);
     }
 
     /**
@@ -96,6 +110,61 @@ class UserService extends BaseService
 
 
         event(new UserCreated($user));
+
+        DB::commit();
+        return $user;
+    }
+
+    /**
+     * @param array $data
+     * 
+     * @return User
+     * @throws GeneralException
+     */
+
+    public function update(array $data = []){
+
+        DB::beginTransaction();
+
+        $user = User::where('id', $data['id'])->first();
+        $emailCurrent = $user->email;
+
+        try{
+
+            $user->roles()->first()->name !== $data['role'] ?
+                $user->updateRole($data['role']) :
+                null;
+
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+                if ($emailCurrent !== $data['email']) {
+                    $pivot = $user->roles()->first()->pivot;
+                    $pivot ?
+                        $pivot->update(['user_email' => $data['email']]) :
+                        null;
+
+                }
+
+                $user->update([
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                ]);
+                
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+
+        }catch(Exception $e){
+            dd(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getFile(),
+            );
+
+            DB::rollBack();
+            throw new GeneralException(__('There was a problem updating your account. Please try again.'));
+        }
+
+        event(new UserUpdated($user));
 
         DB::commit();
         return $user;
