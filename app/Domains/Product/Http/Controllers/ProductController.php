@@ -21,7 +21,7 @@ class ProductController
     }
 
     /**
-     * url: admin/user/
+     * url: admin/product/
      * method: get
      * name: backend.admin.product.index
      * 
@@ -29,7 +29,19 @@ class ProductController
      */
     public function index(): \Illuminate\View\View
     {
-        return view('backend.admin.product.product');
+        return view('backend.admin.product.product-panel');
+    }
+
+    /**
+     * url: admin/product/create
+     * method: get
+     * name: backend.admin.product.create
+     * 
+     * @return mixed
+     */
+    public function create(): mixed
+    {
+        return view('backend.admin.product.create');
     }
 
 }

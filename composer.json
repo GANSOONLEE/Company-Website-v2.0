@@ -19,6 +19,7 @@
         "laravel/ui": "^4.2",
         "livewire/livewire": "^3.2",
         "pusher/pusher-php-server": "^7.2",
+        "spatie/laravel-html": "*",
         "tanmuhittin/laravel-google-translate": "^2.2",
         "tightenco/ziggy": "^1.8",
         "yajra/laravel-datatables": "10.0"

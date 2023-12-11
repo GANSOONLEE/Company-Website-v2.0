@@ -121,5 +121,17 @@ Breadcrumbs::for('backend.admin.user.ban', function (BreadcrumbTrail $trail) {
 // Breadcrumbs for 'backend.admin.product.index'
 Breadcrumbs::for('backend.admin.product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin');
-    $trail->push(__('sidebar.product'), route('backend.admin.user.index'));
+    $trail->push(__('sidebar.product'), route('backend.admin.product.index'));
+});
+
+// Breadcrumbs for 'backend.admin.product.create'
+Breadcrumbs::for('backend.admin.product.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.product.index');
+    $trail->push(__('product.create-panel'), route('backend.admin.product.create'));
+});
+
+// Breadcrumbs for 'backend.admin.product.management'
+Breadcrumbs::for('backend.admin.product.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.product.index');
+    $trail->push(__('product.management-panel'), route('backend.admin.product.management'));
 });
