@@ -3,6 +3,7 @@
 namespace App\Domains\Product\Http\Controllers;
 
 // Request
+use App\Domains\Product\Request\CreateProductRequest;
 
 // Service
 use App\Domains\Product\Services\ProductService;
@@ -42,6 +43,33 @@ class ProductController
     public function create(): mixed
     {
         return view('backend.admin.product.create');
+    }
+
+    /**
+     * url: admin/product/management
+     * method: get
+     * name: backend.admin.product.management
+     * 
+     * @return mixed
+     */
+    public function management(): mixed
+    {
+        return view('backend.admin.product.management');
+    }
+
+    /**
+     * url: admin/product/management
+     * method: post
+     * name: backend.admin.product.management
+     * 
+     * @param CreateProductRequest $request
+     * 
+     * @return mixed
+     */
+    public function store(CreateProductRequest $request): mixed
+    {
+        $this->productService->store($request->validated());
+        return redirect()->back();
     }
 
 }

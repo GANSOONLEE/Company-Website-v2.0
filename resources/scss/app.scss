@@ -172,7 +172,8 @@ html{
 
     div.app#app{
         display: flex;
-        height: 100vh;
+        min-height: 100vh;
+        max-height: auto;
         background-color: rgb(243, 243, 248);
     
         > div.page#page{
