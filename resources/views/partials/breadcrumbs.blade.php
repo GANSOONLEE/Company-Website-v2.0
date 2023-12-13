@@ -1,4 +1,10 @@
 
+<style>
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+    }
+</style>
+
 @unless($breadcrumbs->isEmpty())
     <ol class="breadcrumb flex px-4 py-3 text-gray-700 border border-gray-200 rounded-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white">
         @foreach($breadcrumbs as $breadcrumb)

@@ -44,7 +44,7 @@
     <div>
         {{ $slot }}
     </div>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    <button type="button" class="btn-close flex justify-center align-items-center" data-bs-dismiss="alert" aria-label="Close">
         <i class="fa-solid fa-xmark"></i>
     </button>
 </div>

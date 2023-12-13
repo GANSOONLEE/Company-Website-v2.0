@@ -36,6 +36,7 @@ return array (
                     （注意！此操作<b>无法恢复！</b>）',
   'upload-successful' => '上传成功',
   'search' => '搜索',
+  'create-product-success' => '产品创建成功！',
   'upload-failure' => '上传失败！',
   'update-successful' => '更新成功！',
   'create-panel' => '产品创建面板',
@@ -44,4 +45,5 @@ return array (
   'management-panel' => '产品编辑面板',
   'management-panel-label' => '编辑产品',
   'management-panel-description' => '编辑产品',
+  'create-product-error' => '产品创建失败！',
 );

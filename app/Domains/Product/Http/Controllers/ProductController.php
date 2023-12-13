@@ -58,9 +58,9 @@ class ProductController
     }
 
     /**
-     * url: admin/product/management
+     * url: admin/product/store
      * method: post
-     * name: backend.admin.product.management
+     * name: backend.admin.product.store
      * 
      * @param CreateProductRequest $request
      * 
@@ -68,8 +68,9 @@ class ProductController
      */
     public function store(CreateProductRequest $request): mixed
     {
-        $this->productService->store($request->validated());
-        return redirect()->back();
+
+        $product = $this->productService->store($request->validated());
+        return redirect()->back()->with('success', __('product.create-product-success'));
     }
 
 }

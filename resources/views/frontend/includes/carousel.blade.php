@@ -1,5 +1,5 @@
 
-<div id="promotionControls" class="carousel slide" data-bs-ride="carousel" style="">
+<div id="promotionControls" class="carousel slide sticky top-10 z-0" data-bs-ride="carousel" style="">
     <div class="carousel-indicators">
         @foreach ($promotionImages as $index => $promotionImage)
         <promotion-controls-button :index="{{ $index }}"></promotion-controls-button>

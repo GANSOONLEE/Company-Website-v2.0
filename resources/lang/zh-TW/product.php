@@ -44,4 +44,6 @@ return array (
   'management-panel' => '產品編輯面板',
   'management-panel-label' => '編輯產品',
   'management-panel-description' => '編輯產品',
+  'create-product-success' => '產品創建成功！',
+  'create-product-error' => '產品創建失敗！',
 );

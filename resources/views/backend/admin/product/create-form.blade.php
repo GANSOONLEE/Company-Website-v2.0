@@ -1,7 +1,7 @@
 @inject('models', 'App\Models\CarModel')
 @inject('categories', 'App\Models\Category')
 
-<x-form.post :action="route('backend.admin.user.store')" class="overscroll-y-auto">
+<x-form.post :action="route('backend.admin.product.store')" class="overscroll-y-auto">
 
     <!-- Product Image Upload -->
     <div class="mb-3">
@@ -26,9 +26,10 @@
         </ul>
     </div>
 
+    <!-- Product Category -->
     <div class="mb-5">
         <h4 h4 class="text-2xl mb-4">@lang('product.category')</h4>
-        <select type="text" class="form-select rounded-sm dark:bg-gray-700 dark:text-white" required>
+        <select name="product_category" type="text" class="form-select rounded-sm dark:bg-gray-700 dark:text-white" required>
             <option value="" hidden selected></option>
             @foreach ($categories::all() as $category)
                 <option value="{{ $category->name }}">{{ $category->name }}</option>

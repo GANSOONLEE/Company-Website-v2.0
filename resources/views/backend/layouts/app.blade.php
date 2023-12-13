@@ -54,7 +54,13 @@
                 @endforeach
               </x-alert>
             @endif
+            @if(session('success'))
+              <x-alert :state="'success'">
+                  <li>{{ session('success') }}</li>
+              </x-alert>
+            @endif
           </div>
+
 
           <div class="content">
 

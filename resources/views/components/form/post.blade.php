@@ -1,5 +1,5 @@
 
-<form method="post" {{ $attributes->merge(['action' => '#', 'class' => 'form-horizontal']) }}>
+<form method="post" enctype="multipart/form-data" {{ $attributes->merge(['action' => '#', 'class' => 'form-horizontal']) }}>
     @csrf
     @method('post')
 

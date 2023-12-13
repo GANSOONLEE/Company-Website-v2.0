@@ -80,4 +80,5 @@
             </div>
         </div>
     </div>
+    <div class="underline bg-blue-400/75 h-1"></div>
 </nav>

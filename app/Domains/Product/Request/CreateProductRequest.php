@@ -15,18 +15,25 @@ class CreateProductRequest extends FormRequest
 
     public function rules(): array
     {
+
         return [
-            // 'name' => 'required',
-            // 'weight' => ['required', 'numeric', 'max:100'],
+            'product-image' => ['required', 'array', 'min:1'],
+            'brand-image' => ['required', 'array', 'min:1'],
+            'model' => ['required', 'array', 'min:1'],
+            'model-serial' => ['required', 'array', 'min:1'],
+            'brand' => ['required', 'array', 'min:1'],
+            'brand-code' => ['required', 'array', 'min:1'],
+            'frozen-code' => ['required', 'array', 'min:1'],
+            'product_category' => 'required',
         ];
     }
 
     public function message(): array
     {
         return [
-            // '*.required' => 'The :attribute field is required.',
-            // 'weight.numeric' => 'Weight must be a number.',
-            // 'weight.max' => 'The number can\'t more them 100.',
+            '*.required' => 'The :attribute field is required.',
+            '*.array' => 'The :attribute field must be an array.',
+            '*.min:1' => 'The :attribute field must have one or above elements.',
         ];
     }
 

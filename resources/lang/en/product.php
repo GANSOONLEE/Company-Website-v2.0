@@ -11,7 +11,7 @@ return array (
   'add-name-input' => 'Add new car model',
   'brand-upload' => 'Brand settings',
   'brand' => 'Brand',
-  'brand-code' => 'Brand number',
+  'brand-code' => 'Brand Code',
   'frozen-code' => 'Frozen code',
   'add-brand-input' => 'Add brand',
   'category-upload' => 'Category',
@@ -35,7 +35,9 @@ return array (
   'delete-confirm-product' => 'Are you sure you want to delete it?<br>
                     (Attention! This operation <b>can\'t be restore!</b>)',
   'upload-successful' => 'Upload Successful !',
+  'create-product-success' => 'Product created successfully!',
   'search' => 'Search',
+  'create-product-error' => 'Product created failed!',
   'upload-failure' => 'Upload Failure !',
   'update-successful' => 'Updated successful !',
   'create-panel' => 'Product Create Panel',
