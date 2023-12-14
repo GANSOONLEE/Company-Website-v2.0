@@ -61,7 +61,6 @@
             @endif
           </div>
 
-
           <div class="content">
 
             @yield('main')

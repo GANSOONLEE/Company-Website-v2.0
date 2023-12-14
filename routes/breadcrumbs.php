@@ -8,72 +8,36 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Home
-Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
+/* ------------------------------------- Frontend ------------------------------------- */
+
+// Breadcrumbs for the 'frontend.home'
+Breadcrumbs::for('frontend.home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('frontend.home'));
 });
 
-// Home > [Category]
-Breadcrumbs::for('category', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('Category', route('frontend.category'));
+/* ------------------- Product ------------------- */
+
+// Breadcrumbs for the 'frontend.product.index'
+Breadcrumbs::for('frontend.product.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('frontend.home');
+    $trail->push('Category', route('frontend.product.index'));
 });
 
-// Home > [Category]
-Breadcrumbs::for('product', function (BreadcrumbTrail $trail, $product) {
-    $trail->parent('category');
-
-    $trail->push($product, route('frontend.product', $product));
+// Breadcrumbs for the 'frontend.product.list'
+Breadcrumbs::for('frontend.product.list', function (BreadcrumbTrail $trail, $category) {
+    $trail->parent('frontend.product.index');
+    $trail->push($category, route('frontend.product.list', ["category" => $category]));
 });
 
-// Home > [Category] > [?Model]
-Breadcrumbs::for('model', function (BreadcrumbTrail $trail, $product, $model = null) {
-    $trail->parent('product', $product);
-    if(!isset($model)){
-        $trail->push('Unknown');
-    }else{
-        $trail->push($model, route('frontend.product.search.post', ['productCategory' => $product, 'model' => $model]));
-    };
-});
-
-// Home > [Category] > [?Model] > [ProductDetail]
-Breadcrumbs::for('productDetail', function (BreadcrumbTrail $trail, $product, $model, $productData) {
-    if(count($productData->getProductName()) <= 0){
-        $trail->parent('model', $product->product_category);
-        $trail->push('Unknown', route('frontend.product-detail', ''));
-    }else{
-        $trail->parent('model', $product->product_category, $model);
-        $trail->push($productData->getProductName()[0]->name, route('frontend.product-detail', $productData->getProductName()[0]->name));
-    };
-});
-
-// Home > Order (User)
-Breadcrumbs::for('order', function (BreadcrumbTrail $trail){
-    $trail->parent('home');
-    $trail->push('Order', route('backend.user.order'));
-});
-
-// Home > Order > [Order Detail] (User)
-Breadcrumbs::for('orderDetail', function (BreadcrumbTrail $trail, $order){
-    $trail->parent('order');
-    $trail->push($order->code, route('backend.user.order-detail', $order->code));
-});
-
-// Home > Order (Admin)
-Breadcrumbs::for('order-admin', function (BreadcrumbTrail $trail){
-    $trail->parent('home');
-    $trail->push('Order', route('backend.admin.order.index'));
-});
-
-// Home > Order > [Order Detail] (Admin)
-Breadcrumbs::for('orderDetail-admin', function (BreadcrumbTrail $trail, $order){
-    $trail->parent('order-admin');
-    $trail->push($order->code, route('backend.admin.order.order-detail', $order->code));
+// Breadcrumbs for the 'frontend.product.query'
+Breadcrumbs::for('frontend.product.query', function (BreadcrumbTrail $trail, $category, $model) {
+    $trail->parent('frontend.product.list', $category);
+    $trail->push($model, route('frontend.product.query', ["category" => $category, "model" => $model]));
 });
 
 /* ------------------------------------- Backend ------------------------------------- */
 
-// Breadcrumbs for the 'backend' home
+// Breadcrumbs for the 'backend'
 Breadcrumbs::for('backend', function (BreadcrumbTrail $trail) {
     // Define breadcrumbs for the backend home
 });

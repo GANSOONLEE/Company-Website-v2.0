@@ -63,7 +63,7 @@
                         $category = $product->product_category;
                     @endphp
 
-                    <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="order-item">
+                    <a href="{{ route('frontend.product.detail', ["productCode" => $item->product_code]) }}" class="order-item">
                         <div class="item-image">
                             <img src="{{ asset("storage/product/$category/$product->product_code/cover.png") }}" alt="">
                         </div>

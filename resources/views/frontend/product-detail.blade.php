@@ -9,16 +9,7 @@
 
     <div class="content">
 
-        <div class="breadcrumbs">
-            @php
-                try {
-                    $model = explode(' ',($productData->getProductName()[0]->name))[0];
-                } catch (\Throwable $th) {
-                    $model = "NULL";
-                }
-            @endphp
-            {{ Breadcrumbs::render('productDetail', $productData, $model, $productData) }}
-        </div>
+
 
         <!-- Product Detail -->
         <section class="product-detail">
@@ -106,9 +97,9 @@
                     <!-- Action Area -->
                     <div class="action-area">
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
+                        
                         <!-- Form -->
-                        <form class="form" action="{{ route('frontend.product.detail.post',['productCode'=>$productData->product_code]) }}" method="post">
-                            @csrf
+                        <x-form.post class="form" action="{{ route('frontend.product.list.detail.post',['productCode'=>$productData->product_code]) }}">
                             
                             <!-- Booking -->
                             <div class="brand-selector">
@@ -177,7 +168,7 @@
                                 </div>
 
                             </div>
-                        </form>
+                        </x-form.post>
                     </div>
 
                 </div>

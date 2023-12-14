@@ -14,47 +14,39 @@ use App\Models\CarModel;
 
 class ProductController extends Controller{
 
-    public function product($category){
+    public function list($category){
 
-        $productData = [];
-
-        $product_code = DB::table('products_name')
-            ->select(
-                'products.product_code',
-                DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'),
-                'products_name.product_code'
-                )
-            ->join('products','products.product_code','=','products_name.product_code')
-            ->when(!auth()->user() || auth()->user()->getRoleEntity()->name != "root", function ($query){
-                $query->where('products.product_status', 'Public');
-            })
-            ->where('products.product_category', $category)
-            ->groupBy('products.product_code')
-            ->orderBy('name', 'asc')
-            ->get();
-            
-        foreach($product_code as $code){
-            $product = Product::where('product_code', $code->product_code)
-                ->first();
-
-            if(!$product){
-                continue;
-            }
-
-            // Defined variable
-            $category = $product->product_category;
-            $code = $product->product_code;
-
-            $productData[] = $product; 
-        }
+        $productData = Product::where('product_category', $category)
+            ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
+            ->orderBy('products_name.name')
+            ->get(['products.*']);
 
         $directory = "storage/product/$category";
-
-        $modelData = CarModel::orderBy('name', 'asc')
-                        ->get();
+        $modelData = CarModel::orderBy('name', 'asc')->get();
 
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
 
+    }
+
+    /**
+     * Search product by Category and Model 
+     * 
+     * @param string $category
+     * @param string $model
+     */
+    public function query(string $category, string $model){
+
+        $productData = Product::where('product_category', $category)
+            ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
+            ->where('products_name.name', 'LIKE', "%$model%")
+            ->orderBy('products_name.name')
+            ->get(['products.*']);
+
+        // Defined variable
+        $directory = "storage/product/$category";
+        $modelData = CarModel::orderBy('name', 'asc')->get();
+
+        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category', 'model'));
     }
 
 }

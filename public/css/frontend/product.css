@@ -14,13 +14,17 @@ div.breadcrumbs ol {
 div.content {
   display: flex;
   justify-content: flex-start;
-  padding: 2rem 0 2rem 2rem;
+  padding: 1rem 0;
   width: 100%;
   height: auto;
 }
+div.content section.filter {
+  margin: 0 0 1rem 0;
+}
 div.content section.container {
-  width: 88%;
-  padding: 0 0 1rem 2rem;
+  width: 100%;
+  margin: 0;
+  max-width: unset !important;
 }
 div.content section.container p.container-title {
   font-size: var(--font-h5);
@@ -32,15 +36,16 @@ div.content section.container section.product-list {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: stretch;
-  -moz-column-gap: calc(16.6666666667% - 60px);
-       column-gap: calc(16.6666666667% - 60px);
-  row-gap: 2rem;
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+  row-gap: 2.7rem;
+  margin-top: 1rem;
 }
 div.content section.container section.product-list a.product-detail-href {
   overflow: hidden;
   display: block;
-  min-width: 25%;
-  max-width: 25%;
+  min-width: calc(25% - 60px);
+  max-width: calc(25% - 60px);
   height: auto;
   box-shadow: 0 0 20px #eee;
   border: 1px solid #eee;

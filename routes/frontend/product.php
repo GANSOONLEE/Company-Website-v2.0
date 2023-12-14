@@ -7,17 +7,20 @@ use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\productDetailController;
 
-Route::get('category', [CategoryController::class, 'category'])
-    ->name('category');
 
-Route::group(['prefix' => 'product'], function(){
+Route::group(['prefix' => 'product', 'as' => 'product.'], function()
+{
 
-    // GET
+    Route::get('category', [CategoryController::class, 'category'])
+        ->name('index');
 
-    Route::get('{category}', [ProductController::class, 'product'])
-        ->name('product');
+    Route::get('{category}', [ProductController::class, 'list'])
+        ->name('list');
 
-    Route::get('detail/{productCode}', [productDetailController::class, 'productDetail'])
-        ->name('product-detail');
+    Route::get('{category}/{model}', [ProductController::class, 'query'])
+        ->name('query');
+
+    Route::get('{productCode}', [productDetailController::class, 'productDetail'])
+        ->name('detail');
 
 });

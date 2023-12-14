@@ -83,7 +83,7 @@
                 <tr data-product-code="{{ $data->product_code }}">
                     
                     <td>
-                        <a href="{{ route('frontend.product-detail', ["productCode" => $data->product_code]) }}">
+                        <a href="{{ route('frontend.product.detail', ["productCode" => $data->product_code]) }}">
                             <img class="product-cover" src="{{ asset("storage/product/$data->product_category/$data->product_code/cover.png") }}" alt="">
                         </a>
                     </td>

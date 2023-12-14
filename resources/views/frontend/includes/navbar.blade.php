@@ -1,5 +1,5 @@
 
-<nav class="navbar" id="navbar">
+<nav class="navbar sticky" id="navbar">
 
     <div class="company-logo">
         <img src="{{asset('image/logo-square-lite.png')}}" alt="" class="company-logo-image">
@@ -18,7 +18,7 @@
             {{-- <a href="" class="navbar-link">
                 <li class="navbar-link-label">About Us</li>
             </a> --}}
-            <a href="{{ route('frontend.category') }}" class="navbar-link">
+            <a href="{{ route('frontend.product.index') }}" class="navbar-link">
                 <li class="navbar-link-label">Product</li>
             </a>
             <a href="{{ route('frontend.contact') }}" class="navbar-link">

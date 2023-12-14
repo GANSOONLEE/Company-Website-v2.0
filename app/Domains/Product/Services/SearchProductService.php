@@ -18,7 +18,7 @@ class SearchProductService{
 
         // check are empty filter
         if(empty($model)){
-            return redirect()->route('frontend.product', ['category'=>$category]);
+            return redirect()->route('frontend.product.list', ['category'=>$category]);
         }
 
         $productData = [];

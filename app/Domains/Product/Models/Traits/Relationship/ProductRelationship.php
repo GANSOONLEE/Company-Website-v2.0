@@ -16,9 +16,8 @@ trait ProductRelationship
 
     public function brands(): mixed
     {
-        $records = Product::join('products_brand', 'products.product_code' , '=', 'products_brand.product_code');
-
-        return $records;
+        return Product::join('products_brand', 'products.product_code' , '=', 'products_brand.product_code')
+                            ->where('products.product_code', '=', $this->product_code);
     }
 
     /**
@@ -27,9 +26,8 @@ trait ProductRelationship
      */
     public function names(): mixed
     {
-        $records = Product::join('products_name', 'products.product_code' , '=', 'products_name.product_code');
-
-        return $records;
+        return Product::join('products_name', 'products_name.product_code' , '=', 'products.product_code')
+                            ->where('products.product_code', '=', $this->product_code);
     }
 
 }

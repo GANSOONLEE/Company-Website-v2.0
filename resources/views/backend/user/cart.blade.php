@@ -56,7 +56,7 @@
                     <button>Refresh</button>
                 </a>
     
-                <a class="btn btn-primary" href="{{ route('frontend.category') }}">
+                <a class="btn btn-primary" href="{{ route('frontend.product.list') }}">
                     <i class="fa-solid fa-shopping-cart"></i>
                     <button>Goto Shop</button>
                 </a>
@@ -124,7 +124,7 @@
                             <input data-sku-id="{{ $sku_id }}" data-number="{{ $number }}" type="checkbox" name="" id="">
                         </td>
                         <td>
-                            <a target="_product" href="{{ route('frontend.product-detail', ["productCode"=>$product_code]) }}">
+                            <a target="_product" href="{{ route('frontend.product.detail', ["productCode"=>$product_code]) }}">
                                 @if (file_exists(public_path("storage/product/$category/$product_code/$code/cover.png")))
                                 <img src="{{ asset("storage/product/$category/$product_code/$code/cover.png") }}" alt="">
                                 @else

@@ -25,6 +25,26 @@
 
 @import 'components.scss';
 
+@layer base{
+
+    .primary-button {
+        @apply  
+    }
+
+}
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+}
+
 /* ———————————————————— Clear Default Style ———————————————————— */
 
 *{
