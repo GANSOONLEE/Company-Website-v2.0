@@ -24,31 +24,32 @@ class LoginService extends BaseService
     /**
      * @param array $data
      *
-     * @return User
+     * @return mixed
      * @throws GeneralException
      * @throws \Throwable
      */ 
-    public function store(array $data = []): User
+    public function store(array $data = []): mixed
     {
         DB::beginTransaction();
 
         try{
 
-            $credentials = $request->only('email', 'password');
+            $credentials = [
+                'email' => $data['email'], 
+                'password' => $data['password']
+            ];
 
-            if (Auth::attempt($credentials, $request->has('remember'))) {
+            if (Auth::attempt($credentials)) {
                 $user = Auth::user();
-                $rememberToken = Str::random(60);
-    
-                $user->update(['remember_token' => $rememberToken]);
-    
-                $cookie = Cookie::make('remember_token', $rememberToken, 43200);
-    
-                return redirect()->route('frontend.home')->withCookie($cookie);
+            }else{
+                return redirect()->back()->withErrors([
+                    'login_failed' => 'Invalid email or password.'
+                ]);
             }
 
         }catch(Exception $e){
             DB::rollBack();
+            dd($e->getMessage());
             throw new GeneralException(__('There was a problem login your account\. Please try again.'));
         }
 

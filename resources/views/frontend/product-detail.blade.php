@@ -99,7 +99,7 @@
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
                         
                         <!-- Form -->
-                        <x-form.post class="form" action="{{ route('frontend.product.list.detail.post',['productCode'=>$productData->product_code]) }}">
+                        <x-form.post class="form" action="{{ route('frontend.product.cart',['productCode'=>$productData->product_code]) }}">
                             
                             <!-- Booking -->
                             <div class="brand-selector">
@@ -113,11 +113,13 @@
 
                                 <!-- UNIT FOR brand-->
                                 @foreach (($productData->getProductBrand()) as $brand)
-                                @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->code][0]) )
-                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ "storage/" . url_encode($brandCover[$brand->code][0]) }}">  
+
+                                @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->sku_id][0]) )
+                                    <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ "storage/" . url_encode($brandCover[$brand->sku_id][0]) }}">  
                                 @else
-                                <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
+                                    <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
+
                                     <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
                                     <div class="brand-box">
                                         <p class="brand-name">{{ str_replace('_', '/', $brand->code) }}</p>

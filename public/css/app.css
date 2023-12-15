@@ -6815,38 +6815,6 @@ textarea.form-control-lg {
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236ea8fe'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
-.breadcrumb {
-  --bs-breadcrumb-padding-x: 0;
-  --bs-breadcrumb-padding-y: 0;
-  --bs-breadcrumb-margin-bottom: 1rem;
-  --bs-breadcrumb-bg: ;
-  --bs-breadcrumb-border-radius: ;
-  --bs-breadcrumb-divider-color: var(--bs-secondary-color);
-  --bs-breadcrumb-item-padding-x: 0.5rem;
-  --bs-breadcrumb-item-active-color: var(--bs-secondary-color);
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x);
-  margin-bottom: var(--bs-breadcrumb-margin-bottom);
-  font-size: var(--bs-breadcrumb-font-size);
-  list-style: none;
-  background-color: var(--bs-breadcrumb-bg);
-  border-radius: var(--bs-breadcrumb-border-radius);
-}
-
-.breadcrumb-item + .breadcrumb-item {
-  padding-left: var(--bs-breadcrumb-item-padding-x);
-}
-.breadcrumb-item + .breadcrumb-item::before {
-  float: left;
-  padding-right: var(--bs-breadcrumb-item-padding-x);
-  color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, "/") /* rtl: var(--bs-breadcrumb-divider, "/") */;
-}
-.breadcrumb-item.active {
-  color: var(--bs-breadcrumb-item-active-color);
-}
-
 .pagination {
   --bs-pagination-padding-x: 0.75rem;
   --bs-pagination-padding-y: 0.375rem;
@@ -15047,6 +15015,10 @@ input[type=file]::file-selector-button:hover{
 .border-solid{
   border-style: solid;
 }
+.border-\[\#dee2e6\]{
+  --tw-border-opacity: 1;
+  border-color: rgb(222 226 230 / var(--tw-border-opacity));
+}
 .border-gray-200{
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
@@ -15077,6 +15049,9 @@ input[type=file]::file-selector-button:hover{
 .bg-blue-600{
   --tw-bg-opacity: 1;
   background-color: rgb(28 100 242 / var(--tw-bg-opacity));
+}
+.bg-blue-600\/25{
+  background-color: rgb(28 100 242 / 0.25);
 }
 .bg-blue-700{
   --tw-bg-opacity: 1;
@@ -15147,6 +15122,10 @@ input[type=file]::file-selector-button:hover{
 .py-17{
   padding-top: 4.25rem;
   padding-bottom: 4.25rem;
+}
+.py-21{
+  padding-top: 5.25rem;
+  padding-bottom: 5.25rem;
 }
 .pl-11{
   padding-left: 2.75rem;
@@ -15481,6 +15460,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p {
   color: red;
 }
 
+.bg-white {
+  background-color: white !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
 /* ———————————————————— Global Variable ———————————————————— */
 :root {
   /* Common */
@@ -15628,6 +15615,11 @@ aside#sidebar > div .active svg.w-3.h-3 {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.before\:text-white::before{
+  content: var(--tw-content);
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

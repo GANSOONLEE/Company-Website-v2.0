@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller{
 
-    public function category(){
+    public function category()
+    {
 
         $disk = 'public';
         $directory = 'category';

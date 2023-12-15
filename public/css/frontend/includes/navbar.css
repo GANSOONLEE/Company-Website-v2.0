@@ -8,7 +8,7 @@ nav.navbar#navbar {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1333333333);
   position: sticky;
   top: 0;
-  height: 8vh;
+  height: 9vh;
   width: 100%;
   z-index: 101;
   background-color: var(--color-white);
@@ -45,9 +45,6 @@ nav.navbar#navbar > div.menu > ul.navbar-links a.navbar-link li.navbar-link-labe
   font-size: var(--font-title);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 600;
-}
-nav.navbar#navbar > div.menu > ul.navbar-links.common {
-  margin-right: auto;
 }
 nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.primary {
   color: #3636ff;

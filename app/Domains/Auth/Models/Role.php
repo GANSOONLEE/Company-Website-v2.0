@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 // Model
 use App\Domains\Auth\Models\User;
-use App\Models\Permission;
+use App\Domains\Auth\Models\Permission;
 use Illuminate\Support\Collection;
 
 use App\Domains\Auth\Models\Traits\Scope\RoleScope;

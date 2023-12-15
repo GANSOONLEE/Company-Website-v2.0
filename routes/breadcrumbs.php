@@ -23,6 +23,12 @@ Breadcrumbs::for('frontend.product.index', function (BreadcrumbTrail $trail) {
     $trail->push('Category', route('frontend.product.index'));
 });
 
+// Breadcrumbs for the 'frontend.product.search'
+Breadcrumbs::for('frontend.product.search', function (BreadcrumbTrail $trail) {
+    $trail->parent('frontend.product.index');
+    $trail->push('Search', route('frontend.product.index'));
+});
+
 // Breadcrumbs for the 'frontend.product.list'
 Breadcrumbs::for('frontend.product.list', function (BreadcrumbTrail $trail, $category) {
     $trail->parent('frontend.product.index');
@@ -46,6 +52,32 @@ Breadcrumbs::for('backend', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('backend.admin', function (BreadcrumbTrail $trail) {
     $trail->parent('backend');
     $trail->push(__('Backend'));
+});
+
+// Breadcrumbs for 'backend.admin.dashboard'
+Breadcrumbs::for('backend.admin.dashboard', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('Action'), route('backend.admin.dashboard'));
+});
+
+/* ------------------------------------- Product  ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.product.index'
+Breadcrumbs::for('backend.admin.product.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.product'), route('backend.admin.product.index'));
+});
+
+// Breadcrumbs for 'backend.admin.product.create'
+Breadcrumbs::for('backend.admin.product.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.product.index');
+    $trail->push(__('product.create-panel'), route('backend.admin.product.create'));
+});
+
+// Breadcrumbs for 'backend.admin.product.management'
+Breadcrumbs::for('backend.admin.product.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.product.index');
+    $trail->push(__('product.management-panel'), route('backend.admin.product.management'));
 });
 
 /* ------------------------------------- User Management Center ------------------------------------- */
@@ -80,22 +112,42 @@ Breadcrumbs::for('backend.admin.user.ban', function (BreadcrumbTrail $trail) {
     $trail->push(__('user.ban-panel'), route('backend.admin.user.ban')); // Use the correct route for ban
 });
 
-/* ------------------------------------- User Management Center ------------------------------------- */
+/* ------------------------------------- Role Management Center ------------------------------------- */
 
-// Breadcrumbs for 'backend.admin.product.index'
-Breadcrumbs::for('backend.admin.product.index', function (BreadcrumbTrail $trail) {
+// Breadcrumbs for 'backend.admin.role.index'
+Breadcrumbs::for('backend.admin.role.index', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin');
-    $trail->push(__('sidebar.product'), route('backend.admin.product.index'));
+    $trail->push(__('sidebar.role-management-center'), route('backend.admin.role.index'));
 });
 
-// Breadcrumbs for 'backend.admin.product.create'
-Breadcrumbs::for('backend.admin.product.create', function (BreadcrumbTrail $trail) {
-    $trail->parent('backend.admin.product.index');
-    $trail->push(__('product.create-panel'), route('backend.admin.product.create'));
+// Breadcrumbs for 'backend.admin.role.create'
+Breadcrumbs::for('backend.admin.role.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.role.index');
+    $trail->push(__('role.create-panel'), route('backend.admin.role.create'));
 });
 
-// Breadcrumbs for 'backend.admin.product.management'
-Breadcrumbs::for('backend.admin.product.management', function (BreadcrumbTrail $trail) {
-    $trail->parent('backend.admin.product.index');
-    $trail->push(__('product.management-panel'), route('backend.admin.product.management'));
+// Breadcrumbs for 'backend.admin.role.management'
+Breadcrumbs::for('backend.admin.role.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.role.index');
+    $trail->push(__('role.management-panel'), route('backend.admin.role.management'));
+});
+
+/* ------------------------------------- Permission Management Center ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.permission.index'
+Breadcrumbs::for('backend.admin.permission.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.permission-management-center'), route('backend.admin.permission.index'));
+});
+
+// Breadcrumbs for 'backend.admin.permission.create'
+Breadcrumbs::for('backend.admin.permission.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.permission.index');
+    $trail->push(__('permission.create-panel'), route('backend.admin.permission.create'));
+});
+
+// Breadcrumbs for 'backend.admin.permission.management'
+Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.permission.index');
+    $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
 });

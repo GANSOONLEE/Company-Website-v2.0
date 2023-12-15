@@ -51,4 +51,7 @@ return array (
   'user-management-center-description' => 'Manage user identity groups and user-related behaviors',
   'create-panel' => 'Create panel',
   'product-description' => 'Create, edit and delete products',
+  'permission-management-center-description' => 'Operations related to management permissions',
+  'admin' => 'Administrator backend',
+  'admin-description' => 'Quickly actions various functions',
 );

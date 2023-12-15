@@ -51,4 +51,7 @@ return array (
   'create-panel' => '創建面板',
   'user-management-center-description' => '管理用戶的身分組和用戶相關的行爲',
   'product-description' => '創建、編輯和刪除產品',
+  'permission-management-center-description' => '管理權限相關的操作',
+  'admin' => '管理員後臺',
+  'admin-description' => '快速操作各項功能',
 );

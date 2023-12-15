@@ -9,5 +9,7 @@
     "Backend": "后台",
     "Close": "关闭",
     "Edit": "编辑",
-    "Create": "创建"
+    "Create": "创建",
+    "Delete": "删除",
+    "Action": "快速操作"
 }

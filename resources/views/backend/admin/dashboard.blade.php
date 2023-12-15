@@ -1,33 +1,48 @@
-@extends('backend.admin.layouts.app')
 
-@section('title', __('sidebar.dashboard'))
+
+@extends('backend.layouts.app')
+
+@section('title', __('sidebar.admin'))
+
+@section('subtitle', __('sidebar.admin-description'))
 
 @section('main')
 
-    <div id="alert">
-        
+    <div class="flex flex-column w-full">
+
+        <h4 class="flex justify-content-start align-items-center text-2xl font-bold mb-2"><i class="fa-solid fa-shopping-cart mr-2"></i>@lang('sidebar.product')</h4>
+
+        <div class="flex flex-wrap space-x-between mb-4 dm:sm:flex-nowrap dm:sm:flex-col">
+    
+            <x-control-panel title="{{ __('product.create-panel') }}" showButton=true button-href="{{ route('backend.admin.product.create') }}" button-text="{{ __('product.create-panel-label') }}">
+                @lang('product.create-panel-description')
+            </x-control-panel>
+    
+            <x-control-panel title="{{ __('product.management-panel') }}" showButton=true button-href="{{ route('backend.admin.product.management') }}" button-text="{{ __('product.management-panel-label') }}">
+                @lang('product.management-panel-description')
+            </x-control-panel>
+            
+        </div>
+
     </div>
 
-    @include('backend.admin.components.layouts')
+    <div class="flex flex-column w-full">
+
+        <h4 class="flex justify-content-start align-items-center text-2xl font-bold mb-2"><i class="fa-solid fa-file mr-2"></i>@lang('sidebar.order')</h4>
+
+        <div class="flex flex-wrap space-x-between mb-4 dm:sm:flex-nowrap dm:sm:flex-col">
+    
+            <x-control-panel title="{{ __('sidebar.view-order') }}" showButton=true button-href="{{ route('backend.admin.order.index') }}" button-text="{{ __('product.create-panel-label') }}">
+                @lang('product.create-panel-description')
+            </x-control-panel>
+    
+            <x-control-panel title="{{ __('sidebar.history-order') }}" showButton=true button-href="{{ route('backend.admin.order.list') }}" button-text="{{ __('product.management-panel-label') }}">
+                @lang('product.management-panel-description')
+            </x-control-panel>
+            
+        </div>
+
+    </div>
 
 
 @endsection
-
-@push('after-style')
-
-    <!-- Card Layouts -->
-    <link rel="stylesheet" href="{{ asset('css/backend/admin/components/layouts.css') }}">
-
-    <!-- Components -->
-    <link rel="stylesheet" href="{{ asset('css/backend/admin/components/chart/pie-chart.css') }}">
-@endpush
-
-@push('after-script')
-
-    <!-- Chart js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Components -->
-    <script defer src="{{ asset('js/backend/admin/dashboard.js') }}"></script>
-    
-@endpush

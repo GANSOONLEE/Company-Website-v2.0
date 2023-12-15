@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\RegisterVerify;
-use App\Models\Permission;
+use App\Domains\Auth\Models\Permission;
 use App\Domains\Auth\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;

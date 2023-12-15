@@ -166,15 +166,15 @@ class ProductService extends BaseService
         try{
 
             // Valid are model and modelSerial length equal
-            $count = count($model) !== count($modelSerial) ?
-                throw new GeneralException('Model and modelSerial lengths must equal') :
-                count($model) ;
+            $count = count($model) ;
 
             // Build Name Information
             for($index = 0; $index < $count; $index++)
             {
 
-                $fullname = path_encode($model[$index] . ' ' . $modelSerial[$index]);
+                $fullname = path_encode(($model[$index] ?? '') . ' ' . $modelSerial[$index]);
+
+                // $fullname = path_encode($model[$index] . ' ' . $modelSerial[$index]);
 
                 DB::table('products_name')->insert([
                     'product_code' => $product_code,
@@ -222,13 +222,14 @@ class ProductService extends BaseService
             for($index = 0; $index < $count; $index++)
             {
                 $skuID = $this->generatorBrandSkuId();
+                $frozen_code_element = $frozen_code[$index] ?? null;
 
                 DB::table('products_brand')->insert([
                     'product_code' => $product_code,
                     'sku_id' => $skuID,
                     'brand' => path_encode($brand[$index]),
                     'code' => path_encode($brand_code[$index]),
-                    'frozen_code' => path_encode($frozen_code[$index]),
+                    'frozen_code' => path_encode($frozen_code_element),
                 ]);
                 
                 $skuIDs[] = $skuID;
@@ -296,9 +297,9 @@ class ProductService extends BaseService
 
                 $fileExtension = $image->getClientOriginalExtension();
 
-                $newFileName = ($index === 0)
-                    ? "cover.$fileExtension"
-                    : null ;
+                $newFileName = "cover.$fileExtension";
+                
+                $skuIDs[$index] ?? throw new GeneralException('There has problem to saving your image.');
 
                 $brandImagePath[] = $image->storeAs($baseDirectory . "/$skuIDs[$index]", $newFileName, $disk);
             }

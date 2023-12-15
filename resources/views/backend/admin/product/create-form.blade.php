@@ -1,4 +1,5 @@
 @inject('models', 'App\Models\CarModel')
+@inject('brands', 'App\Models\Brand')
 @inject('categories', 'App\Models\Category')
 
 <x-form.post :action="route('backend.admin.product.store')" class="overscroll-y-auto">
@@ -42,7 +43,7 @@
 </x-form.post>
 
 <script>
-    const models = @json($models);
+    const models = @json($models->orderBy('name')->pluck('name')->toArray());
     const template = document.querySelector('[data-mark="template"]');
 
     // Image List Class
@@ -315,21 +316,21 @@
             // Create input for model
             let modelInput = document.createElement('input');
             modelInput.setAttribute('type', 'text');
-            modelInput.setAttribute('list', 'model');
+            modelInput.setAttribute('list', `model-${id}`);
             modelInput.setAttribute('name', 'model[]');
-            modelInput.setAttribute('id', '');
+            modelInput.setAttribute('id', id);
             modelInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
             modelInput.setAttribute('required', '');
             firstColDiv.appendChild(modelInput);
 
             // Create datalist for model
             let modelDatalist = document.createElement('datalist');
-            modelDatalist.setAttribute('id', 'model');
+            modelDatalist.setAttribute('id', `model-${id}`);
 
             // Assuming $models is an array of objects with a 'name' property
             models.forEach(model => {
                 let option = document.createElement('option');
-                option.setAttribute('value', model.name);
+                option.setAttribute('value', model);
                 modelDatalist.appendChild(option);
             });
 
@@ -370,7 +371,7 @@
             let deleteRowButton = document.createElement("button");
             deleteRowButton.classList.add('btn', 'btn-danger', 'bg-danger');
             deleteRowButton.setAttribute('type', 'button');
-            deleteRowButton.innerText = 'Delete';
+            deleteRowButton.innerText = `{{ __('Delete') }}`;
             this.deleteRowButton = deleteRowButton;
             deleteCol.appendChild(deleteRowButton);
 
@@ -591,12 +592,20 @@
             labelForBrand.setAttribute('for', '');
             labelForBrand.classList.add('form-label');
 
-            let brandInput = document.createElement('input');
+            let brandInput = document.createElement('select');
             brandInput.setAttribute('type', 'text');
             brandInput.setAttribute('name', 'brand[]');
             brandInput.setAttribute('id', '');
-            brandInput.classList.add('w-full', 'form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
+            brandInput.classList.add('w-full', 'form-select', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
             brandInput.setAttribute('required', '');
+
+            const brands = @json($brands->orderBy('name')->pluck('name')->toArray());
+            brands.forEach(brand => {
+                let option = document.createElement('option');
+                option.setAttribute('value', brand);
+                option.innerText = brand;
+                brandInput.appendChild(option);
+            });
 
             labelForBrand.appendChild(brandInput);
             brandColDiv.appendChild(labelForBrand);
@@ -633,14 +642,6 @@
             labelForFrozen.setAttribute('for', '');
             labelForFrozen.classList.add('form-label');
 
-            let frozenInputGroup = document.createElement('div');
-            frozenInputGroup.classList.add('input-group');
-
-            let frozenSpan = document.createElement('span');
-            frozenSpan.classList.add('input-group-text', 'dark:bg-gray-700', 'dark:text-white');
-            frozenSpan.setAttribute('id', 'basic-addon1');
-            frozenSpan.innerText = 'FZ-';
-
             let frozenInput = document.createElement('input');
             frozenInput.setAttribute('type', 'text');
             frozenInput.setAttribute('name', 'frozen-code[]');
@@ -648,9 +649,7 @@
             frozenInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
             frozenInput.setAttribute('required', '');
 
-            frozenInputGroup.appendChild(frozenSpan);
-            frozenInputGroup.appendChild(frozenInput);
-            labelForFrozen.appendChild(frozenInputGroup);
+            labelForFrozen.appendChild(frozenInput);
             frozenColDiv.appendChild(labelForFrozen);
             rowDiv.appendChild(frozenColDiv);
 
@@ -659,9 +658,9 @@
             rowDiv.appendChild(deleteCol);
 
             let deleteRowButton = document.createElement("button");
-            deleteRowButton.classList.add('btn', 'btn-danger', 'bg-danger');
+            deleteRowButton.classList.add('btn', 'btn-danger', 'bg-danger', 'text-nowrap');
             deleteRowButton.setAttribute('type', 'button');
-            deleteRowButton.innerText = 'Delete';
+            deleteRowButton.innerText = `{{ __('Delete') }}`;
             this.deleteRowButton = deleteRowButton;
 
             if (this.parentInstance.elementList.length == 0) {
