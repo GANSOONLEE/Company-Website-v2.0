@@ -15,4 +15,6 @@ class CarModel extends Model
         'name'
     ];
 
+    public $timestamps = false;
+
 }

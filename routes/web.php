@@ -64,8 +64,6 @@ Route::group(['prefix' => 'policy', 'as' => 'policy.'], function () {
     includeRouteFiles(__DIR__ . '/policy/');
 });
 
-
-
 /**
  * Auth
  * provide authorize for local site
@@ -74,8 +72,6 @@ Route::group(['prefix' => 'policy', 'as' => 'policy.'], function () {
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     includeRouteFiles(__DIR__ . '/auth/');
 });
-
-
 
 /**
  * Services

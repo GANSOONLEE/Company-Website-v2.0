@@ -11,8 +11,7 @@
     <div class="container">
         <a href="{{ route('frontend.home') }}"><img class="form-header-logo" src="{{asset('image/logo.webp')}}" alt="">
         </a>
-        <form action="{{ route('auth.login.post') }}" class="form" id="form" method="POST">
-            @csrf
+        <x-form.post action="{{ route('auth.login.store') }}" class="form" id="form">
             <!-- Header -->
             <!-- Title -->
             <div class="form-header">
@@ -36,7 +35,7 @@
                 <p class="register-text">Haven't any account?</p><a href="{{ route('auth.register') }}">Register</a>
             </div> --}}
     
-        </form>
+        </x-form.post>
     </div>
 
 @endsection

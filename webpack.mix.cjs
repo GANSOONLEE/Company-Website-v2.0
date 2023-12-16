@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+const tailwindcss = require("tailwindcss")
 const glob = require("glob");
 const path = require("path");
 
@@ -14,7 +15,11 @@ mix.webpackConfig({
 scssFiles.forEach(file => {
     const relativePath = path.relative("resources/scss", file);
     const fileNameWithoutExtension = path.basename(relativePath, ".scss");
-    mix.sass(file, `public/css/${path.dirname(relativePath)}/${fileNameWithoutExtension}.css`);
+    mix.sass(file, `public/css/${path.dirname(relativePath)}/${fileNameWithoutExtension}.css`)
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('./tailwind.config.cjs') ],
+    });;
 });
 
 jsFiles.forEach(file => {

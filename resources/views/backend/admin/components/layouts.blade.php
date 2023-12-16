@@ -16,7 +16,7 @@
 
         <div class="card-title">
             <h4 class="card-title-text">
-                {{ __('dashboard.item-quantity', ["count"=> \App\Models\Product::all()->count() ]) }}
+                {{ __('dashboard.item-quantity', ["count"=> \App\Domains\Product\Models\Product::all()->count() ]) }}
             </h4>
             <button type="button" id="refresh-button">
                 {{ __('dashboard.refresh') }}

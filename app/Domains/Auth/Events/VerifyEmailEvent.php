@@ -2,7 +2,7 @@
 
 namespace App\Domains\Auth\Events;
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;

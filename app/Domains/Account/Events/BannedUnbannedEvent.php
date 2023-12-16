@@ -11,7 +11,7 @@ class BannedUnbannedEvent{
         $email = $request->email;
         $method = $request->method;
 
-        $user = \App\Models\User::where('email', $email)->first();
+        $user = \App\Domains\Auth\Models\User::where('email', $email)->first();
 
         if($method == "banned"){
             $data = [

@@ -57,10 +57,10 @@ return [
      * Note, only change this if you know what you are doing!
      */
     'builders'       => [
-        Illuminate\Database\Eloquent\Relations\Relation::class => 'eloquent',
-        Illuminate\Database\Eloquent\Builder::class            => 'eloquent',
-        Illuminate\Database\Query\Builder::class               => 'query',
-        Illuminate\Support\Collection::class                   => 'collection',
+        //Illuminate\Database\Eloquent\Relations\Relation::class => 'eloquent',
+        //Illuminate\Database\Eloquent\Builder::class            => 'eloquent',
+        //Illuminate\Database\Query\Builder::class               => 'query',
+        //Illuminate\Support\Collection::class                   => 'collection',
     ],
 
     /*
@@ -124,5 +124,4 @@ return [
      * Callbacks needs to start by those terms, or they will be cast to string.
      */
     'callback' => ['$', '$.', 'function'],
-    'script_template' => 'datatables::script',
 ];

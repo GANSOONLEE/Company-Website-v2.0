@@ -9,7 +9,7 @@ class AccountBannedController extends Controller{
     public function accountBanned(){
 
         // get data
-        $users = \App\Models\User::join("users_roles","users.email","=","users_roles.user_email")
+        $users = \App\Domains\Auth\Models\User::join("users_roles","users.email","=","users_roles.user_email")
             ->join("roles","users_roles.role_name","=","roles.name")
             ->select(
                 "users.name",

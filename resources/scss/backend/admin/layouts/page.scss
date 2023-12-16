@@ -1,5 +1,6 @@
 
 div.page{
+    position: relative;
     $sidebar-width: 18vw;
     // width: calc(100vw - $sidebar-width);
     margin-left: $sidebar-width;
@@ -15,8 +16,8 @@ div.page{
 /* ==================== RWD ==================== */
 
 // Phone
-// @media only screen and (max-width: 867px) {
-@media only screen and (max-width: 2040px) {
+@media only screen and (max-width: 867px) {
+// @media only screen and (max-width: 2040px) {
 
     // $sidebar-width: 55px;
     $sidebar-width: 4vw;

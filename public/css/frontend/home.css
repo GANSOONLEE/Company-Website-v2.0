@@ -1,6 +1,6 @@
 div.background-image {
   position: fixed;
-  background-image: url(/images/logo.webp?d2028b111316be6fb68514e550d20006);
+  background-image: url("../../../public/image/logo.webp");
   background-size: calc(100% - 8rem) auto;
   background-attachment: fixed;
   background-repeat: no-repeat;

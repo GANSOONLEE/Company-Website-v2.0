@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\Account;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use App\Domains\Auth\Models\Role;
 
 class RoleManagementController extends Controller{
 

@@ -21,7 +21,6 @@ section.form {
   border-radius: 6px;
   width: 20%;
   height: auto;
-  padding: 0.4rem;
   cursor: auto;
   display: flex;
   flex-direction: column;

@@ -7,17 +7,26 @@ use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\productDetailController;
 
-Route::get('category', [CategoryController::class, 'category'])
-    ->name('category');
 
-Route::group(['prefix' => 'product'], function(){
+Route::group(['prefix' => 'product', 'as' => 'product.'], function()
+{
+    
+    Route::get('category', [CategoryController::class, 'category'])
+        ->name('index');
 
-    // GET
+    Route::get('category/{category}', [ProductController::class, 'list'])
+        ->name('list');
 
-    Route::get('{category}', [ProductController::class, 'product'])
-        ->name('product');
+    Route::get('category/{category}/{model}', [ProductController::class, 'query'])
+        ->name('query');
 
     Route::get('detail/{productCode}', [productDetailController::class, 'productDetail'])
-        ->name('product-detail');
+        ->name('detail');
 
+    // except CSRF route
+    Route::get('search', [ProductController::class, 'search'])
+        ->name('search');
+
+    Route::post('cart/{productCode}', [ProductController::class, 'cart'])
+        ->name('cart');
 });

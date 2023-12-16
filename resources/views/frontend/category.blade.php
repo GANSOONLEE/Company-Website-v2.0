@@ -10,7 +10,7 @@
         <!-- #TODO 加入新内容 -->
 
         @foreach ($categoryData as $index => $category)
-            <a class="category-box" href="{{ route('frontend.product', ['category' => $category['name']]) }}">
+            <a class="category-box" href="{{ route('frontend.product.list', ['category' => $category['name']]) }}">
                 <section class="category-card">
                     <img class="category-cover" src="{{ asset($category['cover'])}}" alt="">
                     <div class="category-description">

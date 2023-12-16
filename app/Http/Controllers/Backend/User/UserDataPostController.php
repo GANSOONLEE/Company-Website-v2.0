@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 
 class UserDataPostController extends Controller
 {

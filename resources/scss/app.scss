@@ -1,4 +1,50 @@
 
+/* ———————————————————— DataTables Css ———————————————————— */
+
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+ 
+// Variables
+// @import 'variables';
+ 
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+ 
+// DataTables
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
+@import 'datatables.net-select-bs5/css/select.bootstrap5.css';
+
+/* ———————————————————— Tailwind Css ———————————————————— */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'class.scss';
+
+@import 'components.scss';
+
+@layer base{
+
+    .primary-button {
+        @apply  
+    }
+
+}
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+}
+
 /* ———————————————————— Clear Default Style ———————————————————— */
 
 *{
@@ -31,6 +77,10 @@ button, textarea, input{
     outline: none;
 }
 
+h1, h2, h3, h4, h5, h6, p{
+    margin-bottom: 0;
+}
+
 /* ———————————————————— Global Custom Class ———————————————————— */
 
 .flex-row{
@@ -46,10 +96,32 @@ button, textarea, input{
     z-index: 100;
     position: fixed;
     height: 9vh;
-    width: 76vw;
-    top: 2rem;
-    left: 20.4vw;
+    top: 1rem;
     column-gap: 1.2rem;
+}
+
+.border-hidden{
+    border: none;
+}
+
+.border-t-solid{
+    border-top-style: solid;
+}
+
+.required{
+    &::after{
+        content: '*';
+        margin-left: .4rem;
+        color: red;
+    }
+}
+
+.bg-white {
+    background-color: white !important;
+}
+
+.text-white {
+    color: white !important;
 }
 
 /* ———————————————————— Global Variable ———————————————————— */
@@ -118,5 +190,86 @@ button, textarea, input{
         --font-subtitle: 1rem;
         --font-content: .9rem;
         --font-remark: .8rem;
+    }
+}
+
+/* ———————————————————— Setup global style ———————————————————— */
+
+html{
+    
+
+    div.app#app{
+        display: flex;
+        min-height: 100vh;
+        max-height: auto;
+        background-color: rgb(243, 243, 248);
+    
+        > div.page#page{
+            padding: 1.2rem 2rem;
+            margin-left: 16rem;
+            flex: 1;
+        
+            >p.page-title{
+                font-weight: bold; 
+                font-size: var(--font-h5);
+            }
+
+            >p.page-subtitle{
+                font-size: var(--font-subtitle);   
+            }
+
+            >div.content{
+                padding-top: 1.2rem;
+                font-size: var(--font-title);
+            }
+        }
+    }
+
+    &.dark{
+        div.app#app{
+            color: var(--color-white);
+            background-color: rgb(27, 27, 34);
+        }
+    }
+}
+
+
+
+.bg-white{
+    background-color: white;
+}
+
+nav#navbar{
+    position: sticky;
+    top: 0;
+}
+
+i{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    line-height: unset !important;
+}
+
+aside#sidebar{
+    position: fixed;
+    top: 0;
+
+    > div{
+        position: sticky;
+        top: 6.8vh;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        svg.w-3.h-3{
+            transition: all .12s ease-in-out;
+        }
+
+        .active svg.w-3.h-3{
+            transform: rotateZ(180deg);
+        }
+        
     }
 }

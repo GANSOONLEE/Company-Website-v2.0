@@ -13,7 +13,7 @@ class ResetPasswordEvent {
 
             $email = $request->email;
 
-            $user = \App\Models\User::where('email', $email)->first();
+            $user = \App\Domains\Auth\Models\User::where('email', $email)->first();
 
             if($user){
 

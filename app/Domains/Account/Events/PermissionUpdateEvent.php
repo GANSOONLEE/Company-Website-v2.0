@@ -2,7 +2,7 @@
 
 namespace App\Domains\Account\Events;
 
-use App\Models\Role;
+use App\Domains\Auth\Models\Role;
 use App\Models\Operation;
 use Illuminate\Http\Request;
 

@@ -1,0 +1,96 @@
+
+#alert{
+    position: relative;
+    width: 100%;
+
+    .alert{
+        position: relative;
+        width: 100%;
+        height: unset;
+        ul{
+            padding: .4rem 0;
+        }
+    }
+}
+
+.breadcrumb{
+    margin-bottom: .6rem;
+}
+
+#modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
+    z-index: -1;
+    background-color: #33333366;
+    width: 100vw;
+    height: 100vh;
+
+    &.active{
+        z-index: 100;
+    }
+}
+
+// ImageBox
+li.box{
+    $size: 9rem;
+
+    @mixin size-limit {
+        min-width: $size;
+        max-width: $size;
+        min-height: $size;
+    }
+
+    @include size-limit;
+
+    div.container{
+        padding: 0;
+
+        label{
+            @include size-limit;
+            cursor: pointer;
+            min-width: $size;
+            min-height: $size;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            div.image-tips{
+
+                div{
+
+                }
+
+            }
+
+            div.image-preview{
+                overflow: hidden;
+
+                button{
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    i{
+
+                    }
+                }
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+        }
+
+    }
+
+    input[type="file"]{
+        
+    }
+
+}
+

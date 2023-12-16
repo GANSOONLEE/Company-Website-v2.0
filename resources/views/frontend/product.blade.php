@@ -6,30 +6,25 @@
 @section('app')
 
     @php
-    if (isset($_GET['model'])) {
-        $model = $_GET['model'];
-    }else{
-        $model = null;
-    }
+        $model = isset($model) ? $model : '';
     @endphp
 
     <div class="header">
         <div class="breadcrumbs">
-            @if (isset($model))
-            {{ Breadcrumbs::render('model', $category, $model) }}
+            @if (request()->routeIs('frontend.product.list'))
+                {{ Breadcrumbs::render('frontend.product.list', $category) }}
             @else
-            {{ Breadcrumbs::render('model', $category) }}
+                {{ Breadcrumbs::render('frontend.product.query', $category, $model) }}
             @endif
         </div>
-        
     </div>
 
-    <div class="content">
+    <div class="content flex flex-column">
 
         <!-- Filter -->
-        @include('frontend.includes.filter')
+        @include('frontend.includes.filter', ['category' => $category])
 
-        <section class="container">
+        <section class="container w-full px-8">
 
             <p class="container-title">{{ $category . ' ' . $model}} </p>
 
@@ -39,7 +34,7 @@
                 <!-- Unit -->
                 @if (count($productData) > 0)
                     @foreach ($productData as $product)
-                    <a class="product-detail-href" href="{{ route('frontend.product-detail', ['productCode' => $product->product_code]) }}">
+                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
                         <div class="custom-card">
                             <div class="custom-card-image">
                                 <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
@@ -48,8 +43,8 @@
                                 </div>
                             </div>
                             <div class="custom-card-header">
-                                @foreach (($product->getProductName()) as $name)
-                                    <p>{{ $name->name }}</p>
+                                @foreach (($product->names()->get()) as $names)
+                                    <p>{{ $names->name }}</p>
                                 @endforeach
                             </div>
                         </div>

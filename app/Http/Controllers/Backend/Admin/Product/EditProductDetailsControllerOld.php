@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Product;
+use App\Domains\Product\Models\Product;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 

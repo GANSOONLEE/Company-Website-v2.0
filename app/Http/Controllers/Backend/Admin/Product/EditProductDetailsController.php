@@ -10,7 +10,7 @@ use Illuminate\Http\UploadedFile;
 // Model
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Product;
+use App\Domains\Product\Models\Product;
 use App\Models\Type;
 use App\Models\CarModel;
 

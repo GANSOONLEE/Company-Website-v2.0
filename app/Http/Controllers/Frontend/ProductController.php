@@ -6,55 +6,73 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
 // Model
-use App\Models\Product;
-use App\Models\Type;
+use App\Domains\Product\Models\Product;
 use App\Models\CarModel;
+
+use App\Domains\Product\Services\FrontendProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller{
 
-    public function product($category){
+    protected $frontendProductService;
+    protected $modelData;
 
-        $productData = [];
+    public function __construct(FrontendProductService $frontendProductService)
+    {
+        $this->frontendProductService = $frontendProductService;
+        $this->modelData = CarModel::orderBy('name', 'asc')->get();
+    }
 
-        $product_code = DB::table('products_name')
-            ->select(
-                'products.product_code',
-                DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(name ORDER BY name), ",", 1) AS name'),
-                'products_name.product_code'
-                )
-            ->join('products','products.product_code','=','products_name.product_code')
-            ->when(!auth()->user() || auth()->user()->getRoleEntity()->name != "root", function ($query){
-                $query->where('products.product_status', 'Public');
-            })
-            ->where('products.product_category', $category)
-            ->groupBy('products.product_code')
-            ->orderBy('name', 'asc')
-            ->get();
-            
-        foreach($product_code as $code){
-            $product = Product::where('product_code', $code->product_code)
-                ->first();
+    /**
+     * route: frontend.product.list
+     * @param string $category
+     * 
+     * @return mixed
+     */
+    public function list(string $category): mixed
+    {
+        $productData = $this->frontendProductService->list($category);
+        $directory = "storage/product/$category";
+        $modelData = $this->modelData;
+        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
+    }
 
-            if(!$product){
-                continue;
-            }
+    /**
+     * route: frontend.product.query
+     * Search product by Category and Model
+     * @param string $category
+     * @param string $model
+     * 
+     * @return mixed
+     */
+    public function query(string $category, string $model): mixed
+    {
+        $data = ['category'=> $category,'model'=> $model,];
+        $productData = $this->frontendProductService->searchProductByCategoryAndCarModel($data);
 
-            // Defined variable
-            $category = $product->product_category;
-            $code = $product->product_code;
+        // Defined variable
+        $directory = "storage/product/$category";
+        $modelData = $this->modelData;
 
-            $productData[] = $product; 
+        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category', 'model'));
+    }
+
+    /**
+     * Search product by all columns
+     * @param Request $request
+     * 
+     * @return mixed;
+     */
+    public function search(Request $request): mixed
+    {
+        $searchTerm = $request->searchTerm;
+        if($searchTerm === null){
+            return redirect()->route('frontend.product.index');
         }
 
-        $directory = "storage/product/$category";
-
-        $modelData = CarModel::orderBy('name', 'asc')
-                        ->get();
-
-        return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
-
+        $productData = $this->frontendProductService->search($searchTerm);
+        return view('frontend.product-search', compact('productData'));
     }
 
 }

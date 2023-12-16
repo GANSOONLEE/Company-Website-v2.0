@@ -14,13 +14,15 @@
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
         "@vitejs/plugin-vue": "^4.0.0",
+        "autoprefixer": "^10.4.16",
         "axios": "^1.1.2",
         "bootstrap": "^5.3.2",
         "css-loader": "^5.0.0",
+        "laravel-datatables-vite": "^0.5.2",
         "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.8.0",
         "node-sass": "^9.0.0",
-        "postcss": "^8.4.24",
+        "postcss": "^8.4.32",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.56.1",
         "sass-loader": "^13.3.2",
@@ -34,11 +36,14 @@
         "webpack-cli": "^4.0.0"
     },
     "dependencies": {
+        "@themesberg/flowbite": "^1.3.0",
         "bootstrap-vue": "^2.23.1",
+        "datatables.net-dt": "^1.13.8",
         "docker": "^0.2.14",
         "foundation-sites": "^6.8.1",
         "jquery": "^3.7.1",
         "mix": "^0.0.1",
+        "tailwindcss": "^3.3.6",
         "vue-pusher": "^1.1.0",
         "vue-router": "^4.2.4"
     }

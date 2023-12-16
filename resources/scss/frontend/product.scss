@@ -14,19 +14,20 @@ div.breadcrumbs{
 div.content{
     display: flex;
     justify-content: flex-start;
-    padding: 2rem 0 2rem 2rem;
+    padding: 1rem 0;
     width: 100%;
     height: auto;
 
     // filter
     section.filter{
-        
+        margin:  0 0 1rem 0;
     }
 
     // content
     section.container{
-        width: 88%;
-        padding: 0 0 1rem 2rem;
+        width: 100%;
+        margin: 0;
+        max-width: unset !important;
         p.container-title{
             font-size: var(--font-h5);
             color: #060616;
@@ -39,15 +40,16 @@ div.content{
             flex-wrap: wrap;
             justify-content: flex-start;
             align-items: stretch;
-            column-gap: calc((100% / 6) - 60px);
-            row-gap: 2rem;
+            column-gap: 3rem;
+            row-gap: 2.7rem;
+            margin-top: 1rem;
 
             // unit
             a.product-detail-href{
                 overflow: hidden;
                 display: block;
-                min-width: calc((100% / 4));
-                max-width: calc((100% / 4));
+                min-width: calc((100% / 4) - 60px);
+                max-width: calc((100% / 4) - 60px);
                 height: auto;
                 box-shadow: 0 0 20px #eee;
                 border: 1px solid #eee;

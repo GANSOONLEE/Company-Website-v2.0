@@ -40,7 +40,7 @@
             <div class="order-content">
                 <!-- item -->
                 @foreach (($order->getOrderItems()) as $item)
-                <a href="{{ route('frontend.product-detail', ["productCode" => $item->product_code]) }}" class="item-box">
+                <a href="{{ route('frontend.product.detail', ["productCode" => $item->product_code]) }}" class="item-box">
 
                     <!-- information -->
                     <div class="item-information">

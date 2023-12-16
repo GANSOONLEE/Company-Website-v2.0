@@ -1,5 +1,5 @@
 
-<nav class="navbar" id="navbar">
+<nav class="navbar sticky" id="navbar">
 
     <div class="company-logo">
         <img src="{{asset('image/logo-square-lite.png')}}" alt="" class="company-logo-image">
@@ -10,21 +10,21 @@
     </label>
 
     <!-- #TODO 加入路由 -->
-    <div class="menu">
+    <div class="menu flex justify-content-between align-items-center sm:flex-column">
         <ul class="navbar-links common">
             <a href="{{ route('frontend.home') }}" class="navbar-link">
                 <li class="navbar-link-label">Home</li>
             </a>
-            {{-- <a href="" class="navbar-link">
-                <li class="navbar-link-label">About Us</li>
-            </a> --}}
-            <a href="{{ route('frontend.category') }}" class="navbar-link">
+            <a href="{{ route('frontend.product.index') }}" class="navbar-link">
                 <li class="navbar-link-label">Product</li>
             </a>
             <a href="{{ route('frontend.contact') }}" class="navbar-link">
                 <li class="navbar-link-label">Contact</li>
             </a>
         </ul>
+
+        @include('components.searchbar')
+
         <ul class="navbar-links auth">
             <!-- Guest -->
             @guest

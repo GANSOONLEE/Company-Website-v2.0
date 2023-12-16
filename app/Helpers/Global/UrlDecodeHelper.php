@@ -67,3 +67,122 @@ if (!function_exists('file_path_encode')) {
         
     };
 };
+
+/**
+ * Convert the invalid symbols to valid symbols
+ * @param string $name
+ * 
+ * @return string
+ */
+if(!function_exists('path_encode'))
+{
+    function path_encode(string $name): string
+    {
+
+        $encodeArray = [
+            (object)[
+                "decode" => '\\',
+                "encode" => '%1',
+            ],
+            (object)[
+                "decode" => '/',
+                "encode" => '%2',
+            ],
+            (object)[
+                "decode" => ':',
+                "encode" => '%3',
+            ],
+            (object)[
+                "decode" => '*',
+                "encode" => '%4',
+            ],
+            (object)[
+                "decode" => '?',
+                "encode" => '%5',
+            ],
+            (object)[
+                "decode" => '"',
+                "encode" => '%6',
+            ],
+            (object)[
+                "decode" => '<',
+                "encode" => '%7',
+            ],
+            (object)[
+                "decode" => '>',
+                "encode" => '%8',
+            ],
+            (object)[
+                "decode" => '|',
+                "encode" => '%9',
+            ],
+        ];
+
+        $encodedName = $name;
+        foreach ($encodeArray as $array) {
+            $encodedName = str_replace($array->decode, $array->encode, $encodedName);
+        };
+        
+        return $encodedName;
+    }
+
+}
+/**
+ * Convert the valid symbols to invalid symbols
+ * @param string $name
+ * 
+ * @return string
+ */
+if(!function_exists('path_decode'))
+{
+    function path_decode(string $name): string
+    {
+
+        $decodeArray = [
+            (object)[
+                "decode" => '\\',
+                "encode" => '%1',
+            ],
+            (object)[
+                "decode" => '/',
+                "encode" => '%2',
+            ],
+            (object)[
+                "decode" => ':',
+                "encode" => '%3',
+            ],
+            (object)[
+                "decode" => '*',
+                "encode" => '%4',
+            ],
+            (object)[
+                "decode" => '?',
+                "encode" => '%5',
+            ],
+            (object)[
+                "decode" => '"',
+                "encode" => '%6',
+            ],
+            (object)[
+                "decode" => '<',
+                "encode" => '%7',
+            ],
+            (object)[
+                "decode" => '>',
+                "encode" => '%8',
+            ],
+            (object)[
+                "decode" => '|',
+                "encode" => '%9',
+            ],
+        ];
+
+        $decodedName = $name;
+        foreach ($decodeArray as $array) {
+            $decodedName = str_replace($array->encode, $array->decode, $decodedName);
+        };
+    
+        return $decodedName;
+    }
+
+}

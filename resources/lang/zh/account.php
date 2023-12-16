@@ -12,17 +12,6 @@ return array (
   'banned' => '停用',
   'yourself' => '（您自己）',
   'create-role-panel' => '身分组创建面板',
-  'roles' => 
-  array (
-    'new_user' => '新用户',
-    'approve_user' => '受批准用户',
-    'admin' => '管理员',
-    'super_admin' => '超级管理员',
-    'root' => '根管理员',
-    'testing_engineer' => '测试工程师',
-    'test' => '测试',
-    'tester_admin' => '測試管理員',
-  ),
   'submit' => '提交',
   'create-role' => '新建身分组',
   'form' => 
@@ -176,4 +165,13 @@ return array (
   'unavaiable-account' => '不可用的账号',
   'unbanned' => '解禁',
   'password-or-email-wrong' => '电子邮件或密码错误！请检查再填写！',
+  'roles' => 
+  array (
+    'new_user' => '新用户',
+    'approve_user' => '受批准用户',
+    'admin' => '管理员',
+    'super_admin' => '超级管理员',
+    'root' => '根管理员',
+    'tester_admin' => '测试管理员',
+  ),
 );

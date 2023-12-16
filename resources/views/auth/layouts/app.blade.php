@@ -22,12 +22,7 @@
     
     <!-- 導入應用文件 -->
     <link defer rel="stylesheet" href="{{asset('css/app.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/frontend/includes/navbar.css')}}"> --}}
     <script defer src="{{asset('js/app.js')}}"></script>
-
-    <!-- 導入全局文件 -->
-    <link rel="preload stylesheet" as="style" href="{{asset('css/auth/global.css')}}">
-    <script defer src="{{asset('js/auth/global.js')}}"></script>
 
     <!-- Pusher -->
     <script defer src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
@@ -37,14 +32,25 @@
     <title>{{env('APP_NAME')}} | @yield('title')</title>
 </head>
 <body>
+  
+  <div id="alert">
+      @if ($errors->any())
+        <x-alert :state="'danger'">
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </x-alert>
+      @endif
+      @if(session('success'))
+        <x-alert :state="'success'">
+            <li>{{ session('success') }}</li>
+        </x-alert>
+      @endif
+  </div>
 
-    <div id="alert"></div>
-
-    <div class="app">
-
-        @yield('app')
-
-
+  <div class="app">
+        
+    @yield('app')
 
     </div>
 

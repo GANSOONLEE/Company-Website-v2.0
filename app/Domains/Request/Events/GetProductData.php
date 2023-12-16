@@ -2,7 +2,7 @@
 
 namespace App\Domains\Request\Events;
 
-use App\Models\Product;
+use App\Domains\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

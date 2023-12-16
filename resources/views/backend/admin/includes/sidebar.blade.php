@@ -42,6 +42,21 @@
         </section>
         @endif
 
+        <!-- Model 車款 -->
+        @if(auth()->user()->getRoleEntity()->hasPermission('admin_model'))
+        <section class="link-container">
+            <div class="link-title">
+                <i class="link-title-icon fa-solid fa-car"></i>
+                <p class="link-title-text">{{ __('sidebar.model') }}</p>
+                <i class="fa-solid fa-angle-up"></i>
+            </div>
+            <ul class="">
+                <a href="{{ route('backend.admin.model.create') }}"><li>{{ __('sidebar.model-create') }}</li></a>
+                <a href="{{ route('backend.admin.model.index') }}"><li>{{ __('sidebar.model-edit') }}</li></a>
+            </ul>
+        </section>
+        @endif
+
         <!-- Category 品类 -->
         @if(auth()->user()->getRoleEntity()->hasPermission('admin_category'))
         <section class="link-container">
@@ -52,7 +67,7 @@
             </div>
             <ul class="">
                 <a href="{{ route('backend.admin.category.category-create') }}"><li>{{ __('sidebar.category-create') }}</li></a>
-                <a href="{{ route('backend.admin.category.category-edit') }}"><li>{{ __('sidebar.category-edit') }}</li></a>
+                <a href="{{ route('backend.admin.category.category-edit') }}"><li style="transform:rotateZ(50)">{{ __('sidebar.category-edit') }}</li></a>
             </ul>
         </section>
         @endif
@@ -153,11 +168,7 @@
 
     <div class="account-area">
         <div class="avatar">
-            @if (auth()->user()->email == "vincentgan0402@gmail.com" || auth()->user()->email == "yipjwen0229@gmail.com")
-                <img src="{{asset('jingwen.png')}}" alt="" class="avatar-image">
-            @else
                 <img src="{{asset('image/logo-square.png')}}" alt="" class="avatar-image">
-            @endif
             <a class="logout-href" href="{{ route('auth.logout') }}" aria-label="logout">
                 <i class="logout-icon fa-solid fa-sign-out"></i>
             </a>
