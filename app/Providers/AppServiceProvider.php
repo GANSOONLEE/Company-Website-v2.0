@@ -16,6 +16,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Domains\Auth\Models\User;
 
+use Yajra\DataTables\Html\Builder;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -44,5 +46,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('sidebar-item', SidebarItem::class);
         Blade::component('sidebar-dropdown', SidebarDropdown::class);
         Blade::component('sidebar-dropdown-item', SidebarDropdownItem::class);
+
+        Builder::useVite();
     }
 }

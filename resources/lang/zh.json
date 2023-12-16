@@ -11,5 +11,8 @@
     "Edit": "编辑",
     "Create": "创建",
     "Delete": "删除",
-    "Action": "快速操作"
+    "Action": "快速操作",
+    "Id": "编号",
+    "Search": "搜索",
+    "No Record": "找不到符合的记录"
 }

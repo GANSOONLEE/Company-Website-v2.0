@@ -63,6 +63,9 @@ Route::group(['prefix' =>'role', 'as' =>'role.'], function()
     Route::get('create', [RoleController::class, 'create'])
         ->name('create');
 
+    Route::get('management', [RoleController::class, 'management'])
+        ->name('management');
+
     Route::post('/', [RoleController::class,'store'])
         ->name('store');
 

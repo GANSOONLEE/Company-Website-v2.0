@@ -35,13 +35,13 @@ class LoginController
      * method: post
      * name: auth.login.store
      * 
-     * @return \Illuminate\View\View;
+     * @return mixed
      */
-    public function store(LoginRequest $request): \Illuminate\View\View
+    public function store(LoginRequest $request): mixed
     {
         $this->loginService->store($request->validated());
         
-        return view('frontend.home');
+        return redirect()->route('frontend.home');
     }
 
     /**

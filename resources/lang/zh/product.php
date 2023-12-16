@@ -38,7 +38,6 @@ return array (
   'search' => '搜索',
   'create-product-success' => '产品创建成功！',
   'upload-failure' => '上传失败！',
-  'update-successful' => '更新成功！',
   'create-panel' => '产品创建面板',
   'create-panel-label' => '创建产品',
   'create-panel-description' => '创建产品',
@@ -46,4 +45,7 @@ return array (
   'management-panel-label' => '编辑产品',
   'management-panel-description' => '编辑产品',
   'create-product-error' => '产品创建失败！',
+  'edit-panel' => '编辑产品',
+  'edit-panel-description' => '修改产品的信息',
+  'update-product-success' => '商品更新成功！',
 );

@@ -9,10 +9,6 @@
 
 @section('main')
 
-@php
-    
-@endphp
-
     @include('backend.admin.product.create-form')
 
 @endsection

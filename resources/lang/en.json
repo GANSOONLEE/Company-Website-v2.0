@@ -11,5 +11,8 @@
     "Register": "Register",
     "Terms and Conditions": "Terms of Use and Conditions",
     "Delete": "delete",
-    "Action": "Quick Actions"
+    "Action": "Quick Actions",
+    "Id": "ID",
+    "Search": "Search",
+    "No Record": "No matching record found"
 }

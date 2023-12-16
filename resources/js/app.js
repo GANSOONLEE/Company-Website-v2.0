@@ -7,7 +7,6 @@
 import $ from 'jquery'
 import { createApp } from 'vue';
 import './bootstrap.js';
-import 'laravel-datatables-vite';
 
 const app = createApp({});
 window.app = app;

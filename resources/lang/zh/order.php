@@ -23,4 +23,9 @@ return array (
   'download-pdf' => '储存为 pdf',
   'serial-number' => '编号',
   'printed-at' => '打印日期',
+  'history-order' => '历史记录',
+  'history-order-panel-description' => '查看过去的订单记录',
+  'history-order-panel-label' => '查看历史记录',
+  'view-order-panel-label' => '查看当前需要处理的订单',
+  'view-order-panel-description' => '查看订单',
 );

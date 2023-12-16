@@ -21,7 +21,7 @@ class RoleController
     /**
      * url: admin/role/
      * method: get
-     * name: backend.admin.account.index
+     * name: backend.admin.auth.index
      * 
      * @return \Illuminate\View\View;
      */
@@ -33,20 +33,31 @@ class RoleController
     /**
      * url: admin/role/create
      * method: get
-     * name: backend.admin.account.create
+     * name: backend.admin.auth.create
      * 
      * @return mixed
      */
-
     public function create()
     {
         return view('backend.admin.auth.create');
     }
 
     /**
+     * url: admin/role/creamanagementte
+     * method: get
+     * name: backend.admin.auth.management
+     * 
+     * @return mixed
+     */
+    public function management()
+    {
+        return view('backend.admin.auth.role.management');
+    }
+
+    /**
      * url: admin/role/
      * method: post
-     * name: backend.admin.account.store
+     * name: backend.admin.auth.store
      * 
      * @param CreateRoleRequest $request
      * 
@@ -63,7 +74,7 @@ class RoleController
     /**
      * url: admin/role/edit
      * method: get
-     * name: backend.admin.role.edit
+     * name: backend.admin.auth.role.edit
      * 
      * @param Role $role
      * 
@@ -76,7 +87,7 @@ class RoleController
     /**
      * url: admin/role/{role}
      * method: patch
-     * name: backend.admin.role.update
+     * name: backend.admin.auth.role.update
      */
     public function update(Request $request){
 
@@ -85,7 +96,7 @@ class RoleController
     /**
      * url: admin/role/{role}
      * method: delete
-     * name: backend.admin.role.delete
+     * name: backend.admin.auth.role.delete
      * @param $role
      */
     public function delete($role){
@@ -95,7 +106,7 @@ class RoleController
     /**
      * url: admin/role/deleted-role/{role}
      * method: delete
-     * name: backend.admin.role.destroy
+     * name: backend.admin.auth.role.destroy
      * @param $role
      */
     public function destroy($role){

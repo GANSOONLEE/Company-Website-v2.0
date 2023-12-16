@@ -20,20 +20,28 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function()
     Route::get('management/{page?}', [ProductController::class, 'management'])
         ->name('management');
 
+    // Product Management Center > Management Panel > edit Panel
+    Route::get('edit/{id}', [ProductController::class, 'edit'])
+        ->name('edit');
+
+    // Product Management Center > Management Panel
+    Route::get('search', [ProductController::class, 'search'])
+        ->name('search');
+
     // Store Product
     Route::post('/', [ProductController::class, 'store'])
         ->name('store');
 
     // Update Product
-    Route::patch('{productCode?}', [ProductController::class, 'update'])
+    Route::patch('{id}', [ProductController::class, 'update'])
         ->name('update');
 
     // Delete Product (Soft)
-    Route::delete('{productCode}', [ProductController::class, 'delete'])
+    Route::delete('{id}', [ProductController::class, 'delete'])
         ->name('delete');
 
     // Delete Product (Force)
-    Route::delete('/deleted-product/{$productCode}', [ProductController::class, 'destroy'])
+    Route::delete('/deleted-product/{id}', [ProductController::class, 'destroy'])
         ->name('destroy');
     
 });

@@ -80,6 +80,18 @@ Breadcrumbs::for('backend.admin.product.management', function (BreadcrumbTrail $
     $trail->push(__('product.management-panel'), route('backend.admin.product.management'));
 });
 
+// Breadcrumbs for 'backend.admin.product.search'
+Breadcrumbs::for('backend.admin.product.search', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.product.management');
+    $trail->push(__('Search'), route('backend.admin.product.management'));
+});
+
+// Breadcrumbs for 'backend.admin.product.edit'
+Breadcrumbs::for('backend.admin.product.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('backend.admin.product.management');
+    $trail->push(__('product.edit-panel'), route('backend.admin.product.edit', ["id" => $id]));
+});
+
 /* ------------------------------------- User Management Center ------------------------------------- */
 
 // Breadcrumbs for 'backend.admin.user.index'

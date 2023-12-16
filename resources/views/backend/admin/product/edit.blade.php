@@ -2,12 +2,67 @@
 @inject('brands', 'App\Models\Brand')
 @inject('categories', 'App\Models\Category')
 
-<x-form.post :action="route('backend.admin.product.store')" class="overscroll-y-auto">
+@extends('backend.layouts.app')
+
+@section('title', __('product.edit-panel'))
+
+@section('subtitle', __('product.edit-panel-description'))
+
+@section('main')
+
+@inject('models', 'App\Models\CarModel')
+@inject('brands', 'App\Models\Brand')
+@inject('categories', 'App\Models\Category')
+
+<x-form.patch :action="route('backend.admin.product.update', ['id' => $product->id])" class="overscroll-y-auto">
 
     <!-- Product Image Upload -->
     <div class="mb-3">
         <h4 class="text-2xl mb-4">@lang('product.image-upload')</h4>
         <ul class="product-image-list flex flex-row gap-x-2 w-full overflow-x-auto" style="max-width: 80%">
+
+            @php
+                $files = Storage::disk('public')->files("product/$product->product_category/$product->product_code");
+                usort($files, function ($a, $b) {
+                    // 将包含 "cover" 的文件移动到数组的开头
+                    if (strpos($a, 'cover') !== false) {
+                        return -1;
+                    } elseif (strpos($b, 'cover') !== false) {
+                        return 1;
+                    }
+
+                    // 其他情况按照默认排序
+                    return strcmp($a, $b);
+                });
+            @endphp
+            
+            <!-- Image Label -->
+            @foreach ($files as $filePath)
+                @php
+                    $id = Str::random(10);
+                    $fileName = pathinfo($filePath)['filename'];
+                @endphp
+                <li class="box flex flex-col mr-3" data-image="product">
+                    <div class="container">
+                        <label for="{{ $id }}" class="bg-slate-50 border-solid border-2 border-gray-800 rounded-md hover:bg-gray-300 dark:bg-gray-800 dark:border-zinc-200 dark:hover:bg-gray-600">
+                            <div class="image-tips" hidden>
+                                <div class="justify-center align-items-center">
+                                    <p style="margin-bottom: 0">Upload Image<i class="fa-solid fa-upload" aria-hidden="true"></i></p>
+                                </div>
+                            </div>
+                            <div class="image-preview">
+                                <button class="btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">
+                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                </button>
+                                <img src="{{ asset('storage/' . $filePath) }}">
+                            </div>
+                        </label>
+                    </div>
+                    <input type="file" name="product-image[]" id="{{ $id }}" hidden="" onchange="render(this)">
+                    <p>{{ $fileName }}</p>
+                </li>
+            @endforeach
+
         </ul>
     </div>
 
@@ -15,6 +70,51 @@
     <div class="mb-3">
         <h4 class="text-2xl mb-4">@lang('product.name')</h4>
         <ul class="product-name-list flex flex-column gap-y-2">
+
+            <!-- row -->
+            @foreach ($product->names()->pluck('name')->toArray() as $name)
+                @php
+
+                    $id = Str::random(12);
+
+                    $matchedModel = '';
+                    foreach ($models::all() as $model) {
+                        if (stripos($name, $model->name) !== false) {
+                            $matchedModel = $model->name;
+                            break;
+                        }
+                    }
+
+                    $serial = trim(str_ireplace($matchedModel, '', $name));
+
+                    $splitName = (object)[
+                        'model' => $matchedModel,
+                        'serial' => $serial,
+                    ];
+
+                @endphp
+                <li class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label">@lang('product.model')</label>
+                            <input value="{{ $splitName->model }}" type="text" list="model-{{ $id }}" name="model[]" id="{{ $id }}" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                                <datalist id="model-{{ $id }}">
+                                    @foreach ($models::orderBy('name')->pluck('name')->toArray() as $model)
+                                        <option value="{{ $model }}"></option>
+                                    @endforeach
+                                </datalist>
+                            </input>
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">@lang('product.model-serial')</label>
+                            <input value="{{ $splitName->serial }}" type="text" name="model-serial[]" id="" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                        </div>
+                        <div class="col flex align-items-end">
+                            <button class="btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">@lang('Delete')</button>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
 
         </ul>
     </div>
@@ -24,6 +124,54 @@
         <h4 class="text-2xl mb-4">@lang('product.brand-upload')</h4>
         <ul class="brand-input-list flex flex-column gap-y-2">
 
+            <!-- row -->
+            @foreach ($product->brands()->get() as $brand)
+                @php
+                    $id = Str::random(12);
+                    $filePath = Storage::disk('public')->files("product/$product->product_category/$product->product_code/$brand->sku_id");
+                    $hasImage = count($filePath) > 0 ? true : false;
+                    $filePath = count($filePath) > 0 ? $filePath[0] : null;
+                @endphp
+                <li class="mb-3" data-mark="template">
+                    <div class="flex flex-row gap-x-2">
+                        <div class="w-1/5 flex align-items-end mr-3" data-column="">
+                            <label for="{{ $id }}" class="bg-slate-50 border-solid border-2 border-gray-800 rounded-md hover:bg-gray-300 dark:bg-gray-800 dark:border-zinc-200 dark:hover:bg-gray-600 cursor-pointer">
+                                <div class="image-tips" {{ !$hasImage ? '' : 'hidden' }}>
+                                    <div class="justify-center align-items-center">
+                                        <i class="fa-solid fa-upload px-2 py-2" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="image-preview" {{ $hasImage ? '' : 'hidden' }}>
+                                    <img src="{{ asset('storage/' . $filePath) }}">
+                                </div>
+                            </label>
+                            <input type="file" name="brand-image[]" id="{{ $id }}" class="w-full form-control rounded-sm dark:bg-gray-700 dark:text-white" onchange="render(this)" hidden>
+                        </div>
+                        <div class="w-96" data-column="">
+                            <label for="" class="form-label">
+                                <select type="text" name="brand[]" id="" class="w-full form-select rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                                    @foreach ($brands->pluck('name')->toArray() as $brandName)
+                                        <option value="{{ $brandName }}" {{ $brandName === $brand->brand ? 'selected' : '' }}>{{ $brandName }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+                        <div class="w-2/5" data-column="">
+                            <label for="" class="form-label">
+                                <input value="{{ $brand->code ?? old('brand-code[]') }}" type="text" name="brand-code[]" id="" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                            </label>
+                        </div>
+                        <div class="w-2/5" data-column="">
+                            <label for="" class="form-label">
+                                <input value="{{ $brand->code ?? old('frozen-code[]') }}" type="text" name="frozen-code[]" id="" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                            </label>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger bg-danger text-nowrap" type="button" onclick="deleteListItem(this)">@lang('Delete')</button>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
         </ul>
     </div>
 
@@ -32,15 +180,15 @@
         <h4 h4 class="text-2xl mb-4">@lang('product.category')</h4>
         <select name="product_category" type="text" class="form-select rounded-sm dark:bg-gray-700 dark:text-white" required>
             <option value="" hidden selected>@lang('product.category')</option>
-            @foreach ($categories::all() as $category)
-                <option value="{{ $category->name }}">{{ $category->name }}</option>
+            @foreach ($categories::pluck('name')->toArray() as $category)
+                <option value="{{ $category }}" {{ $category === $product->product_category ? 'selected' : '' }}>{{ $category }}</option>
             @endforeach
         </select>
     </div>
 
     <button class="btn btn-success bg-success w-full" type="submit">@lang('Submit')</button>
 
-</x-form.post>
+</x-form.patch>
 
 <script>
     const models = @json($models->orderBy('name')->pluck('name')->toArray());
@@ -375,9 +523,9 @@
             this.deleteRowButton = deleteRowButton;
             deleteCol.appendChild(deleteRowButton);
 
-            if (this.parentInstance.elementList.length == 0) {
-                this.deleteRowButton.disabled = true;
-            }
+            // if (this.parentInstance.elementList.length == 0) {
+            //     this.deleteRowButton.disabled = true;
+            // }
 
             deleteRowButton.addEventListener('click', e => {
                 this.deleteBox();
@@ -663,9 +811,9 @@
             deleteRowButton.innerText = `{{ __('Delete') }}`;
             this.deleteRowButton = deleteRowButton;
 
-            if (this.parentInstance.elementList.length == 0) {
-                this.deleteRowButton.disabled = true;
-            }
+            // if (this.parentInstance.elementList.length == 0) {
+            //     this.deleteRowButton.disabled = true;
+            // }
 
             deleteCol.appendChild(deleteRowButton);
 
@@ -760,4 +908,44 @@
 
     let brand = new InputList(document.querySelector('ul.brand-input-list'));
     brand.buildElement();
+
+function deleteListItem(button)
+{
+    let listItem = button.closest('li');
+
+    let result = confirm('Are you sure you want to delete this?');
+
+    if (listItem && result) {
+        listItem.remove();
+    }
+}
+
+function render(input)
+{
+    let reader = new FileReader();
+    let file = input.files[0];
+
+    reader.onloadend = event => {
+        input.closest('li').querySelector('img').src = reader.result;
+    }
+
+    if (file) {
+        input.closest('li').querySelector('p') ? input.closest('li').querySelector('p').innerText = file.name : null;
+        reader.readAsDataURL(file);
+        input.required = true;
+    }
+
+    showHideTips(input.closest('li'))
+}
+
+function showHideTips(li)
+{
+    let imageTips = li.querySelector('div.image-tips')
+    let imagePreview = li.querySelector('div.image-preview')
+
+    imageTips.hidden = true;
+    imagePreview.hidden = false;
+}
 </script>
+
+@endsection

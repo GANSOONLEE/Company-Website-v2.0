@@ -37,7 +37,6 @@ return array (
   'upload-successful' => '上傳成功',
   'search' => '尋找',
   'upload-failure' => '上傳失敗！',
-  'update-successful' => '更新成功！',
   'create-panel' => '產品創建面板',
   'create-panel-label' => '創建產品',
   'create-panel-description' => '創建產品',
@@ -46,4 +45,7 @@ return array (
   'management-panel-description' => '編輯產品',
   'create-product-success' => '產品創建成功！',
   'create-product-error' => '產品創建失敗！',
+  'edit-panel' => '編輯產品',
+  'edit-panel-description' => '修改產品的信息',
+  'update-product-success' => '商品更新成功！',
 );

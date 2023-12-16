@@ -8,6 +8,7 @@ use App\Domains\Product\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 use App\Domains\Product\Events\ProductCreated;
 use App\Domains\Product\Events\ProductUpdated;
@@ -268,40 +269,63 @@ class ProductService extends BaseService
             $disk = 'public';
             $baseDirectory = "product/$product_category/$product_code";
 
+            if(Product::where('product_code', $product_code)->first()->product_category !== $product_category){
+                $files = Storage::disk('public')->allFiles($baseDirectory);
+                dd($files);
+                // 移动所有文件到目标文件夹
+                foreach ($files as $file) {
+                    // 获取相对路径
+                    $relativePath = str_replace("product/$product_category/", '', $file);
+    
+                    // 构建目标文件的路径
+                    $destinationFile = "product/$product_category/" . $relativePath;
+    
+                    // 移动文件
+                    Storage::disk('public')->move($file, $destinationFile);
+                }
+    
+                // 删除源文件夹
+                Storage::disk('public')->deleteDirectory("product/$product_category/$product_code");
+            }
+
             /* ---------------- Product Image ---------------- */
 
             //define Product Image Name
-            foreach($product_image as $index => $image){
-
-                if(!$image){
-                    break;
+            if(count($product_image) > 0){
+                foreach($product_image as $index => $image){
+    
+                    if(!$image){
+                        break;
+                    }
+    
+                    $fileExtension = $image->getClientOriginalExtension();
+    
+                    $newFileName = ($index === 0)
+                        ? "cover.$fileExtension"
+                        : "$name[0]-$index.$fileExtension";
+    
+                    $productImagePath[] = $image->storeAs($baseDirectory, $newFileName, $disk);
                 }
-
-                $fileExtension = $image->getClientOriginalExtension();
-
-                $newFileName = ($index === 0)
-                    ? "cover.$fileExtension"
-                    : "$name[0]-$index.$fileExtension";
-
-                $productImagePath[] = $image->storeAs($baseDirectory, $newFileName, $disk);
             }
 
             /* ---------------- Product Image ---------------- */
 
             //define Brand Image Name
-            foreach($brand_image as $index => $image){
+            if(count($brand_image) > 0){
+                foreach($brand_image as $index => $image){
 
-                if(!$image){
-                    break;
+                    if(!$image){
+                        break;
+                    }
+
+                    $fileExtension = $image->getClientOriginalExtension();
+
+                    $newFileName = "cover.$fileExtension";
+                    
+                    $skuIDs[$index] ?? throw new GeneralException('There has problem to saving your image.');
+
+                    $brandImagePath[] = $image->storeAs($baseDirectory . "/$skuIDs[$index]", $newFileName, $disk);
                 }
-
-                $fileExtension = $image->getClientOriginalExtension();
-
-                $newFileName = "cover.$fileExtension";
-                
-                $skuIDs[$index] ?? throw new GeneralException('There has problem to saving your image.');
-
-                $brandImagePath[] = $image->storeAs($baseDirectory . "/$skuIDs[$index]", $newFileName, $disk);
             }
 
             $imagePath = [
@@ -317,5 +341,190 @@ class ProductService extends BaseService
 
         DB::commit();
         return $imagePath;
+    }
+
+    /**
+     * @param array $data
+     * @param string $id
+     * 
+     * @return Product
+     * @throws GeneralException
+     * @throws \Throwable
+     */
+    public function update(array $data = [], string $id): Product
+    {
+        DB::beginTransaction();
+
+        try{
+
+            // Get product instance
+            $product = Product::where('id', $id)->first();
+
+
+            // Create Product Name Information
+            $name = $this->updateProductName($product, [
+                'model' => $data['model'],
+                'model_serial' => $data['model-serial'],
+            ]);
+
+            // Create Product Brand Information
+            $skuIDs = $this->updateProductBrand($product, [
+                'brand' => $data['brand'],
+                'brand_code' => $data['brand-code'],
+                'frozen_code' => $data['frozen-code'],
+            ]);
+
+            // Save Image
+            $this->saveImage(
+                $data['product-image'] ?? [],
+                $data['brand-image'] ?? [],
+                $name,
+                $skuIDs,
+                $data['product_category'],
+                $product->product_code
+            );
+
+            // Create Product Basic Information
+            $this->updateProduct($product, [
+                'product_category' => $data['product_category'] ?? null,
+                'product_status' => $data['product_status'] ?? null,
+            ]);
+
+        }catch(Exception $e){
+            dd($e->getMessage());
+            DB::rollBack();
+            throw new GeneralException(__('There was a problem creating your problem\. Please try again.'));
+        }
+
+        DB::commit();
+        return $product;
+    }
+
+    /**
+     * @param Product $product
+     * @param array $data
+     * 
+     * @return void
+     */
+    public function updateProduct(Product $product, array $data = []) :void
+    {
+        $product->update([
+            'product_category' => $data['product_category'] ?? null,
+            'product_status' => $data['product_status'] ?? null,
+        ]);
+    }
+
+    /**
+     * @param Product $product
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function updateProductName(Product $product, array $data=[]) :mixed
+    {
+        $fullName = [];
+        // Origin Record 原本的記錄
+        $originName = $product->names()->pluck('name')->toArray();
+
+        // Fullname 組裝記錄
+        foreach ($data['model'] as $key => $model){
+            $fullName[] = ($model ?? '') . ' ' . $data['model_serial'][$key];
+        }
+        // Deleted Record 找出已經被刪除的記錄
+        $deletedName = array_diff($originName, $fullName);
+        foreach ($deletedName as $name){
+            DB::table('products_name')
+                ->where('product_code', $product->product_code)
+                ->where('name', $name)
+                ->delete();
+        }
+
+        // Find New Record 找出新增加的記錄
+        $newName = array_diff($fullName, $originName);
+        foreach ($newName as $name){
+            DB::table('products_name')->insert([
+                'name' => $name,
+                'product_code' => $product->product_code,
+            ]);
+        }
+
+        return array_merge($product->names()->pluck('name')->toArray());
+    }
+
+    /**
+     * @param Product $product
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function updateProductBrand(Product $product, array $data=[]) :mixed
+    {
+        $sku_ids = [];
+        $brands = [];
+        $brand_codes = [];
+        $frozen_codes = [];
+
+        // Origin Record 原本的記錄
+        $originSkuId = $product->brands()->pluck('sku_id')->toArray();
+        $originBrand = $product->brands()->pluck('brand')->toArray();
+        $originCode = $product->brands()->pluck('code')->toArray();
+        $originFrozenCode = $product->brands()->pluck('frozen_code')->toArray();
+
+        // Fullname 組裝記錄
+        foreach ($data['brand_code'] as $key => $code){
+            $brands[$key] = $data['brand'][$key];
+            $brand_codes[$key] = $code;
+            $frozen_codes[$key] = $data['frozen_code'][$key];
+
+            $sku_ids[] = $product->brands()->where('brand', $brands)->where('code', $data['brand_code'][$key])->first()->sku_id ?? null;
+        }
+
+        // Deleted Record 找出已經被刪除的記錄
+        $deletedSkuId = array_diff($originSkuId, $sku_ids);
+        foreach ($deletedSkuId as $skuId){
+            DB::table('products_brand')
+                ->where('product_code', $product->product_code)
+                ->where('sku_id', $skuId)
+                ->delete();
+        }
+
+        // Find New Record 找出新增加的記錄
+        $newSkuId = array_diff($sku_ids, $originSkuId);
+        foreach ($newSkuId as $number => $skuId){
+            DB::table('products_brand')->insert([
+                'brand' => $brands[$number],
+                'code' => $brand_codes[$number],
+                'frozen_code' => $frozen_codes[$number],
+                'sku_id' => $this->generatorBrandSkuId(),
+                'product_code' => $product->product_code,
+            ]);
+        }
+
+        return array_merge($product->brands()->pluck('sku_id')->toArray());
+    }
+
+    /**
+     * Search product at global
+     * @param string $searchTerm
+     * 
+     * @return mixed
+     */
+    public function search(string $searchTerm): mixed
+    {
+        return Product::select('products.*', 'products_name.name')
+            ->addSelect(DB::raw('GROUP_CONCAT(DISTINCT products_name.name) as names'))
+            ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
+            ->leftJoin('products_brand', 'products_brand.product_code', '=', 'products.product_code')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('products_name.name', 'like', "%$searchTerm%")
+                    ->orWhere('products_brand.brand', 'like', "%$searchTerm%")
+                    ->orWhere('products_brand.code', 'like', "%$searchTerm%")
+                    ->orWhere('products_brand.frozen_code', 'like', "%$searchTerm%")
+                    ->orWhere('products.product_category', 'like', "%$searchTerm%");
+            })
+            ->orderBy('products_name.name')
+            ->groupBy('products.product_code')
+            ->paginate(10)
+            ->withQueryString();
     }
 }
