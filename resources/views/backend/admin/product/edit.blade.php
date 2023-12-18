@@ -37,7 +37,7 @@
             @foreach ($files as $filePath)
                 @php
                     $id = Str::random(10);
-                    $fileName = pathinfo($filePath)['filename'];
+                    $fileName = path_decode(pathinfo($filePath)['filename']);
                 @endphp
                 <li class="box flex flex-col mr-3" data-image="product">
                     <div class="container">
@@ -51,7 +51,7 @@
                                 <button class="btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
-                                <img src="{{ asset('storage/' . $filePath) }}">
+                                <img src="{{ asset('storage/' . url_encode($filePath)) }}">
                             </div>
                         </label>
                     </div>

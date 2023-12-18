@@ -302,7 +302,7 @@ class ProductService extends BaseService
     
                     $newFileName = ($index === 0)
                         ? "cover.$fileExtension"
-                        : "$name[0]-$index.$fileExtension";
+                        : path_encode($name[0]) . "-$index.$fileExtension";
     
                     $productImagePath[] = $image->storeAs($baseDirectory, $newFileName, $disk);
                 }

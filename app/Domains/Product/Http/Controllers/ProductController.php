@@ -153,4 +153,17 @@ class ProductController
         return response()->json(['debug' => $debug, 'relativePath' => stripslashes($relativePath)]);
     }
 
+    /**
+     * Delete the Product Information (Soft)
+     * 
+     * @param string $id
+     * 
+     * @return mixed
+     */
+    public function delete($id): mixed
+    {
+        Product::where('id', $id)->delete();
+        return redirect()->back()->with('success', __('product.delete-product-success', ["id" => $id]));
+    }
+
 }
