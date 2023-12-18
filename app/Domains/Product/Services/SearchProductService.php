@@ -2,7 +2,7 @@
 
 namespace App\Domains\Product\Services;
 
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Domains\Product\Models\Product;

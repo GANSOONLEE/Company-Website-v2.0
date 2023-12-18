@@ -21,11 +21,11 @@ Route::group(['prefix' => 'model', 'as' => 'model.'], function()
         ->name('edit');
 
 
-    Route::patch('{model}', [ModelController::class, 'update'])
+    Route::patch('{id}', [ModelController::class, 'update'])
         ->name('update');
 
 
-    Route::delete('{model}', [ModelController::class, 'destroy'])
+    Route::delete('{id}', [ModelController::class, 'destroy'])
         ->name('destroy');
 
 });

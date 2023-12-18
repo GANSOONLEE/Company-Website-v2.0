@@ -1,4 +1,4 @@
-@inject('models', 'App\Models\CarModel')
+@inject('models', 'App\Domains\Model\Models\Model')
 @inject('brands', 'App\Models\Brand')
 @inject('categories', 'App\Models\Category')
 

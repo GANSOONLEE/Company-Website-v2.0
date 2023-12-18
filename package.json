@@ -40,6 +40,7 @@
         "bootstrap-vue": "^2.23.1",
         "datatables.net-dt": "^1.13.8",
         "docker": "^0.2.14",
+        "flowbite": "^2.2.1",
         "foundation-sites": "^6.8.1",
         "jquery": "^3.7.1",
         "mix": "^0.0.1",

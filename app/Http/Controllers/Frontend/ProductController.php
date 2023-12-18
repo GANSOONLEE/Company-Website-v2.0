@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 // Model
 use App\Domains\Product\Models\Product;
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 
 use App\Domains\Product\Services\FrontendProductService;
 use Illuminate\Http\Request;

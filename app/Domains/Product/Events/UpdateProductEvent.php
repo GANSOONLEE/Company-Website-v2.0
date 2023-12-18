@@ -265,7 +265,7 @@ class UpdateProductEvent{
         $currentProductName = $this->product->getProductName();
         foreach ($currentProductName as $index => $productName) {
 
-            $modelData = \App\Models\CarModel::all();
+            $modelData = \App\Domains\Model\Models\Model::all();
             $matchedModel = '';
             foreach ($modelData as $model) {
                 if (stripos($productName->name, $model->name) !== false) {

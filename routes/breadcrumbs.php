@@ -92,6 +92,26 @@ Breadcrumbs::for('backend.admin.product.edit', function (BreadcrumbTrail $trail,
     $trail->push(__('product.edit-panel'), route('backend.admin.product.edit', ["id" => $id]));
 });
 
+/* ------------------------------------- Car Model  ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.model.index'
+Breadcrumbs::for('backend.admin.model.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.model'));
+});
+
+// Breadcrumbs for 'backend.admin.model.create'
+Breadcrumbs::for('backend.admin.model.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.model.index');
+    $trail->push(__('model.create-panel'), route('backend.admin.model.create'));
+});
+
+// Breadcrumbs for 'backend.admin.model.management'
+Breadcrumbs::for('backend.admin.model.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.model.index');
+    $trail->push(__('model.management-panel'), route('backend.admin.model.edit'));
+});
+
 /* ------------------------------------- User Management Center ------------------------------------- */
 
 // Breadcrumbs for 'backend.admin.user.index'

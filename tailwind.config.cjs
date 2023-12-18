@@ -5,11 +5,12 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.js',
     './resources/**/*.vue',
+    "./node_modules/flowbite/**/*.js"
   ],
   darkMode: 'class',
   theme: {
     colors: {
-      'theme-1': '#EB0A1E',
+      'theme-1': '#EB0A1E'
     },
     zIndex: {
       999999: '999999',
@@ -145,6 +146,7 @@ module.exports = {
     }
   },
   plugins: [
+    require('flowbite/plugin'),
     require('@themesberg/flowbite/plugin')
   ],
 }

@@ -1,6 +1,6 @@
 @props(['category'])
 
-@inject('models', 'App\Models\CarModel')
+@inject('models', 'App\Domains\Model\Models\Model')
 
 <div id="sidebar-background" class="background bg-black opacity-75 w-full h-full fixed top-0 left-0 z-1 transition-all duration-100 ease-in-out" hidden></div>
 

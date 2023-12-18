@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Backend\Admin\Model;
 use App\Http\Controllers\Controller;
 
 use App\Domains\Model\Request\CreateModelRequest;
+use App\Domains\Model\Request\UpdateModelRequest;
 use App\Domains\Model\Services\ModelService;
 
-use App\Models\CarModel as Model;
+use App\Exceptions\GeneralException;
+
+use App\Domains\Model\Models\Model as Model;
 use Illuminate\Http\Request;
 
 class ModelController extends Controller
@@ -57,8 +60,7 @@ class ModelController extends Controller
     public function store(CreateModelRequest $request){
 
         $model = $this->modelService->store($request->validated());
-
-        return redirect()->back();
+        return redirect()->back()->with('success', __('model.create-model-success', ["model" => $model->name]));
 
     }
 
@@ -72,26 +74,49 @@ class ModelController extends Controller
      * @return mixed
      */
     public function edit(){
-
+        return view('backend.admin.model.edit');
     }
 
     /**
      * url: admin/model/{model}
      * method: patch
      * name: backend.admin.model.update
+     * 
+     * @param string $id
+     * @param UpdateModelRequest $request
+     * 
+     * @return mixed
+     * @throws \Throwable
      */
-    public function update(Request $request){
-
+    public function update($id, UpdateModelRequest $request){
+        $model = $this->modelService->update($id, $request->validated());
+        return redirect()->back()->with('success', __('model.update-model-success', ["model" => $model->name]));
     }
 
     /**
      * url: admin/model/{model}
      * method: delete
      * name: backend.admin.model.destroy
-     * @param $model
+     * @param $id
      */
-    public function destroy($model){
+    public function destroy($id){
+        
+        // check this model exists
+        $model = Model::where('id', $id)->first();
+        $model ? null : throw new GeneralException('Can\'t find this model');
 
+        $name = $model->name;
+
+        // check have any product in this model
+        $products = \Illuminate\Support\Facades\DB::table('products_name')
+                        ->where('name', 'LIKE', "%$name%")
+                        ->count();
+        $products === 0 ? null : throw new GeneralException('This model has products, please change the model!');
+
+        $model->delete();
+
+        return redirect()->back()->with('success', __('model.delete-model-success', ["model" => $name]));
+        
     }
 
 }

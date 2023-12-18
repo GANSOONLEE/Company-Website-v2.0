@@ -1,8 +1,9 @@
-@inject('model', '\App\Models\CarModel')
+@inject('model', '\App\Domains\Model\Models\Model')
 
-@extends('backend.admin.layouts.app')
+@extends('backend.layouts.app')
 
-@section('title', __('Create Model'))
+@section('title', __('model.create-panel'))
+@section('subtitle', __('model.create-panel-description'))
 
 @section('main')
 
@@ -22,12 +23,12 @@
         @csrf
 
         <div class="mb-3">
-            <label for="name" class="form-label">{{ __('Name') }}</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}">
+            <label for="name" class="form-label">{{ __('Name') }} (Proton)</label>
+            <input type="text" class="dark:placeholder:text-white form-control dark:bg-gray-600 dark:text-white" id="name" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}">
         </div>
 
         <div class="mb-3">
-            <button class="btn btn-sm btn-primary float-right" type="submit">@lang('Create Model')</button>
+            <button class="btn btn-sm btn-primary bg-primary px-5 py-2 float-right" type="submit">@lang('model.create-model')</button>
         </div>
 
     </form>

@@ -24,6 +24,9 @@
 
     @stack('before-style')
 
+    <!-- Flowbite -->
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.min.css" />
+
     <link rel="preload stylesheet" as="style" href="{{ asset('css/backend/layouts/layout.css') }}">
 
     <!-- 要在 css 之后加載的文件 -->
@@ -82,6 +85,9 @@
     <!-- DataTables -->
     <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 
+    <!-- Flowbite -->
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+    
     <script>
         if (
           localStorage.getItem('color-theme') === 'dark' ||

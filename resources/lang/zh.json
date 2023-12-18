@@ -15,5 +15,5 @@
     "Id": "编号",
     "Search": "搜索",
     "No Record": "找不到符合的记录",
-    "Link": "链接"
+    "Delete-Confirm": "你确定要删除吗？"
 }

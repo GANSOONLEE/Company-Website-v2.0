@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Type;
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 use Illuminate\Http\Request;
 
 class CreateProductController extends Controller
