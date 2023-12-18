@@ -271,7 +271,7 @@ class ProductService extends BaseService
 
             if(Product::where('product_code', $product_code)->first()->product_category !== $product_category){
                 $files = Storage::disk('public')->allFiles($baseDirectory);
-                dd($files);
+
                 // 移动所有文件到目标文件夹
                 foreach ($files as $file) {
                     // 获取相对路径
@@ -302,7 +302,7 @@ class ProductService extends BaseService
     
                     $newFileName = ($index === 0)
                         ? "cover.$fileExtension"
-                        : "$name[0]-$index.$fileExtension";
+                        : path_encode($name[0]) . "-$index.$fileExtension";
     
                     $productImagePath[] = $image->storeAs($baseDirectory, $newFileName, $disk);
                 }
@@ -344,16 +344,19 @@ class ProductService extends BaseService
     }
 
     /**
-     * @param array $data
      * @param string $id
+     * @param array $data
      * 
      * @return Product
      * @throws GeneralException
      * @throws \Throwable
      */
-    public function update(array $data = [], string $id): Product
+    public function update(string $id, array $data = []): Product
     {
         DB::beginTransaction();
+
+        $name = [];
+        $skuIDs = [];
 
         try{
 
@@ -374,16 +377,6 @@ class ProductService extends BaseService
                 'frozen_code' => $data['frozen-code'],
             ]);
 
-            // Save Image
-            $this->saveImage(
-                $data['product-image'] ?? [],
-                $data['brand-image'] ?? [],
-                $name,
-                $skuIDs,
-                $data['product_category'],
-                $product->product_code
-            );
-
             // Create Product Basic Information
             $this->updateProduct($product, [
                 'product_category' => $data['product_category'] ?? null,
@@ -397,6 +390,18 @@ class ProductService extends BaseService
         }
 
         DB::commit();
+
+        // Save Image
+        $this->saveImage(
+            $data['product-image'] ?? [],
+            $data['brand-image'] ?? [],
+            $name,
+            $skuIDs,
+            $data['product_category'],
+            $product->product_code
+        );
+
+
         return $product;
     }
 
@@ -476,7 +481,7 @@ class ProductService extends BaseService
             $brand_codes[$key] = $code;
             $frozen_codes[$key] = $data['frozen_code'][$key];
 
-            $sku_ids[] = $product->brands()->where('brand', $brands)->where('code', $data['brand_code'][$key])->first()->sku_id ?? null;
+            $sku_ids[] = $product->brands()->where('brand', $brands[$key])->where('code', $data['brand_code'][$key])->first()->sku_id ?? null;
         }
 
         // Deleted Record 找出已經被刪除的記錄
@@ -523,7 +528,7 @@ class ProductService extends BaseService
                     ->orWhere('products.product_category', 'like', "%$searchTerm%");
             })
             ->orderBy('products_name.name')
-            ->groupBy('products.product_code')
+            ->groupBy('products.id', 'products.product_code')
             ->paginate(10)
             ->withQueryString();
     }

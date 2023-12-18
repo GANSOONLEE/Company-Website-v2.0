@@ -34,25 +34,25 @@ if (!function_exists('url_encode')) {
     };
 };
 
-if (!function_exists('file_path_encode')) {
-    function file_path_encode($url) {
+if (!function_exists('url_decode')) {
+    function url_decode($url) {
 
         $encodeArray = [
             (object)[
-                "detect" => '%5C',
-                "convertTo" => '-',
-            ],
-            (object)[
                 "detect" => '%2F',
-                "convertTo" => '-',
+                "convertTo" => '/',
             ],
             (object)[
-                "detect" => '\\',
-                "convertTo" => '-',
+                "detect" => '%5C',
+                "convertTo" => '\\',
             ],
             (object)[
-                "detect" => '+',
-                "convertTo" => ' ',
+                "detect" => '%3F',
+                "convertTo" => '?',
+            ],
+            (object)[
+                "detect" => ' ',
+                "convertTo" => '%20',
             ],
         ];
 
@@ -60,7 +60,7 @@ if (!function_exists('file_path_encode')) {
         $encodedUrl = $encodeUrl;
 
         foreach ($encodeArray as $encode) {
-            $encodedUrl = str_replace($encode->detect, $encode->convertTo, $encodedUrl);
+            $encodedUrl = str_replace($encode->convertTo, $encode->detect, $encodedUrl);
         };
 
         return  $encodedUrl;

@@ -15,6 +15,7 @@ use App\Domains\Product\Models\Product;
 
 use Yajra\DataTables\DataTables;
 use App\DataTables\ProductsDataTable;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController
 {
@@ -63,6 +64,7 @@ class ProductController
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
             ->orderBy('products.product_category', 'asc')
             ->orderBy('products_name.name', 'asc')
+            ->groupBy('products.id')
             ->paginate(10);
 
         return view('backend.admin.product.management', compact('productData'));
@@ -102,9 +104,9 @@ class ProductController
      * url: admin/product/
      * method: patch
      */
-    public function update(UpdateProductRequest $request, $id): mixed
+    public function update($id, UpdateProductRequest $request): mixed
     {
-        $this->productService->update($request->validated(), $id);
+        $this->productService->update($id, $request->validated());
         return redirect()->back()->with('success', __('product.update-product-success'));
     }
 
@@ -124,6 +126,44 @@ class ProductController
 
         $productData = $this->productService->search($searchTerm);
         return view('backend.admin.product.management', compact('productData'));
+    }
+
+    /**
+     * Force delete Product/Brand Image
+     * @param Request $request
+     * 
+     * @return mixed|void
+     */
+    public function destroyImage(Request $request)
+    {
+        try{
+            
+            $url = $request->link;
+
+            $path = parse_url($url, PHP_URL_PATH);
+
+            $relativePath = str_replace('storage/', '', urldecode($path));
+
+            $debug = Storage::disk('public')->delete(stripslashes($relativePath));
+
+        }catch(\Exception $e){
+            
+        }
+
+        return response()->json(['debug' => $debug, 'relativePath' => stripslashes($relativePath)]);
+    }
+
+    /**
+     * Delete the Product Information (Soft)
+     * 
+     * @param string $id
+     * 
+     * @return mixed
+     */
+    public function delete($id): mixed
+    {
+        Product::where('id', $id)->delete();
+        return redirect()->back()->with('success', __('product.delete-product-success', ["id" => $id]));
     }
 
 }

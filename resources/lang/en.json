@@ -14,5 +14,6 @@
     "Action": "Quick Actions",
     "Id": "ID",
     "Search": "Search",
-    "No Record": "No matching record found"
+    "No Record": "No matching record found",
+    "Link": "Link"
 }

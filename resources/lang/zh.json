@@ -14,5 +14,6 @@
     "Action": "快速操作",
     "Id": "编号",
     "Search": "搜索",
-    "No Record": "找不到符合的记录"
+    "No Record": "找不到符合的记录",
+    "Link": "链接"
 }

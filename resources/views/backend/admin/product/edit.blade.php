@@ -24,14 +24,11 @@
             @php
                 $files = Storage::disk('public')->files("product/$product->product_category/$product->product_code");
                 usort($files, function ($a, $b) {
-                    // 将包含 "cover" 的文件移动到数组的开头
                     if (strpos($a, 'cover') !== false) {
                         return -1;
                     } elseif (strpos($b, 'cover') !== false) {
                         return 1;
                     }
-
-                    // 其他情况按照默认排序
                     return strcmp($a, $b);
                 });
             @endphp
@@ -40,7 +37,7 @@
             @foreach ($files as $filePath)
                 @php
                     $id = Str::random(10);
-                    $fileName = pathinfo($filePath)['filename'];
+                    $fileName = path_decode(pathinfo($filePath)['filename']);
                 @endphp
                 <li class="box flex flex-col mr-3" data-image="product">
                     <div class="container">
@@ -54,7 +51,7 @@
                                 <button class="btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
-                                <img src="{{ asset('storage/' . $filePath) }}">
+                                <img src="{{ asset('storage/' . url_encode($filePath)) }}">
                             </div>
                         </label>
                     </div>
@@ -141,7 +138,10 @@
                                         <i class="fa-solid fa-upload px-2 py-2" aria-hidden="true"></i>
                                     </div>
                                 </div>
-                                <div class="image-preview" {{ $hasImage ? '' : 'hidden' }}>
+                                <div class="relative image-preview" {{ $hasImage ? '' : 'hidden' }}>
+                                    <button class="absolute right-5 top-3 btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                    </button>
                                     <img src="{{ asset('storage/' . $filePath) }}">
                                 </div>
                             </label>
@@ -915,7 +915,45 @@ function deleteListItem(button)
 
     let result = confirm('Are you sure you want to delete this?');
 
-    if (listItem && result) {
+    if (!listItem && !result) {
+        return false;
+    }
+
+    // if image?
+    if (button.parentElement.querySelector('img')){
+
+        let xhr = new XMLHttpRequest();
+        const link = button.parentElement.querySelector('img').src;
+
+        // filter domain name
+        const regex = /^https?:\/\/[^\/]+/;
+        const filterUrl = link.replace(regex, "");
+
+        xhr.open('post', route('backend.admin.product.delete-image'), true)
+
+        xhr.onreadystatechange = () => {
+            let data = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText);
+            console.log(data);
+        }
+        
+        // csrf token
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+        
+        let formData = new FormData();
+        formData.append('link', link);
+        formData.append('_method', 'delete');
+
+        xhr.send(formData);
+
+        let imageTips = listItem.querySelector('div.image-tips')
+        let imagePreview = listItem.querySelector('div.image-preview')
+
+        imageTips.hidden = false;
+        imagePreview.hidden = true;
+
+    }else{
         listItem.remove();
     }
 }

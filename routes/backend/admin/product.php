@@ -37,11 +37,15 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function()
         ->name('update');
 
     // Delete Product (Soft)
-    Route::delete('{id}', [ProductController::class, 'delete'])
+    Route::delete('/softDelete/{id}', [ProductController::class, 'delete'])
         ->name('delete');
 
     // Delete Product (Force)
     Route::delete('/deleted-product/{id}', [ProductController::class, 'destroy'])
         ->name('destroy');
+    
+    // Delete Image (Force)
+    Route::delete('image', [ProductController::class, 'destroyImage'])
+        ->name('delete-image');
     
 });

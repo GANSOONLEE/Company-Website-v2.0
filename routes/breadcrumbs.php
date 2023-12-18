@@ -51,7 +51,7 @@ Breadcrumbs::for('backend', function (BreadcrumbTrail $trail) {
 // Breadcrumbs for 'backend.admin'
 Breadcrumbs::for('backend.admin', function (BreadcrumbTrail $trail) {
     $trail->parent('backend');
-    $trail->push(__('Backend'));
+    $trail->push(__('Backend'), route('backend.admin.dashboard'));
 });
 
 // Breadcrumbs for 'backend.admin.dashboard'
