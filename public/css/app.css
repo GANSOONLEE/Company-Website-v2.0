@@ -15305,6 +15305,15 @@ input:checked + .toggle-bg{
 .h-screen{
   height: 100vh;
 }
+.h-\[6rem\]{
+  height: 6rem;
+}
+.h-\[10rem\]{
+  height: 10rem;
+}
+.h-\[14rem\]{
+  height: 14rem;
+}
 .max-h-full{
   max-height: 100%;
 }
@@ -15329,9 +15338,6 @@ input:checked + .toggle-bg{
 .w-2\/5{
   width: 40%;
 }
-.w-52{
-  width: 13rem;
-}
 .w-60{
   width: 15rem;
 }
@@ -15343,6 +15349,15 @@ input:checked + .toggle-bg{
 }
 .w-full{
   width: 100%;
+}
+.w-\[6rem\]{
+  width: 6rem;
+}
+.w-\[10rem\]{
+  width: 10rem;
+}
+.w-\[14rem\]{
+  width: 14rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -15581,6 +15596,10 @@ input:checked + .toggle-bg{
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
+.border-gray-600{
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
 .bg-black{
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -15644,10 +15663,6 @@ input:checked + .toggle-bg{
 .bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
 }
-.bg-gray-600{
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
 .from-gray-700{
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
@@ -15673,6 +15688,10 @@ input:checked + .toggle-bg{
 }
 .stroke-red-500{
   stroke: #F05252;
+}
+.object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .px-8{
   padding-left: 2rem;
@@ -15767,10 +15786,6 @@ input:checked + .toggle-bg{
 .text-blue-600{
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
-}
-.text-blue-700{
-  --tw-text-opacity: 1;
-  color: rgb(26 86 219 / var(--tw-text-opacity));
 }
 .text-gray-200{
   --tw-text-opacity: 1;
@@ -15901,6 +15916,9 @@ input:checked + .toggle-bg{
 }
 .duration-75{
   transition-duration: 75ms;
+}
+.duration-\[120ms\]{
+  transition-duration: 120ms;
 }
 .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -16218,17 +16236,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.odd\:bg-gray-200:nth-child(odd){
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
 .odd\:bg-gray-100:nth-child(odd){
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-.even\:bg-gray-300:nth-child(even){
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 .even\:bg-gray-200:nth-child(even){
   --tw-bg-opacity: 1;
@@ -16269,10 +16279,6 @@ aside#sidebar > div .active svg.w-3.h-3 {
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.hover\:bg-gray-500:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 .hover\:text-blue-600:hover{
   --tw-text-opacity: 1;

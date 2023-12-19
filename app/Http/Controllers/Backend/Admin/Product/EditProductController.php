@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Domains\Product\Models\Product;
-use App\Models\Category;
+use App\Domains\Category\Models\Category;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

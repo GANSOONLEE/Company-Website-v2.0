@@ -1,6 +1,6 @@
 @inject('models', 'App\Domains\Model\Models\Model')
-@inject('brands', 'App\Models\Brand')
-@inject('categories', 'App\Models\Category')
+@inject('brands', 'App\Domains\Brand\Models\Brand')
+@inject('categories', 'App\Domains\Category\Models\Category')
 
 @extends('backend.layouts.app')
 
@@ -11,8 +11,8 @@
 @section('main')
 
 @inject('models', 'App\Domains\Model\Models\Model')
-@inject('brands', 'App\Models\Brand')
-@inject('categories', 'App\Models\Category')
+@inject('brands', 'App\Domains\Brand\Models\Brand')
+@inject('categories', 'App\Domains\Category\Models\Category')
 
 <x-form.patch :action="route('backend.admin.product.update', ['id' => $product->id])" class="overscroll-y-auto">
 

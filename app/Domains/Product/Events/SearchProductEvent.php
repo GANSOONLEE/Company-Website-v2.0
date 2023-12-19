@@ -156,7 +156,7 @@ class SearchProductEvent{
         // 
         // auth()->user()->email == "vincentgan0402@gmail.com" ? dd($searchCodeResult, $commonEntities, count($commonEntities), $productData) : '';
 
-        $categoryData = \App\Models\Category::all();
+        $categoryData = \App\Domains\Category\Models\Category::all();
         $typeData = \App\Models\Type::all();
 
         $text = $this->searchText;

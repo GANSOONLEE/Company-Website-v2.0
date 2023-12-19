@@ -112,6 +112,46 @@ Breadcrumbs::for('backend.admin.model.edit', function (BreadcrumbTrail $trail) {
     $trail->push(__('model.management-panel'), route('backend.admin.model.edit'));
 });
 
+/* ------------------------------------- Car Model  ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.category.index'
+Breadcrumbs::for('backend.admin.category.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.category'));
+});
+
+// Breadcrumbs for 'backend.admin.category.create'
+Breadcrumbs::for('backend.admin.category.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.category.index');
+    $trail->push(__('category.create-panel'), route('backend.admin.category.create'));
+});
+
+// Breadcrumbs for 'backend.admin.category.management'
+Breadcrumbs::for('backend.admin.category.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.category.index');
+    $trail->push(__('category.management-panel'), route('backend.admin.category.edit'));
+});
+
+/* ------------------------------------- Brand  ------------------------------------- */
+
+// Breadcrumbs for 'backend.admin.brand.index'
+Breadcrumbs::for('backend.admin.brand.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.brand'));
+});
+
+// Breadcrumbs for 'backend.admin.brand.create'
+Breadcrumbs::for('backend.admin.brand.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.brand.index');
+    $trail->push(__('brand.create-panel'), route('backend.admin.brand.create'));
+});
+
+// Breadcrumbs for 'backend.admin.brand.management'
+Breadcrumbs::for('backend.admin.brand.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.brand.index');
+    $trail->push(__('brand.management-panel'), route('backend.admin.brand.edit'));
+});
+
 /* ------------------------------------- User Management Center ------------------------------------- */
 
 // Breadcrumbs for 'backend.admin.user.index'

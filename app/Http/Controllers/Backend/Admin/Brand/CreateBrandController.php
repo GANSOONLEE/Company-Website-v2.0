@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\Brand;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use App\Domains\Brand\Models\Brand;
 use Illuminate\Support\Facades\Storage;
 
 class CreateBrandController extends Controller

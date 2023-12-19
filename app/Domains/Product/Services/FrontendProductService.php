@@ -41,7 +41,7 @@ class FrontendProductService extends BaseService
      * 
      * @return Collection
      */
-    public function searchProductByCategoryAndCarModel(array $data = []): Collection
+    public function searchProductByCategoryAndModel(array $data = []): Collection
     {
         return Product::where('product_category', $data['category'])
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')

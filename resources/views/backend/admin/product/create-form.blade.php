@@ -1,6 +1,6 @@
 @inject('models', 'App\Domains\Model\Models\Model')
-@inject('brands', 'App\Models\Brand')
-@inject('categories', 'App\Models\Category')
+@inject('brands', 'App\Domains\Brand\Models\Brand')
+@inject('categories', 'App\Domains\Category\Models\Category')
 
 <x-form.post :action="route('backend.admin.product.store')" class="overscroll-y-auto">
 

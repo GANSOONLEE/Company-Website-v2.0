@@ -46,7 +46,7 @@
                     <div class="item-information">
                         <p>{{ $item->product_category }}</p>
                         {{-- <p>{{ $item->product_type }}</p> --}}
-                        <p>{{ \App\Models\Brand::findProductName($item->code) }}</p>
+                        <p>{{ \App\Domains\Brand\Models\Brand::findProductName($item->code) }}</p>
                         {{-- <p>{{ $item->brand }}</p> --}}
                         <p>{{ $item->code }}</p>
                         <p>{{ $item->number }}</p>

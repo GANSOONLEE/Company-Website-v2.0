@@ -133,7 +133,7 @@ class UserSearchCartEvent{
         // 
         // auth()->user()->email == "vincentgan0402@gmail.com" ? dd($searchCodeResult, $commonEntities, count($commonEntities), $productData) : '';
 
-        $categoryData = \App\Models\Category::all();
+        $categoryData = \App\Domains\Category\Models\Category::all();
 
         $name = $this->searchName;
         $category = $this->searchCategory;

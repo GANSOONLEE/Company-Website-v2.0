@@ -8,7 +8,7 @@ use App\Http\Controllers\Backend\Admin\Order\AdminViewOrderDetailPDFController;
 use App\Domains\Order\Events\ChangeOrderStatusEvent;
 
 
-use App\Domains\Brand\Http\Controllers\OrderController;
+use App\Domains\Order\Http\Controllers\OrderController;
 
 Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
 

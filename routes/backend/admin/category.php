@@ -34,13 +34,16 @@ Route::group(['prefix' => 'category', 'as' => 'category.'], function(){
     Route::post('/', [CategoryController::class, 'store'])
         ->name('store');
 
+    Route::get('management', [CategoryController::class, 'management'])
+        ->name('management');
+
     Route::get('edit', [CategoryController::class, 'edit'])
         ->name('edit');
 
-    Route::patch('{category}', [CategoryController::class, 'update'])
+    Route::patch('{id}', [CategoryController::class, 'update'])
         ->name('update');
 
-    Route::delete('{category}', [CategoryController::class, 'destroy'])
+    Route::delete('{id}', [CategoryController::class, 'destroy'])
         ->name('destroy');
 
 });

@@ -51,7 +51,7 @@ class SearchProductService{
         // Define variable
         $directory = "storage/product/$category";
                         
-        $modelData = CarModel::orderBy('name', 'asc')
+        $modelData = Model::orderBy('name', 'asc')
                         ->get();
 
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
