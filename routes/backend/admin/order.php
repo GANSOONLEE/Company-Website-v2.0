@@ -2,31 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Backend\Admin\Order\AdminViewOrderController;
-use App\Http\Controllers\Backend\Admin\Order\AdminViewOrderDetailController;
-use App\Http\Controllers\Backend\Admin\Order\AdminViewOrderDetailPDFController;
-use App\Domains\Order\Events\ChangeOrderStatusEvent;
-
-
 use App\Domains\Order\Http\Controllers\OrderController;
 
 Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
-
-    // GET
-    // Route::get('/', [AdminViewOrderController::class, 'adminViewOrder'])
-    //     ->name('index');
-
-    // Route::get('detail/{orderID}',[AdminViewOrderDetailController::class, 'adminViewOrderDetail'])
-    //     ->name('order-detail');
-
-    // Route::get('detail/pdf/{orderID}', [AdminViewOrderDetailPDFController::class, 'adminViewOrderDetailPDF'])
-    //     ->name('order-detail-pdf');
-
-    // // Put
-    // Route::put('/change-order-status', [ChangeOrderStatusEvent::class, 'changeOrderStatus'])
-    //     ->name('change-order-status');
-
-    # TODO: OrderController
 
     // View Order [View]
     Route::get('index', [OrderController::class, 'index'])
@@ -49,15 +27,15 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
         ->name('edit');
 
     // Modify Order [Action]
-    Route::patch('{category}', [OrderController::class, 'update'])
+    Route::patch('{id}', [OrderController::class, 'update'])
         ->name('update');
 
     // Soft Delete Order [Action]
-    Route::delete('{category}', [OrderController::class, 'delete'])
+    Route::delete('{id}', [OrderController::class, 'delete'])
         ->name('delete');
 
     // Force Delete Order [Action]
-    Route::delete('deleted/{category}', [OrderController::class, 'destroy'])
+    Route::delete('deleted/{id}', [OrderController::class, 'destroy'])
         ->name('destroy');
 
 });

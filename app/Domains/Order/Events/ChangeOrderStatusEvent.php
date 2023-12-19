@@ -3,7 +3,7 @@
 namespace App\Domains\Order\Events;
 
 use App\Models\Operation;
-use App\Models\Order;
+use App\Domains\Order\Models\Order;
 use App\Domains\Auth\Models\UserOperation;
 use Illuminate\Http\Request;
 use App\Events\NewOrderEvent;

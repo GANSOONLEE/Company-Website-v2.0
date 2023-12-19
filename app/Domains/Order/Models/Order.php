@@ -1,15 +1,30 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Order\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use App\Domains\Order\Models\Traits\Relationship\OrderRelationship;
+use App\Domains\Order\Models\Traits\Method\OrderMethod;
+use App\Domains\Order\Models\Traits\Scope\OrderScope;
+
 class Order extends Model
 {
-    use HasFactory;
-
+    use HasFactory,
+        OrderRelationship,
+        OrderMethod,
+        OrderScope;
+    
+    const ORDER_STATE = [
+        'Pending',    // Pending 挂单
+        'Accepted',   // Accepted 接受
+        'Hold',       // Hold 接受
+        'Placed',     // Placed 接受
+        'Completed',  // Complete 已完成
+    ];
+    
     protected $table = 'orders';
     protected $primaryKey = 'code';
     public $incrementing = false;

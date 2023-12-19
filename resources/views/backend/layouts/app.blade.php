@@ -40,8 +40,12 @@
     <x-navbar />
     
     <div class="app" id="app">
-    
-        <x-sidebar />
+
+      @if(request()->is('admin*'))
+        <x-sidebar />  
+      @elseif(request()->is('user*'))
+        <x-sidebar-user />
+      @endif
 
         <div class="page" id="page">
 

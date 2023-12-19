@@ -24,9 +24,6 @@
     <link defer rel="stylesheet" href="{{asset('css/app.css')}}">
     <script defer src="{{asset('js/app.js')}}"></script>
 
-    <!-- Pusher -->
-    <script defer src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
-
     @stack('before-body')
 
     <title>{{env('APP_NAME')}} | @yield('title')</title>
@@ -56,6 +53,6 @@
 
 </body>
 
-    @stack('after-body')
+  @stack('after-body')
 
 </html>

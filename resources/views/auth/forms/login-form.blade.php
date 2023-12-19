@@ -20,6 +20,6 @@
 
     </div>
     <div class="buttons mt-3">
-        <button type="submit" id="submit-button" class="btn btn-success">Submit</button>
+        <button type="submit" id="submit-button" class="btn btn-success bg-success py-2">Submit</button>
     </div>
 </div>

@@ -4,8 +4,9 @@ namespace App\Domains\Auth\Http\Controllers;
 
 use App\Domains\Auth\Request\LoginRequest;
 use App\Domains\Auth\Services\LoginService;
-
 use App\Domains\Auth\Models\User;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LoginController
@@ -46,14 +47,15 @@ class LoginController
 
     /**
      * url: auth/logout
-     * method: post
+     * method: get
      * name: auth.logout
      * 
-     * @return void
+     * @return mixed
      */
-    public function logout(): void
+    public function logout(): mixed
     {
-        
+        Auth::logout();
+        return redirect()->route('frontend.home');
     }
 
 

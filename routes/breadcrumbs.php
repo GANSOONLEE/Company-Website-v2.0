@@ -62,6 +62,8 @@ Breadcrumbs::for('backend.admin.dashboard', function (BreadcrumbTrail $trail) {
 
 /* ------------------------------------- Product  ------------------------------------- */
 
+#region
+
 // Breadcrumbs for 'backend.admin.product.index'
 Breadcrumbs::for('backend.admin.product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin');
@@ -92,7 +94,11 @@ Breadcrumbs::for('backend.admin.product.edit', function (BreadcrumbTrail $trail,
     $trail->push(__('product.edit-panel'), route('backend.admin.product.edit', ["id" => $id]));
 });
 
+#endregion
+
 /* ------------------------------------- Car Model  ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.model.index'
 Breadcrumbs::for('backend.admin.model.index', function (BreadcrumbTrail $trail) {
@@ -112,7 +118,11 @@ Breadcrumbs::for('backend.admin.model.edit', function (BreadcrumbTrail $trail) {
     $trail->push(__('model.management-panel'), route('backend.admin.model.edit'));
 });
 
+#endregion
+
 /* ------------------------------------- Car Model  ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.category.index'
 Breadcrumbs::for('backend.admin.category.index', function (BreadcrumbTrail $trail) {
@@ -132,7 +142,11 @@ Breadcrumbs::for('backend.admin.category.edit', function (BreadcrumbTrail $trail
     $trail->push(__('category.management-panel'), route('backend.admin.category.edit'));
 });
 
+#endregion
+
 /* ------------------------------------- Brand  ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.brand.index'
 Breadcrumbs::for('backend.admin.brand.index', function (BreadcrumbTrail $trail) {
@@ -152,7 +166,35 @@ Breadcrumbs::for('backend.admin.brand.edit', function (BreadcrumbTrail $trail) {
     $trail->push(__('brand.management-panel'), route('backend.admin.brand.edit'));
 });
 
+#endregion
+
+/* ------------------------------------- Order  ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.admin.order'
+Breadcrumbs::for('backend.admin.order', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.order'));
+});
+
+// Breadcrumbs for 'backend.admin.order.index'
+Breadcrumbs::for('backend.admin.order.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.order');
+    $trail->push(__('order.view-order'), route('backend.admin.order.index'));
+});
+
+// Breadcrumbs for 'backend.admin.order.list'
+Breadcrumbs::for('backend.admin.order.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.order');
+    $trail->push(__('order.history-order'), route('backend.admin.order.list'));
+});
+
+#endregion
+
 /* ------------------------------------- User Management Center ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.user.index'
 Breadcrumbs::for('backend.admin.user.index', function (BreadcrumbTrail $trail) {
@@ -184,7 +226,11 @@ Breadcrumbs::for('backend.admin.user.ban', function (BreadcrumbTrail $trail) {
     $trail->push(__('user.ban-panel'), route('backend.admin.user.ban')); // Use the correct route for ban
 });
 
+#endregion
+
 /* ------------------------------------- Role Management Center ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.role.index'
 Breadcrumbs::for('backend.admin.role.index', function (BreadcrumbTrail $trail) {
@@ -204,7 +250,11 @@ Breadcrumbs::for('backend.admin.role.management', function (BreadcrumbTrail $tra
     $trail->push(__('role.management-panel'), route('backend.admin.role.management'));
 });
 
+#endregion
+
 /* ------------------------------------- Permission Management Center ------------------------------------- */
+
+#region
 
 // Breadcrumbs for 'backend.admin.permission.index'
 Breadcrumbs::for('backend.admin.permission.index', function (BreadcrumbTrail $trail) {
@@ -223,3 +273,48 @@ Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrai
     $trail->parent('backend.admin.permission.index');
     $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
 });
+
+#endregion
+
+/* ------------------------------------- [User Backend]  ------------------------------------- */
+
+Breadcrumbs::for('backend.user', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend');
+    $trail->push('Backend');
+});
+
+/* ------------------------------------- Data [User Backend]  ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.user.data.index'
+Breadcrumbs::for('backend.user.data.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.user');
+    $trail->push('Profile', route('backend.user.cart.index'));
+});
+
+#endregion
+
+/* ------------------------------------- Cart [User Backend]  ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.user.cart.create'
+Breadcrumbs::for('backend.user.cart.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.user');
+    $trail->push('Cart', route('backend.user.cart.create'));
+});
+
+#endregion
+
+/* ------------------------------------- Order [User Backend]  ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.user.order.index'
+Breadcrumbs::for('backend.user.order.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.user');
+    $trail->push('Order', route('backend.user.order.index'));
+});
+
+#endregion

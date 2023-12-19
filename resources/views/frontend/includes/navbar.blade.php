@@ -9,7 +9,6 @@
         <i class="fa-solid fa-bars"></i>
     </label>
 
-    <!-- #TODO 加入路由 -->
     <div class="menu flex justify-content-between align-items-center sm:flex-column">
         <ul class="navbar-links common">
             <a href="{{ route('frontend.home') }}" class="navbar-link">
@@ -39,7 +38,7 @@
             <!-- Auth -->
             @auth
                 @if(auth()->user()->getRoleEntity()->hasPermission('user_backend'))
-                    <a href="{{ route('backend.user.cart') }}" class="navbar-link secondary">
+                    <a href="{{ route('backend.user.cart.create') }}" class="navbar-link secondary">
                         <li class="navbar-link-label">Cart</li>
                     </a>
                 @endif
