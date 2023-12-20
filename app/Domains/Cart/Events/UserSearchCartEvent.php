@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Domains\Cart\Events;
-use App\Models\Cart;
+use  App\Domains\Cart\Models\Cart;
 use App\Domains\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

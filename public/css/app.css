@@ -15296,6 +15296,9 @@ input:checked + .toggle-bg{
 .h-9{
   height: 2.25rem;
 }
+.h-\[14rem\]{
+  height: 14rem;
+}
 .h-\[calc\(100\%-1rem\)\]{
   height: calc(100% - 1rem);
 }
@@ -15304,15 +15307,6 @@ input:checked + .toggle-bg{
 }
 .h-screen{
   height: 100vh;
-}
-.h-\[6rem\]{
-  height: 6rem;
-}
-.h-\[10rem\]{
-  height: 10rem;
-}
-.h-\[14rem\]{
-  height: 14rem;
 }
 .max-h-full{
   max-height: 100%;
@@ -15338,26 +15332,29 @@ input:checked + .toggle-bg{
 .w-2\/5{
   width: 40%;
 }
+.w-30{
+  width: 7.5rem;
+}
+.w-40{
+  width: 10rem;
+}
 .w-60{
   width: 15rem;
 }
 .w-8{
   width: 2rem;
 }
+.w-\[14rem\]{
+  width: 14rem;
+}
+.w-\[6rem\]{
+  width: 6rem;
+}
 .w-auto{
   width: auto;
 }
 .w-full{
   width: 100%;
-}
-.w-\[6rem\]{
-  width: 6rem;
-}
-.w-\[10rem\]{
-  width: 10rem;
-}
-.w-\[14rem\]{
-  width: 14rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -15564,6 +15561,10 @@ input:checked + .toggle-bg{
 .border-none{
   border-style: none;
 }
+.\!border-\[\#bbbbbb\]{
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(187 187 187 / var(--tw-border-opacity)) !important;
+}
 .border-\[\#dee2e6\]{
   --tw-border-opacity: 1;
   border-color: rgb(222 226 230 / var(--tw-border-opacity));
@@ -15592,13 +15593,13 @@ input:checked + .toggle-bg{
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
-.border-gray-800{
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity));
-}
 .border-gray-600{
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+.border-gray-800{
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 .bg-black{
   --tw-bg-opacity: 1;
@@ -15629,6 +15630,10 @@ input:checked + .toggle-bg{
 .bg-gray-200{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-gray-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-gray-50{
   --tw-bg-opacity: 1;
@@ -15689,10 +15694,6 @@ input:checked + .toggle-bg{
 .stroke-red-500{
   stroke: #F05252;
 }
-.object-cover{
-  -o-object-fit: cover;
-     object-fit: cover;
-}
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
@@ -15707,6 +15708,9 @@ input:checked + .toggle-bg{
 }
 .pl-11{
   padding-left: 2.75rem;
+}
+.pr-\[1rem\]{
+  padding-right: 1rem;
 }
 .pt-8{
   padding-top: 2rem;

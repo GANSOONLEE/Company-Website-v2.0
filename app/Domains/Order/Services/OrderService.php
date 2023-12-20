@@ -8,6 +8,7 @@ use App\Services\BaseService;
 
 // Model
 use App\Domains\Order\Models\Order;
+use App\Domains\Cart\Models\Cart;
 
 // Exceptions
 use Exception;
@@ -31,7 +32,12 @@ class OrderService extends BaseService
     public function generateOrderCode(): string
     {
         $code = Str::random(8);
-        return Order::where('code', $code)->exists() ? $code : $this->generateOrderCode();
+
+        if(Order::where('code', $code)->exists()){
+            $this->generateOrderCode();
+        }
+
+        return $code;
     }
 
     /**
@@ -41,14 +47,23 @@ class OrderService extends BaseService
      */
     public function store(array $data = []): Order
     {
-        // Pack in data
-        dd($data);
+        
+        DB::beginTransaction();
+        
+        try{
+            $order = $this->createOrder([
+                'code' => $this->generateOrderCode(),
+                'status' => 'Pending',
+                'user_email' => auth()->user()->email,  
+            ], $data);
+    
+        }catch(Exception $e){
+            DB::rollBack();
+            throw new GeneralException("There was a problem creating the order." . $e->getMessage());
+        }
 
-        return $this->createOrder([
-            'code' => $this->generateOrderCode(),
-            'status' => 'Pending',
-            'user_email' => auth()->user()->email,  
-        ], );
+        DB::commit();
+        return $order;
     }
 
     /**
@@ -70,19 +85,29 @@ class OrderService extends BaseService
             ]);
 
             // Save order detail
-            foreach ($orderDetailData as $array)
+            foreach ($orderDetailData as $id)
             {
+                $cart = Cart::where('id', $id)->first();
+                dd($cart, $id);
+                $number = $cart->number;
+
+                if($number === 0){
+                    throw new GeneralException('The item quantity can\'t be 0!');
+                }
+
                 DB::table('order_details')
-                ->insert([
-                    'order_id' => $data['code'],
-                    'sku_id' => $array->sku_id,
-                    'number' =>$array->number,
-                ]);
+                    ->insert([
+                        'order_id' => $data['code'],
+                        'sku_id' => $cart->sku_id,
+                        'number' => $cart->number,
+                    ]);
+
+                $cart->update(['number' => 0]);
             }
 
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException('There was an problem creating the order, please try again.');
+            throw new GeneralException('There was an problem creating the order, please try again.' . $e->getMessage());
         }
 
 

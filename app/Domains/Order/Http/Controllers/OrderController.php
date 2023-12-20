@@ -6,8 +6,11 @@ namespace App\Domains\Order\Http\Controllers;
 use App\Domains\Order\Services\OrderService;
 
 // Request
+use Illuminate\Http\Request;
 use App\Domains\Order\Request\CreateOrderRequest;
 use App\Domains\Order\Request\UpdateOrderRequest;
+
+// Model
 use App\Domains\Order\Models\Order;
 
 class OrderController
@@ -49,12 +52,17 @@ class OrderController
 
     /**
      * Post order data to create order
-     * @param CreateOrderRequest $request
+     * @param Request $request
      * @return mixed
      */
-    public function store(CreateOrderRequest $request): mixed
+    public function store(Request $request): mixed
     {
-        $this->orderService->store($request->validated());
+        $array = json_decode($request->selectedCheckbox);
+        $arrayWithoutRow = array_map(function($element) {
+            return str_replace("row-", "", $element);
+        }, $array);
+
+        $this->orderService->store($arrayWithoutRow);
         return redirect()->back()->with('success', 'Your order has successful create !');
     }
 
