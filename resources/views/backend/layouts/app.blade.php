@@ -22,11 +22,10 @@
     <script defer src="https://kit.fontawesome.com/4fffedbe3d.js" crossorigin="anonymous"></script>
     <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"/>
 
-    <!-- DataTables -->
-    <link rel="preload stylesheet" as="style" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-
     @stack('before-style')
 
+    <script defer src="{{ asset('js/app.js') }}"></script>
+    
     <link rel="preload stylesheet" as="style" href="{{ asset('css/backend/layouts/layout.css') }}">
 
     <!-- 要在 css 之后加載的文件 -->
@@ -84,25 +83,8 @@
     <!-- 要在 javascript 之前加載的文件 -->
     @stack('before-script')
 
-    <script src="{{asset('js/app.js')}}"></script>
-
-    <!-- DataTables -->
-    <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-
     <!-- Flowbite -->
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
-    
-    <script>
-        if (
-          localStorage.getItem('color-theme') === 'dark' ||
-          (!('color-theme' in localStorage) &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      </script>
 
     <!-- 要在 javascript 之后加載的文件 -->
     @stack('after-script')

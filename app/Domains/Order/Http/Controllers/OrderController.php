@@ -52,10 +52,10 @@ class OrderController
 
     /**
      * Post order data to create order
-     * @param Request $request
+     * @param CreateOrderRequest $request
      * @return mixed
      */
-    public function store(Request $request): mixed
+    public function store(CreateOrderRequest $request): mixed
     {
         $array = json_decode($request->selectedCheckbox);
         $arrayWithoutRow = array_map(function($element) {

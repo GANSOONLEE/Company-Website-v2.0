@@ -59,7 +59,7 @@ class OrderService extends BaseService
     
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException("There was a problem creating the order." . $e->getMessage());
+            throw new GeneralException("There was a problem creating the order.");
         }
 
         DB::commit();
@@ -88,14 +88,13 @@ class OrderService extends BaseService
             foreach ($orderDetailData as $id)
             {
                 $cart = Cart::where('id', $id)->first();
-                dd($cart, $id);
                 $number = $cart->number;
 
                 if($number === 0){
                     throw new GeneralException('The item quantity can\'t be 0!');
                 }
 
-                DB::table('order_details')
+                DB::table('orders_detail')
                     ->insert([
                         'order_id' => $data['code'],
                         'sku_id' => $cart->sku_id,
@@ -107,7 +106,7 @@ class OrderService extends BaseService
 
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException('There was an problem creating the order, please try again.' . $e->getMessage());
+            throw new GeneralException('There was an problem creating the order, please try again.');
         }
 
 

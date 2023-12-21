@@ -130,7 +130,8 @@ class UserController
      * 
      * @return mixed
      */
-    public function edit(){
+    public function edit()
+    {
 
     }
 
@@ -143,7 +144,8 @@ class UserController
      * @return mixed
      * @throws \Throwable
      */
-    public function update(UpdateUserRequest $request){
+    public function update(UpdateUserRequest $request)
+    {
         $this->userService->update($request->validated());
         
         return redirect()->back();
@@ -155,7 +157,8 @@ class UserController
      * name: backend.admin.user.delete
      * @param $user
      */
-    public function delete($user){
+    public function delete($user)
+    {
 
     }
 
@@ -165,9 +168,21 @@ class UserController
      * name: backend.admin.user.destroy
      * @param $user
      */
-    public function destroy($user){
+    public function destroy($user)
+    {
 
     }
 
+    /*
+     | ----------------------------------------------------------------
+     |
+     |                            User 用戶
+     |
+     | ----------------------------------------------------------------
+     */
+    public function profile()
+    {
+        return view('backend.user.profile', ["user" => auth()->user()]);
+    }
 
 }

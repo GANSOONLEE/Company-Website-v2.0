@@ -290,7 +290,7 @@ Breadcrumbs::for('backend.user', function (BreadcrumbTrail $trail) {
 // Breadcrumbs for 'backend.user.data.index'
 Breadcrumbs::for('backend.user.data.index', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.user');
-    $trail->push('Profile', route('backend.user.cart.index'));
+    $trail->push('Profile', route('backend.user.data.index'));
 });
 
 #endregion
