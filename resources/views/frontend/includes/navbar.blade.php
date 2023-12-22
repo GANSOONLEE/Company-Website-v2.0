@@ -27,10 +27,10 @@
         <ul class="navbar-links auth">
             <!-- Guest -->
             @guest
-                <a href="{{ route('auth.login') }}" class="navbar-link primary">
+                <a href="{{ route('auth.login.index') }}" class="navbar-link primary">
                     <li class="navbar-link-label">Login</li>
                 </a>
-                <a href="{{ route('auth.register') }}" class="navbar-link">
+                <a href="{{ route('auth.register.index') }}" class="navbar-link">
                     <li class="navbar-link-label">Register</li>
                 </a>
             @endguest

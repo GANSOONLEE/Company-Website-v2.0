@@ -31,8 +31,14 @@ class LoginRequest extends FormRequest
     {
         return [
             '*.required' => 'The :attribute field is required.',
-            'email.exists' => 'The :attribute aren\'t exists.',
+            'email.exists' => 'This :attribute <b> ' . $this->attributes()['value'] .'</b> aren\'t exists.',
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'value' => $this->email,
+        ];
+    }
 }

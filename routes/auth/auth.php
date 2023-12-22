@@ -15,8 +15,8 @@ Route::group(['prefix' =>'login', 'as' =>'login.'], function()
         ->name('index');
 
     // Store Login Inform 
-    Route::post('/', [LoginController::class, 'store'])
-        ->name('store');
+    Route::post('/', [LoginController::class, 'valid'])
+        ->name('valid');
 
 });
 
@@ -36,11 +36,17 @@ Route::group(['prefix' =>'register', 'as' =>'register.'], function()
 Route::group(['prefix' =>'password', 'as' =>'password.'], function()
 {
     // Change Password
-    Route::patch('/', [PasswordController::class, 'change'])
+    Route::get('change', [PasswordController::class, 'change'])
+        ->name('change');
+
+    Route::patch('change', [PasswordController::class, 'update'])
         ->name('change');
 
     // Reset Password
-    Route::patch('/', [PasswordController::class, 'reset'])
+    Route::get('account-help', [PasswordController::class, 'help'])
+        ->name('reset');
+
+    Route::patch('reset', [PasswordController::class, 'reset'])
         ->name('reset');
 });
 

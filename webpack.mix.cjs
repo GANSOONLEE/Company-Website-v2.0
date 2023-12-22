@@ -16,11 +16,8 @@ mix.webpackConfig({
         children: true,
     },
     resolve: {
-        extensions: ['.j,s', '.jsx']
+        extensions: ['.js', '.jsx']
     },
-    plugins: [
-        reactRefresh(),
-    ]
 });
 
 /*

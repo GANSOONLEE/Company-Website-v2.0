@@ -42,9 +42,13 @@ class LoginService extends BaseService
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
             }else{
-                return redirect()->back()->withErrors([
-                    'login_failed' => 'Invalid email or password.'
-                ]);
+                return redirect()->back()
+                    ->withErrors([
+                        'login_failed' => 'Invalid email or password.'
+                    ])
+                    ->withInput([
+                        'email' => $data['email']
+                    ]);
             }
 
         }catch(Exception $e){

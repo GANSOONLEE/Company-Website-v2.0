@@ -43,11 +43,11 @@ window.onload = () => {
  | 
  | --------------------------------------------------------
  */
-require('./backend/user/components/ResetCartButton.jsx')
-import ResetCartButton from './backend/user/components/ResetCartButton.jsx';
-import CartCheckbox from './backend/user/components/CartCheckbox.jsx';
+
+// import ResetCartButton from './backend/user/components/ResetCartButton.jsx';
+// import CartCheckbox from './backend/user/components/CartCheckbox.jsx';
 // CartCheckbox();
-import SelectAllCheckbox from './backend/user/components/SelectAllCheckbox.jsx';
+// import SelectAllCheckbox from './backend/user/components/SelectAllCheckbox.jsx';
 // SelectAllCheckbox();
 
 // import UserInformUpdateForm from './backend/user/components/UserInformUpdateForm.jsx';

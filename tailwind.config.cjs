@@ -10,6 +10,11 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    extend: {
+      aria: {
+        current: 'current'
+      },
+    },
     colors: {
       'theme-1': '#EB0A1E'
     },
