@@ -74,5 +74,16 @@
 @endpush
 
 @push('after-script')
-
+    <script>
+        let selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
+        selectedIds.forEach(cartId => {
+            let checkbox = document.querySelector(`input[data-input="${cartId}"]`);
+            if (checkbox) {
+                console.log(checkbox.checked, checkbox)
+                checkbox.checked = true;
+                checkbox.classList.add('disabled')
+                console.log(checkbox.checked, checkbox)
+            }
+        });
+    </script>
 @endpush

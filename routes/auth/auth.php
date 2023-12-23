@@ -40,14 +40,26 @@ Route::group(['prefix' =>'password', 'as' =>'password.'], function()
         ->name('change');
 
     Route::patch('change', [PasswordController::class, 'update'])
-        ->name('change');
+        ->name('update');
+
+    // Account Help
+    Route::get('account-help', [PasswordController::class, 'help'])
+        ->name('help');
 
     // Reset Password
-    Route::get('account-help', [PasswordController::class, 'help'])
+    Route::post('reset', [PasswordController::class, 'reset'])
         ->name('reset');
 
-    Route::patch('reset', [PasswordController::class, 'reset'])
-        ->name('reset');
+    // Verify Password
+    Route::get('verify', [PasswordController::class, 'verify'])
+        ->name('verify');
+        
+    // Verify Password
+    Route::get('password-reset', [PasswordController::class, 'resetPassword'])
+        ->name('password-reset');
+
+    Route::patch('renew', [PasswordController::class, 'renew'])
+        ->name('renew');
 });
 
 /** Process the logout event */

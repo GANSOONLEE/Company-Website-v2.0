@@ -23,9 +23,8 @@
     <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"/>
 
     @stack('before-style')
-
-    <script defer src="{{ asset('js/app.js') }}"></script>
     
+    <script defer src="{{ asset('js/app.js') }}"></script>
     <link rel="preload stylesheet" as="style" href="{{ asset('css/backend/layouts/layout.css') }}">
 
     <!-- 要在 css 之后加載的文件 -->

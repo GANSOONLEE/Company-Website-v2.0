@@ -4,19 +4,7 @@ import { React, createRoot } from '../../../reactImports.js';
 
 
 // Function
-function CartCheckbox(props) {
-
-    const inputId = props.inputId;
-
-    window.onload = e => {
-        let selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
-        selectedIds.forEach(cartId => {
-            let checkbox = document.querySelector(`input[data-input="${cartId}"]`);
-            if (checkbox) {
-                checkbox.checked = true;
-            }
-        });
-    }
+function CartCheckbox({cart}) {
 
     function changeState(event) {
         let checkbox = event.target;
@@ -44,17 +32,14 @@ function CartCheckbox(props) {
         valueInput.value = localStorage.getItem('selectedIds');
     }
 
-    return (
-        <input data-input={inputId} className="cursor-pointer border-1 border-solid !border-[#bbbbbb] rounded-sm" type="checkbox" onClick={changeState}></input>
-    );
+    return <input data-input={cart.id} className="cursor-pointer border-1 border-solid !border-[#bbbbbb] rounded-sm" type="checkbox" onClick={changeState}></input>;
 }
 
 export default CartCheckbox;
 
-// Mount
 const rootElements = document.querySelectorAll('#cart-checkbox');
 rootElements.forEach(rootElement => {
     const root = createRoot(rootElement);
-    const inputId = rootElement.querySelector('input').dataset.input;
-    root.render(<CartCheckbox inputId={inputId}/>);
-})
+    const inputId = (rootElement.querySelector('input')).dataset.input;
+    root.render(<CartCheckbox cart={{ id: inputId }} />);
+});

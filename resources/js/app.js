@@ -44,11 +44,21 @@ window.onload = () => {
  | --------------------------------------------------------
  */
 
-// import ResetCartButton from './backend/user/components/ResetCartButton.jsx';
-// import CartCheckbox from './backend/user/components/CartCheckbox.jsx';
-// CartCheckbox();
+import ResetCartButton from './backend/user/components/ResetCartButton.jsx';
+if (document.querySelector('#reset-cart-button')){
+    ResetCartButton();
+}
+
+import CartCheckbox from './backend/user/components/CartCheckbox.jsx';
+if (document.querySelector('#cart-checkbox')){
+    CartCheckbox();
+}
 // import SelectAllCheckbox from './backend/user/components/SelectAllCheckbox.jsx';
-// SelectAllCheckbox();
+// if (document.querySelector('#select-all-checkbox')){
+//     SelectAllCheckbox();
+// }
 
 // import UserInformUpdateForm from './backend/user/components/UserInformUpdateForm.jsx';
-// UserInformUpdateForm();
+// if (document.querySelector('#user-inform-update-container')){
+//     UserInformUpdateForm();
+// }

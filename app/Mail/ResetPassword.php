@@ -46,13 +46,13 @@ class ResetPassword extends Mailable
      */
     public function content(): Content
     {
-        $url = route('auth.reset.password', [
+        $url = route('auth.password.verify', [
             'email' => $this->user->email,
             'token' => strtotime($this->user->created_at),
         ]);
 
         return new Content(
-            markdown: 'emails.reset.password',
+            markdown: 'emails.password.reset',
             with: [
                 'name' => $this->user->name,
                 'url' => urldecode($url) ,

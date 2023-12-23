@@ -11,11 +11,11 @@
             <img class="w-full h-full object-cover" src="{{ asset('image/frozen air cond.webp') }}" alt="">
         </div>
 
-        <div class="shadow bg-gray-50 border-1 border-solid border-gray-300 relative w-[60%] rounded-md py-4 px-[1.5rem]" data-carousel="static" id="slider-form">
+        <div class="shadow bg-white border-1 border-solid border-gray-300 relative w-[60%] rounded-md py-4 px-[1.5rem]" data-carousel="static" id="slider-form">
     
             <!-- Stepper -->
             <ol class="flex justify-evenly items-center w-full mb-4">
-                <li class="flex items-center text-blue-500 gap-x-[1rem] cursor-pointer" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0">
+                <li class="bg-white flex items-center text-blue-500 gap-x-[1rem] cursor-pointer opacity-100" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0">
                     <span class="flex items-center justify-center w-8 h-8 border !border-blue-600 rounded-full shrink-0">
                         1
                     </span>
@@ -24,8 +24,8 @@
                         <p class="text-sm">Basic information</p>
                     </span>
                 </li>
-                <li class="flex items-center text-gray-400 gap-x-[1rem] cursor-pointer aria-[current=true]:text-blue-500 group" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1">
-                    <span class="flex items-center justify-center w-8 h-8 border !border-gray-500 group-aria-[current=true]:!border-blue-600 rounded-full shrink-0 ">
+                <li class="flex items-center text-gray-400 gap-x-[1rem] cursor-pointer opacity-100 aria-[current=true]:text-blue-500 group" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1">
+                    <span class="bg-white flex items-center justify-center w-8 h-8 border !border-gray-500 group-aria-[current=true]:!border-blue-600 rounded-full shrink-0 ">
                         2
                     </span>
                     <span>

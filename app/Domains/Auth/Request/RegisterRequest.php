@@ -2,7 +2,6 @@
 
 namespace App\Domains\Auth\Request;
 
-use Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

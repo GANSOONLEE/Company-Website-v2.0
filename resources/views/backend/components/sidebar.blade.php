@@ -1,6 +1,6 @@
 
 <aside id="sidebar" class="pt-12 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
-   <div class="h-full px-3 py-21 overflow-y-auto">
+   <div class="h-full px-3 py-8 overflow-y-auto">
       <ul class="space-y-2 font-medium">
 
          <x-sidebar-item href="{{ route('backend.admin.dashboard') }}" icon="dashboard" label="{{ __('sidebar.dashboard') }}"/>
