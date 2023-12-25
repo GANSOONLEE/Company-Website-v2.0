@@ -23,4 +23,9 @@ return array (
   'view-order-panel-description' => 'Check order',
   'view-order-description' => 'View orders that need processing',
   'history-order-description' => 'All completed orders (records will only be saved for :day days)',
+  'pending' => 'Pending',
+  'placed' => 'Waiting',
+  'accepted' => 'Accept',
+  'completed' => 'Completed',
+  'process' => 'Processing',
 );

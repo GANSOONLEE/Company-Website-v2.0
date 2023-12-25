@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domains\Order\Request;
+namespace App\Domains\Cart\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateOrderRequest extends FormRequest
+class CreateCartRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -16,15 +16,15 @@ class CreateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'selectedCheckbox' => ['required', 'min:1'],
+            'brand' => 'required',
+            'quantity' => 'required',
         ];
     }
 
     public function message(): array
     {
         return [
-            'selectedCheckbox.*.required' => 'The :attribute must required.',
-            'selectedCheckbox.*.array' => 'The :attribute must be an array.'
+            '*.required' => 'The :attribute field is required.',
         ];
     }
 
