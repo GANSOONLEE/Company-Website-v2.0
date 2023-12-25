@@ -15295,6 +15295,9 @@ input:checked + .toggle-bg{
   margin-left: auto;
   margin-right: auto;
 }
+.-mr-\[4px\]{
+  margin-right: -4px;
+}
 .mb-\[\.5rem\]{
   margin-bottom: .5rem;
 }
@@ -15306,6 +15309,9 @@ input:checked + .toggle-bg{
 }
 .ml-12{
   margin-left: 3rem;
+}
+.ml-12\.5{
+  margin-left: 3.125rem;
 }
 .ml-\[3px\]{
   margin-left: 3px;
@@ -15319,6 +15325,9 @@ input:checked + .toggle-bg{
 .mt-10{
   margin-top: 2.5rem;
 }
+.mt-12{
+  margin-top: 3rem;
+}
 .mt-16{
   margin-top: 4rem;
 }
@@ -15330,15 +15339,6 @@ input:checked + .toggle-bg{
 }
 .mt-\[1rem\]{
   margin-top: 1rem;
-}
-.mt-12{
-  margin-top: 3rem;
-}
-.ml-12\.5{
-  margin-left: 3.125rem;
-}
-.-mr-\[4px\]{
-  margin-right: -4px;
 }
 .block{
   display: block;
@@ -15454,6 +15454,9 @@ input:checked + .toggle-bg{
 .w-\[14rem\]{
   width: 14rem;
 }
+.w-\[20rem\]{
+  width: 20rem;
+}
 .w-\[40\%\]{
   width: 40%;
 }
@@ -15471,15 +15474,6 @@ input:checked + .toggle-bg{
 }
 .w-full{
   width: 100%;
-}
-.w-\[10rem\]{
-  width: 10rem;
-}
-.w-\[15rem\]{
-  width: 15rem;
-}
-.w-\[20rem\]{
-  width: 20rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -15549,11 +15543,11 @@ input:checked + .toggle-bg{
 .list-inside{
   list-style-position: inside;
 }
-.list-none{
-  list-style-type: none;
-}
 .list-decimal{
   list-style-type: decimal;
+}
+.list-none{
+  list-style-type: none;
 }
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -15608,6 +15602,10 @@ input:checked + .toggle-bg{
   -moz-column-gap: .6rem;
        column-gap: .6rem;
 }
+.gap-x-\[\.725rem\]{
+  -moz-column-gap: .725rem;
+       column-gap: .725rem;
+}
 .gap-x-\[\.75rem\]{
   -moz-column-gap: .75rem;
        column-gap: .75rem;
@@ -15616,18 +15614,8 @@ input:checked + .toggle-bg{
   -moz-column-gap: 1rem;
        column-gap: 1rem;
 }
-.gap-y-14{
-  row-gap: 3.5rem;
-}
-.gap-y-12{
-  row-gap: 3rem;
-}
 .gap-y-11{
   row-gap: 2.75rem;
-}
-.gap-x-\[\.725rem\]{
-  -moz-column-gap: .725rem;
-       column-gap: .725rem;
 }
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
@@ -15691,6 +15679,10 @@ input:checked + .toggle-bg{
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
 }
+.rounded-l-sm{
+  border-top-left-radius: 0.125rem;
+  border-bottom-left-radius: 0.125rem;
+}
 .rounded-r-lg{
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
@@ -15699,6 +15691,10 @@ input:checked + .toggle-bg{
   border-top-right-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
 }
+.rounded-r-sm{
+  border-top-right-radius: 0.125rem;
+  border-bottom-right-radius: 0.125rem;
+}
 .rounded-s-lg{
   border-start-start-radius: 0.5rem;
   border-end-start-radius: 0.5rem;
@@ -15706,22 +15702,6 @@ input:checked + .toggle-bg{
 .rounded-t{
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-}
-.rounded-b-md{
-  border-bottom-right-radius: 0.375rem;
-  border-bottom-left-radius: 0.375rem;
-}
-.rounded-t-md{
-  border-top-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
-}
-.rounded-l-sm{
-  border-top-left-radius: 0.125rem;
-  border-bottom-left-radius: 0.125rem;
-}
-.rounded-r-sm{
-  border-top-right-radius: 0.125rem;
-  border-bottom-right-radius: 0.125rem;
 }
 .border{
   border-width: 1px;
@@ -15757,6 +15737,10 @@ input:checked + .toggle-bg{
 .\!border-blue-600{
   --tw-border-opacity: 1 !important;
   border-color: rgb(28 100 242 / var(--tw-border-opacity)) !important;
+}
+.\!border-gray-200{
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity)) !important;
 }
 .\!border-gray-500{
   --tw-border-opacity: 1 !important;
@@ -15801,10 +15785,6 @@ input:checked + .toggle-bg{
 .border-gray-800{
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
-}
-.\!border-gray-200{
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity)) !important;
 }
 .bg-black{
   --tw-bg-opacity: 1;
@@ -15881,10 +15861,6 @@ input:checked + .toggle-bg{
 .bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
 }
-.bg-gray-300{
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
 .from-gray-700{
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
@@ -15935,13 +15911,17 @@ input:checked + .toggle-bg{
   padding-left: 1.75rem;
   padding-right: 1.75rem;
 }
+.px-\[1rem\]{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .py-17{
   padding-top: 4.25rem;
   padding-bottom: 4.25rem;
 }
-.py-21{
-  padding-top: 5.25rem;
-  padding-bottom: 5.25rem;
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .py-\[\.75rem\]{
   padding-top: .75rem;
@@ -15950,18 +15930,6 @@ input:checked + .toggle-bg{
 .py-\[2\.25rem\]{
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
-}
-.py-\[2rem\]{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-.px-\[1rem\]{
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 .pl-11{
   padding-left: 2.75rem;
@@ -16574,6 +16542,10 @@ aside#sidebar > div .active svg.w-3.h-3 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
+.hover\:bg-blue-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(28 100 242 / var(--tw-bg-opacity));
+}
 .hover\:bg-blue-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
@@ -16605,10 +16577,6 @@ aside#sidebar > div .active svg.w-3.h-3 {
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.hover\:bg-blue-600:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(28 100 242 / var(--tw-bg-opacity));
 }
 .hover\:text-blue-600:hover{
   --tw-text-opacity: 1;
@@ -16729,9 +16697,6 @@ aside#sidebar > div .active svg.w-3.h-3 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
-.peer:checked ~ .peer-checked\:block{
-  display: block;
-}
 .peer\/change-password:checked ~ .peer-checked\/change-password\:block{
   display: block;
 }
@@ -16742,9 +16707,6 @@ aside#sidebar > div .active svg.w-3.h-3 {
   display: block;
 }
 .peer\/hack-account:checked ~ .peer-checked\/hack-account\:block{
-  display: block;
-}
-.peer\/reset-password:checked ~ .peer-checked\/reset-password\:block{
   display: block;
 }
 .aria-\[current\=true\]\:text-blue-500[aria-current=true]{

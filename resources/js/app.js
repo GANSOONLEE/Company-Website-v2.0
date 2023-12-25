@@ -15,7 +15,7 @@
 // Third-party 第三方庫
 import $ from 'jquery';
 import 'flowbite';
-
+import { createApp } from 'vue';
 
 // Local 本地庫
 import './bootstrap.js';
@@ -32,6 +32,9 @@ import { initThemeSwitch } from './themeSwitch.js';
 window.$ = $;
 window.jQuery = window.$ = $
 
+window.createApp = createApp;
+const Vue = window.Vue;
+
 window.onload = () => {
     initThemeSwitch();
 }
@@ -39,26 +42,13 @@ window.onload = () => {
 /** 
  | --------------------------------------------------------
  |
- |                          React
+ |                           Vue
  | 
  | --------------------------------------------------------
  */
 
-import ResetCartButton from './backend/user/components/ResetCartButton.jsx';
-if (document.querySelector('#reset-cart-button')){
-    ResetCartButton();
-}
+import CartCheckbox from './backend/user/components/CartCheckbox.vue';
 
-import CartCheckbox from './backend/user/components/CartCheckbox.jsx';
-if (document.querySelector('#cart-checkbox')){
-    CartCheckbox();
-}
-// import SelectAllCheckbox from './backend/user/components/SelectAllCheckbox.jsx';
-// if (document.querySelector('#select-all-checkbox')){
-//     SelectAllCheckbox();
-// }
-
-// import UserInformUpdateForm from './backend/user/components/UserInformUpdateForm.jsx';
-// if (document.querySelector('#user-inform-update-container')){
-//     UserInformUpdateForm();
-// }
+const app = createApp(CartCheckbox);
+app.component('CartCheckbox', CartCheckbox);
+app.mount('#hello-world');

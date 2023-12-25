@@ -9,14 +9,12 @@
 
 const mix = require("laravel-mix");
 const tailwindcss = require("tailwindcss");
-const reactRefresh = require("react-refresh");
+const { ProvidePlugin } = require("webpack");
+const path = require('path');
 
 mix.webpackConfig({
     stats: {
         children: true,
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
     },
 });
 
@@ -50,3 +48,27 @@ if (!mix.inProduction()) {
 if (mix.inProduction()) {
     mix.version();
 }
+
+/*
+ | ---------------------------------------------------------
+ |
+ |                  export module 輸出模塊
+ |
+ | ---------------------------------------------------------
+ */
+
+module.exports = {
+    entry: './resources/app.js',
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: 'app.js'
+    },
+    plugins: [
+        new ProvidePlugin({
+            React: "react"
+        })
+    ],
+    resolve: {
+        extensions: [".jsx", ".js"]
+    },
+};

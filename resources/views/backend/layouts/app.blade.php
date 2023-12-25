@@ -24,7 +24,8 @@
 
     @stack('before-style')
     
-    <script defer src="{{ asset('js/app.js') }}"></script>
+    {{-- <script defer src="{{ asset('js/app.js') }}"></script> --}}
+    @vite('resources/js/app.js')
     <link rel="preload stylesheet" as="style" href="{{ asset('css/backend/layouts/layout.css') }}">
 
     <!-- 要在 css 之后加載的文件 -->
