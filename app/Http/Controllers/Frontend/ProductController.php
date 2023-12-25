@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 // Model
 use App\Domains\Product\Models\Product;
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 
 use App\Domains\Product\Services\FrontendProductService;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class ProductController extends Controller{
     public function __construct(FrontendProductService $frontendProductService)
     {
         $this->frontendProductService = $frontendProductService;
-        $this->modelData = CarModel::orderBy('name', 'asc')->get();
+        $this->modelData = Model::orderBy('name', 'asc')->get();
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductController extends Controller{
     public function query(string $category, string $model): mixed
     {
         $data = ['category'=> $category,'model'=> $model,];
-        $productData = $this->frontendProductService->searchProductByCategoryAndCarModel($data);
+        $productData = $this->frontendProductService->searchProductByCategoryAndModel($data);
 
         // Defined variable
         $directory = "storage/product/$category";

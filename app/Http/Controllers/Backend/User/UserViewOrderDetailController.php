@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Order;
+use App\Domains\Order\Models\Order;
 
 class UserViewOrderDetailController extends Controller
 {

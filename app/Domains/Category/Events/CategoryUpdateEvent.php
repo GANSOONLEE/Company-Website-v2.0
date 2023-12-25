@@ -2,7 +2,7 @@
 
 namespace App\Domains\Category\Events;
 
-use App\Models\Category;
+use App\Domains\Category\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

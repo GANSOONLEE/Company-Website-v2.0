@@ -5,42 +5,115 @@ namespace App\Domains\Auth\Http\Controllers;
 use App\Domains\Auth\Request\PasswordRequest;
 use App\Domains\Auth\Services\PasswordService;
 
-use App\Domains\Auth\Models\User;
+// Request
+use App\Domains\Auth\Request\RenewPasswordRequest;
+
+// Laravel Support
 use Illuminate\Http\Request;
+
 
 class PasswordController
 {
 
     protected $passwordService;
 
-    public function __construct(PasswordRequest $passwordService)
+    public function __construct(PasswordService $passwordService)
     {
-        $this->$passwordService = $passwordService;
+        $this->passwordService = $passwordService;
     }
 
     /**
-     * url: auth/login
+     * url: auth/password/change
      * method: get
-     * name: auth.login.index
+     * name: auth.password.change
      * 
-     * @return \Illuminate\View\View;
+     * @return \Illuminate\View\View
      */
-    public function index(): \Illuminate\View\View
+    public function change(): \Illuminate\View\View
     {
         return view('auth.register');
     }
 
     /**
-     * url: auth/login
-     * method: post
-     * name: auth.login.store
+     * url: auth/password/change
+     * method: patch
+     * name: auth.password.update
+     * 
+     * @return mixed
+     */
+    public function update(): mixed
+    {
+        return view('auth.register');
+    }
+
+    /**
+     * url: auth/password/account-help
+     * method: get
+     * name: auth.password.help
      * 
      * @return \Illuminate\View\View;
      */
-    public function store(): \Illuminate\View\View
+    public function help(): \Illuminate\View\View
     {
-        return view('backend.admin.auth.role-management-center');
+        return view('auth.help-center');
     }
 
+    /**
+     * url: auth/password/reset
+     * method: get
+     * name: auth.password.reset
+     * 
+     * @return mixed
+     */
+    public function reset(Request $request): mixed
+    {
+        $email = $request->email;
+        try{
+            $this->passwordService->resetPassword($email);
+            return redirect()->back()->with('success', 'The reset password email will send to your mailbox!');
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * url: auth/password/verify
+     * method: get
+     * name: auth.password.verify
+     * 
+     */
+    public function verify(Request $request)
+    {
+        $user = $this->passwordService->verify($request);
+        $email = $user->email;
+
+        return view('auth.reset-password', compact('email'));
+    }
+
+    /**
+     * url: auth/password/password-reset
+     * method: get
+     * name: auth.password.password-reset
+     * 
+     * @return mixed
+     */
+    // public function resetPassword(Request $request): mixed
+    // {
+    //     return view('auth.reset-password', compact('email'));
+    // }
+
+    /**
+     * url: auth/password/renew
+     * method: patch
+     * name: auth.password.renew
+     * @param RenewPasswordRequest $request
+     * 
+     * @return mixed
+     */
+    public function renew(RenewPasswordRequest $request): mixed
+    {
+        $this->passwordService->renew($request->validated());
+        return view('auth.login')->with('success', 'Your password has been change successfully.');
+    }
 
 }

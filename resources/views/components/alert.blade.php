@@ -15,8 +15,8 @@
 
 @props(['state'])
 
-<div class="alert alert-{{ $state }} alert-dismissible d-flex align-items-center fade show" role="alert">
-    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+<div class="alert alert-{{ $state }} alert-dismissible d-flex align-items-center fade show !w-[95%]" role="alert">
+    <svg class="flex-shrink-0 inline w-[1.5rem] me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
         fill="currentColor" viewBox="0 0 20 20">
         @php
             switch ($state) {

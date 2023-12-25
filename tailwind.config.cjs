@@ -5,11 +5,18 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.js',
     './resources/**/*.vue',
+    "./node_modules/flowbite/**/*.js",
+    './resources/js/**/*.jsx',
   ],
   darkMode: 'class',
   theme: {
+    extend: {
+      aria: {
+        current: 'current'
+      },
+    },
     colors: {
-      'theme-1': '#EB0A1E',
+      'theme-1': '#EB0A1E'
     },
     zIndex: {
       999999: '999999',
@@ -33,6 +40,7 @@ module.exports = {
       10.5: '2.625rem',
       11: '2.75rem',
       11.5: '2.875rem',
+      12: '3rem',
       12.5: '3.125rem',
       13: '3.25rem',
       13.5: '3.375rem',
@@ -145,6 +153,7 @@ module.exports = {
     }
   },
   plugins: [
+    require('flowbite/plugin'),
     require('@themesberg/flowbite/plugin')
   ],
 }

@@ -15,8 +15,8 @@ Route::group(['prefix' =>'login', 'as' =>'login.'], function()
         ->name('index');
 
     // Store Login Inform 
-    Route::post('/', [LoginController::class, 'store'])
-        ->name('store');
+    Route::post('/', [LoginController::class, 'valid'])
+        ->name('valid');
 
 });
 
@@ -36,12 +36,30 @@ Route::group(['prefix' =>'register', 'as' =>'register.'], function()
 Route::group(['prefix' =>'password', 'as' =>'password.'], function()
 {
     // Change Password
-    Route::patch('/', [PasswordController::class, 'change'])
+    Route::get('change', [PasswordController::class, 'change'])
         ->name('change');
 
+    Route::patch('change', [PasswordController::class, 'update'])
+        ->name('update');
+
+    // Account Help
+    Route::get('account-help', [PasswordController::class, 'help'])
+        ->name('help');
+
     // Reset Password
-    Route::patch('/', [PasswordController::class, 'reset'])
+    Route::post('reset', [PasswordController::class, 'reset'])
         ->name('reset');
+
+    // Verify Password
+    Route::get('verify', [PasswordController::class, 'verify'])
+        ->name('verify');
+        
+    // Verify Password
+    Route::get('password-reset', [PasswordController::class, 'resetPassword'])
+        ->name('password-reset');
+
+    Route::patch('renew', [PasswordController::class, 'renew'])
+        ->name('renew');
 });
 
 /** Process the logout event */

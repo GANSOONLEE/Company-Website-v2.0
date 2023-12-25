@@ -2,7 +2,7 @@
 
 namespace App\Domains\Brand\Events;
 
-use App\Models\Brand;
+use App\Domains\Brand\Models\Brand;
 use App\Models\Operation;
 use Illuminate\Http\Request;
 

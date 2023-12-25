@@ -3,13 +3,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Backend\User\UserViewCartController;
-
-use App\Domains\Cart\Events\UserSearchCartEvent;
-
-Route::get('/cart', [UserViewCartController::class, 'userViewCart'])->name('cart');
+use App\Domains\Cart\Http\Controllers\CartController;
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function(){
 
-    Route::get('search/cart', [UserSearchCartEvent::class, 'searchCart'])->name('search-cart');
+    Route::get('create', [CartController::class, 'create'])
+        ->name('create');
+
 });

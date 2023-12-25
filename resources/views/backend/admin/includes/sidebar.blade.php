@@ -107,7 +107,7 @@
         <section class="link-container">
             <div class="link-title">
                 <i class="link-title-icon fa-solid fa-list-alt">
-                    @if (\App\Models\Order::getOrderNew() > 0)
+                    @if (\App\Domains\Order\Models\Order::getOrderNew() > 0)
                         <div class="notification"></div>
                     @endif
                 </i>
@@ -118,8 +118,8 @@
                 <a href="{{ route('backend.admin.order.index') }}">
                     <li>
                         {{ __('sidebar.order-process') }}
-                        @if (\App\Models\Order::getOrderNew() > 0)
-                            <div class="notification" id="notification-total-cart">{{ \App\Models\Order::getOrderNew() }}</div>
+                        @if (\App\Domains\Order\Models\Order::getOrderNew() > 0)
+                            <div class="notification" id="notification-total-cart">{{ \App\Domains\Order\Models\Order::getOrderNew() }}</div>
                         @endif
                     </li>
                     

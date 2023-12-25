@@ -98,7 +98,7 @@
                     <!-- Cart -->
                     @foreach ($cartData->slice($startIndex, $recordsPerPage) as $index => $cart)
                     @php
-                        if($cart instanceof \App\Models\Cart){
+                        if($cart instanceof \ App\Domains\Cart\Models\Cart){
 
                             $name = $cart->getProductInformationEntity()->getProductName()[0]->name;
                             $product_code = $cart->getProductInformation('product_code');

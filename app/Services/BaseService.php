@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 /**
  * Class BaseRepository.
  *
@@ -364,4 +365,11 @@ abstract class BaseService
 
         return $this;
     }
+
+    /**
+     * Log error messages
+     * @param string $message
+     * 
+     * @return void
+     */
 }

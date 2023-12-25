@@ -1,10 +1,16 @@
-const mix = require("laravel-mix");
-const tailwindcss = require("tailwindcss")
-const glob = require("glob");
-const path = require("path");
 
-const scssFiles = glob.sync("resources/scss/**/*.scss");
-const jsFiles = glob.sync("resources/js/**/*.js");
+/*
+ | ---------------------------------------------------------
+ |
+ |                        Setup 設定
+ |
+ | ---------------------------------------------------------
+ */
+
+const mix = require("laravel-mix");
+const tailwindcss = require("tailwindcss");
+const { ProvidePlugin } = require("webpack");
+const path = require('path');
 
 mix.webpackConfig({
     stats: {
@@ -12,48 +18,57 @@ mix.webpackConfig({
     },
 });
 
-scssFiles.forEach(file => {
-    const relativePath = path.relative("resources/scss", file);
-    const fileNameWithoutExtension = path.basename(relativePath, ".scss");
-    mix.sass(file, `public/css/${path.dirname(relativePath)}/${fileNameWithoutExtension}.css`)
+/*
+ | ---------------------------------------------------------
+ |
+ |                        mix 編譯
+ |
+ | ---------------------------------------------------------
+ */
+
+mix.sass('resources/scss/app.scss', 'public/css')
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.cjs') ],
-    });;
-});
+    });
 
-jsFiles.forEach(file => {
-    const relativePath = path.relative("resources/js", file);
-    const fileNameWithoutExtension = path.basename(relativePath, ".js");
-    mix.js(file, `public/js/${path.dirname(relativePath)}/${fileNameWithoutExtension}.js`)
-        .vue()
-        .sourceMaps()
-        
-});
+mix.js('resources/js/app.js', 'public/js')
+    .react()
+    .sourceMaps();
 
-// mix.setPublicPath('public')
-//     .setResourceRoot('../') // Turns assets paths in css relative to css file
-//     .vue()
-//     .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
-//     .sass('resources/sass/backend/app.scss', 'css/backend.css')
-//     .js('resources/js/frontend/app.js', 'js/frontend.js')
-//     .js('resources/js/backend/app.js', 'js/backend.js')
-//     .extract([
-//         'alpinejs',
-//         'jquery',
-//         'bootstrap',
-//         'popper.js',
-//         'axios',
-//         'sweetalert2',
-//         'lodash'
-//     ])
-//     .sourceMaps();
+// 复制其他不需要编译的 JS 文件
+// mix.copy('resources/js/ajax-scripts.js', 'public/js/ajax-scripts.js');
 
-// if (mix.inProduction()) {
-//     mix.version();
-// } else {
-//     // Uses inline source-maps on development
-//     mix.webpackConfig({
-//         devtool: 'inline-source-map'
-//     });
-// }
+// 在开发环境启用 source maps
+if (!mix.inProduction()) {
+    mix.sourceMaps();
+}
+
+// 在生产环境版本化文件
+if (mix.inProduction()) {
+    mix.version();
+}
+
+/*
+ | ---------------------------------------------------------
+ |
+ |                  export module 輸出模塊
+ |
+ | ---------------------------------------------------------
+ */
+
+module.exports = {
+    entry: './resources/app.js',
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: 'app.js'
+    },
+    plugins: [
+        new ProvidePlugin({
+            React: "react"
+        })
+    ],
+    resolve: {
+        extensions: [".jsx", ".js"]
+    },
+};

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\Order;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Domains\Order\Models\Order;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 

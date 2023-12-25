@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 
 // Model
-use App\Models\Brand;
-use App\Models\Category;
+use App\Domains\Brand\Models\Brand;
+use App\Domains\Category\Models\Category;
 use App\Domains\Product\Models\Product;
 use App\Models\Type;
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 
 class EditProductDetailsController extends Controller{
 
@@ -65,7 +65,7 @@ class EditProductDetailsController extends Controller{
         $brandData = Brand::orderBy('name', 'asc')
                         ->get();
                         
-        $modelData = CarModel::orderBy('name', 'asc')
+        $modelData = Model::orderBy('name', 'asc')
                         ->get();
                         
 

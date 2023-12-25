@@ -2,19 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Backend\User\UserDataController;
-use App\Http\Controllers\Backend\User\UserDataPostController;
-use App\Http\Controllers\Backend\User\UserChangePasswordPostController;
+use App\Domains\Auth\Http\Controllers\UserController;
+use App\Domains\Auth\Http\Controllers\PasswordController;
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function(){
     
-    // GET
-    Route::get('/', [UserDataController::class, 'userData'])->name('user');
+    Route::get('/', [UserController::class, 'profile'])
+        ->name('index');
 
-    // POST
-    Route::post('/post', [UserDataPostController::class, 'userPostData'])->name('user-post');
+    Route::patch('/', [UserController::class, 'storeProfile'])
+        ->name('storeProfile');
 
-    // POST
-    Route::post('/change-password/post', [UserChangePasswordPostController::class, 'userChangePassword'])->name('change-password-post');
+    Route::patch('change-password', [PasswordController::class, 'update'])
+        ->name('update');
+
+    Route::patch('reset-password', [PasswordController::class, 'reset'])
+        ->name('reset');
+
+    Route::delete('destroy', [UserController::class, 'destroy'])
+        ->name('destroy');
 
 });

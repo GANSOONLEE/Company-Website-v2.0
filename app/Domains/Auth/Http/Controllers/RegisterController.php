@@ -13,9 +13,9 @@ class RegisterController
 
     protected $registerService;
 
-    public function __construct(RegisterRequest $registerService)
+    public function __construct(RegisterService $registerService)
     {
-        $this->$registerService = $registerService;
+        $this->registerService = $registerService;
     }
 
     /**
@@ -35,11 +35,14 @@ class RegisterController
      * method: post
      * name: auth.login.store
      * 
-     * @return \Illuminate\View\View;
+     * @return mixed
      */
-    public function store(): \Illuminate\View\View
+    public function store(RegisterRequest $request): mixed
     {
-        return view('backend.admin.auth.role-management-center');
+        $user = $this->registerService->store($request->validated());
+        return $user instanceof User ?
+            redirect()->route('frontend.home') :
+            redirect()->back() ;
     }
 
 

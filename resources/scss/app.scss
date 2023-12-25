@@ -117,11 +117,11 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .bg-white {
-    background-color: white !important;
+    background-color: white;
 }
 
 .text-white {
-    color: white !important;
+    color: white;
 }
 
 /* ———————————————————— Global Variable ———————————————————— */
@@ -231,12 +231,6 @@ html{
             background-color: rgb(27, 27, 34);
         }
     }
-}
-
-
-
-.bg-white{
-    background-color: white;
 }
 
 nav#navbar{

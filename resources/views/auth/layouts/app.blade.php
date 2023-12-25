@@ -16,16 +16,10 @@
 
     <!-- Font Awesome -->
     <script async src="https://kit.fontawesome.com/4fffedbe3d.js" crossorigin="anonymous"></script>
-
-    <!-- Vue -->
-    <script async src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     
     <!-- 導入應用文件 -->
     <link defer rel="stylesheet" href="{{asset('css/app.css')}}">
     <script defer src="{{asset('js/app.js')}}"></script>
-
-    <!-- Pusher -->
-    <script defer src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
 
     @stack('before-body')
 
@@ -33,20 +27,21 @@
 </head>
 <body>
   
-  <div id="alert">
+  
+  <div id="alert" class="flex justify-center align-center w-full top-[.85rem] !fixed {{ $errors->any() ? '!z-99' : '' }}">
       @if ($errors->any())
         <x-alert :state="'danger'">
           @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <li>{!! $error !!}</li>
           @endforeach
         </x-alert>
       @endif
       @if(session('success'))
         <x-alert :state="'success'">
-            <li>{{ session('success') }}</li>
+          <li>{!! session('success') !!}</li>
         </x-alert>
       @endif
-  </div>
+    </div>
 
   <div class="app">
         
@@ -56,6 +51,6 @@
 
 </body>
 
-    @stack('after-body')
+  @stack('after-body')
 
 </html>

@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Order;
+use App\Domains\Order\Models\Order;
 
 use App\Domains\Auth\Models\Traits\Attribute\UserAttribute;
 use App\Domains\Auth\Models\Traits\Relationship\UserRelationship;

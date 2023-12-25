@@ -15,5 +15,9 @@
     "Id": "ID",
     "Search": "Search",
     "No Record": "No matching record found",
-    "Link": "Link"
+    "Delete-Confirm": "Are you sure you want to delete?",
+    "Showing": "Showing",
+    "of": "of",
+    "results": "result",
+    "to": "to"
 }

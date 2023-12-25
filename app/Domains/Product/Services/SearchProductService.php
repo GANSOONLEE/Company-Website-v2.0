@@ -2,7 +2,7 @@
 
 namespace App\Domains\Product\Services;
 
-use App\Models\CarModel;
+use App\Domains\Model\Models\Model;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Domains\Product\Models\Product;
@@ -51,7 +51,7 @@ class SearchProductService{
         // Define variable
         $directory = "storage/product/$category";
                         
-        $modelData = CarModel::orderBy('name', 'asc')
+        $modelData = Model::orderBy('name', 'asc')
                         ->get();
 
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));

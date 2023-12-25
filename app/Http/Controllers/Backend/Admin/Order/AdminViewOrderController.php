@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\Order;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Domains\Order\Models\Order;
 use Illuminate\Http\Request;
 
 class AdminViewOrderController extends Controller

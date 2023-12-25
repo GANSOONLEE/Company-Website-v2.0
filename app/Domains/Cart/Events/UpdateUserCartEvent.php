@@ -2,7 +2,7 @@
 
 namespace App\Domains\Cart\Events;
 
-use App\Models\Cart;
+use  App\Domains\Cart\Models\Cart;
 use Illuminate\Http\Request;
 
 class UpdateUserCartEvent{
