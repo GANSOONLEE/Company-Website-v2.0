@@ -39,7 +39,7 @@ class RoleController
      */
     public function create()
     {
-        return view('backend.admin.auth.create');
+        return view('backend.admin.auth.role.create');
     }
 
     /**

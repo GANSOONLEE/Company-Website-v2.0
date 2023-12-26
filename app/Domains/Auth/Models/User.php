@@ -18,6 +18,8 @@ use App\Domains\Auth\Models\Traits\Relationship\UserRelationship;
 use App\Domains\Auth\Models\Traits\Method\UserMethod;
 use App\Domains\Auth\Models\Traits\Scope\UserScope;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 // Model
 use App\Domains\Auth\Models\Role;
 use Illuminate\Support\Collection;
@@ -27,6 +29,7 @@ class User extends Authenticatable
     use HasApiTokens,
         HasFactory,
         Notifiable,
+        SoftDeletes,
         UserAttribute,
         UserRelationship,
         UserMethod,

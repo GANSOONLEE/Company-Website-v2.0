@@ -18,7 +18,7 @@ trait OrderRelationship
 
     public function user()
     {
-        return User::where('email', $this->email);
+        return User::where('email', $this->user_email);
     }
 
 }

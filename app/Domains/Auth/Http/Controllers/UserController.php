@@ -52,15 +52,38 @@ class UserController
      * url: admin/user/management
      * method: get
      * name: backend.admin.user.management
-     * @param int $page
-     * 
      * @return mixed
      */
 
-    public function management(Request $request, int $page = 10): mixed
+    public function management(Request $request): mixed
     {
-        $users = $this->userService->getByPage($page);
-        return view('backend.admin.auth.user.management', compact('users', 'page'));
+        $users = User::with('roles')
+            ->withTrashed()
+            ->leftJoin('users_roles', 'users.email', '=', 'users_roles.user_email')
+            ->leftJoin('roles', 'users_roles.role_name', '=', 'roles.name')
+            ->select('users.*', 'roles.name as roles_name')
+            ->orderBy('roles.weight', 'asc')
+            ->paginate(5);
+
+        return view('backend.admin.auth.user.management', compact('users'));
+    }
+
+    /**
+     * url: admin/user/search
+     * method: get
+     * name: backend.admin.user.search
+     * @return mixed
+     */
+
+    public function search(Request $request): mixed
+    {
+        $searchTerm = $request->q;
+        if($searchTerm === null){
+            return redirect()->route('backend.admin.user.management');
+        }
+
+        $users = $this->userService->search($searchTerm);
+        return view('backend.admin.auth.user.management', compact('users'));
     }
 
     /**
@@ -122,20 +145,6 @@ class UserController
     }
 
     /**
-     * url: admin/user/edit
-     * method: get
-     * name: backend.admin.user.edit
-     * 
-     * @param User $user
-     * 
-     * @return mixed
-     */
-    public function edit()
-    {
-
-    }
-
-    /**
      * url: admin/user/{user}
      * method: patch
      * name: backend.admin.user.update
@@ -152,14 +161,33 @@ class UserController
     }
 
     /**
+     * Restore soft deleted user
+     * url: admin/user/restore/{id}
+     * method: patch
+     * name: backend.admin.user.restore\
+     * @param string $id
+     */
+    public function restore(string $id)
+    {
+        $user = User::where('id', $id)->onlyTrashed()->first();
+        $user->restore();
+
+        return redirect()->back()->with('success', 'User restore successfully');
+    }
+
+    /**
      * url: admin/user/{user}
      * method: delete
      * name: backend.admin.user.delete
-     * @param $user
+     * @param string $id
      */
-    public function delete($user)
+    public function delete(string $id)
     {
+        // Soft delete the user
+        $user = User::where('id', $id)->first();
+        $user->delete();
 
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 
     /**

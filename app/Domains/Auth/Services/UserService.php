@@ -232,4 +232,29 @@ class UserService extends BaseService
             'shop_name' => $data['shop_name'] ?? null,
         ]);
     }
+
+    /**
+     * Search User
+     */
+    public function search(string $searchTerm)
+    {
+        return User::with('roles')
+            ->leftJoin('users_roles', 'users.email', '=', 'users_roles.user_email')
+            ->leftJoin('roles', 'users_roles.role_name', '=', 'roles.name')
+            ->select('users.*', 'roles.name as roles_name')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('users.name', 'like', "%$searchTerm%")
+                    ->orWhere('users.email', 'like', "%$searchTerm%")
+                    ->orWhere('users.shop_name', 'like', "%$searchTerm%")
+                    ->orWhere('users.profession', 'like', "%$searchTerm%")
+                    ->orWhere('users.contact_phone', 'like', "%$searchTerm%")
+                    ->orWhere('users.whatsapp_phone', 'like', "%$searchTerm%")
+                    ->orWhere('roles.name', 'like', "%$searchTerm%");
+            })
+            ->groupBy('users.email')
+            ->orderBy('roles.weight', 'asc')
+            ->withTrashed()
+            ->paginate(5)
+            ->withQueryString();
+    }
 }

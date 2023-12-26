@@ -3,6 +3,7 @@
     "type": "module",
     "sideEffects": [],
     "scripts": {
+        "start": "php artisan serve && npx run mix",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",

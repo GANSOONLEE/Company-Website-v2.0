@@ -21,6 +21,9 @@ Route::group(['prefix' =>'user', 'as' =>'user.'], function()
     Route::get('management/{page?}', [UserController::class, 'management'])
         ->name('management');
 
+    Route::get('search', [UserController::class, 'search'])
+        ->name('search');
+
     // User Management Center > Permission Panel
     Route::get('permission', [UserController::class, 'permission'])
         ->name('permission');
@@ -36,20 +39,20 @@ Route::group(['prefix' =>'user', 'as' =>'user.'], function()
     Route::post('/', [UserController::class,'store'])
         ->name('store');
 
-    // 
-    Route::get('edit', [UserController::class, 'edit'])
-        ->name('edit');
+    // Restore User
+    Route::patch('restore/{id}', [UserController::class, 'restore'])
+        ->name('restore');
 
     // Update User
     Route::patch('{userID}', [UserController::class, 'update'])
         ->name('update');
 
     // Delete User (Soft)
-    Route::delete('{user}', [UserController::class, 'delete'])
-    ->name('delete');
+    Route::delete('{id}', [UserController::class, 'delete'])
+        ->name('delete');
 
     // Delete User (Force)
-    Route::delete('/deleted-user/{user}', [UserController::class, 'destroy'])
+    Route::delete('/deleted-user/{id}', [UserController::class, 'destroy'])
         ->name('destroy');
 
 });

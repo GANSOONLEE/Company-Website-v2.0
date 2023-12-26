@@ -15,7 +15,7 @@
 // Third-party 第三方庫
 import $ from 'jquery';
 import 'flowbite';
-import { createApp } from 'vue';
+
 
 // Local 本地庫
 import './bootstrap.js';
@@ -32,23 +32,6 @@ import { initThemeSwitch } from './themeSwitch.js';
 window.$ = $;
 window.jQuery = window.$ = $
 
-window.createApp = createApp;
-const Vue = window.Vue;
-
 window.onload = () => {
     initThemeSwitch();
 }
-
-/** 
- | --------------------------------------------------------
- |
- |                           Vue
- | 
- | --------------------------------------------------------
- */
-
-import CartCheckbox from './backend/user/components/CartCheckbox.vue';
-
-const app = createApp(CartCheckbox);
-app.component('CartCheckbox', CartCheckbox);
-app.mount('#hello-world');

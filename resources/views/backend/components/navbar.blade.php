@@ -16,8 +16,9 @@
                 </button>
                 <a href="{{ route('frontend.home') }}" class="flex ms-2 md:me-24">
                     <img src="{{ asset('image/logo.webp') }}" class="h-8 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Frozen
-                        Aircond Sdn Bhd</span>
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                        Frozen Aircond Sdn Bhd
+                    </span>
                 </a>
             </div>
             <div class="flex items-center">
@@ -43,14 +44,14 @@
                             <img class="w-8 h-8 rounded-full" src="{{ asset('image/logo.png') }}" alt="user photo">
                         </button>
                     </div>
-                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                    <div class="z-50 hidden my-4 text-base list-none divide-y bg-gray-50 divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                         id="dropdown-user">
                         <div class="px-4 py-3" role="none">
-                            <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                Neil Sims
+                            <p class="text-base text-gray-900 text-bold dark:text-white" role="none">
+                                {{ auth()->user()->name }}
                             </p>
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                neil.sims@flowbite.com
+                                {{ auth()->user()->email }}
                             </p>
                         </div>
                         <ul class="py-1" role="none">

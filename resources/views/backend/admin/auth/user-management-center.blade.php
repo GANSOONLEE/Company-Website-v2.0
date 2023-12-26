@@ -19,7 +19,7 @@
         
     </div>
 
-    <div class="flex flex-wrap space-x-between mb-4">
+    {{-- <div class="flex flex-wrap space-x-between mb-4">
     
         <x-control-panel title="{{ __('user.permission-panel') }}" showButton="true" button-href="{{ route('backend.admin.user.permission') }}" button-text="{{ __('user.permission-panel-label') }}">
             @lang('user.permission-panel-description')
@@ -29,6 +29,6 @@
             @lang('user.banned-panel-description')
         </x-control-panel>
         
-    </div>
+    </div> --}}
 
 @endsection
