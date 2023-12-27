@@ -16,5 +16,6 @@
     "Search": "Search",
     "No Record": "No matching record found",
     "Link": "Link",
-    "Restore": "Restore"
+    "Restore": "Restore",
+    "ForceDelete": "Force Delete"
 }

@@ -39,13 +39,13 @@ Route::group(['prefix' =>'user', 'as' =>'user.'], function()
     Route::post('/', [UserController::class,'store'])
         ->name('store');
 
-    // Restore User
-    Route::patch('restore/{id}', [UserController::class, 'restore'])
-        ->name('restore');
-
     // Update User
     Route::patch('{userID}', [UserController::class, 'update'])
         ->name('update');
+
+    // Restore User
+    Route::patch('restore/{id}', [UserController::class, 'restore'])
+        ->name('restore');
 
     // Delete User (Soft)
     Route::delete('{id}', [UserController::class, 'delete'])
@@ -69,19 +69,30 @@ Route::group(['prefix' =>'role', 'as' =>'role.'], function()
     Route::get('management', [RoleController::class, 'management'])
         ->name('management');
 
+    Route::get('get/{id}', [RoleController::class, 'get'])
+        ->name('get');
+
+    // Store User
     Route::post('/', [RoleController::class,'store'])
         ->name('store');
 
     Route::get('edit', [RoleController::class, 'edit'])
         ->name('edit');
 
-    Route::patch('{user}', [RoleController::class, 'update'])
+    // Update User
+    Route::patch('{id}', [RoleController::class, 'update'])
         ->name('update');
 
-    Route::delete('{user}', [RoleController::class, 'delete'])
+    // Restore User
+    Route::patch('restore/{id}', [RoleController::class, 'restore'])
+    ->name('restore');
+
+    // Delete User (Soft)
+    Route::delete('{id}', [RoleController::class, 'delete'])
     ->name('delete');
 
-    Route::delete('/deleted-user/{user}', [RoleController::class, 'destroy'])
+    // Delete User (Force)
+    Route::delete('/deleted-role/{id}', [RoleController::class, 'destroy'])
         ->name('destroy');
 
 });

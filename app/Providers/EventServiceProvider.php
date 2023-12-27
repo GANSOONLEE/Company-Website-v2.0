@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Events\ClearPreviousOperationRecordEvent;
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -31,11 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Operation::creating(function ($event) {
-            $count = Operation::selectRecordsBefore();
-            Operation::deleteRecordsBefore();
-            Log::info("Operation was created and have $count records been deleted!");
-        });
+
     }
 
     /**

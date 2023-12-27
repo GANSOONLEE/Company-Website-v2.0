@@ -141,7 +141,7 @@ class UserController
     {
         $this->userService->store($request->validated());
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'User created successfully');
     }
 
     /**
@@ -176,7 +176,7 @@ class UserController
     }
 
     /**
-     * url: admin/user/{user}
+     * url: admin/user/{id}
      * method: delete
      * name: backend.admin.user.delete
      * @param string $id
@@ -191,14 +191,17 @@ class UserController
     }
 
     /**
-     * url: admin/user/deleted-user/{user}
+     * url: admin/user/deleted-user/{id}
      * method: delete
      * name: backend.admin.user.destroy
-     * @param $user
+     * @param string  $id
      */
-    public function destroy($user)
+    public function destroy(string $id)
     {
+        $user = User::where('id', $id)->onlyTrashed()->first();
+        $this->userService->destroy($user);
 
+        return redirect()->back()->with('success', 'User force delete successfully');
     }
 
     /*

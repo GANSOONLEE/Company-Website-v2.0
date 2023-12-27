@@ -16,5 +16,6 @@
     "Search": "搜索",
     "No Record": "找不到符合的記錄",
     "Link": "鏈接",
-    "Restore": "復原"
+    "Restore": "復原",
+    "ForceDelete": "永久刪除"
 }

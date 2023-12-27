@@ -21,7 +21,7 @@
 
             <div class="mb-3">
                 <label for="weight" class="form-label required">@lang('role.weight')</label>
-                <input name="weight" id="weight" type="number" min="1" max="99" class="form-control invalid:border-red-500 dark:bg-gray-800 dark:text-white" placeholder="name@example.com" value="{{ old('weight') }}">
+                <input name="weight" id="weight" type="number" min="1" max="99" class="form-control invalid:border-red-500 dark:bg-gray-800 dark:text-white" placeholder="{{ __('role.weight') }}" value="{{ old('weight') }}">
             </div>
 
             <button class="btn btn-primary bg-blue-600" type="submit">@lang('Submit')</button>

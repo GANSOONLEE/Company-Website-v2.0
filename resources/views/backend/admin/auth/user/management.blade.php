@@ -161,5 +161,19 @@
             form.action = submitRoute;
 
         }
+
+        let deleteForm = document.querySelector('#deleteForm');
+        deleteForm.addEventListener('submit', e => {
+            confirm('Are you sure you want to delete this user? (You cant restore it later.)') ?
+                deleteForm.submit() :
+                e.preventDefault();
+        });
+        
+        let destoryForm = document.querySelector('#destoryForm');
+        destoryForm.addEventListener('submit', e => {
+            confirm('Are you sure you want to delete this user foreveer?') ?
+            destoryForm.submit() :
+                e.preventDefault();
+        });
     </script>
 @endpush

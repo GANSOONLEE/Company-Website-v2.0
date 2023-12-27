@@ -4,7 +4,7 @@ namespace App\Domains\Product\Events;
 
 // Models
 use App\Domains\Product\Models\Product;
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 
 // Laravel Support
 use Illuminate\Http\Request;

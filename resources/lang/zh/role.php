@@ -9,4 +9,5 @@ return array (
   'create-panel-description' => '新增身份组',
   'name' => '身分组名称',
   'weight' => '权重',
+  'count' => '此身份组的人数',
 );

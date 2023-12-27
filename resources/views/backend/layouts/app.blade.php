@@ -83,7 +83,7 @@
     @stack('before-script')
 
     <!-- Flowbite -->
-    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+    {{-- <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script> --}}
 
     <!-- 要在 javascript 之后加載的文件 -->
     @stack('after-script')

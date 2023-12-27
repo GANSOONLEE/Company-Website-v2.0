@@ -3,7 +3,7 @@
 namespace App\Domains\Category\Events;
 
 use App\Domains\Category\Models\Category;
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 use Illuminate\Http\Request;
 
 class CategoryCreateEvent{

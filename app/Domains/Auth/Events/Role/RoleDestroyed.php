@@ -4,8 +4,9 @@ namespace App\Domains\Auth\Events\Role;
 
 use App\Domains\Auth\Models\Role;
 use Illuminate\Queue\SerializesModels;
+use App\Events\BaseEvent;
 
-class RoleDestroyed
+class RoleDestroyed extends BaseEvent
 {
     use SerializesModels;
 
@@ -17,5 +18,6 @@ class RoleDestroyed
     public function __construct(Role $role)
     {
         $this->role = $role;
+        $this->createOperation('destroy', 'role', $role->name);
     }
 }

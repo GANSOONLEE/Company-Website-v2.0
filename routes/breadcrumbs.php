@@ -288,6 +288,42 @@ Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrai
 
 #endregion
 
+/* ------------------------------------- Data Center ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.admin.data.index'
+Breadcrumbs::for('backend.admin.data.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.data-center'));
+});
+
+// Breadcrumbs for 'backend.admin.data.record'
+Breadcrumbs::for('backend.admin.data.record', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.operation-record'), route('backend.admin.data.record'));
+});
+
+// Breadcrumbs for 'backend.admin.data.record-search'
+Breadcrumbs::for('backend.admin.data.record-search', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.record');
+    $trail->push(__('Search'), route('backend.admin.data.record-search'));
+});
+
+// Breadcrumbs for 'backend.admin.data.import'
+Breadcrumbs::for('backend.admin.data.import', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.import-data'), route('backend.admin.data.import'));
+});
+
+// Breadcrumbs for 'backend.admin.data.export'
+Breadcrumbs::for('backend.admin.data.export', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.export-data'), route('backend.admin.data.export'));
+});
+
+#endregion
+
 /* ------------------------------------- [User Backend]  ------------------------------------- */
 
 Breadcrumbs::for('backend.user', function (BreadcrumbTrail $trail) {

@@ -9,4 +9,5 @@ return array (
   'create-panel-description' => 'Add new identity group',
   'name' => 'Identity group name',
   'weight' => 'Weights',
+  'count' => 'Number of people in this identity group',
 );

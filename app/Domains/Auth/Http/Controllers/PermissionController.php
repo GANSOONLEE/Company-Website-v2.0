@@ -30,17 +30,17 @@ class PermissionController
     }
 
     /**
-     * url: admin/permission/create
+     * url: admin/permission/management
      * method: get
      * name: backend.admin.account.create
      * 
      * @return mixed
      */
 
-    // public function create()
-    // {
-    //     return view('backend.admin.permission.create');
-    // }
+    public function management()
+    {
+        return view('backend.admin.auth.permission.management');
+    }
 
     /**
      * url: admin/permission/edit

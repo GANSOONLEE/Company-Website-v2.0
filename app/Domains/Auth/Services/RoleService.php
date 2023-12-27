@@ -88,6 +88,54 @@ class RoleService extends BaseService
         return $role;
     }
 
+    
+    /**
+     * @param string $id
+     * 
+     * @return mixed
+     */
+    public function getRole(string $id): mixed
+    {
+        $role = Role::where('id', $id)->first();
+        return response()->json($role);
+    }
+    
+    /**
+     * @param array $data
+     * @return Role
+     */
+    public function update(array $data = []): Role
+    {
+        DB::beginTransaction();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        try{
+            $role = Role::where('id', $data['id'])->first();
+
+            DB::table('users_roles')
+                ->where('role_name', $role->name)
+                ->update([
+                    'role_name' => $data['name']
+            ]);
+
+            $role->update([
+                'name' => $data['name'],
+                'weight' => $data['weight'],
+            ]);
+
+        }catch(Exception $e){
+            DB::rollBack();
+            dd($e->getMessage());
+            throw new GeneralException('There was an problem updating your role.');
+        }
+
+        DB::commit();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        event(new RoleUpdated($role));
+        return $role;
+    }
+
     /**
      * @param Role $role
      *

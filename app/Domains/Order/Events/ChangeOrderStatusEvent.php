@@ -2,7 +2,7 @@
 
 namespace App\Domains\Order\Events;
 
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 use App\Domains\Order\Models\Order;
 use App\Domains\Auth\Models\UserOperation;
 use Illuminate\Http\Request;
