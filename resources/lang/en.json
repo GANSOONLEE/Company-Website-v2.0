@@ -17,5 +17,7 @@
     "No Record": "No matching record found",
     "Link": "Link",
     "Restore": "Restore",
-    "ForceDelete": "Force Delete"
+    "ForceDelete": "Force Delete",
+    "Export": "Export",
+    "Import": "Import"
 }

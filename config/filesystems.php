@@ -55,6 +55,10 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'backup_disk' => [
+            'driver' => 'local',
+            'root' => 'D:\server\backup', // 修改为你希望存储备份文件的目录
+        ],
 
     ],
 

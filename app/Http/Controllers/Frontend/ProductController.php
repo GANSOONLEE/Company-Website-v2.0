@@ -56,7 +56,8 @@ class ProductController extends Controller{
      */
     public function query(string $category, string $model): mixed
     {
-        $data = ['category'=> $category,'model'=> $model,];
+        $category = str_replace('&amp;amp;', '&', $category);
+        $data = ['category'=> $category, 'model'=> $model];
         $productData = $this->frontendProductService->searchProductByCategoryAndModel($data);
 
         // Defined variable

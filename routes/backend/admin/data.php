@@ -16,6 +16,14 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     // Get [View] Export
     Route::get('export', [DataController::class, 'export'])
         ->name('export');
+    
+    // Import Table Data
+    Route::post('importData', [DataController::class, 'importData'])
+        ->name('import-data');
+    
+    // Export Table Data
+    Route::post('exportData', [DataController::class, 'exportData'])
+        ->name('export-data');
 
     // Search record and pass to [View] Record
     Route::get('search', [DataController::class, 'search'])

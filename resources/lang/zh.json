@@ -17,5 +17,7 @@
     "No Record": "找不到符合的记录",
     "Link": "链接",
     "Restore": "恢复",
-    "ForceDelete": "永久删除"
+    "ForceDelete": "永久删除",
+    "Import": "导入",
+    "Export": "导出"
 }
