@@ -51,7 +51,7 @@ trait CartRelationship
     public function productBrand(): Builder
     {
         return DB::table('products_brand')
-                ->where('sku_id', $this->sku_id);
+                ->where('code', $this->sku_id);
     }
 
 }

@@ -16,7 +16,7 @@ class CreateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'selectedCheckbox' => ['required', 'array', 'min:1'],
+            'selectedCheckbox' => ['required', 'min:1'],
         ];
     }
 

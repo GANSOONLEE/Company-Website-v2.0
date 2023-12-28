@@ -14,6 +14,9 @@ use App\Domains\Auth\Events\User\UserDeleted;
 use App\Domains\Auth\Events\User\UserRestored;
 use App\Domains\Auth\Events\User\UserDestroyed;
 
+use App\Domains\Cart\Models\Cart;
+use App\Domains\Order\Models\Order;
+
 class UserService extends BaseService
 {
 
@@ -200,7 +203,6 @@ class UserService extends BaseService
     {
         if($user->restore()){
             event(new UserRestored($user));
-
             return $user;
         }
 
@@ -209,13 +211,36 @@ class UserService extends BaseService
 
     public function destroy(User $user): bool
     {
-        if($user->forceDelete()){
-            event(new UserDestroyed($user));
+        DB::beginTransaction();
 
-            return true;
+        try{
+
+            // Delete Order
+            $orders = Order::where('user_email', $user->email)->get();
+            foreach ($orders as $order)
+            {
+                DB::table('orders_detail')->where('order_id', $order->code)->delete(); 
+                $order->delete();
+            }
+
+            // Delete Cart
+            Cart::where('user_email', $user->email)->delete();
+
+            // Delete User Role
+            DB::table('users_roles')->where('user_email', $user->email)->delete();
+
+            if($user->forceDelete()){
+                event(new UserDestroyed($user));
+            }
+
+        }catch(Exception $e){
+            DB::rollBack();
+            dd($e->getMessage());
+            return false;
         }
 
-        throw new GeneralException('There was a problem deleting this user. Please try again.');
+        DB::commit();
+        return true;
     }
 
     public function createUser(array $data = []): User
@@ -231,5 +256,30 @@ class UserService extends BaseService
             'profession' => $data['profession'] ?? null,
             'shop_name' => $data['shop_name'] ?? null,
         ]);
+    }
+
+    /**
+     * Search User
+     */
+    public function search(string $searchTerm)
+    {
+        return User::with('roles')
+            ->leftJoin('users_roles', 'users.email', '=', 'users_roles.user_email')
+            ->leftJoin('roles', 'users_roles.role_name', '=', 'roles.name')
+            ->select('users.*', 'roles.name as roles_name')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('users.name', 'like', "%$searchTerm%")
+                    ->orWhere('users.email', 'like', "%$searchTerm%")
+                    ->orWhere('users.shop_name', 'like', "%$searchTerm%")
+                    ->orWhere('users.profession', 'like', "%$searchTerm%")
+                    ->orWhere('users.contact_phone', 'like', "%$searchTerm%")
+                    ->orWhere('users.whatsapp_phone', 'like', "%$searchTerm%")
+                    ->orWhere('roles.name', 'like', "%$searchTerm%");
+            })
+            ->groupBy('users.email')
+            ->orderBy('roles.weight', 'asc')
+            ->withTrashed()
+            ->paginate(5)
+            ->withQueryString();
     }
 }

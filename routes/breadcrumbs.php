@@ -184,6 +184,12 @@ Breadcrumbs::for('backend.admin.order.index', function (BreadcrumbTrail $trail) 
     $trail->push(__('order.view-order'), route('backend.admin.order.index'));
 });
 
+// Breadcrumbs for 'backend.admin.order.detail'
+Breadcrumbs::for('backend.admin.order.detail', function (BreadcrumbTrail $trail, $order) {
+    $trail->parent('backend.admin.order.index');
+    $trail->push($order, route('backend.admin.order.detail', ["id" => $order]));
+});
+
 // Breadcrumbs for 'backend.admin.order.list'
 Breadcrumbs::for('backend.admin.order.list', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.order');
@@ -212,6 +218,12 @@ Breadcrumbs::for('backend.admin.user.create', function (BreadcrumbTrail $trail) 
 Breadcrumbs::for('backend.admin.user.management', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.user.index');
     $trail->push(__('user.management-panel'), route('backend.admin.user.management')); // Use the correct route for management
+});
+
+// Breadcrumbs for 'backend.admin.user.search'
+Breadcrumbs::for('backend.admin.user.search', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.user.management');
+    $trail->push(__('Search'), route('backend.admin.user.search')); // Use the correct route for management
 });
 
 // Breadcrumbs for 'backend.admin.user.permission'
@@ -272,6 +284,42 @@ Breadcrumbs::for('backend.admin.permission.create', function (BreadcrumbTrail $t
 Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.permission.index');
     $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
+});
+
+#endregion
+
+/* ------------------------------------- Data Center ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.admin.data.index'
+Breadcrumbs::for('backend.admin.data.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.data-center'));
+});
+
+// Breadcrumbs for 'backend.admin.data.record'
+Breadcrumbs::for('backend.admin.data.record', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.operation-record'), route('backend.admin.data.record'));
+});
+
+// Breadcrumbs for 'backend.admin.data.record-search'
+Breadcrumbs::for('backend.admin.data.record-search', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.record');
+    $trail->push(__('Search'), route('backend.admin.data.record-search'));
+});
+
+// Breadcrumbs for 'backend.admin.data.import'
+Breadcrumbs::for('backend.admin.data.import', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.import-data'), route('backend.admin.data.import'));
+});
+
+// Breadcrumbs for 'backend.admin.data.export'
+Breadcrumbs::for('backend.admin.data.export', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.data.index');
+    $trail->push(__('sidebar.export-data'), route('backend.admin.data.export'));
 });
 
 #endregion

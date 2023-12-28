@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin\Account;
 
 use App\Http\Controllers\Controller;
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 
 class UserOperationController extends Controller{
 

@@ -3,7 +3,7 @@
 namespace App\Domains\Brand\Events;
 
 use App\Domains\Brand\Models\Brand;
-use App\Models\Operation;
+use App\Domains\Data\Models\Operation;
 use Illuminate\Http\Request;
 
 class BrandUpdateEvent{

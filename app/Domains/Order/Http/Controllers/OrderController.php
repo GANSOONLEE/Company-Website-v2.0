@@ -67,6 +67,15 @@ class OrderController
     }
 
     /**
+     * Get the view for order detail
+     */
+    public function detail($id): mixed
+    {
+        $order = Order::where('id', $id)->first();
+        return view('backend.admin.order.detail', compact('order'));
+    }
+
+    /**
      * Get the view for edit order [User Backend]
      * @return mixed
      */

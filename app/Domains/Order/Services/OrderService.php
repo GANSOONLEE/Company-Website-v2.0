@@ -84,12 +84,13 @@ class OrderService extends BaseService
                 'user_email' => $data['user_email'] ?? null,
             ]);
 
+            
             // Save order detail
             foreach ($orderDetailData as $id)
             {
                 $cart = Cart::where('id', $id)->first();
                 $number = $cart->number;
-
+                
                 if($number === 0){
                     throw new GeneralException('The item quantity can\'t be 0!');
                 }

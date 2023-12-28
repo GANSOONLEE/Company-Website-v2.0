@@ -15,9 +15,9 @@
     "Id": "编号",
     "Search": "搜索",
     "No Record": "找不到符合的记录",
-    "Delete-Confirm": "你确定要删除吗？",
-    "Showing": "显示中",
-    "of": "的",
-    "results": "结果",
-    "to": "到"
+    "Link": "链接",
+    "Restore": "恢复",
+    "ForceDelete": "永久删除",
+    "Import": "导入",
+    "Export": "导出"
 }

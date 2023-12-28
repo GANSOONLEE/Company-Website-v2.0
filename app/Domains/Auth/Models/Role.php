@@ -6,19 +6,22 @@ namespace App\Domains\Auth\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 // Model
 use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Models\Permission;
 use Illuminate\Support\Collection;
 
+use App\Domains\Auth\Models\Traits\Method\RoleMethod;
 use App\Domains\Auth\Models\Traits\Scope\RoleScope;
 use App\Domains\Auth\Models\Traits\Relationship\RoleRelationship;
 
 class Role extends Model
 {
     use HasFactory,
+        SoftDeletes,
+        RoleMethod,
         RoleRelationship,
         RoleScope;
 

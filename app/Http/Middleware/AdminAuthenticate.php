@@ -13,7 +13,7 @@ class AdminAuthenticate
         $user = Auth::user();
         
         if(!$user){
-            return redirect()->route('auth.login');
+            return redirect()->route('auth.login.index');
         }
 
         if(!$user->getRoleEntity()->hasPermission('admin')){

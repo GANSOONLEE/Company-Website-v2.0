@@ -20,8 +20,8 @@ class Order extends Model
     const ORDER_STATE = [
         'Pending',    // Pending 挂单
         'Accepted',   // Accepted 接受
-        'Hold',       // Hold 接受
-        'Placed',     // Placed 接受
+        'Process',       // Process 處理中
+        'Placed',     // Placed 等待中
         'Completed',  // Complete 已完成
     ];
     
@@ -58,10 +58,17 @@ class Order extends Model
 
         $orderDetails = DB::table('orders_detail')
             ->where('order_id', $this->code)
-            ->join('products_brand', 'orders_detail.sku_id', '=', 'products_brand.sku_id')
-            ->join('products', 'products_brand.product_code', '=', 'products.product_code')
-            ->join('products_name', 'products_brand.product_code', '=', 'products_name.product_code')
-            ->select('products_brand.code',
+            ->join('products_brand', function ($join) {
+                $join->on('orders_detail.sku_id', '=', 'products_brand.sku_id');
+            })
+            ->join('products', function ($join) {
+                $join->on('products_brand.product_code', '=', 'products.product_code');
+            })
+            ->join('products_name', function ($join) {
+                $join->on('products_brand.product_code', '=', 'products_name.product_code');
+            })
+            ->select(
+                'products_brand.code',
                 DB::raw('MIN(products_brand.sku_id) as sku_id'),
                 DB::raw('MIN(products_brand.brand) as brand'),
                 DB::raw('MIN(orders_detail.order_id) as order_id'),
@@ -73,8 +80,7 @@ class Order extends Model
             ->groupBy('products_brand.code')
             ->orderBy('product_category', 'asc')
             ->orderBy('name', 'asc')
-            ->orderBy('brand', 'asc')
-            ->get();
+            ->orderBy('brand', 'asc');
 
         return $orderDetails;
 

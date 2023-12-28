@@ -15,9 +15,9 @@
     "Id": "ID",
     "Search": "Search",
     "No Record": "No matching record found",
-    "Delete-Confirm": "Are you sure you want to delete?",
-    "Showing": "Showing",
-    "of": "of",
-    "results": "result",
-    "to": "to"
+    "Link": "Link",
+    "Restore": "Restore",
+    "ForceDelete": "Force Delete",
+    "Export": "Export",
+    "Import": "Import"
 }

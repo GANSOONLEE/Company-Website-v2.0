@@ -2,10 +2,11 @@
 
 namespace App\Domains\Auth\Events\Role;
 
-use App\Domains\Auth\Models\Role;
 use Illuminate\Queue\SerializesModels;
+use App\Domains\Auth\Models\Role;
+use App\Events\BaseEvent;
 
-class RoleCreated
+class RoleCreated extends BaseEvent
 {
     use SerializesModels;
 
@@ -17,5 +18,6 @@ class RoleCreated
     public function __construct(Role $role)
     {
         $this->role = $role;
+        $this->createOperation('create', 'role', $role->name);
     }
 }

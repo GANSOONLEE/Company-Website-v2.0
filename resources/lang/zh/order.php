@@ -23,4 +23,9 @@ return array (
   'view-order-panel-description' => '查看订单',
   'view-order-description' => '查看需要处理的订单',
   'history-order-description' => '所有已完成的订单（只会保存 :day 天的记录）',
+  'pending' => '挂单',
+  'placed' => '等待中',
+  'accepted' => '接受',
+  'completed' => '已完成',
+  'process' => '处理中',
 );

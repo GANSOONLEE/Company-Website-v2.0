@@ -4,8 +4,9 @@ namespace App\Domains\Auth\Events\User;
 
 use App\Domains\Auth\Models\User;
 use Illuminate\Queue\SerializesModels;
+use App\Events\BaseEvent;
 
-class UserUpdated
+class UserUpdated extends BaseEvent
 {
     use SerializesModels;
 
@@ -17,5 +18,6 @@ class UserUpdated
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->createOperation('update', 'user', $user->name);
     }
 }

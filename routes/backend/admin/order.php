@@ -22,6 +22,10 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
     Route::post('/', [OrderController::class, 'store'])
         ->name('store');
 
+    // View Order Detail [Action]
+    Route::get('/detail/{id}', [OrderController::class, 'detail'])
+        ->name('detail');
+
     // Edit Order [View]
     Route::get('edit', [OrderController::class, 'edit'])
         ->name('edit');

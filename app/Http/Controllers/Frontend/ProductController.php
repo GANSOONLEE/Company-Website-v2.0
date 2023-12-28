@@ -6,21 +6,29 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 // Model
 use App\Domains\Product\Models\Product;
 use App\Domains\Model\Models\Model;
 
+// Service
+use App\Domains\Cart\Services\CartService;
 use App\Domains\Product\Services\FrontendProductService;
+
+// Request
 use Illuminate\Http\Request;
+use App\Domains\Cart\Request\CreateCartRequest;
 
 class ProductController extends Controller{
 
     protected $frontendProductService;
+    protected $cartService;
     protected $modelData;
 
-    public function __construct(FrontendProductService $frontendProductService)
+    public function __construct(FrontendProductService $frontendProductService, CartService $cartService)
     {
         $this->frontendProductService = $frontendProductService;
+        $this->cartService = $cartService;
         $this->modelData = Model::orderBy('name', 'asc')->get();
     }
 
@@ -48,7 +56,8 @@ class ProductController extends Controller{
      */
     public function query(string $category, string $model): mixed
     {
-        $data = ['category'=> $category,'model'=> $model,];
+        $category = str_replace('&amp;amp;', '&', $category);
+        $data = ['category'=> $category, 'model'=> $model];
         $productData = $this->frontendProductService->searchProductByCategoryAndModel($data);
 
         // Defined variable
@@ -73,6 +82,16 @@ class ProductController extends Controller{
 
         $productData = $this->frontendProductService->search($searchTerm);
         return view('frontend.product-search', compact('productData'));
+    }
+
+    /**
+     * Create cart record
+     * @param CreateCartRequest $request
+     */
+    public function cart(CreateCartRequest $request): mixed
+    {
+        $this->cartService->store($request->validated());
+        return redirect()->back();
     }
 
 }
