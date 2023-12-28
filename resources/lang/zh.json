@@ -19,5 +19,6 @@
     "Restore": "恢复",
     "ForceDelete": "永久删除",
     "Import": "导入",
-    "Export": "导出"
+    "Export": "导出",
+    "Publish": "发布"
 }

@@ -15356,6 +15356,9 @@ input:checked + .toggle-bg{
 .ml-\[1rem\]{
   margin-left: 1rem;
 }
+.mb-\[\.3rem\]{
+  margin-bottom: .3rem;
+}
 .block{
   display: block;
 }
@@ -15509,6 +15512,9 @@ input:checked + .toggle-bg{
 }
 .w-12{
   width: 3rem;
+}
+.\!max-w-\[100\%\]{
+  max-width: 100% !important;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -15664,6 +15670,9 @@ input:checked + .toggle-bg{
 .divide-gray-100 > :not([hidden]) ~ :not([hidden]){
   --tw-divide-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-divide-opacity));
+}
+.self-end{
+  align-self: flex-end;
 }
 .self-center{
   align-self: center;
@@ -16018,6 +16027,9 @@ input:checked + .toggle-bg{
 }
 .pt-8{
   padding-top: 2rem;
+}
+.ps-10{
+  padding-inline-start: 2.5rem;
 }
 .text-left{
   text-align: left;

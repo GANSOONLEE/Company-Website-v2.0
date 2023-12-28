@@ -54,4 +54,5 @@ return array (
   'permission-management-center-description' => 'Operations related to management permissions',
   'admin' => 'Administrator backend',
   'admin-description' => 'Quickly actions various functions',
+  'notification-publish-center' => 'Announcement Release Center',
 );

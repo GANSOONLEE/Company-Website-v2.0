@@ -19,5 +19,6 @@
     "Restore": "Restore",
     "ForceDelete": "Force Delete",
     "Export": "Export",
-    "Import": "Import"
+    "Import": "Import",
+    "Publish": "Publish"
 }

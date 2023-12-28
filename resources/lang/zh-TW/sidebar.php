@@ -54,4 +54,5 @@ return array (
   'permission-management-center-description' => '管理權限相關的操作',
   'admin' => '管理員後臺',
   'admin-description' => '快速操作各項功能',
+  'notification-publish-center' => '公告發佈中心',
 );
