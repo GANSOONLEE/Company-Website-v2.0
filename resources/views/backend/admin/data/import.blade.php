@@ -30,8 +30,8 @@
                 @foreach ($tables as $table)
                     <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:odd:bg-gray-500 dark:even:bg-gray-600 dark:hover:bg-gray-700">
                         <td class="px-3">{{ $i++ }}</td>
-                        <td>{{ $table->Tables_in_frozen_aircond_development }}</td>
-                        <td>@lang('database.description.' . $table->Tables_in_frozen_aircond_development)</td>
+                        <td>{{ $table->{"Tables_in_" . config('database.connections.mysql.database')} }}</td>
+                        <td>@lang('database.description.' . $table->{"Tables_in_" . config('database.connections.mysql.database')})</td>
                         <td class="flex justify-start align-items-center gap-x-[.4rem] py-2">
                             {{-- <label for="table-file-{{ $i }}" class="px-3 py-2 text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 hover:bg-gray-300 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">@lang('Import')</label> --}}
                             <input name="table[]" id="table-file-{{ $i }}" type="file">

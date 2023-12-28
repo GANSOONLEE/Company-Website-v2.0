@@ -29,8 +29,8 @@
                 @foreach ($tables as $table)
                     <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:odd:bg-gray-500 dark:even:bg-gray-600 dark:hover:bg-gray-700">
                         <td class="px-3">{{ $i++ }}</td>
-                        <td>{{ $table->Tables_in_frozen_aircond_development }}</td>
-                        <td>@lang('database.description.' . $table->Tables_in_frozen_aircond_development)</td>
+                        <td>{{ $table->{"Tables_in_" . config('database.connections.mysql.database')} }}</td>
+                        <td>@lang('database.description.' . $table->{"Tables_in_" . config('database.connections.mysql.database')})</td>
                         <td class="flex justify-start align-items-center gap-x-[.4rem] py-2">
                             <input name="table[]" id="table-checkbox-{{ $i }}" type="checkbox" value="{{ $table->Tables_in_frozen_aircond_development }}" class="w-4 h-4 text-blue-600 bg-gray-50 border !border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="table-checkbox-{{ $i }}">@lang('Export')</label>

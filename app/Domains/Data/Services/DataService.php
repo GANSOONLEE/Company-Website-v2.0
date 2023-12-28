@@ -24,7 +24,7 @@ class DataService extends BaseService
         $collect = collect(DB::select('SHOW TABLES'));
         return $collect->sortBy(function ($table) {
             return array_values((array) $table)[0];
-        })->pluck('Tables_in_frozen_aircond_development')->toArray();
+        })->pluck("Tables_in_". config('database.connections.mysql.database'))->toArray();
     }
 
     /**
