@@ -286,6 +286,12 @@ Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrai
     $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
 });
 
+// Breadcrumbs for 'backend.admin.permission.edit'
+Breadcrumbs::for('backend.admin.permission.edit', function (BreadcrumbTrail $trail, $role) {
+    $trail->parent('backend.admin.permission.management');
+    $trail->push(__('permission.management-panel'), route('backend.admin.permission.edit', ["role_name" => $role]));
+});
+
 Breadcrumbs::for('backend.admin.notification.index', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin');
     $trail->push(__('notification.publish-panel'), route('backend.admin.notification.index'));

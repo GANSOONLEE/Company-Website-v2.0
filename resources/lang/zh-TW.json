@@ -20,5 +20,7 @@
     "ForceDelete": "永久刪除",
     "Export": "匯出",
     "Import": "匯入",
-    "Publish": "發佈"
+    "Publish": "發佈",
+    "Update": "更新",
+    "Cancel": "取消"
 }

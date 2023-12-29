@@ -20,5 +20,7 @@
     "ForceDelete": "Force Delete",
     "Export": "Export",
     "Import": "Import",
-    "Publish": "Publish"
+    "Publish": "Publish",
+    "Update": "Update",
+    "Cancel": "Cancel"
 }

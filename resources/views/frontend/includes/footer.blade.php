@@ -16,16 +16,16 @@
             <section class="footer-link-section">
                 <p class="footer-link-section-title">Contact</p>
                 <ul class="footer-link-section-list">
-                    <a href="https://youtube.com/@frozenaircondsdnbhd8042"><li class="footer-link">
+                    <a href="https://youtube.com/@frozenaircondsdnbhd8042"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-brands fa-youtube"></i>Youtube
                     </li></a>
-                    <a href="https://www.facebook.com/FrozenForAlatGanti"><li class="footer-link">
+                    <a href="https://www.facebook.com/FrozenForAlatGanti"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-brands fa-facebook"></i>Facebook
                     </li></a>
-                    <a href="https://www.tiktok.com/@alatganti_aircond_ahseng"><li class="footer-link">
+                    <a href="https://www.tiktok.com/@alatganti_aircond_ahseng"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-brands fa-tiktok"></i>Tiktok
                     </li></a>
-                    <a href="https://www.wasap.my/60172430100"><li class="footer-link">
+                    <a href="https://www.wasap.my/60172430100"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-brands fa-whatsapp"></i>Whatapps
                     </li></a>
                 </ul>
@@ -34,16 +34,16 @@
             <section class="footer-link-section">
                 <p class="footer-link-section-title">Site</p>
                 <ul class="footer-link-section-list">
-                    <a href="#"><li class="footer-link">
+                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-solid fa-house"></i>Home
                     </li></a>
-                    <a href="#"><li class="footer-link">
+                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-solid fa-address-card"></i>About Us
                         </li></a>
-                    <a href="#"><li class="footer-link">
+                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-solid fa-cube"></i>Product
                     </li></a>
-                    <a href="#"><li class="footer-link">
+                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
                         <i class="fa-solid fa-envelope"></i>Contact
                     </li></a>
                 </ul>
