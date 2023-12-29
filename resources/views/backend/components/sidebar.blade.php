@@ -36,6 +36,7 @@
             <x-sidebar-dropdown-item href="{{ route('backend.admin.user.index') }}" label="{{ __('sidebar.user-management-center') }}" />
             <x-sidebar-dropdown-item href="{{ route('backend.admin.role.index') }}" label="{{ __('sidebar.role-management-center') }}" />
             <x-sidebar-dropdown-item href="{{ route('backend.admin.permission.index') }}" label="{{ __('sidebar.permission-management-center') }}" />
+            <x-sidebar-dropdown-item href="{{ route('backend.admin.notification.index') }}" label="{{ __('sidebar.notification-publish-center') }}" />
          </x-sidebar-dropdown>
 
          <x-sidebar-dropdown icon="database" label="{{ __('sidebar.data-center') }}">

@@ -18,3 +18,7 @@ Broadcast::channel('user.{userId}', function ($user, $userId) {
       return array('name' => $user->name);
     }
 });
+
+Broadcast::channel('backend', function ($user) {
+  return true;
+});

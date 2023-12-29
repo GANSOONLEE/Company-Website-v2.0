@@ -286,6 +286,11 @@ Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrai
     $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
 });
 
+Breadcrumbs::for('backend.admin.notification.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('notification.publish-panel'), route('backend.admin.notification.index'));
+});
+
 #endregion
 
 /* ------------------------------------- Data Center ------------------------------------- */

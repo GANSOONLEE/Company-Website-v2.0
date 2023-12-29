@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use DateTimeZone;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,8 +19,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('backup:daily')->daily();
-        $schedule->command('backup:zip')->dailyAt('10:00');
+        $schedule->command('backup:daily')->dailyAt('10:15');
+        $schedule->command('backup:zip')->timezone('Asia/Singapore')->dailyAt('10:15');
     }
 
     /**
@@ -28,8 +29,14 @@ class Kernel extends ConsoleKernel
     protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
-        
-
         require base_path('routes/console.php');
+    }
+
+    /**
+     * Timezone setups
+     */
+    protected function scheduleTimezone(): DateTimeZone|string|null
+    {
+        return 'Asia/Singapore';
     }
 }

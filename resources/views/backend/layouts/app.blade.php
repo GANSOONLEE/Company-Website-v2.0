@@ -64,7 +64,7 @@
             @endif
             @if(session('success'))
               <x-alert :state="'success'">
-                  <li>{{ session('success') }}</li>
+                  <li>{!! session('success') !!}</li>
               </x-alert>
             @endif
           </div>
@@ -112,19 +112,20 @@
 
       let channel = pusher.subscribe('backend');
 
-      channel.bind('new-notification', function(data) {
-        showNotification(data.message);
+      channel.bind('notification.created', function(data) {
+        console.log(data);
+        showNotification(data);
       });
 
-      function showNotification(message) {
+      function showNotification(data) {
         let notification = document.getElementById('toast-notification');
-        document.getElementById('notification-text').innerText = message;
+        document.getElementById('notification-text').innerText = data.messages;
 
         notification.classList.remove('hidden');
 
         setTimeout(function() {
           hideNotification();
-        }, 10000);
+        }, data?.duration ?? 5);
       }
 
       function hideNotification() {
