@@ -24,3 +24,11 @@
     </x-control-panel>
 
 @endsection
+
+@push('after-script')
+    <script>
+
+        
+
+    </script>
+@endpush

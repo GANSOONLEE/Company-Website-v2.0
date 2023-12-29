@@ -10,7 +10,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "backup-data": "php artisan backup:daily && php artisan backup:zip"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.23.3",

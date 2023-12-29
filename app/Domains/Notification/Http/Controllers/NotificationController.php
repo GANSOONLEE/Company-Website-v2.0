@@ -34,7 +34,7 @@ class NotificationController
     public function publish(Request $request): mixed
     {
         $data = $this->notificationService->publish($request->all());
-        return redirect()->back()->with('success', trans('notification.publish-successful', ["messages" => $data['messages'], "duration" => $data['duration']]));
+        return redirect()->back()->with('success', trans('notification.publish-successful', ["messages" => $data['messages'], "duration" => $data['duration'] ?? 5000]));
     }
 
 }

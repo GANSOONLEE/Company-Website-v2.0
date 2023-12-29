@@ -64,7 +64,7 @@
             @endif
             @if(session('success'))
               <x-alert :state="'success'">
-                  <li>{{ session('success') }}</li>
+                  <li>{!! session('success') !!}</li>
               </x-alert>
             @endif
           </div>
