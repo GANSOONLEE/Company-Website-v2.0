@@ -55,4 +55,6 @@ return array (
   'admin' => 'Administrator backend',
   'admin-description' => 'Quickly actions various functions',
   'notification-publish-center' => 'Announcement Release Center',
+  'image-management-center' => 'Media Management Center',
+  'image-management-center-description' => 'Add media and set the corresponding identity group to access the corresponding media.',
 );

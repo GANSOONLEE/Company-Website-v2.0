@@ -55,4 +55,6 @@ return array (
   'admin' => '管理員後臺',
   'admin-description' => '快速操作各項功能',
   'notification-publish-center' => '公告發佈中心',
+  'image-management-center' => '媒體管理中心',
+  'image-management-center-description' => '新增媒體和設定對應可以訪問對應媒體的身分組',
 );
