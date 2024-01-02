@@ -22,5 +22,8 @@
     "Import": "匯入",
     "Publish": "發佈",
     "Update": "更新",
-    "Cancel": "取消"
+    "Cancel": "取消",
+    "Rename": "將會被重命名為",
+    "File": "檔案",
+    "File Have Select": "已選取 :count 個檔案"
 }

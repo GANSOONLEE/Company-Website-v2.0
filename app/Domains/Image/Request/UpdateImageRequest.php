@@ -5,7 +5,7 @@ namespace App\Domains\Image\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateImageRequest extends FormRequest
+class UpdateImageRequest extends FormRequest
 {
 
     public function authorize(): bool

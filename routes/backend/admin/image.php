@@ -15,11 +15,14 @@ Route::group(['prefix' => 'image', 'as' => 'image.'], function(){
     Route::get('/', [ImageController::class, 'index'])
         ->name('index');
 
-    Route::get('create', [ImageController::class, 'create'])
-        ->name('create');
+    Route::get('/edit/{id}', [ImageController::class, 'edit'])
+        ->name('edit');
 
     Route::post('/', [ImageController::class, 'store'])
         ->name('store');
+        
+    Route::post('/upload/{id}', [ImageController::class, 'upload'])
+        ->name('upload');
 
     Route::get('management', [ImageController::class, 'management'])
         ->name('management');
@@ -27,10 +30,10 @@ Route::group(['prefix' => 'image', 'as' => 'image.'], function(){
     Route::get('permission', [ImageController::class, 'permission'])
         ->name('permission');
 
-    Route::patch('{image}', [ImageController::class, 'update'])
+    Route::patch('{id}', [ImageController::class, 'update'])
         ->name('update');
 
-    Route::delete('{image}', [ImageController::class, 'destroy'])
+    Route::delete('{id}', [ImageController::class, 'destroy'])
         ->name('destroy');
 
 });

@@ -2,11 +2,15 @@
 
 namespace App\Domains\Image\Http\Controllers;
 
+// Model
+use App\Domains\Image\Models\Image;
+
 // Service
 use App\Domains\Image\Services\ImageService;
 
 // Request
 use App\Domains\Image\Request\CreateImageRequest;
+use App\Domains\Image\Request\UpdateImageRequest;
 
 // Laravel Support
 
@@ -37,16 +41,18 @@ class ImageController
     }
 
     /**
-     * Get [View] for create
-     * url: admin/image/create
+     * Get [View] for edit
+     * url: admin/image/edit/{id}
      * method: GET
-     * route: backend.admin.image.create
+     * route: backend.admin.image.edit
      * 
+     * @param string $id
      * @return mixed
      */
-    public function create(): mixed
+    public function edit(string $id): mixed
     {
-        return view('backend.admin.image.create');
+        $image = Image::find($id);
+        return view('backend.admin.image.edit', compact('image'));
     }
 
     /**
@@ -64,6 +70,14 @@ class ImageController
     }
 
     /**
+     * 
+     */
+    public function upload()
+    {
+
+    }
+
+    /**
      * Get [View] for management
      * url: admin/image/management
      * method: GET
@@ -74,5 +88,30 @@ class ImageController
     public function management(): mixed
     {
         return view('backend.admin.image.management');
+    }
+
+    /**
+     * Patch Image Name
+     * url:
+     * method: PATCH
+     * route
+     * 
+     * @param string $id
+     * 
+     */
+    public function update(UpdateImageRequest $request, string $id)
+    {
+        $this->imageService->update($request->validated(), $id);
+        return redirect()->back()->with('success', trans('image.update-image-successful'));
+    }
+
+    /**
+     * Destroy media
+     * @param string $id
+     */
+    public function destroy(string $id)
+    {
+        $this->imageService->destroy($id);
+        return redirect()->back()->with('success', trans('image.destroy-image-successful'));
     }
 }

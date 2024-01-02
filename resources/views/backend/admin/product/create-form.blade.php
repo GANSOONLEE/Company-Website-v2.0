@@ -320,7 +320,6 @@
             modelInput.setAttribute('name', 'model[]');
             modelInput.setAttribute('id', id);
             modelInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
-            modelInput.setAttribute('required', '');
             firstColDiv.appendChild(modelInput);
 
             // Create datalist for model

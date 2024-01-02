@@ -212,6 +212,12 @@ Breadcrumbs::for('backend.admin.image.management', function (BreadcrumbTrail $tr
     $trail->push(__('image.management-panel'), route('backend.admin.image.management'));
 });
 
+// Breadcrumbs for 'backend.admin.image.edit'
+Breadcrumbs::for('backend.admin.image.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('backend.admin.image.management');
+    $trail->push(__('image.edit-panel'), route('backend.admin.image.edit', ['id' => $id]));
+});
+
 // Breadcrumbs for 'backend.admin.image.detail'
 Breadcrumbs::for('backend.admin.image.detail', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.image.index');

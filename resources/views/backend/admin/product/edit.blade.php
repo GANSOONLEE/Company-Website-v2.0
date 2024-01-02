@@ -94,7 +94,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="" class="form-label">@lang('product.model')</label>
-                            <input value="{{ $splitName->model }}" type="text" list="model-{{ $id }}" name="model[]" id="{{ $id }}" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
+                            <input value="{{ $splitName->model }}" type="text" list="model-{{ $id }}" name="model[]" id="{{ $id }}" class="form-control rounded-sm dark:bg-gray-700 dark:text-white">
                                 <datalist id="model-{{ $id }}">
                                     @foreach ($models::orderBy('name')->pluck('name')->toArray() as $model)
                                         <option value="{{ $model }}"></option>
@@ -468,7 +468,6 @@
             modelInput.setAttribute('name', 'model[]');
             modelInput.setAttribute('id', id);
             modelInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
-            modelInput.setAttribute('required', '');
             firstColDiv.appendChild(modelInput);
 
             // Create datalist for model
@@ -933,8 +932,6 @@ function deleteListItem(button)
 
         xhr.onreadystatechange = () => {
             let data = JSON.parse(xhr.responseText);
-            console.log(xhr.responseText);
-            console.log(data);
         }
         
         // csrf token
