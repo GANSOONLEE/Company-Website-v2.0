@@ -6,7 +6,7 @@
         @foreach ($tabs as $tab)
             {{-- {{ dd($tab) }} --}}
             <li class="me-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 rounded-t-lg " id="{{ $tab->id }}"
+                <button class="inline-block p-4 rounded-t-lg border-b-[2px] border-solid !border-transparent aria-selected:!border-b-blue-600" id="{{ $tab->id }}"
                     data-tabs-target="#{{ $tab->dataTabsTarget }}" type="button" role="tab"
                     aria-controls="{{ $tab->dataTabsTarget }}" aria-selected="false">@lang($tab->name)</button>
             </li>

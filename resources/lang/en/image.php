@@ -1,22 +1,11 @@
 <?php
 
 return array (
-  'carousel' => 
-  array (
-    'general-panel' => 
-    array (
-      'title' => 'General Panel',
-    ),
-    'promotion-1-panel' => 
-    array (
-      'title' => 'Promotion (1) Panel',
-    ),
-    'promotion-2-panel' => 
-    array (
-      'title' => 'Promotion (2) Panel',
-    ),
-  ),
-  'upload' => 'Upload',
-  'add-panel' => 'Add Panel',
-  'new-panel' => 'New Panel',
+  'management-panel' => 'Media management panel',
+  'management-panel-label' => 'Manage media',
+  'management-panel-description' => 'Add, modify and delete media',
+  'index-image' => 'Media Management Center',
+  'permission-panel' => 'Media corresponding permissions panel',
+  'permission-panel-label' => 'Setting permissions',
+  'permission-panel-description' => 'Set visibility of identity groups to media',
 );

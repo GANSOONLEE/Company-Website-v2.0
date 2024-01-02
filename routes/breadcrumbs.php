@@ -196,6 +196,34 @@ Breadcrumbs::for('backend.admin.order.list', function (BreadcrumbTrail $trail) {
     $trail->push(__('order.history-order'), route('backend.admin.order.list'));
 });
 
+/* ------------------------------------- Image  ------------------------------------- */
+
+#region
+
+// Breadcrumbs for 'backend.admin.image.index'
+Breadcrumbs::for('backend.admin.image.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin');
+    $trail->push(__('sidebar.image'), route('backend.admin.image.index'));
+});
+
+// Breadcrumbs for 'backend.admin.image.management'
+Breadcrumbs::for('backend.admin.image.management', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.image.index');
+    $trail->push(__('image.management-panel'), route('backend.admin.image.management'));
+});
+
+// Breadcrumbs for 'backend.admin.image.detail'
+Breadcrumbs::for('backend.admin.image.detail', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.image.index');
+    $trail->push(__('image.view-image'), route('backend.admin.image.detail'));
+});
+
+// Breadcrumbs for 'backend.admin.image.list'
+Breadcrumbs::for('backend.admin.image.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.image');
+    $trail->push(__('image.history-image'), route('backend.admin.image.list'));
+});
+
 #endregion
 
 /* ------------------------------------- User Management Center ------------------------------------- */
@@ -284,6 +312,12 @@ Breadcrumbs::for('backend.admin.permission.create', function (BreadcrumbTrail $t
 Breadcrumbs::for('backend.admin.permission.management', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.permission.index');
     $trail->push(__('permission.management-panel'), route('backend.admin.permission.management'));
+});
+
+// Breadcrumbs for 'backend.admin.permission.edit'
+Breadcrumbs::for('backend.admin.permission.edit', function (BreadcrumbTrail $trail, $role) {
+    $trail->parent('backend.admin.permission.management');
+    $trail->push(__('permission.management-panel'), route('backend.admin.permission.edit', ["role_name" => $role]));
 });
 
 Breadcrumbs::for('backend.admin.notification.index', function (BreadcrumbTrail $trail) {

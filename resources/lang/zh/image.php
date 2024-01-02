@@ -1,22 +1,11 @@
 <?php
 
 return array (
-  'carousel' => 
-  array (
-    'general-panel' => 
-    array (
-      'title' => '普通面板',
-    ),
-    'promotion-1-panel' => 
-    array (
-      'title' => '促销（一）面板',
-    ),
-    'promotion-2-panel' => 
-    array (
-      'title' => '促销（二）面板',
-    ),
-  ),
-  'upload' => '上传',
-  'new-panel' => '新增面板',
-  'add-panel' => '添加面板',
+  'management-panel' => '媒体管理面板',
+  'management-panel-label' => '管理媒体',
+  'management-panel-description' => '新增、修改和删除媒体',
+  'index-image' => '媒体管理中心',
+  'permission-panel' => '媒体对应权限面板',
+  'permission-panel-label' => '设置权限',
+  'permission-panel-description' => '设定身分组对媒体的可见度',
 );

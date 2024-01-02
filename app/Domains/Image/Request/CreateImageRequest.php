@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Domains\Image\Request;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+class CreateImageRequest extends FormRequest
+{
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => 'required',
+        ];
+    }
+
+    public function message(): array
+    {
+        return [
+            '*.required' => 'The :attribute field is required.',
+        ];
+    }
+
+}

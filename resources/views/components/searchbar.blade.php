@@ -1,5 +1,5 @@
 
-<div class="w-60 h-full">
+<div class="w-60 h-full max-[867px]:!order-last">
     
     <x-form.get :action="route('frontend.product.search')">
         <div class="input-group">
