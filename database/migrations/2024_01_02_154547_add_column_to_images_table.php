@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders_detail', function (Blueprint $table) {
-            $table->longText('remarks');
+        Schema::table('images', function (Blueprint $table) {
+            $table->string('allow_roles');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders_detail', function (Blueprint $table) {
-            $table->dropColumn('remarks');
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('allow_roles');
         });
     }
 };

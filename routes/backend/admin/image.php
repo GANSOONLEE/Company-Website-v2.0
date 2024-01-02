@@ -33,6 +33,9 @@ Route::group(['prefix' => 'image', 'as' => 'image.'], function(){
     Route::patch('{id}', [ImageController::class, 'update'])
         ->name('update');
 
+    Route::delete('/image/{id}', [ImageController::class, 'destroyImage'])
+        ->name('destroy-image');
+
     Route::delete('{id}', [ImageController::class, 'destroy'])
         ->name('destroy');
 

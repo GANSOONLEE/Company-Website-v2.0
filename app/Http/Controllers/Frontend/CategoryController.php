@@ -17,7 +17,7 @@ class CategoryController extends Controller{
 
         // Array
         $categoryData = [];
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
 
         foreach ($categories as $category) {
             $matchingFile = null;

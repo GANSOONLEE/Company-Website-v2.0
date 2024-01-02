@@ -18,4 +18,7 @@ return array (
   'path' => 'Path',
   'thumbnail' => 'Thumbnail',
   'update-image-successful' => 'Media successfully updated!',
+  'upload-image-successful' => 'Photo uploaded successfully!',
+  'delete-image-successful' => 'Photo deleted successfully!',
+  'allow-roles' => 'allowed roles',
 );

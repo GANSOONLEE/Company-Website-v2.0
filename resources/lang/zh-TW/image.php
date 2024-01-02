@@ -18,4 +18,7 @@ return array (
   'path' => '檔案路徑',
   'thumbnail' => '檔案略縮圖',
   'update-image-successful' => '成功更新媒體！',
+  'upload-image-successful' => '成功上傳照片！',
+  'delete-image-successful' => '成功刪除照片！',
+  'allow-roles' => '允許的身分組',
 );

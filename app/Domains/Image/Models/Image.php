@@ -17,6 +17,11 @@ class Image extends Model
     protected $table = 'images';
 
     protected $fillable = [
-        'name'
+        'name',
+        'allow_roles'
+    ];
+
+    protected $casts = [
+        'allow_roles' => 'array',
     ];
 }
