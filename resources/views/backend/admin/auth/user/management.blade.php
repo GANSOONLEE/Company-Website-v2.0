@@ -172,7 +172,7 @@
         let destoryForm = document.querySelector('#destoryForm');
         destoryForm.addEventListener('submit', e => {
             confirm('Are you sure you want to delete this user foreveer?') ?
-            destoryForm.submit() :
+                destoryForm.submit() :
                 e.preventDefault();
         });
     </script>

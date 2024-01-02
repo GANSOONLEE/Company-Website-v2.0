@@ -22,5 +22,8 @@
     "Import": "Import",
     "Publish": "Publish",
     "Update": "Update",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "Rename": "There was be rename to",
+    "File": "File",
+    "File Have Select": " :count files selected"
 }
