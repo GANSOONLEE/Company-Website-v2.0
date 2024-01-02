@@ -11,23 +11,6 @@ use App\Domains\Image\Events\CarouselCreatePanelEvent;
 use App\Domains\Image\Http\Controllers\ImageController;
 
 Route::group(['prefix' => 'image', 'as' => 'image.'], function(){
-
-    // GET
-    // Route::get('/carousel-image', [CarouselImageController::class, 'carouselImage'])->name('carousel-image');
-
-    // Route::post('carousel-image-update', [CarouselImageUpdateEvent::class, 'carouselImageUpdate'])
-    //     ->name('carousel-image-update');
-
-    // Route::post('carousel-image-delete', [CarouselImageDeleteEvent::class, 'carouselImageDelete'])
-    //     ->name('carousel-image-delete');
-
-    // Route::post('carousel-image-upload', [CarouselImageUploadEvent::class, 'carouselImageUpload'])
-    //     ->name('carousel-image-upload');
-
-    // Route::post('carousel-create-panel', [CarouselCreatePanelEvent::class, 'carouselCreatePanel'])
-    //     ->name('carousel-create-panel');
-
-    # TODO: ImageController
     
     Route::get('/', [ImageController::class, 'index'])
         ->name('index');
@@ -38,8 +21,11 @@ Route::group(['prefix' => 'image', 'as' => 'image.'], function(){
     Route::post('/', [ImageController::class, 'store'])
         ->name('store');
 
-    Route::get('edit', [ImageController::class, 'edit'])
-        ->name('edit');
+    Route::get('management', [ImageController::class, 'management'])
+        ->name('management');
+
+    Route::get('permission', [ImageController::class, 'permission'])
+        ->name('permission');
 
     Route::patch('{image}', [ImageController::class, 'update'])
         ->name('update');

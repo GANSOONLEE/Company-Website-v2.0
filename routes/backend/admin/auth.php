@@ -105,11 +105,14 @@ Route::group(['prefix' =>'permission', 'as' =>'permission.'], function()
 
     Route::get('management', [PermissionController::class, 'management'])
         ->name('management');
+        
+    Route::patch('management', [PermissionController::class, 'managementPage'])
+        ->name('managementPage');
 
     Route::post('/', [PermissionController::class,'store'])
         ->name('store');
 
-    Route::get('edit', [PermissionController::class, 'edit'])
+    Route::get('/edit/{role_name}', [PermissionController::class, 'edit'])
         ->name('edit');
 
     Route::patch('{user}', [PermissionController::class, 'update'])

@@ -20,5 +20,7 @@
     "ForceDelete": "永久删除",
     "Import": "导入",
     "Export": "导出",
-    "Publish": "发布"
+    "Publish": "发布",
+    "Cancel": "取消",
+    "Update": "更新"
 }
