@@ -1,25 +1,4 @@
 
-// Vue Component Import
-
-import CustomAlert from '../backend/admin/components/CustomAlert.vue';
-
-window.onload = () =>{
-    const alert = createApp(CustomAlert);
-    const alertInstance = alert.mount('#alert');
-
-    // Alert
-    let form = document.querySelector('form');
-    let labels = form.querySelectorAll('label');
-    labels.forEach(label => {
-        label.addEventListener('click', ()=>{
-            let isAuth = label.getAttribute('data-auth');
-            if(isAuth == "false"){
-                alertInstance.updateMessage('Please login to continue!', 'warning');
-                alertInstance.autoAlert();
-            }
-        })
-    })
-}
 
 // Pusher
 // var pusher = new Pusher("a018306a14faf67a1d14", {
@@ -47,37 +26,47 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 /** Form Valid */
 // #region
 
-$('.form').submit(function(event) {
-    event.preventDefault();
+let form = document.querySelector('form.form');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
 
     if (!validateForm()) {
         return false;
     }
 
-    let form = document.querySelector('form');
     let brandSelector = document.querySelector('input:checked').value;
     let numberInput = document.querySelector('input[type=number]').value;
 
-    $.ajax({
-        url:  form.getAttribute('action'),
-        data: {
-            brand: brandSelector,
-            quantity: numberInput,
-        },
-        dataType: 'json',
-        type: 'post',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success(data){
-            document.querySelector('#notification-total-cart').innerText = data.total_cart;
-            document.querySelector('form').reset();
-            console.log(data)
-        },
-        error(data){
-            console.log(data)
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', form.action, true);
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log(xhr)
+                console.log(xhr.responseText)
+                let data = JSON.parse(xhr.responseText);
+                document.querySelector('#notification-total-cart').innerText = data.count;
+                document.querySelector('form').reset();
+                console.log(data);
+            } else {
+                console.log(xhr.status);
+            }
         }
-    })
+    };
+
+    let formData = new FormData();
+    formData.append('brand', brandSelector);
+    formData.append('quantity', numberInput);
+    formData.append('_method', 'POST');
+
+    xhr.send(formData);
+
 });
 
 function validateForm(){

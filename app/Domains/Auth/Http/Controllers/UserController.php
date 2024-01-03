@@ -5,6 +5,7 @@ namespace App\Domains\Auth\Http\Controllers;
 // Request
 use App\Domains\Auth\Request\CreateUserRequest;
 use App\Domains\Auth\Request\UpdateUserRequest;
+use App\Domains\Auth\Request\RenewUserRequest;
 use Illuminate\Http\Request;
 
 // Service
@@ -214,6 +215,20 @@ class UserController
     public function profile()
     {
         return view('backend.user.profile', ["user" => auth()->user()]);
+    }
+
+    /**
+     * url: admin/user/profile
+     * method: patch
+     * route: backend.user.data.storeProfile
+     * 
+     * @param RenewUserRequest $request
+     * @return mixed
+     */
+    public function storeProfile(RenewUserRequest $request): mixed
+    {
+        $this->userService->storeProfile($request->validated());
+        return redirect()->back()->with('success', 'Successfully updated profile');
     }
 
 }

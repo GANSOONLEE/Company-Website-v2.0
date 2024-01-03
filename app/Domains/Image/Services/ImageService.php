@@ -88,8 +88,8 @@ class ImageService extends BaseService
 
             // Update image name
             $image->update([
-                'name' => $data['name'] ?? null,
-                'allow_roles' => $data['roles'] ?? null,
+                'name' => $data['name'] ?? $image->name,
+                'allow_roles' => $data['roles'] ?? $image->allow_roles,
             ]);
 
 

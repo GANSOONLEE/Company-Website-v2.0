@@ -21,4 +21,5 @@ return array (
   'upload-image-successful' => 'Photo uploaded successfully!',
   'delete-image-successful' => 'Photo deleted successfully!',
   'allow-roles' => 'allowed roles',
+  'general-info' => 'If you want people who are not logged in to see it, please name it starting with "general"',
 );

@@ -9,8 +9,9 @@
             </div>
             <div class="modal-body">
                 
-                <form action="{{ route('backend.user.data.change-password-post') }}" id="information" class="form" method="POST">
-                    @csrf
+                <x-form.patch :action="route('backend.user.data.update')" id="information" class="form">
+
+                    <input type="text" name="email" value="{{ $user->email }}" hidden>
 
                     <div class="mb-3" {{ $user->password === null ? 'hidden' : '' }}>
                         <label for="" class="form-label">Current Password :</label>
@@ -29,10 +30,10 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-primary text-white">Submit</button>
                     </div>
-                </form>
+                </x-form.patch>
 
             </div>
         </div>

@@ -36,6 +36,7 @@
     @routes
 
     <x-navbar />
+    <span id="logo-sidebar" hidden></span>
     
     <div class="app" id="app">
 
@@ -113,26 +114,37 @@
       let channel = pusher.subscribe('backend');
 
       channel.bind('notification.created', function(data) {
-        console.log(data);
         showNotification(data);
       });
-
+      
+      // 顯示公告
       function showNotification(data) {
         let notification = document.getElementById('toast-notification');
         document.getElementById('notification-text').innerText = data.messages;
-
+        
         notification.classList.remove('hidden');
-
+        
         setTimeout(function() {
           hideNotification();
         }, data?.duration ?? 5);
       }
-
+      
+      // 隱藏公告
       function hideNotification() {
         let notification = document.getElementById('toast-notification');
         notification.classList.add('hidden');
       }
-    </script>
+
+      channel.bind('order.created', function(data) {
+        showNewOrder(data);
+      });
+
+      function showNewOrder(data) {
+        let notification = document.querySelector('#new-order-notification');
+        notification.hidden = false;
+        notification.innerText = data.count;
+      }
+      </script>
 
     <!-- 要在 javascript 之后加載的文件 -->
     @stack('after-script')

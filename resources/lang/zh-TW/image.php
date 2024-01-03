@@ -21,4 +21,5 @@ return array (
   'upload-image-successful' => '成功上傳照片！',
   'delete-image-successful' => '成功刪除照片！',
   'allow-roles' => '允許的身分組',
+  'general-info' => '如果要讓沒登入的人也可以看到，請將名稱命名爲 "general" 開頭',
 );

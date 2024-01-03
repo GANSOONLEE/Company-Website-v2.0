@@ -55,9 +55,9 @@ class PasswordService extends BaseService
         $user = '';
 
         // Check information
-        if (User::where(['email' => $email, 'created_at' => date('Y:m:d h:m:s', $token)])) {
+        if ($this->model->where(['email' => $email, 'created_at' => date('Y:m:d h:m:s', $token)])) {
             
-            $user = User::where('email', $email)->first();
+            $user = $this->model->where('email', $email)->first();
 
             $rememberToken = Str::random(60);
     
@@ -78,9 +78,28 @@ class PasswordService extends BaseService
      */
     public function renew(array $data = [])
     {
-        $user = User::where('email', $data['email'])->first();
+        $user =  $this->model->where('email', $data['email'])->first();
         $user->update([
             'password' => $data['password'],
+        ]);
+    }
+
+    /**
+     * Change password
+     * @param array $data
+     */
+    public function update(array $data = [])
+    {
+        $user = $this->model->where('email', $data['email'])->first();
+
+        if(!Auth::attempt(["email" => $data['email'], "password" => $data['current-password']])){
+            throw new GeneralException('The old password are wrong!');
+        }
+
+        // dd($data);
+
+        $user->update([
+            'password' => $data['new-password'],
         ]);
     }
 }

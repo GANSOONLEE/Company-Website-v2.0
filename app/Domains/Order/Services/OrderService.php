@@ -5,6 +5,7 @@ namespace App\Domains\Order\Services;
 use App\Services\BaseService;
 
 // Event
+use App\Domains\Order\Events\OrderCreated;
 
 // Model
 use App\Domains\Order\Models\Order;
@@ -83,7 +84,6 @@ class OrderService extends BaseService
                 'status' => $data['status'] ?? null,
                 'user_email' => $data['user_email'] ?? null,
             ]);
-
             
             // Save order detail
             foreach ($orderDetailData as $id)
@@ -112,6 +112,7 @@ class OrderService extends BaseService
 
 
         DB::commit();
+        event(new OrderCreated());
         return $order;
 
     }

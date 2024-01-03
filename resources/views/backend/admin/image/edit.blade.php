@@ -30,6 +30,7 @@
                 </button>
             </x-form.patch>
             <p class="text-sm" id="info-text" hidden></p>
+            <p class="text-sm text-red-800" id="info-text">@lang('image.general-info')</p>
         </div>
 
         <x-form.post class="flex items-center" :action="route('backend.admin.image.upload', ['id' => $imageInstance->id])">

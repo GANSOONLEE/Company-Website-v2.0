@@ -26,7 +26,4 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function()
     // except CSRF route
     Route::get('search', [ProductController::class, 'search'])
         ->name('search');
-
-    Route::post('cart/{productCode}', [ProductController::class, 'cart'])
-        ->name('cart');
 });

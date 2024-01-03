@@ -27,15 +27,12 @@
                         <x-form.patch :action="route('backend.admin.image.update', ['id' => $image->id])">
                             @foreach ($roles->pluck('name')->toArray() as $role)
                                 <div class="flex items-center gap-x-4">
-                                    <input name="roles[]" id="{{ $image->name . "_" . $role }}" class="block border !border-gray-300" type="checkbox" value="{{ $role }}" {{ array_search($role, $image->allow_roles) > 0 ? 'selected' : null }}>
+                                    <input name="roles[]" id="{{ $image->name . "_" . $role }}" class="block border !border-gray-300" type="checkbox" value="{{ $role }}" {{ array_search($role, $image->allow_roles) !== false ? 'checked' : null }}>
                                     <label for="{{ $image->name . "_" . $role }}">@lang('permission.roles.' . $role)</label>
                                 </div>
                             @endforeach
-                            <button>@lang('Update')</button>
+                            <button class="btn btn-success mt-2 mb-3">@lang('Update')</button>
                         </x-form.patch>
-                    </td>
-                    <td>
-                        
                     </td>
                 </tr>
             @endforeach

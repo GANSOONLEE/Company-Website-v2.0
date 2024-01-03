@@ -118,4 +118,21 @@ class OrderController
         return redirect()->back();
     }
 
+    /* 
+     | -----------------------------------------------
+     | 
+     |                    User 用戶
+     | 
+     | -----------------------------------------------
+     */
+
+    /**
+     * [Get] View Order
+     */
+    public function userList()
+    {
+        $orders = auth()->user()->order()->paginate(10);
+        return view('backend.user.order.index', compact('orders'));
+    }
+
 }

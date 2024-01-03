@@ -18,7 +18,7 @@
             </button>
         </div>
         <p class="text-sm">@lang('Rename') "<span id="name"></span>"</p>
-
+        <p class="text-sm text-red-800" id="info-text">@lang('image.general-info')</p>
     </x-form.post>
 
     <table class="w-full bg-white dark:!bg-gray-800">
