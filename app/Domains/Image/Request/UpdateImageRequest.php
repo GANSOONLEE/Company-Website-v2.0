@@ -16,14 +16,14 @@ class UpdateImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', Rule::unique('images', 'name')],
+            'name' => ['nullable', Rule::unique('images', 'name')],
+            'roles' => ['nullable', 'array'],
         ];
     }
 
     public function message(): array
     {
         return [
-            'name.required' => 'The :attribute field is required.',
             'name.unique' => 'The' . $this->attributes()['name'] . 'have be used.',
         ];
     }

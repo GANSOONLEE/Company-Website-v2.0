@@ -40,5 +40,5 @@
 @endpush
 
 @push('after-body')
-    <script src="{{asset('js/frontend/includes/carousel.js')}}"></script>
+
 @endpush

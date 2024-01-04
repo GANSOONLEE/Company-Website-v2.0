@@ -14,7 +14,7 @@ class UserAuthenticate
 
         // if the user does not exist or the remember_token does not match, redirect to the login page
         if (!$user) {
-            return redirect()->route('auth.login');
+            return redirect()->route('auth.login.index');
         }
         
         // if the user's role is not 'user' or 'admin', the user will also be redirected to the login page.

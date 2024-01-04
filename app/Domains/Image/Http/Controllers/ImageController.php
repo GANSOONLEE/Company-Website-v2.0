@@ -11,9 +11,10 @@ use App\Domains\Image\Services\ImageService;
 // Request
 use App\Domains\Image\Request\CreateImageRequest;
 use App\Domains\Image\Request\UpdateImageRequest;
+use App\Domains\Image\Request\UploadImageRequest;
 
 // Laravel Support
-
+use Illuminate\Http\Request;
 
 class ImageController
 {
@@ -51,8 +52,8 @@ class ImageController
      */
     public function edit(string $id): mixed
     {
-        $image = Image::find($id);
-        return view('backend.admin.image.edit', compact('image'));
+        $imageInstance = Image::find($id);
+        return view('backend.admin.image.edit', compact('imageInstance'));
     }
 
     /**
@@ -72,9 +73,10 @@ class ImageController
     /**
      * 
      */
-    public function upload()
+    public function upload(UploadImageRequest $request, string $id): mixed
     {
-
+       $this->imageService->upload($request->validated(), $id);
+       return redirect()->back()->with('success', trans('image.upload-image-successful'));
     }
 
     /**
@@ -91,10 +93,23 @@ class ImageController
     }
 
     /**
+     * Get [View] for management
+     * url: admin/image/permission
+     * method: GET
+     * route: backend.admin.image.permission
+     * 
+     * @return mixed
+     */
+    public function permission(): mixed
+    {
+        return view('backend.admin.image.permission');
+    }
+
+    /**
      * Patch Image Name
-     * url:
+     * url: admin/image/{id}
      * method: PATCH
-     * route
+     * route: backend.admin.image.update
      * 
      * @param string $id
      * 
@@ -103,6 +118,16 @@ class ImageController
     {
         $this->imageService->update($request->validated(), $id);
         return redirect()->back()->with('success', trans('image.update-image-successful'));
+    }
+
+    /**
+     * Delete Image
+     * @param string $id
+     */
+    public function destroyImage(Request $request, $id)
+    {
+        $this->imageService->delete($request->all(), $id);
+        return redirect()->back()->with('success', trans('image.delete-image-successful'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Domains\Auth\Services\PasswordService;
 
 // Request
 use App\Domains\Auth\Request\RenewPasswordRequest;
+use App\Domains\Auth\Request\UpdatePasswordRequest;
 
 // Laravel Support
 use Illuminate\Http\Request;
@@ -41,9 +42,10 @@ class PasswordController
      * 
      * @return mixed
      */
-    public function update(): mixed
+    public function update(UpdatePasswordRequest $request): mixed
     {
-        return view('auth.register');
+        $this->passwordService->update($request->validated());
+        return redirect()->back()->with('success', 'Your password has been update successfully.');
     }
 
     /**

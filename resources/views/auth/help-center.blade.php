@@ -44,7 +44,7 @@
                     <ol class="bg-white list-decimal list-inside">
                         <li>Fisrt, you sign in your account.</li>
                         <li>Goto "profile" page.</li>
-                        <li>And them you click the "Reset Password" Button.</li>
+                        <li>And them you click the "Change Password" Button.</li>
                     </ol>
                 </div>
             </div>

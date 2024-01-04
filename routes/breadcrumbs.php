@@ -218,6 +218,12 @@ Breadcrumbs::for('backend.admin.image.edit', function (BreadcrumbTrail $trail, $
     $trail->push(__('image.edit-panel'), route('backend.admin.image.edit', ['id' => $id]));
 });
 
+// Breadcrumbs for 'backend.admin.image.permission'
+Breadcrumbs::for('backend.admin.image.permission', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.admin.image.index');
+    $trail->push(__('image.permission-panel'), route('backend.admin.image.permission'));
+});
+
 // Breadcrumbs for 'backend.admin.image.detail'
 Breadcrumbs::for('backend.admin.image.detail', function (BreadcrumbTrail $trail) {
     $trail->parent('backend.admin.image.index');

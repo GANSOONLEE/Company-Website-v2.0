@@ -1,4 +1,6 @@
 
+@inject('orders', 'App\Domains\Order\Models\Order')
+
 <aside id="sidebar" class="pt-12 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
    <div class="h-full px-3 py-8 overflow-y-auto">
       <ul class="space-y-2 font-medium">
@@ -23,7 +25,9 @@
          </x-sidebar-dropdown>
          
          <x-sidebar-dropdown icon="file" label="{{ __('sidebar.order') }}">
-            <x-sidebar-dropdown-item href="{{ route('backend.admin.order.index') }}" label="{{ __('sidebar.view-order') }}" />
+            <x-sidebar-dropdown-item href="{{ route('backend.admin.order.index') }}" label="{{ __('sidebar.view-order') }}">
+               <span id="new-order-notification" class="flex justify-center items-center absolute text-sm text-white bg-red-600 rounded-full p-[.5rem] w-[1.2rem] h-[1.2rem] top-[25%] right-[0] -translate-x-[25%] -translate-y-[50%]" {{ $orders->where('status', 'Pending')->count() > 0 ? null : 'hidden' }}>{{ $orders->where('status', 'Pending')->count() }}</span>
+            </x-sidebar-dropdown>
             <x-sidebar-dropdown-item href="{{ route('backend.admin.order.list') }}" label="{{ __('sidebar.history-order') }}" />
          </x-sidebar-dropdown>
 

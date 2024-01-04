@@ -282,4 +282,43 @@ class UserService extends BaseService
             ->paginate(5)
             ->withQueryString();
     }
+
+
+    /*
+    | ---------------------------------------------------------------- 
+    | 
+    |                             User 用戶
+    | 
+    | ----------------------------------------------------------------
+    */
+
+    /**
+     * User update self information
+     * @param array $data
+     */
+    public function storeProfile(array $data = [])
+    {
+
+        DB::beginTransaction();
+
+        $user = $this->model->find($data['id']);
+
+        try{
+            $user->update([
+                'name' => $data['name'] ?? $user->name ,
+                'whatsapp_phone' => $data['whatsapp_phone'] ?? $user->whatsapp_phone ,
+                'contact_phone' => $data['contact_phone'] ?? $user->contact_phone ,
+                'address' => $data['address'] ?? $user->address ,
+                'profession' => $data['profession'] ?? $user->profession ,
+                'shop_name' => $data['shop_name'] ?? $user->shop_name ,
+            ]);
+        }catch(Exception $e){
+            DB::rollBack();
+            throw new GeneralException('There was a problem to updating your personal info.');
+        }
+
+        DB::commit();
+
+    }
+
 }

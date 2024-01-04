@@ -43,6 +43,11 @@
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
+
+    .input-field {
+        @apply bg-gray-50 border-b-[.25rem] border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[0.625rem] disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+
+    }
 }
 
 /* ———————————————————— Clear Default Style ———————————————————— */

@@ -5,6 +5,7 @@ namespace App\Domains\Auth\Http\Controllers;
 // Request
 use App\Domains\Auth\Request\CreateUserRequest;
 use App\Domains\Auth\Request\UpdateUserRequest;
+use App\Domains\Auth\Request\RenewUserRequest;
 use Illuminate\Http\Request;
 
 // Service
@@ -170,7 +171,7 @@ class UserController
     public function restore(string $id)
     {
         $user = User::where('id', $id)->onlyTrashed()->first();
-        $user->restore();
+        $this->userService->restore($user);
 
         return redirect()->back()->with('success', 'User restore successfully');
     }
@@ -185,7 +186,7 @@ class UserController
     {
         // Soft delete the user
         $user = User::where('id', $id)->first();
-        $user->delete();
+        $this->userService->delete($user);
 
         return redirect()->back()->with('success', 'User deleted successfully');
     }
@@ -214,6 +215,20 @@ class UserController
     public function profile()
     {
         return view('backend.user.profile', ["user" => auth()->user()]);
+    }
+
+    /**
+     * url: admin/user/profile
+     * method: patch
+     * route: backend.user.data.storeProfile
+     * 
+     * @param RenewUserRequest $request
+     * @return mixed
+     */
+    public function storeProfile(RenewUserRequest $request): mixed
+    {
+        $this->userService->storeProfile($request->validated());
+        return redirect()->back()->with('success', 'Successfully updated profile');
     }
 
 }

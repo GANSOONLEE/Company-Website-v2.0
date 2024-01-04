@@ -11,8 +11,8 @@
     <div class="flex justify-between items-center mb-1">
 
         <div class="flex flex-col justify-start">
-            <x-form.patch id="imageEditForm" class="flex items-center gap-x-4" :action="route('backend.admin.image.update', ['id' => $image->id])">
-                <input class="text-xl read-only:border-none read-only:bg-transparent" type="text" name="name" id="" value="{{ $image->name }}" placeholder="{{ __('image.name') }}" required readonly>
+            <x-form.patch id="imageEditForm" class="flex items-center gap-x-4" :action="route('backend.admin.image.update', ['id' => $imageInstance->id])">
+                <input class="text-xl read-only:border-none read-only:bg-transparent" type="text" name="name" id="" value="{{ $imageInstance->name }}" placeholder="{{ __('image.name') }}" required readonly>
     
                 <!-- Edit Button -->
                 <button id="readonly" type="button">
@@ -30,14 +30,15 @@
                 </button>
             </x-form.patch>
             <p class="text-sm" id="info-text" hidden></p>
+            <p class="text-sm text-red-800" id="info-text">@lang('image.general-info')</p>
         </div>
 
-        <x-form.post class="flex items-center" :action="route('backend.admin.image.upload', ['id' => $image->id])">
+        <x-form.post class="flex items-center" :action="route('backend.admin.image.upload', ['id' => $imageInstance->id])">
             <label class="p-[.75rem] bg-gray-800 hover:bg-gray-700 text-sm text-white" for="image-upload">
                 @lang('Select File')
             </label>
             <p class="text-sm px-2 mr-4 bg-gray-100" id="file-count">@lang('File Have Select', ['count' => 0])</p>
-            <input type="file" name="image" id="image-upload" multiple accept="image/png, image/jpeg" hidden>
+            <input type="file" name="image[]" id="image-upload" multiple accept="image/png, image/jpeg" hidden>
             <button class="btn btn-primary rounded-sm">@lang('Submit')</button>
         </x-form.post>
 
@@ -53,8 +54,8 @@
             </tr>
         </thead>
         <tbody>
-            @if (count($image->getImages()) > 0)
-                @foreach ($image->getImages() as $index => $image)
+            @if (count($imageInstance->getImages()) > 0)
+                @foreach ($imageInstance->getImages() as $index => $image)
                     <tr>
                         <td class="px-3">{{ $index + 1 }}</td>
                         <td class="w-40 py-3">
@@ -66,9 +67,12 @@
                             </p>
                         </td>
                         <td class="px-3">
-                            <button class="flex items-center gap-x-4 btn btn-danger">
-                                <i class="fa-solid fa-trash"></i>@lang('Delete')
-                            </button>
+                            <x-form.delete id="imageDeleteForm" :action="route('backend.admin.image.destroy-image', ['id' => $imageInstance->id])">
+                                <input type="text" name="name" value="{{ basename($image) }}" hidden>
+                                <button class="flex items-center gap-x-4 btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>@lang('Delete')
+                                </button>
+                            </x-form.delete>
                         </td>
                     </tr>
                 @endforeach
@@ -141,8 +145,17 @@
                 infoText.innerText = 'You have not change anything.';
                 e.preventDefault();
             }
-
         });
 
+        
+        let imageDeleteForms = document.querySelectorAll('#imageDeleteForm');
+        imageDeleteForms.forEach(imageDeleteForm => {
+            imageDeleteForm.addEventListener('submit', e => {
+            confirm('Are you sure you want to delete it?') ?
+                imageDeleteForm.submit() :
+                e.preventDefault();
+            });
+        })
+        
     </script>
 @endpush

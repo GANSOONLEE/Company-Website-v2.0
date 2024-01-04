@@ -2,10 +2,21 @@
 
 namespace App\Domains\Model\Services;
 
+// Service
 use App\Services\BaseService;
+
+// Event
+use App\Domains\Model\Events\ModelCreated;
+use App\Domains\Model\Events\ModelUpdated;
+use App\Domains\Model\Events\ModelDeleted;
+
+// Model
 use App\Domains\Model\Models\Model as Model;
+
+// Exception
 use App\Exceptions\GeneralException;
 
+// Laravel Support
 use Illuminate\Support\Facades\DB;
 
 class ModelService extends BaseService
@@ -57,6 +68,7 @@ class ModelService extends BaseService
 
         DB::commit();
 
+        event(new ModelCreated($model));
         return $model;
     }
 
@@ -97,6 +109,8 @@ class ModelService extends BaseService
         }
 
         DB::commit();
+
+        event(new ModelUpdated($model));
         return $model;
     }
 

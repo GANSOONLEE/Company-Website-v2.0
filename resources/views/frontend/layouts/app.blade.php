@@ -40,6 +40,21 @@
 
     @include('frontend.includes.navbar')
 
+    <div id="alert">
+        @if ($errors->any())
+          <x-alert :state="'danger'">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </x-alert>
+        @endif
+        @if(session('success'))
+          <x-alert :state="'success'">
+              <li>{!! session('success') !!}</li>
+          </x-alert>
+        @endif
+    </div>
+
     <div class="app">
 
         @yield('app')

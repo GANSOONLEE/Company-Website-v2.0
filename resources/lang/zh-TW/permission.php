@@ -159,6 +159,10 @@ return array (
       'description' => '允許查看促銷二面板',
       'name' => '促銷二面板',
     ),
+    'admin_brands' => 
+    array (
+      'description' => '允許管理員查看品牌面板',
+    ),
   ),
   'avaiable-account' => '可用的賬號',
   'banned-account' => '封禁賬號',
@@ -173,6 +177,7 @@ return array (
     'super_admin' => '超級管理員',
     'root' => '根管理員',
     'tester_admin' => '測試管理員',
+    'all' => '所有身分組可用 (包括未登入者)',
   ),
   'management-panel' => '權限管理面板',
   'management-panel-description' => '新增、修改權限和所分配的身份組',

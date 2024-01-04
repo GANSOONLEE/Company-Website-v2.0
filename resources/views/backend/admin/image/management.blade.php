@@ -18,7 +18,7 @@
             </button>
         </div>
         <p class="text-sm">@lang('Rename') "<span id="name"></span>"</p>
-
+        <p class="text-sm text-red-800" id="info-text">@lang('image.general-info')</p>
     </x-form.post>
 
     <table class="w-full bg-white dark:!bg-gray-800">
@@ -49,7 +49,7 @@
 
                             <!-- Delete Button -->
                             <x-form.delete id="deleteImageForm" :action="route('backend.admin.image.destroy', ['id' => $image->id])">
-                                <button class="flex justify-center items-center px-3 py-2 text-danger outline-1 outline-danger outline dark:text-red-300">
+                                <button class="flex justify-center items-center px-3 py-2 text-danger outline-1 outline-danger outline disabled:outline-gray-500 disabled:!text-gray-500" {{ $image->mediaCount() > 0 ? 'disabled' : null}}>
                                     <i class="fa-solid fa-trash pr-4"></i>@lang('Delete')
                                 </button>
                             </x-form.delete>
@@ -82,12 +82,14 @@
         });
 
         // Form Event
-        let deleteImageForm = document.querySelector('#deleteImageForm');
-        deleteImageForm.addEventListener('submit', e => {
+        let deleteImageForms = document.querySelectorAll('#deleteImageForm');
+        deleteImageForms.forEach(deleteImageForm => {
+            deleteImageForm.addEventListener('submit', e => {
             confirm('Are you sure you want to delete it?') ?
                 deleteImageForm.submit() :
                 e.preventDefault();
-        });
+            });
+        })
 
     </script>
 

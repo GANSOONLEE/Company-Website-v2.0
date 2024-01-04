@@ -4,8 +4,9 @@ namespace App\Domains\Category\Events;
 
 use App\Domains\Category\Models\Category;
 use Illuminate\Queue\SerializesModels;
+use App\Events\BaseEvent;
 
-class CategoryUpdated
+class CategoryUpdated extends BaseEvent
 {
     use SerializesModels;
 
@@ -17,5 +18,6 @@ class CategoryUpdated
     public function __construct(Category $category)
     {
         $this->category = $category;
+        $this->createOperation('update', 'category', $category->name);
     }
 }

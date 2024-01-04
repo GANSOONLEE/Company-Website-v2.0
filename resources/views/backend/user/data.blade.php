@@ -8,8 +8,7 @@
 
     <section class="data">
         
-        <form action="{{ route('backend.user.data.user-post') }}" method="POST">
-            @csrf
+        <x-form.patch :action="route('backend.user.data.update')">
 
             <!-- Basic Information -->
             <div class="row">
@@ -105,7 +104,7 @@
                 </button>
             </div>
 
-        </form>
+        </x-form.patch>
 
         @include('backend.user.change-passowrd')
 

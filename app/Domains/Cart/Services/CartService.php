@@ -29,8 +29,6 @@ class CartService extends BaseService
 
         try{
 
-            dd(auth()->user()->email);
-
             $email = auth()->user()->email;
 
             // check exists
@@ -45,7 +43,7 @@ class CartService extends BaseService
             }else{
                 $cart = $this->model::create([
                     "sku_id" => $data['brand'],
-                    "number" => intval($data['quantity']),
+                    "number" => $data['quantity'],
                     'user_email' => $email ?? null,
                 ]);
             }
@@ -56,6 +54,31 @@ class CartService extends BaseService
 
         DB::commit();
         return $cart;
+    }
+
+    /**
+     * Create cart record
+     * @param array $data
+     * @return void
+     */
+    public function update(array $data = []): void
+    {
+        $cart = $this->model->where('user_email', auth()->user()->email)
+            ->where('id', $data['id'])
+            ->first();
+
+        DB::beginTransaction();
+            $cart->update([
+                'number' => $data['quantity'],
+            ]);
+        try{
+
+        }catch(\Exception $e) {
+            DB::rollBack();
+            throw new GeneralException ("There was a problem creating the cart.");
+        }
+
+        DB::commit();
     }
 
 }
