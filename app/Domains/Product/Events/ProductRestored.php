@@ -6,7 +6,7 @@ use App\Domains\Product\Models\Product;
 use Illuminate\Queue\SerializesModels;
 use App\Events\BaseEvent;
 
-class ProductCreated extends BaseEvent
+class ProductRestored extends BaseEvent
 {
     use SerializesModels;
 
@@ -18,6 +18,6 @@ class ProductCreated extends BaseEvent
     public function __construct(Product $product)
     {
         $this->$product = $product;
-        $this->createOperation('create', 'product', $product->product_code);
+        $this->createOperation('restore', 'product', $product->product_code);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Admin\Model;
 
+use App\Domains\Model\Events\ModelDeleted;
 use App\Http\Controllers\Controller;
 
 use App\Domains\Model\Request\CreateModelRequest;
@@ -114,9 +115,9 @@ class ModelController extends Controller
         $products === 0 ? null : throw new GeneralException('This model has products, please change the model!');
 
         $model->delete();
+        event(new ModelDeleted($model));
 
         return redirect()->back()->with('success', __('model.delete-model-success', ["model" => $name]));
-        
     }
 
 }

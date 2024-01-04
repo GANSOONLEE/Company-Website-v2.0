@@ -171,7 +171,7 @@ class UserController
     public function restore(string $id)
     {
         $user = User::where('id', $id)->onlyTrashed()->first();
-        $user->restore();
+        $this->userService->restore($user);
 
         return redirect()->back()->with('success', 'User restore successfully');
     }
@@ -186,7 +186,7 @@ class UserController
     {
         // Soft delete the user
         $user = User::where('id', $id)->first();
-        $user->delete();
+        $this->userService->delete($user);
 
         return redirect()->back()->with('success', 'User deleted successfully');
     }

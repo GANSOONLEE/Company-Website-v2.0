@@ -49,14 +49,14 @@
 
                             <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:odd:bg-gray-700 dark:even:bg-gray-800 dark:hover:bg-gray-900">
                                 <td class="w-20 px-3 py-2">{{ $order->id }}</td>
-                                <td>
+                                <td class="whitespace-nowrap">
                                     <p data-tooltip-target="{{ $order->code }}" class="w-min">
                                         {{ $order->user()->first()->name }}</td>
                                     </p>
                                 <td class="w-30">{{ $order->detail()->count() }}</td>
                                 <td class="w-30">
-                                    <a href="{{ route('backend.admin.order.detail', ["id" => $order->id]) }}">
-                                        <button><i class="fa-solid fa-search"></i></button>
+                                    <a class="hover:text-blue-600" href="{{ route('backend.admin.order.detail', ["id" => $order->id]) }}">
+                                        <button><i class="fa-solid fa-search"></i>@lang('Detail')</button>
                                     </a>
                                 </td>
                                 <td class="w-60 nowrap">{{ $order->created_at }}</td>
