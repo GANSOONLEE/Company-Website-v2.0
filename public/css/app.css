@@ -15516,6 +15516,9 @@ input:checked + .toggle-bg{
   width: -moz-min-content;
   width: min-content;
 }
+.min-w-0{
+  min-width: 0px;
+}
 .\!max-w-\[100\%\]{
   max-width: 100% !important;
 }
@@ -15732,6 +15735,9 @@ input:checked + .toggle-bg{
 .rounded-sm{
   border-radius: 0.125rem;
 }
+.rounded-none{
+  border-radius: 0px;
+}
 .rounded-b{
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -15775,6 +15781,10 @@ input:checked + .toggle-bg{
 .rounded-t-lg{
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+}
+.rounded-s-md{
+  border-start-start-radius: 0.375rem;
+  border-end-start-radius: 0.375rem;
 }
 .border{
   border-width: 1px;
@@ -16115,6 +16125,18 @@ input:checked + .toggle-bg{
 }
 .pt-8{
   padding-top: 2rem;
+}
+.pe-\[1\.5rem\]{
+  padding-inline-end: 1.5rem;
+}
+.pe-8{
+  padding-inline-end: 2rem;
+}
+.pe-\[2rem\]{
+  padding-inline-end: 2rem;
+}
+.\!pe-8{
+  padding-inline-end: 2rem !important;
 }
 .text-left{
   text-align: left;
@@ -16868,6 +16890,14 @@ aside#sidebar > div .active svg.w-3.h-3 {
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.hover\:bg-gray-50:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.hover\:\!bg-gray-50:hover{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
 }
 .hover\:bg-gradient-to-r:hover{
   background-image: linear-gradient(to right, var(--tw-gradient-stops));

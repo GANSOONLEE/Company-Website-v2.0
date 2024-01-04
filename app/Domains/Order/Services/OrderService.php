@@ -6,6 +6,8 @@ use App\Services\BaseService;
 
 // Event
 use App\Domains\Order\Events\OrderCreated;
+use App\Domains\Order\Events\OrderUpdated;
+use App\Domains\Order\Events\OrderDeleted;
 
 // Model
 use App\Domains\Order\Models\Order;
@@ -110,10 +112,20 @@ class OrderService extends BaseService
             throw new GeneralException('There was an problem creating the order, please try again.');
         }
 
-
         DB::commit();
-        event(new OrderCreated());
+        event(new OrderCreated($order));
         return $order;
 
+    }
+
+    /**
+     * Updates the order
+     * @param string $id
+     * @param array $data
+     */
+    public function update(string $id, array $data)
+    {
+        $order = $this->model->find($id);
+        dd($order);
     }
 }

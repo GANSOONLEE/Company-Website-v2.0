@@ -75,7 +75,7 @@ class ImageController
      */
     public function upload(UploadImageRequest $request, string $id): mixed
     {
-       $this->imageService->upload($request->validated(), $id);
+       $this->imageService->upload($id, $request->validated());
        return redirect()->back()->with('success', trans('image.upload-image-successful'));
     }
 
@@ -116,7 +116,7 @@ class ImageController
      */
     public function update(UpdateImageRequest $request, string $id)
     {
-        $this->imageService->update($request->validated(), $id);
+        $this->imageService->update($id, $request->validated());
         return redirect()->back()->with('success', trans('image.update-image-successful'));
     }
 
@@ -126,7 +126,7 @@ class ImageController
      */
     public function destroyImage(Request $request, $id)
     {
-        $this->imageService->delete($request->all(), $id);
+        $this->imageService->delete($id, $request->all());
         return redirect()->back()->with('success', trans('image.delete-image-successful'));
     }
 

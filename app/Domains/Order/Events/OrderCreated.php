@@ -2,6 +2,7 @@
 
 namespace App\Domains\Order\Events;
 
+use App\Events\BaseEvent;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -10,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 use App\Domains\Order\Models\Order;
 
-class OrderCreated implements ShouldBroadcast
+class OrderCreated extends BaseEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +20,10 @@ class OrderCreated implements ShouldBroadcast
     /**
      * @param array $data 
      */
-    public function __construct()
+    public function __construct($order)
     {
         $this->count = Order::where('status', 'Pending')->count();
+        $this->createOperation('create', 'order', $order->id);
     }
 
     public function broadcastOn()

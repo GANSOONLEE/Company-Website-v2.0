@@ -416,4 +416,10 @@ Breadcrumbs::for('backend.user.order.index', function (BreadcrumbTrail $trail) {
     $trail->push('Order', route('backend.user.order.index'));
 });
 
+// Breadcrumbs for 'backend.user.order.detail'
+Breadcrumbs::for('backend.user.order.detail', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('backend.user.order.index');
+    $trail->push('Order Detail', route('backend.user.order.detail', ["id" => $id]));
+});
+
 #endregion

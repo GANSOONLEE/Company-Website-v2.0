@@ -71,7 +71,7 @@ class OrderController
      */
     public function detail($id): mixed
     {
-        $order = Order::where('id', $id)->first();
+        $order = Order::where('id', $id)->where('user_email', auth()->user()->email)->first();
         return view('backend.admin.order.detail', compact('order'));
     }
 
@@ -133,6 +133,16 @@ class OrderController
     {
         $orders = auth()->user()->order()->paginate(10);
         return view('backend.user.order.index', compact('orders'));
+    }
+
+    
+    /**
+     * Get the view for order detail
+     */
+    public function detailUser($id): mixed
+    {
+        $order = Order::where('id', $id)->where('user_email', auth()->user()->email)->first();
+        return view('backend.user.order.detail', compact('order'));
     }
 
 }

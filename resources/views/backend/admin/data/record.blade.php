@@ -3,7 +3,7 @@
 
 @section('title', __('operation.record'))
 
-@section('subtitle', __('operation.record-description', ["days" => 30]))
+@section('subtitle', __('operation.record-description', ["days" => 15]))
 
 @section("main")
 
