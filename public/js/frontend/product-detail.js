@@ -42,15 +42,18 @@ form.addEventListener('submit', e => {
 
     xhr.open('POST', form.action, true);
 
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+                console.log(xhr)
                 console.log(xhr.responseText)
                 let data = JSON.parse(xhr.responseText);
                 document.querySelector('#notification-total-cart').innerText = data.count;
-                form.reset();
+                document.querySelector('form').reset();
+                console.log(data);
             } else {
                 console.log(xhr.status);
             }
@@ -60,6 +63,7 @@ form.addEventListener('submit', e => {
     let formData = new FormData();
     formData.append('brand', brandSelector);
     formData.append('quantity', numberInput);
+    formData.append('_method', 'POST');
 
     xhr.send(formData);
 

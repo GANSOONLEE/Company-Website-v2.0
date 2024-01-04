@@ -15519,6 +15519,9 @@ input:checked + .toggle-bg{
 .\!max-w-\[100\%\]{
   max-width: 100% !important;
 }
+.max-w-40{
+  max-width: 10rem;
+}
 .flex-1{
   flex: 1 1 0%;
 }
@@ -15803,6 +15806,30 @@ input:checked + .toggle-bg{
 .border-t{
   border-top-width: 1px;
 }
+.border-l-2{
+  border-left-width: 2px;
+}
+.border-r-2{
+  border-right-width: 2px;
+}
+.border-t-2{
+  border-top-width: 2px;
+}
+.\!border-l-2{
+  border-left-width: 2px !important;
+}
+.\!border-r-2{
+  border-right-width: 2px !important;
+}
+.\!border-t-2{
+  border-top-width: 2px !important;
+}
+.border-r-\[0\.25rem\]{
+  border-right-width: 0.25rem;
+}
+.border-l-\[1px\]{
+  border-left-width: 1px;
+}
 .border-solid{
   border-style: solid;
 }
@@ -15977,9 +16004,26 @@ input:checked + .toggle-bg{
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-transparent{
+  --tw-gradient-from: transparent var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .via-transparent{
   --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+.to-gray-700{
+  --tw-gradient-to: #374151 var(--tw-gradient-to-position);
+}
+.to-gray-600{
+  --tw-gradient-to: #4B5563 var(--tw-gradient-to-position);
+}
+.to-gray-400{
+  --tw-gradient-to: #9CA3AF var(--tw-gradient-to-position);
+}
+.to-gray-800{
+  --tw-gradient-to: #1F2937 var(--tw-gradient-to-position);
 }
 .bg-center{
   background-position: center;
@@ -16726,6 +16770,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.last\:\!border-b-2:last-child{
+  border-bottom-width: 2px !important;
+}
 .odd\:bg-gray-100:nth-child(odd){
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -16821,6 +16868,12 @@ aside#sidebar > div .active svg.w-3.h-3 {
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.hover\:bg-gradient-to-r:hover{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+.hover\:bg-gradient-to-l:hover{
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }
 .hover\:text-blue-600:hover{
   --tw-text-opacity: 1;

@@ -162,13 +162,6 @@ return array (
       'name' => 'Promotional two panels',
     ),
   ),
-  'permission' => 
-  array (
-    'admin_user' => 
-    array (
-      'name' => 'User Panel',
-    ),
-  ),
   'avaiable-account' => 'Available accounts',
   'banned-account' => 'Banned Account',
   'unavaiable-account' => 'Unavailable account',
