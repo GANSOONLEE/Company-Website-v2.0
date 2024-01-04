@@ -26,7 +26,14 @@ class HomeController extends Controller{
             null ;
 
         foreach($directories as $directory) {
-            $allow_roles = Image::where('name', basename($directory))->first()->allow_roles;
+
+            // check if the directory exists
+            $basename = basename($directory);
+            if(!Image::where('name', $basename)->exists()){
+                continue;
+            }
+
+            $allow_roles = Image::where('name', $basename)->first()->allow_roles;
             if(array_search($role, $allow_roles) !== false){
                 $promotionImages = array_merge($promotionImages, Storage::disk('public')->files($directory));
             }else if(strpos(basename($directory), 'general') === 0){
