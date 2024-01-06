@@ -12,4 +12,8 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
     Route::get('/detail/{id}', [OrderController::class, 'detailUser'])
         ->name('detail');
 
+    // Store Order [Action]
+    Route::post('/', [OrderController::class, 'store'])
+        ->name('store');
+
 });

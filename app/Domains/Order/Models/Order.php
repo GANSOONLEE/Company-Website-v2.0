@@ -26,9 +26,10 @@ class Order extends Model
     ];
     
     protected $table = 'orders';
-    protected $primaryKey = 'code';
+    protected $primaryKey = 'id';
     public $incrementing = false;
     protected $fillable = [
+        'id',
         'code',
         'user_email',
         'status',

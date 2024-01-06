@@ -63,7 +63,7 @@ class OrderService extends BaseService
     
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException("There was a problem creating the order.");
+            throw new GeneralException($e->getMessage()); // "There was a problem creating the order."
         }
 
         DB::commit();
@@ -110,7 +110,7 @@ class OrderService extends BaseService
 
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException('There was an problem creating the order, please try again.');
+            throw new GeneralException($e->getMessage());
         }
 
         DB::commit();

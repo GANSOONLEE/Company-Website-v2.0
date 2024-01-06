@@ -71,7 +71,7 @@ class OrderController
      */
     public function detail($id): mixed
     {
-        $order = Order::where('id', $id)->where('user_email', auth()->user()->email)->first();
+        $order = Order::where('id', $id)->first();
         return view('backend.admin.order.detail', compact('order'));
     }
 

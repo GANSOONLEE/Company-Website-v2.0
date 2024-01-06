@@ -18,10 +18,6 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
     Route::get('create', [OrderController::class, 'create'])
         ->name('create');
 
-    // Store Order [Action]
-    Route::post('/', [OrderController::class, 'store'])
-        ->name('store');
-
     // View Order Detail [Action]
     Route::get('/detail/{id}', [OrderController::class, 'detail'])
         ->name('detail');

@@ -49,7 +49,7 @@ class CartService extends BaseService
             }
         }catch(\Exception $e) {
             DB::rollBack();
-            throw new GeneralException ("There was a problem creating the cart.");
+            throw new GeneralException ($e->getMessage());
         }
 
         DB::commit();

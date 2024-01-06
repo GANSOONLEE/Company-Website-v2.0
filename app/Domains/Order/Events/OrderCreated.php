@@ -23,7 +23,7 @@ class OrderCreated extends BaseEvent implements ShouldBroadcast
     public function __construct($order)
     {
         $this->count = Order::where('status', 'Pending')->count();
-        $this->createOperation('create', 'order', $order->id);
+        $this->createOperation('create', 'order', $order->code);
     }
 
     public function broadcastOn()

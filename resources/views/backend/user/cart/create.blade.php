@@ -20,7 +20,7 @@
             </button>
         </a>
         <div class="flex justify-content-end align-items-center gap-x-4">
-            <x-form.post :action="route('backend.admin.order.store')">
+            <x-form.post :action="route('backend.user.order.store')">
                 <input type="text" name="selectedCheckbox" id="selectedCheckbox" value="" hidden>
                 <button type="submit" class="btn btn-primary bg-primary">Make Order</button>
             </x-form.post>
