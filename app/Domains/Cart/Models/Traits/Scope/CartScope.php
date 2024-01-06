@@ -45,7 +45,7 @@ trait CartScope
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products_brand.product_code')
             ->leftJoin('products', 'products.product_code', '=', 'products_name.product_code')
             ->groupBy('carts.id')
-            ->orderBy('products_name.name', $sort ?? Sort::ASC())
-            ->orderBy('products.product_category');
+            ->orderBy('products.product_category')
+            ->orderBy('products_name.name', $sort ?? Sort::ASC());
     }
 }

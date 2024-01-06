@@ -9,15 +9,15 @@
         <img class="h-full w-full object-cover brightness-50 blur-[2px]" src="{{ asset('image/frozen air cond.webp') }}" alt="">
     </div>
 
-    <div class="flex flex-col justify-center align-items-center h-[100vh] mt-20">
+    <div class="flex flex-col justify-start lg:justify-center align-items-center h-[100vh] mt-20">
 
-        <a class="mb-[.5rem]" href="{{ route('frontend.home') }}">
-            <img class="w-40 h-auto object-cover" src="{{ asset('image/logo.webp') }}" alt="">
+        <a class="pt-4 lg:pt-0 mb-[.5rem]" href="{{ route('frontend.home') }}">
+            <img class="w-30 lg:w-40 h-auto object-cover" src="{{ asset('image/logo.webp') }}" alt="">
         </a>
 
         <p class="text-xl lg:text-3xl text-white font-sans font-black mb-[2.25rem]">Sign in to your account</p>
 
-        <div class="shadow py-[2.25rem] px-[1.75rem] mt-[1rem] mb-[1rem] rounded-md bg-white border-1 border-solid border-gray-300 w-[40%]">
+        <div class="w-[80%] lg:w-[30%] shadow py-[2.25rem] px-[1.75rem] mt-[1rem] mb-[1rem] rounded-md bg-white border-1 border-solid border-gray-300">
 
             <x-form.post :action="route('auth.login.valid')">
                 
@@ -37,9 +37,9 @@
                                 <input title="Please enter password" type="password" class="bg-gray-100 block w-full rounded-md border-1 border-solid border-gray-300 focus:bg-white" name="password" id="password" autocomplete="current-password" placeholder="Password" value="{{ old('password') }}" required>
                             </div>
 
-                            <div class="flex justify-between">
-                                <a href="{{ route('auth.password.help') }}" class="w-[50%] text-sm font-bold text-blue-700 hover:text-blue-800 transition-colors duration-[.12s] ease-in-out">Forget Password ?</a>
-                                <a href="{{ route('auth.register.index') }}" class="w-[50%] text-sm text-blue-900 flex justify-end gap-x-[.6rem] transition-all duration-200 ease-in-out hover:gap-x-[1rem]">
+                            <div class="flex flex-col justify-start lg:flex-row lg:justify-between">
+                                <a href="{{ route('auth.password.help') }}" class="w-full lg:w-[50%] text-sm font-bold text-blue-700 hover:text-blue-800 transition-colors duration-[.12s] ease-in-out">Forget Password ?</a>
+                                <a href="{{ route('auth.register.index') }}" class="w-full lg:w-[50%] mt-2 lg:mt-0 text-sm text-blue-900 flex justify-start gap-x-[.6rem] transition-all duration-200 ease-in-out hover:gap-x-[1rem]">
                                     Haven't any account? <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>

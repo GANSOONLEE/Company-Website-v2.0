@@ -213,9 +213,6 @@ form div.brand-selector {
        column-gap: 20px;
   row-gap: 10px;
 }
-form div.brand-selector label.brand-label {
-  width: 57.1428571429%;
-}
 form div.brand-selector label.brand-label input[type=radio] {
   display: none;
 }

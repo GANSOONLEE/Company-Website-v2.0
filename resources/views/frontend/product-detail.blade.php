@@ -106,7 +106,7 @@
                         <x-form.post class="form" :action="route('backend.user.cart.store')">
                             
                             <!-- Booking -->
-                            <div class="brand-selector">
+                            <div class="brand-selector flex flex-col lg:flex-row w-full">
 
                                 @php    
                                     $auth = "false";
@@ -119,7 +119,7 @@
                                 @foreach (($productData->getProductBrand()) as $brand)
 
                                 @if (is_array($brandCover) && isset($brandCover) && $brandCover !== [] && isset($brandCover[$brand->sku_id][0]) )
-                                    <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="{{ "storage/" . url_encode($brandCover[$brand->sku_id][0]) }}">  
+                                    <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label w-full lg:w-[calc(100% / 1.75)] whitespace-nowrap" data-image="{{ "storage/" . url_encode($brandCover[$brand->sku_id][0]) }}">  
                                 @else
                                     <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">  
                                 @endif
