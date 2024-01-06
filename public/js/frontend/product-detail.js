@@ -42,20 +42,17 @@ form.addEventListener('submit', e => {
 
     xhr.open('POST', form.action, true);
 
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.log(xhr)
-                console.log(xhr.responseText)
                 let data = JSON.parse(xhr.responseText);
                 document.querySelector('#notification-total-cart').innerText = data.count;
                 document.querySelector('form').reset();
-                console.log(data);
+                console.info(data);
             } else {
-                console.log(xhr.status);
+                console.error(xhr.status);
             }
         }
     };
