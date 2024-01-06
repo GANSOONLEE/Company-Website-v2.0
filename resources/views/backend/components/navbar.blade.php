@@ -1,5 +1,5 @@
 <nav id="navbar"
-    class="fixed top-0 z-50 w-full border-gray-800 text-black bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    class="fixed top-0 z-50 w-full border-gray-800 text-black bg-gray-50 dark:bg-gray-800 dark:border-gray-700 z-9">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">

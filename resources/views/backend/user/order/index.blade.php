@@ -32,6 +32,7 @@
                             {{ $order->code }}
                         </th>
                         <td class="px-6 py-4">
+                            <span></span>
                             {{ $order->status }}
                         </td>
                         <td class="px-6 py-4">

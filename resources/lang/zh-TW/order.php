@@ -31,4 +31,8 @@ return array (
   'detail' => '訂單明細',
   'detail-description' => '查看各項明細的數量和備注',
   'remark' => '備注',
+  'view-order-description' => '查看訂單和其明細',
+  'pending' => '等待中',
+  'process' => '處理中',
+  'history-order-description' => '超過 :days 天後的訂單會在這裏',
 );

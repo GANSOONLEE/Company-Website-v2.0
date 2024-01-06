@@ -31,4 +31,6 @@ return array (
   'detail' => '订单明细',
   'detail-description' => '查看各项明细的数量和备注',
   'remark' => '备注',
+  'pending' => '挂单',
+  'process' => '处理中',
 );

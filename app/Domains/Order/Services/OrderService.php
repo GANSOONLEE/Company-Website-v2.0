@@ -20,6 +20,7 @@ use App\Exceptions\GeneralException;
 // Laravel Support
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderService extends BaseService
 {
@@ -123,9 +124,22 @@ class OrderService extends BaseService
      * @param string $id
      * @param array $data
      */
-    public function update(string $id, array $data)
+    public function update(string $id, array $data = [])
     {
-        $order = $this->model->find($id);
-        dd($order);
+        DB::beginTransaction();
+
+        try {
+            DB::table('orders_detail')
+                ->where('id', $id)
+                ->update([
+                    "remarks" => $data["remark"] ?? null,
+                ]);
+
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+        }
+
+        DB::commit();
     }
 }

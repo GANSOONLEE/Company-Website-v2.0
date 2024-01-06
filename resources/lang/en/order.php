@@ -31,4 +31,6 @@ return array (
   'detail' => 'Order Details',
   'detail-description' => 'Check the quantity and remarks of each item',
   'remark' => 'Remark',
+  'pending' => 'Pending',
+  'process' => 'Processing',
 );
