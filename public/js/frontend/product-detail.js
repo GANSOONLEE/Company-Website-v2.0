@@ -47,12 +47,14 @@ form.addEventListener('submit', e => {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+                console.log(xhr)
+                console.log(xhr.responseText)
                 let data = JSON.parse(xhr.responseText);
                 document.querySelector('#notification-total-cart').innerText = data.count;
                 document.querySelector('form').reset();
-                console.info(data);
+                console.log(data);
             } else {
-                console.error(xhr.status);
+                console.log(xhr.status);
             }
         }
     };
