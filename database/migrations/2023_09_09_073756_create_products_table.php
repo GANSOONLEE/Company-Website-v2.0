@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('product_code', 12)->unique();
             $table->string('product_category');
-            $table->string('product_type');
             $table->string('product_status');
+            $table->longText('remarks');
+            $table->string('faker')->default('0');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 
