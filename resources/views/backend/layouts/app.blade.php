@@ -46,7 +46,7 @@
         <x-sidebar-user />
       @endif
 
-        <div class="page" id="page">
+        <div class="page !ml-0 lg:!ml-[16rem]" id="page">
 
           <div class="breadcrumbs">
             {{ Breadcrumbs::render() }}

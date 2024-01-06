@@ -118,6 +118,11 @@
             });
         });
         function resetCheckbox() {
+
+            if(!confirm('Do you sure want to reset it?')) {
+                return false ;
+            }
+
             localStorage.removeItem("selectedIds");
             let checkboxArray = document.querySelectorAll('input[type="checkbox"]');
             checkboxArray.forEach(checkbox => {

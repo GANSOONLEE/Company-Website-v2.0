@@ -42,6 +42,7 @@ form.addEventListener('submit', e => {
 
     xhr.open('POST', form.action, true);
 
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
     xhr.onreadystatechange = function () {

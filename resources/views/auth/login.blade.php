@@ -15,7 +15,7 @@
             <img class="w-40 h-auto object-cover" src="{{ asset('image/logo.webp') }}" alt="">
         </a>
 
-        <p class="text-3xl text-white font-sans font-black mb-[2.25rem]">Sign in to your account</p>
+        <p class="text-xl lg:text-3xl text-white font-sans font-black mb-[2.25rem]">Sign in to your account</p>
 
         <div class="shadow py-[2.25rem] px-[1.75rem] mt-[1rem] mb-[1rem] rounded-md bg-white border-1 border-solid border-gray-300 w-[40%]">
 

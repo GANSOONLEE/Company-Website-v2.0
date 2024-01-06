@@ -15456,6 +15456,10 @@ input:checked + .toggle-bg{
 .h-screen{
   height: 100vh;
 }
+.h-min{
+  height: -moz-min-content;
+  height: min-content;
+}
 .max-h-full{
   max-height: 100%;
 }
@@ -16126,6 +16130,10 @@ input:checked + .toggle-bg{
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
 }
+.px-\[\.75rem\]{
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
 .\!pe-8{
   padding-inline-end: 2rem !important;
 }
@@ -16334,6 +16342,9 @@ input:checked + .toggle-bg{
 }
 .opacity-75{
   opacity: 0.75;
+}
+.opacity-60{
+  opacity: 0.6;
 }
 .shadow{
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -17430,6 +17441,12 @@ aside#sidebar > div .active svg.w-3.h-3 {
   }
 }
 @media (min-width: 1024px){
+  .lg\:ml-\[16rem\]{
+    margin-left: 16rem;
+  }
+  .lg\:\!ml-\[16rem\]{
+    margin-left: 16rem !important;
+  }
   .lg\:gap-8{
     gap: 2rem;
   }
@@ -17439,5 +17456,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .lg\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  .lg\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
