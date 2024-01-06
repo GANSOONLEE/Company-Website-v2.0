@@ -183,10 +183,12 @@
 
         </section>
 
+        <!-- Zoom in popup -->
         <div class="zoom-preview">
             <img id="zoom-preview" src="" alt="">
         </div>
 
+        <!-- Cart Logo => Goto user cart page -->
         @auth
             @if(auth()->user()->getRoleEntity()->hasPermission('user_backend'))
                 <div class="action-bar">
