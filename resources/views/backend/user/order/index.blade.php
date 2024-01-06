@@ -32,13 +32,14 @@
                             {{ $order->code }}
                         </th>
                         <td class="px-6 py-4">
+                            <span></span>
                             {{ $order->status }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $order->created_at }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                            <a href="{{ route('backend.user.order.detail', ['id' => $order->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>
                 @endforeach

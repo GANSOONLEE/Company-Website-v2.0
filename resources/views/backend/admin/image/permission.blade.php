@@ -12,7 +12,7 @@
 
     <table class="w-full">
         <thead>
-            <tr class="bg-gray-300 border !border-gray-300 !border-l-2 !border-t-2 !border-r-2">
+            <tr class="bg-gray-300 border !border-gray-300 !border-l-2 !border-t-2 !border-r-2 dark:bg-gray-600">
                 <th class="px-4 py-3">@lang('Id')</th>
                 <th class="px-4 border-solid border-l-[1px] border-gray-200">@lang('image.name')</th>
                 <th class="px-4 border-solid border-l-[1px] border-gray-200">@lang('image.allow-roles')</th>
@@ -31,7 +31,7 @@
                                 <div class="flex flex-wrap justify-start items-center gap-x-4">
                                     @foreach ($roles->pluck('name')->toArray() as $role)
                                     <div class="flex items-center gap-x-4">
-                                        <input name="roles[]" id="{{ $image->name . "_" . $role }}" class="block border !border-gray-300" type="checkbox" value="{{ $role }}" {{ array_search($role, $image->allow_roles) !== false ? 'checked' : null }}>
+                                        <input name="roles[]" id="{{ $image->name . "_" . $role }}" class="block border !border-gray-300 cursor-pointer" type="checkbox" value="{{ $role }}" {{ array_search($role, $image->allow_roles) !== false ? 'checked' : null }}>
                                         <label for="{{ $image->name . "_" . $role }}">@lang('permission.roles.' . $role)</label>
                                     </div>
                                     @endforeach

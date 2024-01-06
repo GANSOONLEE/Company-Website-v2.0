@@ -70,9 +70,9 @@
                 <div class="product-content">
 
                     <!-- Available Car Model -->
-                    <div class="available-car-model">
-                        <p class="title">Available Car Model</p>
-                        <ul class="item-list">
+                    <div class="available-car-model h-full">
+                        <p class="title !text-xl">Available Car Model</p>
+                        <ul class="item-list !text-base">
                             @foreach (($productData->getProductName()) as $name)  
                             <li class="item flex-row">
                                 <span></span>
@@ -80,6 +80,10 @@
                             </li>
                             @endforeach
                         </ul>
+
+                        <div class="flex text-sm justify-self-end text-gray-800 mt-[2rem]">
+                            {{ $productData->remarks }}
+                        </div>
                     </div>
 
                     @auth

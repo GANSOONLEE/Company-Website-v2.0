@@ -24,6 +24,7 @@ class UpdateProductRequest extends FormRequest
             'brand-code' => ['required', 'array', 'min:1'],
             'frozen-code' => ['required', 'array', 'min:1'],
             'product_category' => 'required',
+            'remark' => 'nullable',
         ];
     }
 

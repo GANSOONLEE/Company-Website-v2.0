@@ -103,6 +103,7 @@ class ProductService extends BaseService
                 'product_code' => $product_code,
                 'product_category' => $data['product_category'] ?? null,
                 'product_status' => $data['product_status'] ?? null,
+                'remarks' => $data['remark'] ?? null,
             ]);
 
             // Create Product Name Information
@@ -381,6 +382,7 @@ class ProductService extends BaseService
             $this->updateProduct($product, [
                 'product_category' => $data['product_category'] ?? null,
                 'product_status' => $data['product_status'] ?? null,
+                'remarks' => $data['remark'] ?? null,
             ]);
 
         }catch(Exception $e){
@@ -416,6 +418,7 @@ class ProductService extends BaseService
         $product->update([
             'product_category' => $data['product_category'] ?? null,
             'product_status' => $data['product_status'] ?? null,
+            'remarks' => $data['remarks'] ?? null,
         ]);
     }
 

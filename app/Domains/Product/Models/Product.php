@@ -29,6 +29,7 @@ class Product extends Model
         'product_category',
         'product_type',
         'product_status',
+        'remarks',
         'faker',
         'updated_at'
     ];

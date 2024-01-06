@@ -78,10 +78,10 @@
         <!-- Button Action -->
         <div class="flex justify-between mt-3">
             <p class="text-sm">
-                The column remark "#" can't change!<br>
+                {{-- The column remark "#" can't change!<br>
                 If you need to change please email<a href="mailto:frozenaircond.noreply@gmail.com">
                     Frozenaircond.noreply@gmail.com
-                </a>
+                </a> --}}
             </p>
             <div class="flex jutify-center items-center gap-x-4">
                 <button data-button-action="change" class="flex gap-x-4 items-center btn text-white bg-secondary" type="button" data-bs-toggle="modal" data-bs-target="#changePassword">

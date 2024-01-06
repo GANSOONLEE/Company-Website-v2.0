@@ -57,7 +57,7 @@ class ImageService extends BaseService
      * Upload image
      * @param array $data
      */
-    public function upload(array $data = [], string $id)
+    public function upload(string $id, array $data = [])
     {
         $imageInstance = $this->model->find($id);
         foreach($data['image'] as $image) {
@@ -68,7 +68,7 @@ class ImageService extends BaseService
     /**
      * 
      */
-    public function update(array $data, string $id)
+    public function update( string $id, array $data)
     {
         $image = $this->model->find($id);
         DB::beginTransaction();
@@ -106,7 +106,7 @@ class ImageService extends BaseService
      * @param array $data
      * @param string $id
      */
-    public function delete(array $data, string $id)
+    public function delete(string $id, array $data)
     {
         $image = $this->model->find($id);
         $imageFiles = Storage::disk('public')->allFiles("carousel/$image->name");

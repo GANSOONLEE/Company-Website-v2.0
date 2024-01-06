@@ -9,7 +9,7 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
     Route::get('/', [OrderController::class, 'userList'])
         ->name('index');
     
-    Route::get('detail', [OrderController::class, 'detail'])
+    Route::get('/detail/{id}', [OrderController::class, 'detailUser'])
         ->name('detail');
 
 });

@@ -6,6 +6,8 @@ use App\Services\BaseService;
 
 // Event
 use App\Domains\Order\Events\OrderCreated;
+use App\Domains\Order\Events\OrderUpdated;
+use App\Domains\Order\Events\OrderDeleted;
 
 // Model
 use App\Domains\Order\Models\Order;
@@ -18,6 +20,7 @@ use App\Exceptions\GeneralException;
 // Laravel Support
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderService extends BaseService
 {
@@ -110,10 +113,33 @@ class OrderService extends BaseService
             throw new GeneralException('There was an problem creating the order, please try again.');
         }
 
-
         DB::commit();
-        event(new OrderCreated());
+        event(new OrderCreated($order));
         return $order;
 
+    }
+
+    /**
+     * Updates the order
+     * @param string $id
+     * @param array $data
+     */
+    public function update(string $id, array $data = [])
+    {
+        DB::beginTransaction();
+
+        try {
+            DB::table('orders_detail')
+                ->where('id', $id)
+                ->update([
+                    "remarks" => $data["remark"] ?? null,
+                ]);
+
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+        }
+
+        DB::commit();
     }
 }

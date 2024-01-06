@@ -186,6 +186,12 @@
         </select>
     </div>
 
+    <div class="mb-3">
+        <h4 h4 class="text-2xl mb-4">@lang('product.remark')</h4>
+        <textarea class="w-full resize-none bg-slate-50 border-solid border-2 border-gray-800 rounded-md
+        hover:bg-gray-300 dark:bg-gray-800 dark:border-zinc-200 dark:hover:bg-gray-600" name="remark" rows="3" placeholder="{{ __('product.remark') }}">{{ $product->remarks }}</textarea>
+    </div>
+
     <button class="btn btn-success bg-success w-full" type="submit">@lang('Submit')</button>
 
 </x-form.patch>

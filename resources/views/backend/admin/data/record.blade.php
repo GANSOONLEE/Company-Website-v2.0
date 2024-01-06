@@ -3,7 +3,7 @@
 
 @section('title', __('operation.record'))
 
-@section('subtitle', __('operation.record-description', ["days" => 30]))
+@section('subtitle', __('operation.record-description', ["days" => 15]))
 
 @section("main")
 
@@ -13,7 +13,7 @@
             <div class="h-full absolute flex items-center ps-3 pointer-events-none">
                 <i class="fa-solid fa-search text-gray-400"></i>
             </div>
-            <input type="search" id="default-search" name="q" class="h-full block w-full px-3 py-2 !pl-12 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search email, username, role..." value="{{ request()->input('q') }}">
+            <input type="search" id="default-search" name="q" class="h-full block w-full px-3 py-2 !pl-[5rem] text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search email, username, role..." value="{{ request()->input('q') }}">
             <button type="submit" class="h-full text-white absolute right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">@lang('Search')</button>
         </div>
     </x-form.get>
