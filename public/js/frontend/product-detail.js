@@ -62,8 +62,7 @@ form.addEventListener('submit', e => {
     let formData = new FormData();
     formData.append('brand', brandSelector);
     formData.append('quantity', numberInput);
-
-    console.log(formData)
+    formData.append('_method', 'POST');
 
     xhr.send(formData);
 
