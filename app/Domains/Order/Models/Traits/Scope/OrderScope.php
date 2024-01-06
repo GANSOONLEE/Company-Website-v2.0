@@ -14,7 +14,14 @@ trait OrderScope
      */
     public function scopeByState(Builder $query, string|bool $state = false): Builder
     {
-        $query->where('created_at', '>', now()->subDays(45))->orderBy('created_at', 'desc');
+        $query->where(function ($query) {
+            $query->where('created_at', '>', now()->subDays(45))
+                  ->orWhere(function ($query) {
+                      $query->where('created_at', '<=', now()->subDays(45))
+                            ->where('status', '!=', 'Completed');
+                  });
+        })->orderBy('created_at', 'desc');
+        
 
         if(is_string($state)){
             return $query->where('status', $state);
@@ -30,6 +37,6 @@ trait OrderScope
      */
     public function scopeByHistory(Builder $query, int $days = 45): Builder
     {
-        return $query->where('created_at', '<', now()->subDays(45))->orderBy('created_at', 'desc');
+        return $query->where('created_at', '<', now()->subDays(45))->where('status', 'Completed')->orderBy('created_at', 'desc');
     }
 }

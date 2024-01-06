@@ -9,7 +9,7 @@
 
     @if(session('success'))
         <script>
-            
+            localStorage.removeItem('selectedIds');
         </script>
     @endif
 
@@ -132,6 +132,7 @@
         let editButtons = document.querySelectorAll('#editButton');
         let qunatityEdit = document.querySelectorAll('#qunatityEdit');
         editButtons.forEach((editButton, index) => {
+            console.log(editButton)
             editButton.addEventListener('click', e => {
                 let number = qunatityEdit[index].innerText;
                 let id = e.target.getAttribute('data-id');

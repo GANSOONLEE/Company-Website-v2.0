@@ -103,7 +103,7 @@
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
                         
                         <!-- Form -->
-                        <x-form.post class="form" action="{{ route('backend.user.cart.store') }}">
+                        <x-form.post class="form" :action="route('backend.user.cart.store')">
                             
                             <!-- Booking -->
                             <div class="brand-selector">

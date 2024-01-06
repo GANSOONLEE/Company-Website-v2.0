@@ -4,7 +4,7 @@
 
 @section('title', __('order.history-order'))
 
-@section('subtitle', __('order.history-order-description', ["days" => 90]))
+@section('subtitle', __('order.history-order-description', ["days" => 45]))
 
 @section('main')
 

@@ -42,7 +42,6 @@ form.addEventListener('submit', e => {
 
     xhr.open('POST', form.action, true);
 
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
     xhr.onreadystatechange = function () {
@@ -63,7 +62,8 @@ form.addEventListener('submit', e => {
     let formData = new FormData();
     formData.append('brand', brandSelector);
     formData.append('quantity', numberInput);
-    formData.append('_method', 'POST');
+
+    console.log(formData)
 
     xhr.send(formData);
 
