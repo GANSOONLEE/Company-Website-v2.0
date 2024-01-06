@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('code');
             $table->string('product_code');
+            $table->string('frozen_code');
             $table->timestamps();
 
             $table->foreign('product_code')

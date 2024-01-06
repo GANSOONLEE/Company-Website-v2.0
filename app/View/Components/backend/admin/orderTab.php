@@ -23,24 +23,24 @@ class orderTab extends Component
                 'name' => trans('order.pending'),
                 'slot' => 'pending',
             ],
-            (object)[
-                'id' => 'accepted-tab',
-                'dataTabsTarget' => 'accepted',
-                'name' => trans('order.accepted'),
-                'slot' => 'accepted',
-            ],
-            (object)[
-                'id' => 'process-tab',
-                'dataTabsTarget' => 'process',
-                'name' => trans('order.process'),
-                'slot' => 'process',
-            ],
-            (object)[
-                'id' => 'placed-tab',
-                'dataTabsTarget' => 'placed',
-                'name' => trans('order.placed'),
-                'slot' => 'placed',
-            ],
+            // (object)[
+            //     'id' => 'accepted-tab',
+            //     'dataTabsTarget' => 'accepted',
+            //     'name' => trans('order.accepted'),
+            //     'slot' => 'accepted',
+            // ],
+            // (object)[
+            //     'id' => 'process-tab',
+            //     'dataTabsTarget' => 'process',
+            //     'name' => trans('order.process'),
+            //     'slot' => 'process',
+            // ],
+            // (object)[
+            //     'id' => 'placed-tab',
+            //     'dataTabsTarget' => 'placed',
+            //     'name' => trans('order.placed'),
+            //     'slot' => 'placed',
+            // ],
             (object)[
                 'id' => 'completed-tab',
                 'dataTabsTarget' => 'completed',

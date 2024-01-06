@@ -22,8 +22,10 @@ return new class extends Migration
             $table->text('address');
             $table->string('profession');
             $table->string('shop_name');
+            $table->string('status')->default('Available');
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();
+            $table->boolean('is_fake')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
