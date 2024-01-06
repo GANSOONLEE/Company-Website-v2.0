@@ -15378,9 +15378,6 @@ input:checked + .toggle-bg{
 .mt-\[1rem\]{
   margin-top: 1rem;
 }
-.mt-auto{
-  margin-top: auto;
-}
 .mt-\[2rem\]{
   margin-top: 2rem;
 }
@@ -15513,6 +15510,9 @@ input:checked + .toggle-bg{
 .w-\[14rem\]{
   width: 14rem;
 }
+.w-\[16rem\]{
+  width: 16rem;
+}
 .w-\[20rem\]{
   width: 20rem;
 }
@@ -15540,9 +15540,6 @@ input:checked + .toggle-bg{
 .w-min{
   width: -moz-min-content;
   width: min-content;
-}
-.w-\[16rem\]{
-  width: 16rem;
 }
 .\!max-w-\[100\%\]{
   max-width: 100% !important;
@@ -16015,6 +16012,18 @@ input:checked + .toggle-bg{
 .bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
 }
+.bg-green-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 122 85 / var(--tw-bg-opacity));
+}
+.bg-orange-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(208 56 1 / var(--tw-bg-opacity));
+}
+.bg-yellow-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(159 88 10 / var(--tw-bg-opacity));
+}
 .from-gray-700{
   --tw-gradient-from: #374151 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(55 65 81 / 0) var(--tw-gradient-to-position);
@@ -16123,6 +16132,9 @@ input:checked + .toggle-bg{
 .\!pl-12{
   padding-left: 3rem !important;
 }
+.\!pl-\[5rem\]{
+  padding-left: 5rem !important;
+}
 .pl-11{
   padding-left: 2.75rem;
 }
@@ -16141,15 +16153,6 @@ input:checked + .toggle-bg{
 .pt-8{
   padding-top: 2rem;
 }
-.\!pl-\[3rem\]{
-  padding-left: 3rem !important;
-}
-.\!pl-\[6rem\]{
-  padding-left: 6rem !important;
-}
-.\!pl-\[5rem\]{
-  padding-left: 5rem !important;
-}
 .text-left{
   text-align: left;
 }
@@ -16161,6 +16164,14 @@ input:checked + .toggle-bg{
 }
 .font-sans{
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.\!text-base{
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+.\!text-xl{
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
 }
 .text-2xl{
   font-size: 1.5rem;
@@ -16189,18 +16200,6 @@ input:checked + .toggle-bg{
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.\!text-2xl{
-  font-size: 1.5rem !important;
-  line-height: 2rem !important;
-}
-.\!text-xl{
-  font-size: 1.25rem !important;
-  line-height: 1.75rem !important;
-}
-.\!text-base{
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
 }
 .font-black{
   font-weight: 900;

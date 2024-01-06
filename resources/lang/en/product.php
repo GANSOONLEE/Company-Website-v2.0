@@ -48,4 +48,6 @@ return array (
   'edit-panel' => 'Edit product',
   'edit-panel-description' => 'Modify product information',
   'update-product-success' => 'Product update successful!',
+  'delete-product-success' => 'Product deleted successfully!',
+  'remark' => 'Remark',
 );

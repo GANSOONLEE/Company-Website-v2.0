@@ -131,7 +131,7 @@ class OrderController
      */
     public function userList()
     {
-        $orders = auth()->user()->order()->orderBy('created_at')->paginate(10);
+        $orders = auth()->user()->order()->orderBy('created_at', 'desc')->paginate(10);
         return view('backend.user.order.index', compact('orders'));
     }
 

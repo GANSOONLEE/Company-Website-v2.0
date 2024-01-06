@@ -33,6 +33,11 @@
                 
         @endswitch
 
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <i class="fa-solid fa-file w-3.5 h-3.5 me-2"></i>
+            @lang('order.download-pdf')
+        </button>
+
     </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-3">

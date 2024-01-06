@@ -48,4 +48,6 @@ return array (
   'edit-panel' => '编辑产品',
   'edit-panel-description' => '修改产品的信息',
   'update-product-success' => '商品更新成功！',
+  'remark' => '备注',
+  'delete-product-success' => '成功删除商品！',
 );
