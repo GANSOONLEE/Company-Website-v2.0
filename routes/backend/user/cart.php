@@ -16,4 +16,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function(){
     Route::patch('update', [CartController::class, 'update'])
         ->name('update');
 
+    Route::delete('delete', [CartController::class, 'delete'])
+        ->name('delete');
+
 });

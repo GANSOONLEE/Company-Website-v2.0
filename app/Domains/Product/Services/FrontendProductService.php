@@ -24,14 +24,13 @@ class FrontendProductService extends BaseService
      * List all products
      * @param string $category
      * 
-     * @return Collection
      */
-    public function list(string $category): Collection
+    public function list(string $category, int $recordsPerPage = 30)
     {
         return Product::where('product_category', $category)
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
             ->orderBy('products_name.name')
-            ->get(['products.*']);
+            ->paginate($recordsPerPage);
 
     }
 
@@ -39,15 +38,14 @@ class FrontendProductService extends BaseService
      * Search product by Category and Car Model
      * @param array $data
      * 
-     * @return Collection
      */
-    public function searchProductByCategoryAndModel(array $data = []): Collection
+    public function searchProductByCategoryAndModel(array $data = [], int $recordsPerPage = 30)
     {
         return Product::where('product_category', $data['category'])
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
             ->where('products_name.name', 'LIKE', "%" . $data['model'] . "%")
             ->orderBy('products_name.name')
-            ->get(['products.*']);
+            ->paginate($recordsPerPage);
     }
 
     /**

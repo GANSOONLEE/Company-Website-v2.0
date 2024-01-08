@@ -11,7 +11,7 @@
 
 @section('main')
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-3">
+    <div class="relative overflow-x-auto shadow-md rounded-lg !rounded-bl-none mt-3">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="dark:text-white">
@@ -52,7 +52,7 @@
                             {{ $item->sku_id }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->number }}
+                            <input onchange="updateQuantity(event)" data-brand="{{ $item->sku_id }}" data-order="{{ $order->id }}" class="bg-gray-200 focus:bg-gray-50" type="number" min="0" max="200" name="quantity" value="{{ $item->number }}" required>
                         </td>
                     </tr>
                 @endforeach
@@ -60,4 +60,36 @@
         </table>
     </div>
 
+    <!-- Add item -->
+    {{-- <div class="flex justify-center gap-x-[.75rem] rounded-md !rounded-tl-none p-2 !px-[.75rem] w-max bg-[#e42910] hover:bg-[#EE4D2D] cursor-pointer text-white text-base">
+        <i class="fa-solid fa-add"></i>Add Items
+    </div> --}}
+
 @endsection
+
+@push('after-script')
+    <script>
+        function updateQuantity(event) {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', route('backend.user.order.modifyItem', ['id' => event.target.getAttribute('data-order')]), true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    console.info(data);
+                } else if (xhr.readyState === 4) {
+                    console.error('Error:', xhr.status);
+                }
+            };
+
+            let formData = new FormData();
+            formData.append('brand', event.target.getAttribute('data-brand'),)
+            formData.append('quantity', parseInt(event.target.value))
+            formData.append('_method', 'Patch')
+
+            xhr.send(formData);
+
+        }
+    </script>
+@endpush

@@ -35,7 +35,7 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
         ->name('delete');
 
     // Force Delete Order [Action]
-    Route::delete('deleted/{id}', [OrderController::class, 'destroy'])
+    Route::delete('/deleted/{id}', [OrderController::class, 'destroy'])
         ->name('destroy');
 
 });

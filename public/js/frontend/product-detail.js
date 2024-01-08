@@ -26,7 +26,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 /** Form Valid */
 // #region
 
-let form = document.querySelector('form.form');
+let form = document.querySelector('form.form#post-form');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -42,20 +42,17 @@ form.addEventListener('submit', e => {
 
     xhr.open('POST', form.action, true);
 
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.log(xhr)
-                console.log(xhr.responseText)
                 let data = JSON.parse(xhr.responseText);
                 document.querySelector('#notification-total-cart').innerText = data.count;
-                document.querySelector('form').reset();
-                console.log(data);
+                document.querySelector('form#post-form').reset();
+                console.info(data);
             } else {
-                console.log(xhr.status);
+                console.error(xhr.status);
             }
         }
     };
@@ -171,9 +168,15 @@ class NumberSelector{
 
             case 'remove':
                 textInput.value = parseInt(textInput.value) - 1;
+                document.querySelectorAll('#quantity').forEach(element => {
+                    element.value = textInput.value;
+                })
                 break;
             case 'add':
                 textInput.value = parseInt(textInput.value) + 1;
+                document.querySelectorAll('#quantity').forEach(element => {
+                    element.value = textInput.value;
+                })
                 break;
             default:
                 break;
@@ -270,13 +273,18 @@ class ImageSelector{
 
     imageZoom(imgSrc){
 
-        zoom.css('display', 'flex');
-        
-        zoom.click(function(){
-            zoom.hide()
-        })
+        zoom.style.display = 'flex';
+
+        zoom.addEventListener('click', e => {
+            zoom.style.display = 'none';
+        });
 
         let imageZoom =$('#zoom-preview');
+
+        modal.addEventListener('click', e => {
+            e.stopPropagation();
+        })
+
         imageZoom.click(function(event){
             event.stopPropagation();
         })
@@ -290,7 +298,8 @@ class ImageSelector{
 
 }
 
-let zoom = $('div.zoom-preview');
+let zoom = document.querySelector('div.zoom-preview');
+let modal = document.querySelector('#popupModal');
 let imagePreview = new ImageSelector('image-selector');
 let imagePreviewContainer = $(`#image-selector`);
 imagePreview.init();
@@ -303,9 +312,13 @@ let brands = document.querySelectorAll('.brand-label');
 brands.forEach(brand => {
 
     brand.addEventListener('click',function(){
-        let src = brand.querySelector('input').value
-        if (src.includes('#')) {
-            src = encodeURIComponent(src);
+        let name = brand.querySelector('input').value
+        document.querySelectorAll('#brand').forEach(element => {
+            element.value = name;
+        })
+
+        if (name.includes('#')) {
+            src = encodeURIComponent(name);
         }
         
         let relation = '/' + brand.getAttribute('data-image');

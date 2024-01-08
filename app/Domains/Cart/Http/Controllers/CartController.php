@@ -55,4 +55,16 @@ class CartController
     {
         $this->cartService->update($request->validated());
     }
+
+    /**
+     * [Delete] Cart data to delete
+     * 
+     * @param string $id ID of the cart id
+     * @return mixed
+     */
+    public function delete(string $id): mixed
+    {
+        $this->cartService->delete($id);
+        return response()->json(['message' => 'Cart deleted successfully!']);
+    }
 }

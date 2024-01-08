@@ -2,11 +2,11 @@
 
 namespace App\Domains\Cart\Services;
 
-use App\Services\BaseService;
-
 use App\Domains\Cart\Models\Cart;
 
 use App\Exceptions\GeneralException;
+
+use App\Services\BaseService;
 
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +20,9 @@ class CartService extends BaseService
 
     /**
      * Create cart record
+     * 
      * @param array $data
+     * 
      * @return Cart
      */
     public function store(array $data = []): Cart
@@ -58,7 +60,9 @@ class CartService extends BaseService
 
     /**
      * Create cart record
+     * 
      * @param array $data
+     * 
      * @return void
      */
     public function update(array $data = []): void
@@ -79,6 +83,19 @@ class CartService extends BaseService
         }
 
         DB::commit();
+    }
+    
+        
+    /**
+     * Method delete
+     *
+     * @param string $id
+     *
+     * @return bool
+     */
+    public function delete(string $id): bool
+    {
+        return $this->model->find($id)->delete();
     }
 
 }

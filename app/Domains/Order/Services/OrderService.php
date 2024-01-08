@@ -142,4 +142,62 @@ class OrderService extends BaseService
 
         DB::commit();
     }
+
+    /**
+     * [Delete] the order temporary
+     * 
+     * @param string $id
+     * 
+     * @return void
+     */
+    public function delete(string $id): void
+    {
+        $this->model->find($id)->delete();
+    }
+
+    /**
+     * [Delete] the order forever
+     * 
+     * @param string $id
+     * 
+     * @return void
+     */
+    public function destroy(string $id): void
+    {
+        $this->model->find($id)->forceDelete();
+    }
+
+    /*
+    | ---------------------------------------------------------
+    |
+    |                        用戶   User
+    |
+    | ---------------------------------------------------------
+    */
+
+    /**
+     * @param string $id
+     * @param array $data
+     */
+    public function addItem(string $id, array $data = [])
+    {
+        DB::beginTransaction();
+
+        try{
+            $order = $this->model->find($id);
+
+            $order->detail()->insert([
+                "order_id" => $order->code,
+                "sku_id" => $data['brand'],
+                "number" => $data['quantity'],
+                "remarks" => null,
+            ]);
+        }catch(Exception $e){
+            DB::rollBack();
+            throw new GeneralException('There was a problem to adding your item to order.');
+        };
+
+        DB::commit();
+    }
+
 }

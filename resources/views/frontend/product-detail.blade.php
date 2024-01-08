@@ -103,7 +103,7 @@
                         <p class="form-title" data-bs-toggle="tooltip" data-bs-placement="top" title="Please choose a brand">Brand</p>
                         
                         <!-- Form -->
-                        <x-form.post class="form" :action="route('backend.user.cart.store')">
+                        <x-form.post id="post-form" class="form" :action="route('backend.user.cart.store')">
                             
                             <!-- Booking -->
                             <div class="brand-selector flex flex-col lg:flex-row w-full">
@@ -155,7 +155,7 @@
 
                                         <!-- Preview & Input -->
                                         <input type="number" min="0" max="100" name="quantity" value="0" id="quantity-input"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="The number must more then 0"
+                                            data-bs-toggle="tooltip" oninput="document.querySelector('#quantity').value = this.value" data-bs-placement="top" title="The number must more then 0"
                                             {{ $permission }}
                                         >
 
@@ -168,13 +168,50 @@
 
                                 </div>
 
+                                <!-- If not pending order -->
+
+                        @if (auth()->user()->order()->where('status', 'Pending')->count() <= 0)
+
                                 <!-- Add To Cart -->
                                 <div class="add-to-cart">
                                     <button class="btn btn-primary" type="submit" {{ $permission }} {{ count($productData->getProductName()) > 0 ? "" : "disabled" }}>Add To Cart</button>
                                 </div>
 
                             </div>
-                        </x-form.post>
+                                
+                        @else
+                            <div class="relative w-full">
+
+                                
+                                <div class="inline-flex rounded-sm shadow-sm w-full" role="group">
+                                    <button type="submit" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-[#EE4D2D] border-t border-b border-orange-200 rounded-s-sm hover:bg-[#ff3b13] hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                        Add To Cart
+                                    </button>
+                                    <label for="menuButton">
+                                        <div type="button" class="px-3 py-2 text-sm font-medium text-white bg-[#EE4D2D] border-t border-b border-orange-200 rounded-e-sm hover:bg-[#ff3b13] hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            <i class="fa-solid fa-chevron-down duration-[125ms] peer-checked:rotate-180"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                            </x-form.post>
+                            
+                                <input class="peer" type="checkbox" id="menuButton" hidden>
+
+                                <ol class="absolute right-[0] bg-white rounded-md shadow-lg hidden peer-checked:block">
+                                    @foreach (auth()->user()->order()->where('status', 'Pending')->get() as $order) 
+                                        <li class="px-5 py-2 text-[#EE4D2D] cursor-pointer hover:bg-orange-100 hover:text-[#ff2a00]">
+                                            <x-form.post :action="route('backend.user.order.stoneItem', ['id' => $order->id])">
+                                                <input type="text" id="brand" name="brand" hidden required>
+                                                <input type="text" id="quantity" name="quantity" hidden required>
+                                                <button type="submit">Add to Order #{{ $order->id }}</button>
+                                            </x-form.post> 
+                                        </li>
+                                    @endforeach
+                                </ol>
+
+                            </div>
+                        @endif
                     </div>
 
                 </div>
@@ -184,8 +221,36 @@
         </section>
 
         <!-- Zoom in popup -->
-        <div class="zoom-preview">
-            <img id="zoom-preview" src="" alt="">
+        <div class="zoom-preview flex justify-center items-center">
+            <div id="popupModal" class="relative w-full max-w-[29.2rem] h-auto p-3 bg-white rounded-md shadow overflow-hidden">
+                <!-- Title -->
+                <h3 class="text-xl font-bold pb-2 border-b-[1px] border-solid border-gray-600 ">Product Image</h3>
+        
+                <!-- Content -->
+                <div class="relative pt-2">
+                    <!-- Main product image -->
+                    <div class="slot">
+                        <span class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1">1 of {{ 1 + count($productImages) }}</span>
+                        <img class="w-full object-cover" src="{{ asset('storage/'. $productCover) }}" alt="Main Product Image">
+                    </div>
+        
+                    <!-- Additional product images -->
+                    @foreach ($productImages as $index => $productImage)
+                        <div class="slot hidden">
+                            <span class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1">{{ $index + 2 }} of {{ 1 + count($productImages) }}</span>
+                            <img class="w-full object-cover" src="{{ str_replace('#', '%23', asset('storage/'.$productImage)) }}" alt="Product Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
+                </div>
+        
+                <!-- Navigation arrows -->
+                <div class="absolute w-full top-[50%] -translate-y-[50%]">
+                    <div class="flex w-[93%] justify-between mt-2">
+                        <button id="prevBtn" class="px-[0.65rem] py-1 rounded-full bg-gray-500 text-gray-300">&lt;</button>
+                        <button id="nextBtn" class="px-[0.65rem] py-1 rounded-full bg-gray-500 text-gray-300">&gt;</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Cart Logo => Goto user cart page -->
@@ -215,4 +280,48 @@
 
 @push('after-body')
     <script src="{{ asset('js\frontend\product-detail.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mainImage = document.getElementById("mainImage");
+            const productImages = document.querySelectorAll(".relative div.slot");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            let currentIndex = 0;
+
+            // Show the specified image
+            function showImage(index) {
+                productImages.forEach((img, i) => {
+                    img.classList.toggle("hidden", i !== index);
+                });
+            }
+
+            // Show the next image
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % productImages.length;
+                showImage(currentIndex);
+            }
+
+            // Show the previous image
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + productImages.length) % productImages.length;
+                showImage(currentIndex);
+            }
+
+            // Event listeners for navigation buttons
+            nextBtn.addEventListener("click", showNextImage);
+            prevBtn.addEventListener("click", showPrevImage);
+            document.addEventListener("keydown", e => {
+                if(e.keyCode !== 37){
+                    return;
+                }
+                showNextImage();
+            })
+            document.addEventListener("keydown", e => {
+                if(e.keyCode !== 39){
+                    return;
+                }
+                showPrevImage();
+            })
+        });
+    </script>
 @endpush
