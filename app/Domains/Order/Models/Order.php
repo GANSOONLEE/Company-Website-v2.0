@@ -33,6 +33,7 @@ class Order extends Model
         'code',
         'user_email',
         'status',
+        'updated_at'
     ];
 
     /**

@@ -61,25 +61,25 @@ class CartService extends BaseService
     /**
      * Create cart record
      * 
+     * @param string $brand
      * @param array $data
      * 
      * @return void
      */
-    public function update(array $data = []): void
+    public function update(string $brand, array $data = []): void
     {
-        $cart = $this->model->where('user_email', auth()->user()->email)
-            ->where('id', $data['id'])
-            ->first();
-
         DB::beginTransaction();
-            $cart->update([
-                'number' => $data['quantity'],
-            ]);
+        
         try{
+            $this->model->where('user_email', auth()->user()->email)
+                ->where('sku_id', $brand)
+                ->update([
+                    'number' => $data['quantity'],
+                ]);
 
         }catch(\Exception $e) {
             DB::rollBack();
-            throw new GeneralException ("There was a problem creating the cart.");
+            throw new GeneralException ("There was a problem updating the cart.");
         }
 
         DB::commit();
@@ -89,13 +89,14 @@ class CartService extends BaseService
     /**
      * Method delete
      *
-     * @param string $id
+     * @param string $brand
      *
-     * @return bool
+     * @return void
      */
-    public function delete(string $id): bool
+    public function delete(string $brand): void
     {
-        return $this->model->find($id)->delete();
+        $this->model->where('user_email', auth()->user()->email)
+            ->where('sku_id', $brand)
+            ->delete();
     }
-
 }

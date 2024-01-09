@@ -200,11 +200,11 @@
 
                                 <ol class="absolute right-[0] bg-white rounded-md shadow-lg hidden peer-checked:block">
                                     @foreach (auth()->user()->order()->where('status', 'Pending')->get() as $order) 
-                                        <li class="px-5 py-2 text-[#EE4D2D] cursor-pointer hover:bg-orange-100 hover:text-[#ff2a00]">
-                                            <x-form.post :action="route('backend.user.order.stoneItem', ['id' => $order->id])">
+                                        <li>
+                                            <x-form.post  class="text-[#EE4D2D] cursor-pointer hover:bg-orange-100 hover:text-[#ff2a00]" :action="route('backend.user.order.stoneItem', ['id' => $order->id])">
                                                 <input type="text" id="brand" name="brand" hidden required>
                                                 <input type="text" id="quantity" name="quantity" hidden required>
-                                                <button type="submit">Add to Order #{{ $order->id }}</button>
+                                                <button type="submit" class="w-full h-full px-5 py-2 ">Add to Order #{{ $order->id }}</button>
                                             </x-form.post> 
                                         </li>
                                     @endforeach

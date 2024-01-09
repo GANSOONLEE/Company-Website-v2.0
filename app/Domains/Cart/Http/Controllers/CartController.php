@@ -33,7 +33,8 @@ class CartController
      */
     public function create(): mixed
     {
-        return view('backend.user.cart.create');
+        $carts = auth()->user()->cart()->byProductName()->paginate(10);
+        return view('backend.user.cart.create', compact('carts'));
     }
 
     /**
@@ -49,22 +50,23 @@ class CartController
 
     /**
      * [Patch] Cart data to update
-     * @return void
+     * @return mixed
      */
-    public function update(UpdateCartRequest $request): void
+    public function update(string $brand, UpdateCartRequest $request): mixed
     {
-        $this->cartService->update($request->validated());
+        $cart = $this->cartService->update($brand, $request->validated());
+        return response()->json(["brand" => $brand, "cart" => $cart]);
     }
 
     /**
      * [Delete] Cart data to delete
      * 
-     * @param string $id ID of the cart id
+     * @param string $brand
      * @return mixed
      */
-    public function delete(string $id): mixed
+    public function delete(string $brand): mixed
     {
-        $this->cartService->delete($id);
+        $this->cartService->delete($brand);
         return response()->json(['message' => 'Cart deleted successfully!']);
     }
 }

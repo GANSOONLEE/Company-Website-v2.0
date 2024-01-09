@@ -1,4 +1,6 @@
 
+@inject('cartData', 'App\Domains\Cart\Models\Cart')
+
 @extends('backend.layouts.app')
 
 @section('title', 'Cart')
@@ -7,165 +9,204 @@
 
 @section('main')
 
-    @if(session('success'))
-        <script>
-            localStorage.removeItem('selectedIds');
-        </script>
-    @endif
+<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-md overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div class="w-full md:w-1/2">
+                    <form class="flex items-center mb-0">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fa-solid fa-serach pe-4"></i>
+                            </div>
+                            <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
+                        </div>
+                    </form>
+                </div>
+                <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
 
-    <div class="flex justify-between mb-3 w-full">
-        <a href="{{ route('frontend.product.index') }}">
-            <button class="flex justify-center gap-x-4 btn btn-success">
-                <i class="fa-solid fa-shopping-cart"></i>Goto Shop
-            </button>
-        </a>
-        <div class="flex justify-content-end align-items-center gap-x-4">
-            <x-form.post :action="route('backend.user.order.store')">
-                <input type="text" name="selectedCheckbox" id="selectedCheckbox" value="" hidden>
-                <button type="submit" class="btn btn-primary bg-primary">Make Order</button>
-            </x-form.post>
-            <button type="button" class="btn btn-danger bg-danger" onclick="resetCheckbox()">Reset</button>
+                    <button type="button" class="flex items-center justify-center text-white !bg-primary-700 hover:!bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        <i class="fa-solid fa-add mr-2"></i>
+                        Add product
+                    </button>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+
+                        <!-- Dropdown Button -->
+                        <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
+                            <i class="fa-solid fa-filter mr-2"></i>
+                            Filter
+                            <i class="fa-solid fa-chevron-down ml-1.5"></i>
+                        </button>
+
+                        <!-- Dropdown List -->
+                        <div id="filterDropdown" class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                            <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose brand</h6>
+                            <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
+
+                                @foreach ($cartData->byCategory() as $category)
+                                    <li class="flex items-center">
+                                        <input id="apple" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ $category->product_category . " ($category->category_count)" }}</label>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No.
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Product name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Brand
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($carts->count() > 0)
+                            @foreach ($carts as $index => $cart)
+                                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $index + 1 }}
+                                    </th>
+                                    <td class="px-6 py-2">
+                                        {{ $cart->productName()->first()->name }}
+                                    </td>
+                                    <td class="px-6 py-2">
+                                        {{ $cart->product()->first()->product_category }}
+                                    </td>
+                                    <td class="px-6 py-2">
+                                        {{ $cart->sku_id }}
+                                    </td>
+                                    <td class="px-6 py-2">
+                                        <input type="number" name="quantity" data-brand="{{ $cart->sku_id }}" data-quantity="{{ $cart->number }}" onchange="updateQuantity(event)" min="0" max="500" value="{{ $cart->number }}">
+                                    </td>
+                                    <td class="px-6 py-2">
+                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <td class="px-6 py-3 text-center text-xl font-bold" colspan="6">You haven't any cart yet.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
+            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                </span>
+                
+                {{ $carts->links() }}
+
+            </nav>
         </div>
     </div>
+</section>
 
-    <p>If the Qty. isn't change, you may try again maybe it's network problem.</p> 
-    <table class="w-full">
-        <thead>
-            <tr class="bg-gray-400 dark:bg-gray-800">
-                <th class="px-1 py-4"></th>
-                <th>ID</th>
-                {{-- <th class="mr-4">Image</th> --}}
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Brand</th>
-                <th>Qty.</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody class="mt-2">
-            @foreach (auth()->user()->cart()->byProductName()->paginate(10) as $cart)
-            <tr class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700">
-                <td class="px-1 py-2 w-18">
-                    <div class="flex justify-center align-items-center">
-                        <input data-input="row-{{ $cart->id }}" class="cursor-pointer border-1 border-solid !border-[#bbbbbb] rounded-sm" type="checkbox" name="" id="">
-                    </div>
-                </td>
-                <td class="w-18" data-column="id" id="row-{{ $cart->id }}">{{ $cart->id }}</td>
-                {{-- <td class="w-[6rem] pr-[1rem]">
-                    <img class="w-full h-full object-fit-cover py-1" src="{{ asset($cart->getImage()) }}" alt="" onload="this.style.display='block'" onerror="this.style.display='none'">
-                </td> --}}
-                <td class="w-80">{{ $cart->productName()->first()->name }}</td>
-                <td class="w-40">{{ $cart->product()->first()->product_category }}</td>
-                <td class="w-30">{{ $cart->productBrand()->first()->brand }}</td>
-                <td id="qunatityEdit" class="pr-[1rem] w-20">{{ $cart->number }}</td>
-                <td class="w-40">
-                    <div class="py-2 flex justify-content-between">
-                        <button id="editButton" data-id="{{ $cart->id }}" class="flex justify-center gap-x-2 btn btn-primary bg-primary">
-                            <i class="fa-solid fa-pen mr-2"></i>Edit
-                        </button>
-                        <a href="{{ route('frontend.product.detail', ["productCode" => $cart->product()->first()->product_code]) }}">
-                            <button class="flex justify-center gap-x-2 btn btn-link bg-link dark:text-white">
-                                <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>Link
-                            </button>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    {{ auth()->user()->cart()->byUpdateTime()->paginate(10)->links() }}
-
-    @endsection
+@endsection
 
 @push('after-script')
     <script>
-        let checkboxArray = document.querySelectorAll('input[type="checkbox"]');
-        let valueInput = document.querySelector('#selectedCheckbox');
-        valueInput.value = localStorage.getItem('selectedIds');
-        checkboxArray.forEach(element => {
-            element.addEventListener('click', e => {
-                let id = element.closest('tr').querySelector('td[data-column="id"]').id;
-                if(element.checked){
-                    addToLocalStorage(id);
-                }else{
-                    removeFromLocalStorage(id);
-                }
-            })
-        });
-        function addToLocalStorage(cartId) {
-            let selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
-            selectedIds.push(cartId);
-            localStorage.setItem('selectedIds', JSON.stringify(selectedIds));
-            let valueInput = document.querySelector('#selectedCheckbox');
-            valueInput.value = localStorage.getItem('selectedIds');
-        }
-        function removeFromLocalStorage(cartId) {
-            let selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
-            selectedIds = selectedIds.filter(id => id !== cartId);
-            localStorage.setItem('selectedIds', JSON.stringify(selectedIds));
-            let valueInput = document.querySelector('#selectedCheckbox');
-            valueInput.value = localStorage.getItem('selectedIds');
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            let selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
-            selectedIds.forEach(cartId => {
-                let checkbox = document.querySelector(`input[data-input="${cartId}"]`);
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-            });
-        });
-        function resetCheckbox() {
 
-            if(!confirm('Do you sure want to reset it?')) {
-                return false ;
+        function updateQuantity(event) {
+            let quantityInput = event.target;
+            let value = quantityInput.value;
+            let brand = quantityInput.getAttribute('data-brand');
+            let quantity = quantityInput.getAttribute('data-quantity');
+
+            if (value == null || value == undefined) {
+                return false;
             }
 
-            localStorage.removeItem("selectedIds");
-            let checkboxArray = document.querySelectorAll('input[type="checkbox"]');
-            checkboxArray.forEach(checkbox => {
-                checkbox.checked = false;
-            })
-            let valueInput = document.querySelector('#selectedCheckbox');
-            valueInput.value = '';
+            if(value > 0) {
+                sendPatchRequest(quantityInput, brand, value);
+            }else {
+                sendDeleteRequest(quantityInput, brand, value);
+            }
+
         }
-    </script>
 
-    <script>
-        let editButtons = document.querySelectorAll('#editButton');
-        let qunatityEdit = document.querySelectorAll('#qunatityEdit');
-        editButtons.forEach((editButton, index) => {
-            console.log(editButton)
-            editButton.addEventListener('click', e => {
-                let number = qunatityEdit[index].innerText;
-                let id = e.target.getAttribute('data-id');
-                qunatityEdit[index].innerHTML = `
-                    <div class="flex justify-center items-center gap-x-4">
-                        <input class="w-full px-2" name="Number" placeholder="Qty." value="${number}">
-                        <button onclick="updateCartNumber(event, ${id}, ${index})">
-                            <i class="fa-solid fa-check"></i>
-                        </button>
-                    </div>`;
-            });
-        });
-
-        function updateCartNumber(event, id, index) {
-            let number = document.querySelector('[name="Number"]').value;
-            qunatityEdit[index].innerHTML = number;
+        function sendPatchRequest(target, brand, value) {
 
             let xhr = new XMLHttpRequest();
-            xhr.open('post', route('backend.user.cart.update'), true);
+            xhr.open('POST', route('backend.user.cart.update', { brand: brand }), true);
+
+            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    target.setAttribute('data-quantity', value);
+                    console.info(xhr.responseText)
+                } else if (xhr.readyState === 4) {
+                    console.error('Error:', xhr);
+                }
+            };
+
+            let formData = new FormData();
+            formData.append('quantity', value)
+            formData.append('_method', 'Patch')
+
+            xhr.send(formData);
+
+        }
+
+        function sendDeleteRequest(target, brand, value) {
+
+            if(!confirm('Do you sure you want to delete this?')){
+                return false;
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', route('backend.user.cart.delete', { brand: brand }), true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200) {
+                    // check are response format correct
+                    let data = JSON.parse(xhr.responseText);
+
+                    // remove child
+                    let row = target.closest('tr');
+                    let rowParent = row.parentElement;
+                    rowParent.removeChild(row);
+                }
+            };
 
             xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
             let formData = new FormData();
-            formData.append('id', id);
-            formData.append('quantity', number);
-            formData.append('_method', 'PATCH');
+            formData.append('_method', 'Delete')
 
             xhr.send(formData);
         }
+
+
     </script>
 @endpush

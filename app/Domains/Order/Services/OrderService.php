@@ -185,16 +185,108 @@ class OrderService extends BaseService
 
         try{
             $order = $this->model->find($id);
+            $detail = $order->detail()->where('sku_id', $data['brand']);
 
-            $order->detail()->insert([
-                "order_id" => $order->code,
-                "sku_id" => $data['brand'],
-                "number" => $data['quantity'],
-                "remarks" => null,
+            // check are item exists
+            if($detail->exists()) {
+
+                $detail->update([
+                    "number" => $detail->first()->number + $data['quantity'],
+                ]);
+
+            }else {
+                $order->detail()->insert([
+                    "order_id" => $order->code,
+                    "sku_id" => $data['brand'],
+                    "number" => $data['quantity'],
+                    "remarks" => null,
+                ]);
+            }
+
+            $order->update([
+                "updated_at" => now()
             ]);
+
         }catch(Exception $e){
             DB::rollBack();
             throw new GeneralException('There was a problem to adding your item to order.');
+        };
+
+        DB::commit();
+    }
+
+    /**
+     * @param string $id
+     * @param array $data
+     * 
+     * @throws \Throwable
+     * @throws GeneralException
+     */
+    public function modifyItem(string $id, array $data = [])
+    {
+        DB::beginTransaction();
+
+        try{
+            $order = $this->model->find($id);
+            $detail = $order->detail()->where('sku_id', $data['brand']);
+
+            // check are item exists
+            if($detail->exists()) {
+
+                $order->update([
+                    "updated_at" => now()
+                ]);
+
+                $detail->update([
+                    "number" => $data['quantity'],
+                ]);
+            }else{
+                // If not throw an exception
+                throw new GeneralException('This item has missing');
+            }
+        }catch(Exception $e){
+            DB::rollBack();
+            throw new GeneralException('There was a problem to updating your item to order.');
+        };
+
+        DB::commit();
+    }
+
+    /**
+     * @param string $id
+     * @param array $data
+     * 
+     * @throws \Throwable
+     * @throws GeneralException
+     */
+    public function dropItem(string $id, array $data = [])
+    {
+        DB::beginTransaction();
+
+        try{
+            $order = $this->model->find($id);
+            $detail = $order->detail()->where('sku_id', $data['brand']);
+
+            // check are order last item 
+            if($order->detail()->count() == 1) {
+                throw new GeneralException('You can\'t delete all item!');
+            }
+
+            // check are item exists
+            if($detail->exists()) {
+
+                $order->update([
+                    "updated_at" => now()
+                ]);
+
+                $detail->delete();
+            }else{
+                // If not throw an exception
+                throw new GeneralException('This item has missing!');
+            }
+        }catch(Exception $e){
+            DB::rollBack();
+            throw new GeneralException('There was a problem deleting this item');
         };
 
         DB::commit();

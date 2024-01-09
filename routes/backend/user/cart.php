@@ -13,10 +13,10 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function(){
     Route::post('store', [CartController::class, 'store'])
         ->name('store');
 
-    Route::patch('update', [CartController::class, 'update'])
+    Route::patch('/update/{brand}', [CartController::class, 'update'])
         ->name('update');
 
-    Route::delete('delete', [CartController::class, 'delete'])
+    Route::delete('/delete/{brand}', [CartController::class, 'delete'])
         ->name('delete');
 
 });

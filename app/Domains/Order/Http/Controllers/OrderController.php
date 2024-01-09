@@ -157,6 +157,7 @@ class OrderController
     public function stoneItem(string $id, AddOrderItemRequest $request)
     {
         $this->orderService->addItem($id, $request->validated());
+        return redirect()->back();
     }
 
     /**
@@ -167,7 +168,8 @@ class OrderController
      */
     public function modifyItem(string $id, ModifyOrderItemRequest $request)
     {
-        dd($id, $request->validated());
+        $this->orderService->modifyItem($id, $request->validated());
+        return response()->json($request->validated());
     }
 
     /**
@@ -178,7 +180,8 @@ class OrderController
      */
     public function dropItem(string $id, DropOrderItemRequest $request)
     {
-
+        $this->orderService->dropItem($id, $request->validated());
+        return response()->json(['Status' => 'Delete item successfully!']);
     }
 
 }
