@@ -49,13 +49,38 @@ class CartController
     }
 
     /**
-     * [Patch] Cart data to update
+     * [Get] Cart data search by text
      * @return mixed
      */
-    public function update(string $brand, UpdateCartRequest $request): mixed
+    public function searchByText(Request $request): mixed
     {
-        $cart = $this->cartService->update($brand, $request->validated());
-        return response()->json(["brand" => $brand, "cart" => $cart]);
+        if(isset($request->searchTerm)){
+            $carts = $this->cartService->searchByText($request->searchTerm);
+            return view('backend.user.cart.create', compact('carts'));
+        }
+        return redirect()->route('backend.user.cart.create');
+    }
+
+    /**
+     * [Get] Cart data search by category
+     * @return mixed
+     */
+    public function searchByCategory(Request $request): mixed
+    {
+        if(isset($request->categories)){
+            $carts = $this->cartService->searchByCategories($request->categories);
+            return view('backend.user.cart.create', compact('carts'));
+        }
+        return redirect()->route('backend.user.cart.create');
+    }
+
+    /**
+     * [Patch] Cart data to update
+     * @return void
+     */
+    public function update(string $brand, UpdateCartRequest $request): void
+    {
+        $this->cartService->update($brand, $request->validated());
     }
 
     /**

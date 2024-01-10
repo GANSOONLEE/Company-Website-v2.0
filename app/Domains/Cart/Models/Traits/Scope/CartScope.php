@@ -62,12 +62,13 @@ trait CartScope
                 'products.product_category',
                 'products_brand.id as brand_id',
                 'products_brand.brand',
-                DB::raw('COUNT(products.product_category) as category_count')
+                DB::raw('COUNT(DISTINCT products.product_category, carts.sku_id) as category_count')
             )
             ->leftJoin('products_brand', 'carts.sku_id', '=', 'products_brand.code')
             ->leftJoin('products', 'products.product_code', '=', 'products_brand.product_code')
             ->where('carts.user_email', auth()->user()->email)
             ->groupBy('products.product_category')
+            ->orderBy('products.product_category')
             ->get();
     }
 }

@@ -55,17 +55,11 @@ class OrderController
 
     /**
      * Post order data to create order
-     * @param CreateOrderRequest $request
      * @return mixed
      */
-    public function store(CreateOrderRequest $request): mixed
+    public function store(): mixed
     {
-        $array = json_decode($request->selectedCheckbox);
-        $arrayWithoutRow = array_map(function($element) {
-            return str_replace("row-", "", $element);
-        }, $array);
-
-        $this->orderService->store($arrayWithoutRow);
+        $this->orderService->store();
         return redirect()->back()->with('success', 'Your order has successful create !');
     }
 

@@ -59,7 +59,7 @@ class CartService extends BaseService
     }
 
     /**
-     * Create cart record
+     * Update cart record
      * 
      * @param string $brand
      * @param array $data
@@ -84,7 +84,6 @@ class CartService extends BaseService
 
         DB::commit();
     }
-    
         
     /**
      * Method delete
@@ -99,4 +98,43 @@ class CartService extends BaseService
             ->where('sku_id', $brand)
             ->delete();
     }
+        
+    /**
+     * Method delete
+     *
+     * @param string $searchTerm
+     *
+     * @return mixed
+     */
+    public function searchByText(string $searchTerm): mixed
+    {
+        return auth()->user()
+            ->cart()
+            ->byProductName()
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('products_name.name', 'LIKE', "%$searchTerm%")
+                    ->orWhere('products_brand.brand', 'LIKE', "%$searchTerm%")
+                    ->orWhere('carts.sku_id', 'LIKE', "%$searchTerm%");
+            })
+            ->paginate(10)
+            ->withQueryString();
+    }
+        
+    /**
+     * Method delete
+     *
+     * @param array $searchTerm
+     *
+     * @return mixed
+     */
+    public function searchByCategories(array $searchTerm): mixed
+    {
+        return auth()->user()
+            ->cart()
+            ->byProductName()
+            ->whereIn('products.product_category', $searchTerm)
+            ->paginate(10)
+            ->withQueryString();
+    }
+
 }

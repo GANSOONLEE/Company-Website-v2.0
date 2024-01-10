@@ -12,31 +12,12 @@
 
     <div class="flex justify-between items-center">
 
-        @switch($order->status)
+        <button class="">@lang('order.complete')</button>
 
-            @case('Pending')
-                <button class="">@lang('order.')</button>
-                @break
-            @case('Accepted')
-                
-                @break
-            @case('Process')
-                
-                @break
-            @case('Placed')
-                
-                @break
-            @case('Completed')
-                
-                @break
-            @default
-                
-        @endswitch
-
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{{ route('backend.admin.order.document.pdf', ['orderId' => $order->id]) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <i class="fa-solid fa-file w-3.5 h-3.5 me-2"></i>
             @lang('order.download-pdf')
-        </button>
+        </a>
 
     </div>
 
@@ -62,7 +43,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($order->detail()->get() as $index => $item)
+                # TODO sort detail 
+                @foreach ($order->detail()->orderBy()->->orderBy()->get() as $index => $item)
                     @php
                         $cateogry = $products
                             ->where(

@@ -13,6 +13,12 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function(){
     Route::post('store', [CartController::class, 'store'])
         ->name('store');
 
+    Route::get('searchByText', [CartController::class, 'searchByText'])
+        ->name('searchByText');
+
+    Route::get('searchByCategory', [CartController::class, 'searchByCategory'])
+        ->name('searchByCategory');
+
     Route::patch('/update/{brand}', [CartController::class, 'update'])
         ->name('update');
 

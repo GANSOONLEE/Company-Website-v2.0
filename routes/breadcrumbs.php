@@ -404,6 +404,18 @@ Breadcrumbs::for('backend.user.cart.create', function (BreadcrumbTrail $trail) {
     $trail->push('Cart', route('backend.user.cart.create'));
 });
 
+// Breadcrumbs for 'backend.user.cart.create'
+Breadcrumbs::for('backend.user.cart.searchByText', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.user.cart.create');
+    $trail->push('Search', route('backend.user.cart.searchByText'));
+});
+
+// Breadcrumbs for 'backend.user.cart.create'
+Breadcrumbs::for('backend.user.cart.searchByCategory', function (BreadcrumbTrail $trail) {
+    $trail->parent('backend.user.cart.create');
+    $trail->push('Search', route('backend.user.cart.searchByCategory'));
+});
+
 #endregion
 
 /* ------------------------------------- Order [User Backend]  ------------------------------------- */

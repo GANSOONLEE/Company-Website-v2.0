@@ -49,21 +49,22 @@ class OrderService extends BaseService
      * @param array $data
      * @return Order
      */
-    public function store(array $data = []): Order
+    public function store(): Order
     {
         
         DB::beginTransaction();
         
         try{
+
             $order = $this->createOrder([
                 'code' => $this->generateOrderCode(),
                 'status' => 'Pending',
                 'user_email' => auth()->user()->email,  
-            ], $data);
+            ]);
     
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException($e->getMessage()); // "There was a problem creating the order."
+            throw new GeneralException('There was a problem creating the order.'); // "There was a problem creating the order."
         }
 
         DB::commit();
@@ -76,7 +77,7 @@ class OrderService extends BaseService
      * @param array $orderDetailData
      * @return Order
      */
-    public function createOrder(array $data, array $orderDetailData = []): Order
+    public function createOrder(array $data): Order
     {
         DB::beginTransaction();
 
@@ -89,14 +90,9 @@ class OrderService extends BaseService
             ]);
             
             // Save order detail
-            foreach ($orderDetailData as $id)
-            {
-                $cart = Cart::where('id', $id)->first();
-                $number = $cart->number;
-                
-                if($number === 0){
-                    throw new GeneralException('The item quantity can\'t be 0!');
-                }
+            $carts = Cart::where('user_email', $data['user_email'])->get();
+
+            foreach($carts as $cart) {
 
                 DB::table('orders_detail')
                     ->insert([
@@ -105,8 +101,8 @@ class OrderService extends BaseService
                         'number' => $cart->number,
                     ]);
 
-                $cart->update(['number' => 0]);
-            }
+                $cart->delete();
+            };
 
         }catch(Exception $e){
             DB::rollBack();
