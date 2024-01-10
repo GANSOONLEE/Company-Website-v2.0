@@ -39,4 +39,5 @@ trait OrderScope
     {
         return $query->where('created_at', '<', now()->subDays(45))->where('status', 'Completed')->orderBy('created_at', 'desc');
     }
+
 }

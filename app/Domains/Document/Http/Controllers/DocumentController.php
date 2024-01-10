@@ -30,41 +30,20 @@ class DocumentController
     public function pdf(string $orderId)
     {
         $order = Order::find($orderId);
-        $details = $order->detail()->get();
-        foreach ($details as $detail) {
-            $category = Product::where(
-                    'product_code',
-                    DB::table('products_brand')
-                        ->where('code', $detail->sku_id)
-                        ->first()->product_code,
-                    )
-                    ->first()
-                    ->product_category;
-
-            $name = DB::table('products_name')->where(
-                'product_code',
-                DB::table('products_brand')
-                    ->where('code', $detail->sku_id)
-                    ->first()->product_code,
-                )
-                ->first()
-                ->name;
-
-            // add column
-            $detail->category = $category;
-            $detail->name = $name;
-        }
-
-        $detailArray = $details->toArray();
-
-        usort($detailArray, function($a, $b) {
-            $categoryComparison[] = strcmp($a->category, $b->category);
-            return $categoryComparison !== 0 ? $categoryComparison : strcmp($a->name, $b->name);
-        });
+        $detail = $order->sortDetailByCategory()->get();
+        $headers = [
+            trans('Id'),
+            trans('product.category'),
+            trans('product.name'),
+            trans('product.brand'),
+            trans('order.number'),
+            trans('order.remark'),
+        ];
 
         $data = [
             'order' => $order,
-            'detailArray' => $detailArray,
+            'detail' => $detail,
+            'headers' => $headers,
         ];
 
         $pdf = Pdf::loadView('pdf.order', $data);

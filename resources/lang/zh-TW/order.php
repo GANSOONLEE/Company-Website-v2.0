@@ -35,4 +35,7 @@ return array (
   'pending' => '等待中',
   'process' => '處理中',
   'history-order-description' => '超過 :days 天後的訂單會在這裏',
+  'complete' => '完成',
+  'shop_name' => '店鋪名稱',
+  'updated-at' => '更新於',
 );

@@ -43,43 +43,34 @@
                 </tr>
             </thead>
             <tbody>
-                # TODO sort detail 
-                @foreach ($order->detail()->orderBy()->->orderBy()->get() as $index => $item)
-                    @php
-                        $cateogry = $products
-                            ->where(
-                                'product_code',
-                                DB::table('products_brand')
-                                    ->where('code', $item->sku_id)
-                                    ->first()->product_code,
-                            )
-                            ->first()->product_category;
-                    @endphp
+
+                @foreach ($order->sortDetailByCategory()->get() as $index => $item)
+
                     <tr class="bg-white border-b dark:!bg-gray-800 dark:border-gray-700 hover:!bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $index + 1 }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $cateogry }}
+                            {{ $item->product_category }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->sku_id }}
+                            {{ $item->code }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->number }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <x-form.patch :action="route('backend.admin.order.update', ['id' => $item->id])" class="relative flex gap-x-[1rem]">
+                            <x-form.patch :action="route('backend.admin.order.update', ['id' => $item->detail_id])" class="relative flex gap-x-[1rem]">
                                 <div class="relative">
                                     <input type="text" id="input-group-1"
-                                    name="remark" value="{{ $item->remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    name="remark" value="{{ $item->detail_remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="{{ __('order.remark') }}">
                                     <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                                         <i class="fa-solid fa-pen"></i>
                                         <span class="sr-only">Edit</span>
                                     </div>
                                 </div>
-                                <button class="rounded-sm bg-primary text-white px-4" type="submit">@lang('Save')</button>
+                                <button class="rounded-sm bg-primary text-white px-4" type="submit">@lang('Update')</button>
                             </x-form.patch>
                         </td>
                     </tr>

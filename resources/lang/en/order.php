@@ -33,4 +33,9 @@ return array (
   'remark' => 'Remark',
   'pending' => 'Pending',
   'process' => 'Processing',
+  'complete' => 'Finish',
+  'view-order-description' => 'View orders and their details',
+  'history-order-description' => 'Orders older than :days days will go here',
+  'shop_name' => 'Store Name',
+  'updated-at' => 'updated on',
 );
