@@ -33,7 +33,8 @@ class CartController
      */
     public function create(): mixed
     {
-        return view('backend.user.cart.create');
+        $carts = auth()->user()->cart()->byProductName()->paginate(10);
+        return view('backend.user.cart.create', compact('carts'));
     }
 
     /**
@@ -48,11 +49,49 @@ class CartController
     }
 
     /**
+     * [Get] Cart data search by text
+     * @return mixed
+     */
+    public function searchByText(Request $request): mixed
+    {
+        if(isset($request->searchTerm)){
+            $carts = $this->cartService->searchByText($request->searchTerm);
+            return view('backend.user.cart.create', compact('carts'));
+        }
+        return redirect()->route('backend.user.cart.create');
+    }
+
+    /**
+     * [Get] Cart data search by category
+     * @return mixed
+     */
+    public function searchByCategory(Request $request): mixed
+    {
+        if(isset($request->categories)){
+            $carts = $this->cartService->searchByCategories($request->categories);
+            return view('backend.user.cart.create', compact('carts'));
+        }
+        return redirect()->route('backend.user.cart.create');
+    }
+
+    /**
      * [Patch] Cart data to update
      * @return void
      */
-    public function update(UpdateCartRequest $request): void
+    public function update(string $brand, UpdateCartRequest $request): void
     {
-        $this->cartService->update($request->validated());
+        $this->cartService->update($brand, $request->validated());
+    }
+
+    /**
+     * [Delete] Cart data to delete
+     * 
+     * @param string $brand
+     * @return mixed
+     */
+    public function delete(string $brand): mixed
+    {
+        $this->cartService->delete($brand);
+        return response()->json(['message' => 'Cart deleted successfully!']);
     }
 }

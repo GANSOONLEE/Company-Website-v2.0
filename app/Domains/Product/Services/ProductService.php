@@ -487,7 +487,7 @@ class ProductService extends BaseService
             $sku_ids[] = $product->brands()->where('brand', $brands[$key])->where('code', $data['brand_code'][$key])->first()->sku_id ?? null;
         }
 
-        // Deleted Record 找出已經被刪除的記錄
+        // Deleted Record 找出要被刪除的記錄
         $deletedSkuId = array_diff($originSkuId, $sku_ids);
         foreach ($deletedSkuId as $skuId){
             DB::table('products_brand')
@@ -496,7 +496,7 @@ class ProductService extends BaseService
                 ->delete();
         }
 
-        // Find New Record 找出新增加的記錄
+        // Find New Record 找出要新增加的記錄
         $newSkuId = array_diff($sku_ids, $originSkuId);
         foreach ($newSkuId as $number => $skuId){
             DB::table('products_brand')->insert([

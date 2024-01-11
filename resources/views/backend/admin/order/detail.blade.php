@@ -13,30 +13,26 @@
     <div class="flex justify-between items-center">
 
         @switch($order->status)
-
             @case('Pending')
-                <button class="">@lang('order.')</button>
-                @break
-            @case('Accepted')
-                
-                @break
-            @case('Process')
-                
-                @break
-            @case('Placed')
-                
+                <x-form.patch :action="route('backend.admin.order.status', ['id' => $order->id])" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-sm text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                    <button class="">@lang('order.complete')</button>
+                </x-form.patch>
+
                 @break
             @case('Completed')
-                
+                <x-form.delete :action="route('backend.admin.order.destroy', ['id' => $order->id])" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-sm text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                    <button class="">@lang('Delete')</button>
+                </x-form.delete>
+
                 @break
             @default
                 
         @endswitch
 
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{{ route('backend.admin.order.document.pdf', ['orderId' => $order->id]) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <i class="fa-solid fa-file w-3.5 h-3.5 me-2"></i>
             @lang('order.download-pdf')
-        </button>
+        </a>
 
     </div>
 
@@ -62,42 +58,34 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($order->detail()->get() as $index => $item)
-                    @php
-                        $cateogry = $products
-                            ->where(
-                                'product_code',
-                                DB::table('products_brand')
-                                    ->where('code', $item->sku_id)
-                                    ->first()->product_code,
-                            )
-                            ->first()->product_category;
-                    @endphp
+
+                @foreach ($order->sortDetailByCategory()->get() as $index => $item)
+
                     <tr class="bg-white border-b dark:!bg-gray-800 dark:border-gray-700 hover:!bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $index + 1 }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $cateogry }}
+                            {{ $item->product_category }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->sku_id }}
+                            {{ $item->code }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->number }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <x-form.patch :action="route('backend.admin.order.update', ['id' => $item->id])" class="relative flex gap-x-[1rem]">
+                            <x-form.patch :action="route('backend.admin.order.update', ['id' => $item->detail_id])" class="relative flex gap-x-[1rem]">
                                 <div class="relative">
                                     <input type="text" id="input-group-1"
-                                    name="remark" value="{{ $item->remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    name="remark" value="{{ $item->detail_remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="{{ __('order.remark') }}">
                                     <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                                         <i class="fa-solid fa-pen"></i>
                                         <span class="sr-only">Edit</span>
                                     </div>
                                 </div>
-                                <button class="rounded-sm bg-primary text-white px-4" type="submit">@lang('Save')</button>
+                                <button class="rounded-sm bg-primary text-white px-4" type="submit">@lang('Update')</button>
                             </x-form.patch>
                         </td>
                     </tr>

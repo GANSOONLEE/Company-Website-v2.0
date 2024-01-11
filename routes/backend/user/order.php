@@ -16,4 +16,13 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
     Route::post('/', [OrderController::class, 'store'])
         ->name('store');
 
+    Route::post('/detail/{id}', [OrderController::class, 'stoneItem'])
+        ->name('stoneItem');
+
+    Route::patch('/detail/{id}', [OrderController::class, 'modifyItem'])
+        ->name('modifyItem');
+
+    Route::delete('/detail/{id}', [OrderController::class, 'dropItem'])
+        ->name('dropItem');
+
 });

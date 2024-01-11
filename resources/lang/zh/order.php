@@ -33,4 +33,9 @@ return array (
   'remark' => '备注',
   'pending' => '挂单',
   'process' => '处理中',
+  'view-order-description' => '查看订单和其明细',
+  'complete' => '完成',
+  'history-order-description' => '超过 :days 天后的订单会在这里',
+  'shop_name' => '店铺名称',
+  'updated-at' => '更新于',
 );

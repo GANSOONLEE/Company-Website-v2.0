@@ -9,6 +9,9 @@ use App\Domains\Order\Services\OrderService;
 use Illuminate\Http\Request;
 use App\Domains\Order\Request\CreateOrderRequest;
 use App\Domains\Order\Request\UpdateOrderRequest;
+use App\Domains\Order\Request\AddOrderItemRequest;
+use App\Domains\Order\Request\ModifyOrderItemRequest;
+use App\Domains\Order\Request\DropOrderItemRequest;
 
 // Model
 use App\Domains\Order\Models\Order;
@@ -21,6 +24,20 @@ class OrderController
     public function __construct(OrderService $orderService)
     {
         $this->orderService = $orderService;
+    }
+
+    /**
+     * Get the view for view order
+     * 
+     * @param string $id
+     * @param Request $request
+     * 
+     * @return mixed
+     */
+    public function status(string $id, Request $request): mixed
+    {
+        $this->orderService->updateStatus($id, $request->all());
+        return redirect()->route('backend.admin.order.index');
     }
 
     /**
@@ -52,17 +69,11 @@ class OrderController
 
     /**
      * Post order data to create order
-     * @param CreateOrderRequest $request
      * @return mixed
      */
-    public function store(CreateOrderRequest $request): mixed
+    public function store(): mixed
     {
-        $array = json_decode($request->selectedCheckbox);
-        $arrayWithoutRow = array_map(function($element) {
-            return str_replace("row-", "", $element);
-        }, $array);
-
-        $this->orderService->store($arrayWithoutRow);
+        $this->orderService->store();
         return redirect()->back()->with('success', 'Your order has successful create !');
     }
 
@@ -115,7 +126,7 @@ class OrderController
     public function destroy(string $id): mixed
     {
         $this->orderService->destroy($id);
-        return redirect()->back();
+        return redirect()->route('backend.admin.order.index');
     }
 
     /* 
@@ -143,6 +154,42 @@ class OrderController
     {
         $order = Order::where('id', $id)->where('user_email', auth()->user()->email)->first();
         return view('backend.user.order.detail', compact('order'));
+    }
+
+    /**
+     * [Post] User add the item to the order
+     * 
+     * @param string $id
+     * @param AddOrderItemRequest $request
+     */
+    public function stoneItem(string $id, AddOrderItemRequest $request)
+    {
+        $this->orderService->addItem($id, $request->validated());
+        return redirect()->back();
+    }
+
+    /**
+     * [Patch] User modify the item in the order
+     * 
+     * @param string $id
+     * @param ModifyOrderItemRequest $request
+     */
+    public function modifyItem(string $id, ModifyOrderItemRequest $request)
+    {
+        $this->orderService->modifyItem($id, $request->validated());
+        return response()->json($request->validated());
+    }
+
+    /**
+     * [Delete] User remove the item from the order
+     * 
+     * @param string $id
+     * @param DropOrderItemRequest $request
+     */
+    public function dropItem(string $id, DropOrderItemRequest $request)
+    {
+        $this->orderService->dropItem($id, $request->validated());
+        return response()->json(['Status' => 'Delete item successfully!']);
     }
 
 }

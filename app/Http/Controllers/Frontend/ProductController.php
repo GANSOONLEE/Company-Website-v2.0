@@ -36,7 +36,7 @@ class ProductController extends Controller{
      */
     public function list(string $category): mixed
     {
-        $productData = $this->frontendProductService->list($category);
+        $productData = $this->frontendProductService->list($category, 48);
         $directory = "storage/product/$category";
         $modelData = $this->modelData;
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
@@ -54,7 +54,7 @@ class ProductController extends Controller{
     {
         $category = str_replace('&amp;amp;', '&', $category);
         $data = ['category'=> $category, 'model'=> $model];
-        $productData = $this->frontendProductService->searchProductByCategoryAndModel($data);
+        $productData = $this->frontendProductService->searchProductByCategoryAndModel($data, 48);
 
         // Defined variable
         $directory = "storage/product/$category";

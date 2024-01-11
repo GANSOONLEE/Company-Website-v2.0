@@ -21,6 +21,9 @@
                         Created At
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Updated At
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
@@ -61,6 +64,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $order->created_at }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $order->updated_at }}
                         </td>
                         <td class="px-6 py-4">
                             <a href="{{ route('backend.user.order.detail', ['id' => $order->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>

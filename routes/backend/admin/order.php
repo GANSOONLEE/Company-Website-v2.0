@@ -3,8 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Domains\Order\Http\Controllers\OrderController;
+use App\Domains\Document\Http\Controllers\DocumentController;
 
 Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
+      
+    /** Change Order Status */
+
+    Route::patch('/status/{id}', [OrderController::class, 'status'])
+        ->name('status');
+
+    /** CRUD */
 
     // View Order [View]
     Route::get('index', [OrderController::class, 'index'])
@@ -35,7 +43,24 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
         ->name('delete');
 
     // Force Delete Order [Action]
-    Route::delete('deleted/{id}', [OrderController::class, 'destroy'])
+    Route::delete('/deleted/{id}', [OrderController::class, 'destroy'])
         ->name('destroy');
+
+    /*
+     | ---------------------------------------------------------
+     | 
+     |                       文檔 Document
+     | 
+     | ---------------------------------------------------------
+     */
+    Route::group(['prefix' => 'document', 'as' => 'document.'], function() {
+            
+        Route::get('/pdf/{orderId}', [DocumentController::class, 'pdf'])
+            ->name('pdf');
+            
+        Route::get('/print/pdf/{orderId}', [DocumentController::class, 'pdf'])
+            ->name('pdf');
+
+    });
 
 });
