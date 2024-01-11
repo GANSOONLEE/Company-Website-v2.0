@@ -27,7 +27,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @if (count($orders::byState($tab->dataTabsTarget)->paginate(10)) > 0)
                     
                     @foreach ($orders::byState($tab->dataTabsTarget)->paginate(10) as $order)

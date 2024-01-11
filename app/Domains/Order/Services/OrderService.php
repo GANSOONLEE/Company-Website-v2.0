@@ -31,6 +31,20 @@ class OrderService extends BaseService
 
     /**
      * Generate a unique order code
+     * 
+     * @param array $data
+     * 
+     * @return void
+     */
+    public function updateStatus(string $id, array $data = []): void
+    {
+        $this->model->find($id)->update([
+            'status' => $data['status'] ?? 'Completed'
+        ]);
+    }
+
+    /**
+     * Generate a unique order code
      * @return string
      */
     public function generateOrderCode(): string
@@ -146,10 +160,10 @@ class OrderService extends BaseService
      * 
      * @return void
      */
-    public function delete(string $id): void
-    {
-        $this->model->find($id)->delete();
-    }
+    // public function delete(string $id): void
+    // {
+    //     $this->model->find($id)->delete();
+    // }
 
     /**
      * [Delete] the order forever
@@ -160,7 +174,18 @@ class OrderService extends BaseService
      */
     public function destroy(string $id): void
     {
-        $this->model->find($id)->forceDelete();
+
+        DB::beginTransaction();
+
+        try{
+            $order = $this->model->find($id);
+            $order->detail()->delete();
+            $order->delete();
+        }catch (Exception $e) {
+            throw new GeneralException($e->getMessage());
+        }
+
+        DB::commit();
     }
 
     /*

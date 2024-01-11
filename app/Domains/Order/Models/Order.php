@@ -22,7 +22,7 @@ class Order extends Model
         'Accepted',   // Accepted 接受
         'Process',       // Process 處理中
         'Placed',     // Placed 等待中
-        'Completed',  // Complete 已完成
+        'Completed',  // Completed 已完成
     ];
     
     protected $table = 'orders';

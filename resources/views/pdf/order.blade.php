@@ -13,19 +13,33 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC');
 
+        @page { margin: 1rem; }
+
         body{
+            margin: 5px;
             font-family:  'Noto Sans SC', 'Noto Serif SC', 'Noto Sans TC', 'Noto Serif TC', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     </style>
 </head>
 <body>
-    
-    <!-- grid -->
-    <div class="grid-template-rows: repeat(3, minmax(0, 1fr)); grid-auto-flow: row;">
-        <p style="font-size: 1.4rem">Order: #{{ $order->id }}</p>
-        <p style="">Create At: {{ $order->created_at }}</p>
-        <p style=""></p>
-    </div>
+
+    <!-- Header -->
+    <p style="width: 100%; font-size: 1.6rem; font-weight: bold; color: black; text-align: center;">{{ config('app.name') }} Sdn. Bhd.</p>
+
+    <!-- Watermark -->
+    <img style="position: absolute; width: 16rem; height: auto; left: 50%; top: 1rem; transform:translateX(-50%); opacity: 0.1" src="{{ public_path('images/logo.webp') }}" alt="">
+
+    <h1 style="font-size: 1.8rem; margin: 0; line-height: 0">Order: #{{ $order->id }}</h1>
+    <h4 style="font-size: 1rem; margin-top: 0; font-weight: normal; color: gray">{{ $order->user()->first()->shop_name }}</h4>
+
+    <table style="width: 100%">
+        <tr>
+            <td style="font-size: .8rem; width: 33%; text-align: left">Order Date: {{ $order->created_at }}</td>
+            <td style="font-size: .8rem; width: 33%; text-align: center">Update At: {{ $order->updated_at }}</td>
+            <td style="font-size: .8rem; width: 33%; text-align: right">Print At: {{ now() }}</td>
+        </tr>
+    </table>
+
     
     <table style="width: 100%; border-collapse: collapse;">
         <thead>

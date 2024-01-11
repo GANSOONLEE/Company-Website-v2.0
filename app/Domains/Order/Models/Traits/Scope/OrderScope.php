@@ -15,10 +15,9 @@ trait OrderScope
     public function scopeByState(Builder $query, string|bool $state = false): Builder
     {
         $query->where(function ($query) {
-            $query->where('created_at', '>', now()->subDays(45))
+            $query->where('created_at', '>', now()->subDays(7))
                   ->orWhere(function ($query) {
-                      $query->where('created_at', '<=', now()->subDays(45))
-                            ->where('status', '!=', 'Completed');
+                      $query->where('created_at', '<=', now()->subDays(7));
                   });
         })->orderBy('created_at', 'desc');
         

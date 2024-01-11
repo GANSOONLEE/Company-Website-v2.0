@@ -6,6 +6,13 @@ use App\Domains\Order\Http\Controllers\OrderController;
 use App\Domains\Document\Http\Controllers\DocumentController;
 
 Route::group(['prefix' => 'order', 'as' => 'order.'], function(){
+      
+    /** Change Order Status */
+
+    Route::patch('/status/{id}', [OrderController::class, 'status'])
+        ->name('status');
+
+    /** CRUD */
 
     // View Order [View]
     Route::get('index', [OrderController::class, 'index'])

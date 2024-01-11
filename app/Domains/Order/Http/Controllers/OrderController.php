@@ -28,6 +28,20 @@ class OrderController
 
     /**
      * Get the view for view order
+     * 
+     * @param string $id
+     * @param Request $request
+     * 
+     * @return mixed
+     */
+    public function status(string $id, Request $request): mixed
+    {
+        $this->orderService->updateStatus($id, $request->all());
+        return redirect()->route('backend.admin.order.index');
+    }
+
+    /**
+     * Get the view for view order
      * @return mixed
      */
     public function index(): mixed
@@ -112,7 +126,7 @@ class OrderController
     public function destroy(string $id): mixed
     {
         $this->orderService->destroy($id);
-        return redirect()->back();
+        return redirect()->route('backend.admin.order.index');
     }
 
     /* 

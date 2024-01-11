@@ -30,26 +30,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($order->detail()->get() as $index => $item)
-                    @php
-                        $cateogry = $products
-                            ->where(
-                                'product_code',
-                                DB::table('products_brand')
-                                    ->where('code', $item->sku_id)
-                                    ->first()->product_code,
-                            )
-                            ->first()->product_category;
-                    @endphp
+                @foreach ($order->sortDetailByCategory()->get() as $index => $item)
                     <tr class="bg-white border-b dark:!bg-gray-800 dark:border-gray-700 hover:!bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $index + 1 }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $cateogry }}
+                            {{ $item->product_category }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->sku_id }}
+                            {{ $item->code }}
                         </td>
                         <td class="relative px-6 py-4">
 
