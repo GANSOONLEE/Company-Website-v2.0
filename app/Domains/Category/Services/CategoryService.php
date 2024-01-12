@@ -111,6 +111,7 @@ class CategoryService extends Service
 
             $category->update([
                 'name' => $data['name'],
+                'orderId' => $data['orderId'],
             ]);
 
         }catch(Exception $e){

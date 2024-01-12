@@ -18,7 +18,7 @@
             <x-sidebar-dropdown-item href="{{ route('backend.admin.category.create') }}" label="{{ __('sidebar.create-category') }}" />
             <x-sidebar-dropdown-item href="{{ route('backend.admin.category.edit') }}" label="{{ __('sidebar.edit-category') }}" />
          </x-sidebar-dropdown>
-
+      
          <x-sidebar-dropdown icon="tag" label="{{ __('sidebar.brand') }}">
             <x-sidebar-dropdown-item href="{{ route('backend.admin.brand.create') }}" label="{{ __('sidebar.create-brand') }}" />
             <x-sidebar-dropdown-item href="{{ route('backend.admin.brand.edit') }}" label="{{ __('sidebar.edit-brand') }}" />

@@ -17,9 +17,9 @@
             <a href="{{ route('frontend.product.index') }}" class="navbar-link">
                 <li class="navbar-link-label">Product</li>
             </a>
-            <a href="{{ route('frontend.contact') }}" class="navbar-link">
+            {{-- <a href="{{ route('frontend.contact') }}" class="navbar-link">
                 <li class="navbar-link-label">Contact</li>
-            </a>
+            </a> --}}
         </ul>
 
         @include('components.searchbar')
