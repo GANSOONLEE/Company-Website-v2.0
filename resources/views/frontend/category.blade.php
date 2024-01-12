@@ -5,19 +5,32 @@
 
 @section('app')
 
-    <div class="content">
+    <div class="flex flex-col pl-6 pt-4">
 
-        @foreach ($categoryData as $index => $category)
-            <a class="category-box" href="{{ route('frontend.product.list', ['category' => $category['name']]) }}">
-                <section class="category-card">
-                    <img class="category-cover" src="{{ asset($category['cover'])}}" alt="">
-                    <div class="category-description">
-                        <p class="category-description-text">
-                            {{ $category['name'] }}
-                        </p>
-                    </div>
-                </section>
-            </a>    
+        @foreach ($categoryTitle as $index => $categoryArray)
+        
+            <div class="flex flex-col w-full">
+
+                <p class="text-2xl font-bold">{{ $index }}</p>
+
+                <div class="content">
+    
+                    @foreach ($categoryArray as $category)
+                        <a class="category-box" href="{{ route('frontend.product.list', ['category' => $category->name]) }}">
+                            <section class="category-card">
+                                <img class="category-cover" src="{{ asset($category->cover)}}" alt="">
+                                <div class="category-description">
+                                    <p class="category-description-text">
+                                        {{ $category->name }}
+                                    </p>
+                                </div>
+                            </section>
+                        </a>    
+                    @endforeach
+
+                </div>
+            </div>
+
         @endforeach
         
     </div>

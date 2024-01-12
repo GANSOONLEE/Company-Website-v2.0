@@ -5,7 +5,7 @@ namespace App\Domains\Category\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateCategoryRequest extends FormRequest
+class CreateCategoryTitleRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -16,9 +16,8 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'nullable',
-            'name' => 'required',
-            'orderId' => 'nullable',
+            'title' => 'required',
+            'order' => ['required', Rule::unique('categories_title', 'order')],
         ];
     }
 

@@ -1,4 +1,5 @@
 @inject('categories', '\App\Domains\Category\Models\Category')
+@inject('categoriesTitle', '\App\Domains\Category\Models\CategoryTitle')
 
 @extends('backend.layouts.app')
 
@@ -28,14 +29,23 @@
                     <x-form.patch class="space-y-4" :action="route('backend.admin.category.update', ['id' => ':id'])">
                         <div class="flex flex-column align-items-center w-full">
                             <p class="text-xl mb-3 align-self-start">@lang('category.image')</p>
-                            <label for="image" class="flex justify-center align-items-center form-label w-[14rem] h-[14rem] border-1 border-solid border-gray-600 cursor-pointer transition-all duration-[120ms] hover:bg-gray-300">
-                                <img class="w-full h-full object-fit-cover" src="{{ asset('storage/cateogry/:name') }}" alt="" onload="this.style.display = 'block'" onerror="this.style.display = 'none'">
+                            <label for="image" class="flex justify-center align-items-center form-label w-auto h-[12rem] border-1 border-solid border-gray-600 cursor-pointer transition-all duration-[120ms] hover:bg-gray-300">
+                                <img class="w-full h-auto object-fit-cover" src="{{ asset('storage/cateogry/:name') }}" alt="" onload="this.style.display = 'block'" onerror="this.style.display = 'none'">
                             </label>
                             <input name="image" id="image" type="file" file="{{ old('image') }}" hidden>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">@lang('category.name')</label>
+                            <label for="name" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">@lang('category.name')</label>
                             <input value="" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="{{ __('category.name') }}" required>
+                        </div>
+                        <div>
+                            <label for="orderId" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">@lang('category.name')</label>
+                            <select name="orderId" id="orderId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="{{ __('category.name') }}">
+                                <option value=""></option>
+                                @foreach ($categoriesTitle->orderBy('id')->get() as $categoryTitle)
+                                <option value="{{ $categoryTitle->id }}">{{ $categoryTitle->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">@lang('Submit')</button>
                     </x-form.patch>
@@ -50,18 +60,20 @@
                 <th class="px-3 py-2">@lang('ID')</th>
                 <th class="py-2">@lang('category.image')</th>
                 <th class="py-2">@lang('category.name')</th>
+                <th class="py-2">@lang('category.title')</th>
                 <th class="py-2">@lang('category.product-count')</th>
                 <th class="py-2">@lang('Action')</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($categories::byName()->paginate(10) as $category)
-                <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}">
+                <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
                     <td class="px-3">{{ $category->id }}</td>
                     <td class="flex justify-center px-3 py-2 w-32">
                         <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/category/' . $category->image()) }}" alt="">
                     </td>
                     <td class="border-gray-100">{{ $category->name }}</td>
+                    <td class="w-64">{{ $category->title()->title ?? null }}</td>
                     <td class="w-64">{{ $category->products()->count() }}</td>
                     <td class="w-56 py-2">
                         <div class="flex justify-between align-items-center">
@@ -125,8 +137,10 @@
                 const row = button.closest('tr');
                 const id = row.id;
                 const name = row.getAttribute('data-name');
+                const title = row.getAttribute('data-title-id');
                 targetModal.querySelector('form').action = action.replace(':id', id);
                 targetModal.querySelector('input[name="name"]').value = name;
+                targetModal.querySelector('#orderId').value = title;
                 targetModal.querySelector('img').src = row.querySelector('img').src;
                 modal.show()
             })
