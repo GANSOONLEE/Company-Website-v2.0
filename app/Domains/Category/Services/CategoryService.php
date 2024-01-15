@@ -51,7 +51,7 @@ class CategoryService extends Service
                 'orderId' => $data['order']
             ]);
 
-            if($data['image']){
+            if(isset($data['image'])){
                 $newFileName = $category->name . '.' . $data['image']->getClientOriginalExtension();
 
                 // Save category image
