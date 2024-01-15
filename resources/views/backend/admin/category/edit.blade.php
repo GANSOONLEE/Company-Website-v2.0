@@ -70,6 +70,7 @@
                 <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
                     <td class="px-3">{{ $category->id }}</td>
                     <td class="flex justify-center px-3 py-2 w-32">
+                        {{-- {{ dd( $category->image()) }} --}}
                         <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/category/' . $category->image()) }}" alt="">
                     </td>
                     <td class="border-gray-100">{{ $category->name }}</td>

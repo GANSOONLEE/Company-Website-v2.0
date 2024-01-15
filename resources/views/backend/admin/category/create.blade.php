@@ -25,8 +25,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="name" class="form-label required">@lang('category.name')</label>
-            <select name="name" id="name" class="form-select dark:bg-gray-800 dark:text-white" placeholder="order">
+            <label for="order" class="form-label required">@lang('category.order')</label>
+            <select name="order" id="order" class="form-select dark:bg-gray-800 dark:text-white" placeholder="order">
                 <option value="" readonly hidden>@lang('category.order')</option>
                 @foreach ($categoriesTitle->get() as $categoryTitle)
                     <option value="{{ $categoryTitle->id }}">{{ $categoryTitle->title }}</option>

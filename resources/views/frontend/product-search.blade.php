@@ -1,4 +1,3 @@
-
 @extends('frontend.layouts.app')
 
 @section('title', 'Product')
@@ -29,23 +28,47 @@
 
                 <!-- Unit -->
                 @if (count($productData) > 0)
-                    @foreach ($productData as $product)
-                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
-                        <div class="custom-card">
-                            <div class="custom-card-image">
-                                <img class="product-cover" src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}" alt="">
-                                <div class="see-more">
-                                    See More
-                                </div>
-                            </div>
-                            <div class="custom-card-header">
-                                @foreach (($product->names()->get()) as $names)
-                                    <p>{{ $names->name }}</p>
+                
+                    @foreach ($productData as $index => $item)
+
+                        <div class="flex flex-col w-full mt-[.5rem]">
+
+                            <h3 class="text-2xl font-bold mb-[1rem]">{{ $index }}</h3>
+
+                            <div class="flex flex-wrap justify-start gap-x-12">
+
+                                @foreach ($item as $product)
+
+                                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
+                                        <div class="custom-card">
+
+                                            <div class="custom-card-image">
+                                                <img class="product-cover"
+                                                    src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}"
+                                                    alt="">
+                                                <div class="see-more">
+                                                    See More
+                                                </div>
+                                            </div>
+
+                                            <div class="custom-card-header">
+                                                @foreach ($product->names()->get() as $names)
+                                                    <p>{{ $names->name }}</p>
+                                                @endforeach
+                                            </div>
+
+                                        </div>
+
+                                    </a>
+
                                 @endforeach
+
                             </div>
+
                         </div>
-                    </a>
+
                     @endforeach
+
                 @else
                     <h1>No any record</h1>
                 @endif
@@ -64,5 +87,5 @@
 @endpush
 
 @push('after-body')
-    <script src="{{asset('js/frontend/product.js')}}"></script>
+    <script src="{{ asset('js/frontend/product.js') }}"></script>
 @endpush

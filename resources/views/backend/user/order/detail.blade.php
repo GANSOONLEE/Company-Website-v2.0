@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <input onchange="updateQuantity(event)" data-brand="{{ $item->sku_id }}" data-quantity="{{ $item->number }}" data-order="{{ $order->id }}" class="bg-gray-200 focus:bg-gray-50" type="number" min="0" max="200" name="quantity" value="{{ $item->number }}" required>
+                            <input onchange="updateQuantity(event)" data-brand="{{ $item->code }}" data-quantity="{{ $item->number }}" data-order="{{ $order->id }}" class="bg-gray-200 focus:bg-gray-50" type="number" min="0" max="200" name="quantity" value="{{ $item->number }}" required>
                         </td>
                     </tr>
                 @endforeach
@@ -147,6 +147,8 @@
             let formData = new FormData();
             formData.append('brand', brand)
             formData.append('_method', 'Delete')
+
+            console.info(brand);
 
             xhr.send(formData);
         }

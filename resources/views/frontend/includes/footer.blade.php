@@ -34,18 +34,16 @@
             <section class="footer-link-section">
                 <p class="footer-link-section-title">Site</p>
                 <ul class="footer-link-section-list">
-                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
-                        <i class="fa-solid fa-house"></i>Home
-                    </li></a>
-                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
-                        <i class="fa-solid fa-address-card"></i>About Us
-                        </li></a>
-                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
-                        <i class="fa-solid fa-cube"></i>Product
-                    </li></a>
-                    <a href="#"><li class="flex justify-start gap-x-[.25rem] footer-link">
-                        <i class="fa-solid fa-envelope"></i>Contact
-                    </li></a>
+                    <a href="{{ route('frontend.home') }}">
+                        <li class="flex justify-start gap-x-[.25rem] footer-link">
+                            <i class="fa-solid fa-house"></i>Home
+                        </li>
+                    </a>
+                    <a href="{{ route('frontend.product.index') }}">
+                        <li class="flex justify-start gap-x-[.25rem] footer-link">
+                            <i class="fa-solid fa-cube"></i>Product
+                        </li>
+                    </a>
                 </ul>
             </section>
 

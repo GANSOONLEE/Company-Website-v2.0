@@ -15,10 +15,16 @@ trait CategoryMethod
     {
         $files = Storage::disk('public')->files('category');
         $path = '';
+        $key = null;
 
-        $key = array_search("category/" . $this->name . ".png", $files);
-        if($key !== false){
-            $path = basename($files[$key]);
+        foreach ($files as $file) {
+            if(strpos(basename($file), $this->name) === 0) {
+                $key = $file;
+                break;
+            };
+        }
+        if($key !== null){
+            $path = basename($key);
         }
 
         return $path;

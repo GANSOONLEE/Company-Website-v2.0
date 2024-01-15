@@ -8,7 +8,7 @@
     
     <h3 class="bg-blue-600/25 px-2 py-1 rounded-sm text-white text-xl flex justify-content-start column-gap-3 mb-3"><i class="fa-solid fa-filter"></i>Filter</h3>
 
-    @foreach ($models::all() as $model) 
+    @foreach ($models::byName()->get() as $model) 
         <x-frontend.sidebar-item :href="route('frontend.product.query', ['category' => $category,'model'=>$model->name])" :label="$model->name"/>
     @endforeach
 

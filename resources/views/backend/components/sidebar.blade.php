@@ -57,8 +57,6 @@
 
          <x-sidebar-item href="{{ route('translation') }}" icon="language" label="Translation Manager"/>
 
-         <x-sidebar-item href="{{ route('auth.logout') }}" icon="right-from-bracket" label="{{ __('Logout') }}"/>
-
       </ul>
    </div>
 </aside>
