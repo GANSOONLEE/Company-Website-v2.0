@@ -289,7 +289,7 @@ class OrderService extends BaseService
             $detail = $order->detail()->where('sku_id', $data['brand']);
 
             // check are order last item 
-            if($order->detail()->count() == 1) {
+            if($order->detail()->count() === 1) {
                 throw new GeneralException('You can\'t delete all item!');
             }
 
@@ -307,7 +307,7 @@ class OrderService extends BaseService
             }
         }catch(Exception $e){
             DB::rollBack();
-            throw new GeneralException('There was a problem deleting this item');
+            throw new GeneralException($e->getMessage()); //'There was a problem deleting this item'
         };
 
         DB::commit();

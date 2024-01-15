@@ -67,6 +67,7 @@ class FrontendProductService extends BaseService
                     ->orWhere('products_brand.frozen_code', 'like', "%$searchTerm%")
                     ->orWhere('products.product_category', 'like', "%$searchTerm%");
             })
+            ->orderBy('products.product_category')
             ->orderBy('products_name.name')
             ->groupBy('products.product_code')
             ->get();

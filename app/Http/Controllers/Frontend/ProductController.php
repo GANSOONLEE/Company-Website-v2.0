@@ -76,7 +76,13 @@ class ProductController extends Controller{
             return redirect()->route('frontend.product.index');
         }
 
-        $productData = $this->frontendProductService->search($searchTerm);
+        $products = $this->frontendProductService->search($searchTerm);
+
+        $productData = [];
+        foreach($products as $product) {
+            $productData[$product->product_category][] = $product;
+        };
+
         return view('frontend.product-search', compact('productData'));
     }
 

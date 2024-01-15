@@ -9,7 +9,7 @@
         $model = isset($model) ? $model : '';
     @endphp
 
-    <div class="header">
+    <div id="top" class="header">
         <div class="breadcrumbs">
             @if (request()->routeIs('frontend.product.list'))
                 {{ Breadcrumbs::render('frontend.product.list', $category) }}
@@ -70,6 +70,10 @@
     <!-- Wahtapps Side-Popup -->
     <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed top-[11.6rem] right-[0] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-md shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-200 hover:text-white dark:text-white"><i class="fa-brands fa-whatsapp text-lg"></i>Whatsapp</h5>
+    </a>
+
+    <a href="#top" class="flex justify-center itesm-center w-10 h-10 fixed right-6 bottom-8 shadow rounded-full bg-white z-999">
+        <i class="fa-solid fa-arrow-up text-base"></i>
     </a>
 
 @endsection

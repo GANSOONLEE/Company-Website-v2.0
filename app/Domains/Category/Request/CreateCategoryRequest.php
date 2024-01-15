@@ -18,6 +18,7 @@ class CreateCategoryRequest extends FormRequest
         return [
             'image' => 'nullable',
             'name' => 'required',
+            'order' => 'required',
         ];
     }
 

@@ -189,17 +189,20 @@
                                             Add To Cart
                                         </button>
 
-                                        @if (auth()->user()->order()->where('status', 'Pending')->count() > 0)
-                                            <label for="menuButton">
-                                                <div type="button" class="px-3 py-2 text-sm font-medium text-white bg-[#EE4D2D] border-t border-b border-orange-200 rounded-e-sm hover:bg-[#ff3b13] hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                                    <i class="fa-solid fa-chevron-down duration-[125ms] peer-checked:rotate-180"></i>
-                                                </div>
-                                            </label>
-                                        @endif
+                                        @auth
+                                            @if (auth()->user()->order()->where('status', 'Pending')->count() > 0)
+                                                <label for="menuButton">
+                                                    <div type="button" class="px-3 py-2 text-sm font-medium text-white bg-[#EE4D2D] border-t border-b border-orange-200 rounded-e-sm hover:bg-[#ff3b13] hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                                        <i class="fa-solid fa-chevron-down duration-[125ms] peer-checked:rotate-180"></i>
+                                                    </div>
+                                                </label>
+                                            @endif
+                                        @endauth
                                     </div>
 
                                     <input class="peer" type="checkbox" id="menuButton" hidden>
 
+                                    @auth
                                     <ol class="absolute right-[0] bg-white rounded-md shadow-lg hidden peer-checked:block">
                                         <li hidden>
                                             <x-form.post></x-form.post>
@@ -217,6 +220,7 @@
                                             </li>
                                         @endforeach
                                     </ol>
+                                    @endauth
 
                                 </div>
 

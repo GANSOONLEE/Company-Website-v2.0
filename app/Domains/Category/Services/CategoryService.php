@@ -40,13 +40,15 @@ class CategoryService extends Service
      */
     public function store(array $data = []): Category
     {
+
         DB::beginTransaction();
 
         try{
 
             // Save category data
             $category = $this->createCategory([
-                'name' => $data['name']
+                'name' => $data['name'],
+                'orderId' => $data['order']
             ]);
 
             if($data['image']){
@@ -153,6 +155,7 @@ class CategoryService extends Service
     {
         return $this->model::create([
             'name' => $data['name'] ?? null,
+            'orderId' => $data['orderId'] ?? null,
         ]);
     }
 
