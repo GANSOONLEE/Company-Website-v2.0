@@ -20,4 +20,5 @@ return array (
   'management-panel-label' => '管理用户',
   'permission-panel-description' => '调整用户的个人权限',
   'permission-panel-label' => '调整用户个人权限',
+  'weight' => '权重',
 );
