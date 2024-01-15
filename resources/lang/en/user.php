@@ -20,4 +20,5 @@ return array (
   'banned-panel-label' => 'Ban user',
   'banned-panel-description' => 'Banned Account',
   'role' => 'Role',
+  'weight' => 'Weight',
 );
