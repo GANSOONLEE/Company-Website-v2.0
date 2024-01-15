@@ -23,13 +23,8 @@
             <x-sidebar-dropdown-item href="{{ route('backend.admin.brand.create') }}" label="{{ __('sidebar.create-brand') }}" />
             <x-sidebar-dropdown-item href="{{ route('backend.admin.brand.edit') }}" label="{{ __('sidebar.edit-brand') }}" />
          </x-sidebar-dropdown>
-         
-         <x-sidebar-dropdown icon="file" label="{{ __('sidebar.order') }}">
-            <x-sidebar-dropdown-item href="{{ route('backend.admin.order.index') }}" label="{{ __('sidebar.view-order') }}">
-               <span id="new-order-notification" class="flex justify-center items-center absolute text-sm text-white bg-red-600 rounded-full p-[.5rem] w-[1.2rem] h-[1.2rem] top-[25%] right-[0] -translate-x-[25%] -translate-y-[50%]" {{ $orders->where('status', 'Pending')->count() > 0 ? null : 'hidden' }}>{{ $orders->where('status', 'Pending')->count() }}</span>
-            </x-sidebar-dropdown>
-            <x-sidebar-dropdown-item href="{{ route('backend.admin.order.list') }}" label="{{ __('sidebar.history-order') }}" />
-         </x-sidebar-dropdown>
+
+         <x-sidebar-item href="{{ route('backend.admin.order.index') }}" icon="file" label="{{ __('sidebar.order') }}"/>
 
          <x-sidebar-item href="{{ route('backend.admin.image.index') }}" icon="image" label="{{ __('sidebar.carousel-image') }}"/>
 

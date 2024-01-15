@@ -15,7 +15,8 @@
             <section class="product-media" id="image-selector">
 
                 <!-- Image Preview -->
-                <div class="image-preview-container">
+                <div class="relative image-preview-container" data-item="image-selector">
+                    <img class="absolute z-9 opacity-40 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                     <img data-item="image-selector" src="{{ asset('storage/' . $productCover) }}" alt=""
                         class="image-preview item-image" data-preview="image-selector">
                 </div>
@@ -31,14 +32,16 @@
                     <!-- Image Selector -->
                     <div class="image-selector" data-item="image-selector">
 
-                        <div class="item" data-item="image-selector">
+                        <div class="flex justify-center items-center relative item" data-item="image-selector">
+                            <img class="absolute z-9 opacity-40 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                             <img data-item="image-selector" src="{{ asset('storage/' . $productCover) }}" alt=""
                                 class="item-image" data-image="image-selector">
                         </div>
 
                         <!-- Item -->
                         @foreach ($productImages as $productImage)
-                            <div class="item" data-item="image-selector">
+                            <div class="flex justify-center items-center relative item" data-item="image-selector">
+                                <img class="absolute z-9 opacity-40 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                                 <img data-item="image-selector"
                                     src="{{ str_replace('#', '%23', asset('storage/' . $productImage)) }}" alt=""
                                     class="item-image" data-image="image-selector">
@@ -250,21 +253,29 @@
                 <!-- Main product image -->
                 <div class="slot">
                     <span
-                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1">1
+                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">1
                         of {{ 1 + count($productImages) }}</span>
-                    <img class="w-full object-cover" src="{{ asset('storage/' . $productCover) }}"
-                        alt="Main Product Image">
+                    <div class="relative flex justify-center items-center ">
+                        
+                        <img class="absolute z-9 opacity-20 !w-[80%] !h-auto object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                        <img class="w-full object-cover" src="{{ asset('storage/' . $productCover) }}"
+                            alt="Main Product Image">
+                    </div>
                 </div>
 
                 <!-- Additional product images -->
                 @foreach ($productImages as $index => $productImage)
                     <div class="slot hidden">
                         <span
-                            class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1">{{ $index + 2 }}
-                            of {{ 1 + count($productImages) }}</span>
-                        <img class="w-full object-cover"
+                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">{{ $index + 2 }}
+                        of {{ 1 + count($productImages) }}</span>
+
+                        <div class="relative flex justify-center items-center ">
+                            <img class="absolute z-9 opacity-20 !w-[80%] !h-auto object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                            <img class="w-full object-cover"
                             src="{{ str_replace('#', '%23', asset('storage/' . $productImage)) }}"
                             alt="Product Image {{ $index + 1 }}">
+                        </div>
                     </div>
                 @endforeach
             </div>

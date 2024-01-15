@@ -24,6 +24,7 @@ return array (
     'brand' => 'Brand',
     'category' => 'Category',
     'permission' => 'Permissions',
+    'order' => 'Order',
   ),
   'object' => 'Operation object',
   'method' => 'Operation type',

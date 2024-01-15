@@ -24,6 +24,7 @@ return array (
     'brand' => '品牌',
     'category' => '種類',
     'permission' => '權限',
+    'order' => '訂單',
   ),
   'object' => '操作對象',
   'method' => '操作類型',

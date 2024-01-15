@@ -26,7 +26,7 @@
 
         <section class="container w-full px-8">
 
-            <p class="container-title">{{ $category . ' ' . $model}} </p>
+            <p class="container-title">{{ $category . ' ' . $model }} </p>
 
             <!-- Product Card -->
             <section class="product-list">
@@ -34,10 +34,14 @@
                 <!-- Unit -->
                 @if (count($productData) > 0)
                     @foreach ($productData as $product)
-                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
+
+                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
                         <div class="custom-card">
-                            <div class="custom-card-image">
+                            <div class="custom-card-image flex justify-center align-items">
+
+                                <img class="absolute z-9 opacity-40" src="{{ asset("images/watermark-9.png") }}" alt="">
                                 <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
+
                                 <div class="see-more">
                                     See More
                                 </div>

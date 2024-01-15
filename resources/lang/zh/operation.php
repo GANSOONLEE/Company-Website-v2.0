@@ -24,6 +24,7 @@ return array (
     'brand' => '品牌',
     'category' => '品类',
     'permission' => '权限',
+    'order' => '订单',
   ),
   'object' => '操作对象',
   'method' => '操作类型',
