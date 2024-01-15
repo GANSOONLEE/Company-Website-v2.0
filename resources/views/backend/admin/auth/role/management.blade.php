@@ -44,19 +44,6 @@
         </div>
     </div>
 
-    {{-- <div class="shadow border !border-gray-300 rounded-md px-3 py-2 mb-3"> --}}
-        {{-- <x-form.get class="mb-3" :action="route('backend.admin.user.search')">   
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">@lang('Search')</label>
-            <div class="relative flex align-items-center first-letter:relative input-group h-[6vh]">
-                <div class="h-full absolute flex items-center ps-3 pointer-events-none">
-                    <i class="fa-solid fa-search text-gray-400"></i>
-                </div>
-                <input type="search" id="default-search" name="q" class="h-full block w-full px-3 py-2 !pl-12 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search email, username, role..." value="{{ request()->input('q') }}">
-                <button type="submit" class="h-full text-white absolute right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">@lang('Search')</button>
-            </div>
-        </x-form.get> --}}
-    {{-- </div> --}}
-
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -93,7 +80,7 @@
                                 <label for="checkbox-table-1" class="sr-only">checkbox</label>
                             </div>
                         </td> --}}
-                        <th data-column="id" hidden>
+                        <th data-column="id" data-role-id="{{ $role->id }}" hidden>
                             {{ $role->id }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -142,9 +129,11 @@
         let editButtonArray =  document.querySelectorAll('#editButton');
         editButtonArray.forEach(button => {
             
-            let id = button.parentElement.parentElement.querySelector('[data-column="id"]').innerText;
-
+            let id = button.parentElement.parentElement.querySelector('[data-column="id"]').getAttribute('data-role-id');
+            
             button.addEventListener('click', e => {
+                
+                console.info(route('backend.admin.role.get', { id: id }), id);
 
                 let xhr = new XMLHttpRequest();
                 xhr.open(
