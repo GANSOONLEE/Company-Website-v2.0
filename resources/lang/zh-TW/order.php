@@ -38,4 +38,5 @@ return array (
   'complete' => '完成',
   'shop_name' => '店鋪名稱',
   'updated-at' => '更新於',
+  'frozen-code' => 'Frozen 編號',
 );

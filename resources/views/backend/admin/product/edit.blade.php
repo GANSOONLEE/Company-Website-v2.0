@@ -161,11 +161,11 @@
                                 <input value="{{ $brand->code ?? old('brand-code[]') }}" type="text" name="brand-code[]" id="" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
                             </label>
                         </div>
-                        {{-- <div class="w-2/5" data-column="">
+                        <div class="w-2/5" data-column="">
                             <label for="" class="form-label">
                                 <input value="{{ $brand->frozen_code ?? old('frozen-code[]') }}" type="text" name="frozen-code[]" id="" class="form-control rounded-sm dark:bg-gray-700 dark:text-white" required="">
                             </label>
-                        </div> --}}
+                        </div>
                         <div class="col">
                             <button class="btn btn-danger bg-danger text-nowrap" type="button" onclick="deleteListItem(this)">@lang('Delete')</button>
                         </div>
@@ -786,25 +786,25 @@
             rowDiv.appendChild(codeColDiv);
 
             // Create Frozen column
-            // let frozenColDiv = document.createElement('div');
-            // frozenColDiv.classList.add('w-2/5');
-            // frozenColDiv.setAttribute('data-column', '');
+            let frozenColDiv = document.createElement('div');
+            frozenColDiv.classList.add('w-2/5');
+            frozenColDiv.setAttribute('data-column', '');
 
-            // // Create label for Frozen
-            // let labelForFrozen = document.createElement('label');
-            // labelForFrozen.setAttribute('for', '');
-            // labelForFrozen.classList.add('form-label');
+            // Create label for Frozen
+            let labelForFrozen = document.createElement('label');
+            labelForFrozen.setAttribute('for', '');
+            labelForFrozen.classList.add('form-label');
 
-            // let frozenInput = document.createElement('input');
-            // frozenInput.setAttribute('type', 'text');
-            // frozenInput.setAttribute('name', 'frozen-code[]');
-            // frozenInput.setAttribute('id', '');
-            // frozenInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
-            // frozenInput.setAttribute('required', '');
+            let frozenInput = document.createElement('input');
+            frozenInput.setAttribute('type', 'text');
+            frozenInput.setAttribute('name', 'frozen-code[]');
+            frozenInput.setAttribute('id', '');
+            frozenInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
+            frozenInput.setAttribute('required', '');
 
-            // labelForFrozen.appendChild(frozenInput);
-            // frozenColDiv.appendChild(labelForFrozen);
-            // rowDiv.appendChild(frozenColDiv);
+            labelForFrozen.appendChild(frozenInput);
+            frozenColDiv.appendChild(labelForFrozen);
+            rowDiv.appendChild(frozenColDiv);
 
             let deleteCol = document.createElement('div');
             deleteCol.classList.add('col');
@@ -833,7 +833,7 @@
                 this.readerImage(e);
             })
 
-            let inputs = [brandInput, codeInput]; // Add other inputs here
+            let inputs = [brandInput, codeInput, frozenInput]; // Add other inputs here
             inputs.forEach(input => {
                 input.addEventListener('input', () => {
 

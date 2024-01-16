@@ -22,7 +22,7 @@ class UpdateProductRequest extends FormRequest
             'model-serial' => ['required', 'array', 'min:1'],
             'brand' => ['required', 'array', 'min:1'],
             'brand-code' => ['required', 'array', 'min:1'],
-            'frozen-code' => ['nullable', 'array', 'min:1'],
+            'frozen-code' => ['required', 'array', 'min:1'],
             'product_category' => 'required',
             'remark' => 'nullable',
         ];

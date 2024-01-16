@@ -38,4 +38,5 @@ return array (
   'history-order-description' => '超过 :days 天后的订单会在这里',
   'shop_name' => '店铺名称',
   'updated-at' => '更新于',
+  'frozen-code' => 'Frozen 编号',
 );

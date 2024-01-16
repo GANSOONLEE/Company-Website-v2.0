@@ -428,7 +428,7 @@ class ProductService extends BaseService
      * 
      * @return mixed
      */
-    public function updateProductName(Product $product, array $data=[]) :mixed
+    public function updateProductName(Product $product, array $data = []) :mixed
     {
         $fullName = [];
         // Origin Record 原本的記錄
@@ -484,7 +484,24 @@ class ProductService extends BaseService
             $brand_codes[$key] = $code;
             $frozen_codes[$key] = $data['frozen_code'][$key];
 
-            $sku_ids[] = $product->brands()->where('brand', $brands[$key])->where('code', $data['brand_code'][$key])->first()->sku_id ?? null;
+            $sku_ids[] = $product->brands()->where('brand', $brands[$key])->first()->sku_id ?? null;
+        }
+
+        // dd(
+        //     $sku_ids, 
+        //     array_diff($originSkuId, $sku_ids), # 要刪除的記錄
+        //     array_diff($sku_ids, $originSkuId), # 要新增的記錄
+        //     $originSkuId # 原本的記錄
+        // );
+
+        foreach ($sku_ids as $index => $skuId){
+            DB::table('products_brand')
+                ->where('product_code', $product->product_code)
+                ->where('sku_id', $skuId)
+                ->update([
+                    "code" => $brand_codes[$index],
+                    "frozen_code" => $frozen_codes[$index],
+                ]);
         }
 
         // Deleted Record 找出要被刪除的記錄
