@@ -51,7 +51,7 @@
                                 <button class="btn btn-danger bg-danger" type="button" onclick="deleteListItem(this)">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
-                                <img src="{{ asset('storage/' . url_encode($filePath)) }}">
+                                <img src="{{ asset('storage/' . path_decode($filePath)) }}">
                             </div>
                         </label>
                     </div>
