@@ -37,9 +37,9 @@
 
                     <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
                         <div class="custom-card">
-                            <div class="custom-card-image flex justify-center align-items">
+                            <div class="custom-card-image flex justify-center items-center">
 
-                                <img class="absolute z-9 opacity-40" src="{{ asset("images/watermark-9.png") }}" alt="">
+                                <img class="absolute z-9 opacity-20 w-2/3" src="{{ asset("images/watermark.png") }}" alt="">
                                 <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
 
                                 <div class="see-more">
