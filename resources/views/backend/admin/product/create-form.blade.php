@@ -638,25 +638,25 @@
             rowDiv.appendChild(codeColDiv);
 
             // Create Frozen column
-            // let frozenColDiv = document.createElement('div');
-            // frozenColDiv.classList.add('w-2/5');
-            // frozenColDiv.setAttribute('data-column', '');
+            let frozenColDiv = document.createElement('div');
+            frozenColDiv.classList.add('w-2/5');
+            frozenColDiv.setAttribute('data-column', '');
 
-            // // Create label for Frozen
-            // let labelForFrozen = document.createElement('label');
-            // labelForFrozen.setAttribute('for', '');
-            // labelForFrozen.classList.add('form-label');
+            // Create label for Frozen
+            let labelForFrozen = document.createElement('label');
+            labelForFrozen.setAttribute('for', '');
+            labelForFrozen.classList.add('form-label');
 
-            // let frozenInput = document.createElement('input');
-            // frozenInput.setAttribute('type', 'text');
-            // frozenInput.setAttribute('name', 'frozen-code[]');
-            // frozenInput.setAttribute('id', '');
-            // frozenInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
-            // frozenInput.setAttribute('required', '');
+            let frozenInput = document.createElement('input');
+            frozenInput.setAttribute('type', 'text');
+            frozenInput.setAttribute('name', 'frozen-code[]');
+            frozenInput.setAttribute('id', '');
+            frozenInput.classList.add('form-control', 'rounded-sm', 'dark:bg-gray-700', 'dark:text-white');
+            frozenInput.setAttribute('required', '');
 
-            // labelForFrozen.appendChild(frozenInput);
-            // frozenColDiv.appendChild(labelForFrozen);
-            // rowDiv.appendChild(frozenColDiv);
+            labelForFrozen.appendChild(frozenInput);
+            frozenColDiv.appendChild(labelForFrozen);
+            rowDiv.appendChild(frozenColDiv);
 
             let deleteCol = document.createElement('div');
             deleteCol.classList.add('col');
@@ -685,7 +685,7 @@
                 this.readerImage(e);
             })
 
-            let inputs = [brandInput, codeInput]; // Add other inputs here
+            let inputs = [brandInput, codeInput, frozenInput]; // Add other inputs here
             inputs.forEach(input => {
                 input.addEventListener('input', () => {
 

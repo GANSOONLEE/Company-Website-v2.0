@@ -50,6 +50,9 @@
                         @lang('product.model')
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        @lang('order.frozen-code')
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         @lang('order.product-code')
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -73,6 +76,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $item->frozen_code }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->code }}

@@ -36,6 +36,7 @@ class DocumentController
             trans('product.category'),
             trans('product.name'),
             trans('product.brand'),
+            trans('product.frozen-code'),
             trans('order.number'),
             trans('order.remark'),
         ];

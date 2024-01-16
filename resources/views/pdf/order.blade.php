@@ -56,6 +56,7 @@
                     <td style="border: 1px solid black; padding: .2rem .3rem">{{ $item->product_category }}</td>
                     <td style="border: 1px solid black; padding: .2rem .3rem; white-space: normal;">{{ $item->name }}</td>
                     <td style="border: 1px solid black; padding: .2rem .3rem">{{ $item->code }}</td>
+                    <td style="border: 1px solid black; padding: .2rem .3rem">{{ $item->frozen_code }}</td>
                     <td style="border: 1px solid black; padding: .2rem .3rem">{{ $item->number }}</td>
                     <td style="border: 1px solid black; padding: .2rem .3rem">{{ $item->detail_remarks }}</td>
                 </tr>

@@ -38,4 +38,5 @@ return array (
   'history-order-description' => 'Orders older than :days days will go here',
   'shop_name' => 'Store Name',
   'updated-at' => 'updated on',
+  'frozen-code' => 'Frozen number',
 );

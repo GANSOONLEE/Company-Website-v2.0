@@ -15408,6 +15408,9 @@ input:checked + .toggle-bg{
 .mt-\[2rem\]{
   margin-top: 2rem;
 }
+.\!ml-\[0\]{
+  margin-left: 0 !important;
+}
 .block{
   display: block;
 }
@@ -15638,6 +15641,10 @@ input:checked + .toggle-bg{
 .translate-y-full{
   --tw-translate-y: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.\!-translate-x-full{
+  --tw-translate-x: -100% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 .rotate-180{
   --tw-rotate: 180deg;
@@ -17857,6 +17864,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .sm\:fixed{
     position: fixed;
   }
+  .sm\:\!ml-\[16rem\]{
+    margin-left: 16rem !important;
+  }
   .sm\:flex{
     display: flex;
   }
@@ -17872,6 +17882,10 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .sm\:\!translate-x-\[0px\]{
     --tw-translate-x: 0px !important;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+  }
+  .sm\:translate-x-\[0px\]{
+    --tw-translate-x: 0px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
   .sm\:items-center{
     align-items: center;
@@ -17915,6 +17929,12 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .md\:mb-\[0\]{
     margin-bottom: 0;
   }
+  .md\:\!ml-\[16rem\]{
+    margin-left: 16rem !important;
+  }
+  .md\:h-8{
+    height: 2rem;
+  }
   .md\:w-1\/2{
     width: 50%;
   }
@@ -17940,6 +17960,10 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .md\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+  .md\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
   .md\:opacity-60{
     opacity: 0.6;
