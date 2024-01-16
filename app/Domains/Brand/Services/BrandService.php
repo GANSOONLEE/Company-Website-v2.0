@@ -49,7 +49,7 @@ class BrandService extends Service
                 'name' => $data['name']
             ]);
 
-            if($data['image']){
+            if(isset($data['image'])){
                 $newFileName = $brand->name . '.' . $data['image']->getClientOriginalExtension();
 
                 // Save brand image

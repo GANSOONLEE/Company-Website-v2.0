@@ -268,7 +268,7 @@ class ImageSelector{
     }
 
     imagePreview(imgSrc){
-        imagePreviewContainer[0].querySelector('img').src = imgSrc;
+        document.querySelector('[data-preview="image-selector"]').src = imgSrc;
     }
 
     imageZoom(imgSrc){
@@ -327,9 +327,9 @@ brands.forEach(brand => {
         req.open('GET', relation, false);
         req.send();
         if(req.status === 200){
-            imagePreviewContainer[0].querySelector('img').src = relation;
+            document.querySelector('[data-preview="image-selector"]').src = relation;
         }else{
-            imagePreviewContainer[0].querySelector('img').src = `/storage/product/placeholder.png`;
+            document.querySelector('[data-preview="image-selector"]').src = `/storage/product/placeholder.png`;
         }
     })
 })

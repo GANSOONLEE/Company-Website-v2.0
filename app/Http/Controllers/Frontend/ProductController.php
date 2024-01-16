@@ -39,6 +39,7 @@ class ProductController extends Controller{
         $productData = $this->frontendProductService->list($category, 48);
         $directory = "storage/product/$category";
         $modelData = $this->modelData;
+        
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));
     }
 
