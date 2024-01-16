@@ -24,17 +24,21 @@
             </div>
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
 
-                <a href="{{ route('frontend.product.index') }}" class="flex items-center justify-center text-white !bg-primary-700 hover:!bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                    <i class="fa-solid fa-add mr-2"></i>
-                    Add product
-                </a>
+                <div class="flex flex-row justify-between md:justify-center gap-x-4">
 
-                <x-form.post :action="route('backend.user.order.store')">
-                    <button type="submit" href="{{ route('backend.user.order.store') }}" class="flex items-center justify-center text-white !bg-green-700 hover:!bg-green-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-                        <i class="fa-solid fa-file mr-2"></i>
-                        Make order
-                    </button>
-                </x-form.post>
+                    <a href="{{ route('frontend.product.index') }}" class="flex items-center justify-center text-white !bg-primary-700 hover:!bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        <i class="fa-solid fa-add mr-2"></i>
+                        Add product
+                    </a>
+    
+                    <x-form.post :action="route('backend.user.order.store')">
+                        <button type="submit" href="{{ route('backend.user.order.store') }}" class="flex items-center justify-center text-white !bg-green-700 hover:!bg-green-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                            <i class="fa-solid fa-file mr-2"></i>
+                            Make order
+                        </button>
+                    </x-form.post>
+
+                </div>
 
                 <div class="flex items-center space-x-3 w-full md:w-auto relative">
 
@@ -83,23 +87,23 @@
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
+                    <tr class="block">
+                        <th scope="col" class="block px-6 py-3">
                             No.
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="block px-6 py-3">
                             Product name
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="block px-6 py-3">
                             Category
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="block px-6 py-3">
                             Brand
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="block px-6 py-3">
                             Quantity
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="block px-6 py-3">
                             Action
                         </th>
                     </tr>
