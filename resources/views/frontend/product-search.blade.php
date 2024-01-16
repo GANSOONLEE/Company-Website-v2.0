@@ -43,7 +43,7 @@
                                         <div class="custom-card">
 
                                             <div class="custom-card-image flex justify-center items-center">
-                                                <img class="absolute z-9 opacity-40 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                                                <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                                                 <img class="product-cover"
                                                     src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}"
                                                     alt="">
