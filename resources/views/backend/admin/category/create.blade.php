@@ -38,7 +38,7 @@
 
     </x-form.post>
 
-    <div class="flex justify-between">
+    <div class="flex flex-col md:flex-row justify-between">
 
         <x-control-panel :class="'mt-4'" :title="trans('category.create-title')">
 
@@ -66,23 +66,26 @@
                 <thead>
                     <tr>
                         <th class="px-3 py-2">@lang('Id')</th>
-                        <th>@lang('category.title')</th>
-                        <th>@lang('category.order')</th>
+                        <th>
+                            <span class="hidden md:table-cell">@lang('category.title')</span>
+                            <span class="table-cell md:hidden">@lang('order.detail')</span>
+                        </th>
+                        <th class="hidden md:table-cell">@lang('category.order')</th>
                         <th class="sr-only">@lang('Action')</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($categoriesTitle->orderBy('order')->get() as $index => $categoryTitle)
                         <x-form.patch :action="route('backend.admin.categoryTitle.update', ['id' => $categoryTitle->id])">
-                            <tr>
-                                <td class="px-3 py-2">{{ $index + 1 }}</td>
-                                <td>
+                            <tr class="border-gray-400 border-b-[1px] border-t-[1px] md:border-none">
+                                <td class="px-3 mb-[.5rem] md:mb-[0] py-2">{{ $index + 1 }}</td>
+                                <td class="block pb-[.5rem] md:pb-[0] md:!table-cell">
                                     <input class="w-full" type="text" name="title" value="{{ $categoryTitle->title }}" placeholder="{{ trans('category.title') }}">
                                 </td>
-                                <td>
+                                <td class="block pb-[.5rem] md:pb-[0] md:!table-cell">
                                     <input class="w-full" type="number" name="order" value="{{ $categoryTitle->order }}" placeholder="{{ trans('category.order') }}">
                                 </td>
-                                <td>
+                                <td class="block pb-3 md:!pb-[0] md:!table-cell">
                                     <div>
                                         <button class="btn btn-success bg-green-600 text-white">@lang('Submit')</button>
 

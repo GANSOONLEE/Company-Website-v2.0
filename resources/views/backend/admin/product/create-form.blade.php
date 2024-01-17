@@ -7,7 +7,7 @@
     <!-- Product Image Upload -->
     <div class="mb-3">
         <h4 class="text-2xl mb-4">@lang('product.image-upload')</h4>
-        <ul class="product-image-list flex flex-row gap-x-2 w-full overflow-x-auto" style="max-width: 80%">
+        <ul class="product-image-list flex flex-row gap-x-2 w-full overflow-x-auto md:max-w-[80%]">
         </ul>
     </div>
 

@@ -17,7 +17,12 @@ module.exports = {
     },
     colors: {
       'theme-1': '#EB0A1E',
-      primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" }
+      primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" },
+      'footer-cyan': "#00e5ff",
+      'footer-gold': "#ffd800",
+      'footer-thinker': "#00ffa1",
+      'footer-green': "#38ff09",
+      'footer-blue': "#00c0ff",
     },
     zIndex: {
       999999: '999999',

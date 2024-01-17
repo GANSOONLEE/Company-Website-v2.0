@@ -53,7 +53,7 @@
                     <td class="border-gray-100">{{ $model->name }}</td>
                     <td class="w-64">{{ $model->products() }}</td>
                     <td class="w-56 py-2">
-                        <div class="flex justify-between align-items-center">
+                        <div class="flex flex-col gap-y-[.5rem] md:flex-row justify-between align-items-center">
                             <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
                                 <a class="flex justify-center gap-x-4" href="#">
                                     <i class="fa-solid fa-pen"></i>@lang('Edit')

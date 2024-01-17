@@ -67,7 +67,7 @@
         </thead>
         <tbody>
             @foreach ($categories::byName()->paginate(10) as $category)
-                <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
+                <tr class="border-b-[1px] md:border-none odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
                     <td class="px-3">{{ $category->id }}</td>
                     <td class="flex justify-center px-3 py-2 w-32">
                         {{-- {{ dd( $category->image()) }} --}}
@@ -79,7 +79,7 @@
                     <td class="w-56 py-2">
                         <div class="flex justify-between align-items-center">
                             <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
-                                <a class="flex justify-center gap-x-4" href="#">
+                                <a class="flex justify-center gap-x-4">
                                     <i class="fa-solid fa-pen"></i>@lang('Edit')
                                 </a>
                             </button>
@@ -95,7 +95,7 @@
                 <x-form.delete id="delete-form-{{ $category->id }}" :action="route('backend.admin.category.destroy', ['id' => $category->id])" class="hidden">
             
                 </x-form.delete> 
-
+                
             @endforeach
         </tbody>
     </table>
