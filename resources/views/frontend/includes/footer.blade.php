@@ -1,4 +1,4 @@
-<footer class="relative footer display-column !bg-[#414141]" id="footer" style="background-image: url('')">
+<footer class="relative footer display-column !bg-[#414141] z-9999" id="footer">
 
     <img src="https://w0.peakpx.com/wallpaper/466/1011/HD-wallpaper-blue-snowflake-in-black-background-snowflake-thumbnail.jpg"
         class="z-1 absolute top-0 left-0 w-full h-full object-cover opacity-[0.25]" alt="">

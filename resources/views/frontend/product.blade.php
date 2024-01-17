@@ -9,60 +9,68 @@
         $model = isset($model) ? $model : '';
     @endphp
 
-    <div id="top" class="header">
-        <div class="breadcrumbs">
-            @if (request()->routeIs('frontend.product.list'))
-                {{ Breadcrumbs::render('frontend.product.list', $category) }}
-            @else
-                {{ Breadcrumbs::render('frontend.product.query', $category, $model) }}
-            @endif
+    <div class="relative">
+
+        <div class="fixed top-0 left-0 z-[1]">
+            <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover">
         </div>
-    </div>
 
-    <div class="content flex flex-column">
+        <div id="top" class=" header">
+            <div class="breadcrumbs">
+                @if (request()->routeIs('frontend.product.list'))
+                    {{ Breadcrumbs::render('frontend.product.list', $category) }}
+                @else
+                    {{ Breadcrumbs::render('frontend.product.query', $category, $model) }}
+                @endif
+            </div>
+        </div>
 
-        <!-- Filter -->
-        @include('frontend.includes.filter', ['category' => $category])
+        <div class="relative content flex flex-column z-99">
 
-        <section class="container w-full px-8">
+            <!-- Filter -->
+            @include('frontend.includes.filter', ['category' => $category])
 
-            <p class="container-title">{{ $category . ' ' . $model }} </p>
+            <section class="container w-full px-8">
 
-            <!-- Product Card -->
-            <section class="product-list">
+                <p class="container-title text-2xl font-bold">{{ $category . ' ' . $model }} </p>
 
-                <!-- Unit -->
-                @if (count($productData) > 0)
-                    @foreach ($productData as $product)
+                <!-- Product Card -->
+                <section class="product-list">
 
-                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
-                        <div class="custom-card">
-                            <div class="custom-card-image flex justify-center items-center">
+                    <!-- Unit -->
+                    @if (count($productData) > 0)
+                        @foreach ($productData as $product)
 
-                                <img class="absolute z-9 opacity-20 w-2/3" src="{{ asset("images/watermark.png") }}" alt="">
-                                <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
+                        <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
+                            <div class="custom-card">
+                                <div class="custom-card-image flex justify-center items-center">
 
-                                <div class="see-more">
-                                    See More
+                                    <img class="absolute z-9 opacity-20 w-2/3" src="{{ asset("images/watermark.png") }}" alt="">
+                                    <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
+
+                                    <div class="see-more">
+                                        See More
+                                    </div>
+                                </div>
+                                <div class="custom-card-header">
+                                    @foreach (($product->names()->get()) as $names)
+                                        <p>{{ $names->name }}</p>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="custom-card-header">
-                                @foreach (($product->names()->get()) as $names)
-                                    <p>{{ $names->name }}</p>
-                                @endforeach
-                            </div>
-                        </div>
-                    </a>
-                    @endforeach
-                @else
-                    <h1>No any record</h1>
-                @endif
+                        </a>
+                        @endforeach
+                    @else
+                        <h1>No any record</h1>
+                    @endif
+
+                </section>
+
+                {{ $productData->links() }}
 
             </section>
 
-            {{ $productData->links() }}
-
-        </section>
+        </div>
 
     </div>
 
