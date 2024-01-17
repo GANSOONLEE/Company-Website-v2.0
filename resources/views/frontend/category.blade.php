@@ -7,7 +7,7 @@
 
     <div class="relative overflow-hidden">
         
-        <div class="fixed top-0 left-0 z-[1]">
+        <div class="fixed top-0 left-0 z-[1] w-[100vh]">
             <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover brightness-110">
         </div>
         

@@ -12,7 +12,7 @@
     <div class="relative">
 
         <div class="fixed top-0 left-0 z-[1]">
-            <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover">
+            <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover brightness-110">
         </div>
 
         <div id="top" class=" header">
@@ -75,12 +75,17 @@
     </div>
 
     <!-- Promotion Side-Popup -->
-    <a href="{{ route('frontend.home') }}#promotionControls" class="flex items-center fixed z-99 top-30 right-[0] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[11px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
-        <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
-    </a>
+    <div class="fixed z-99 top-30 -right-[5px] animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
+        <a href="{{ route('frontend.home') }}#promotionControls" class="relative flex items-center max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[11px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
+            <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
+        </a>
+        <div class="flex justify-center items-center absolute bottom-[0] left-12 translate-y-1/2 bg-blue-100 w-8 h-8 rounded-full animate-concentric-circles-normal">
+            <img class=" w-6" src="{{ asset('images/hand-pointer.svg') }}" alt="">
+        </div>
+    </div>
 
     <!-- Wahtapps Side-Popup -->
-    <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed z-99 top-[11.6rem] right-[0] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
+    <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed z-99 bottom-[6rem] -right-[5px] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
         <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-200 hover:text-white dark:text-white"><i class="fa-brands fa-whatsapp text-lg"></i>Whatsapp</h5>
     </a>
 

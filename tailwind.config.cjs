@@ -14,6 +14,15 @@ module.exports = {
       aria: {
         current: 'current'
       },
+      animation: {
+        'concentric-circles-normal': 'concentric-circles 2s linear infinite alternate-reverse',
+      },
+      keyframes: {
+        'concentric-circles': {
+          '0%, 100%': { transform: 'opacity(1)' },
+          '50%': { transform: 'opacity(0)' },
+        }
+      }
     },
     colors: {
       'theme-1': '#EB0A1E',
