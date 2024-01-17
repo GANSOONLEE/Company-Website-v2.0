@@ -41,7 +41,7 @@
                     @if (count($productData) > 0)
                         @foreach ($productData as $product)
 
-                        <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
+                        <a class="product-detail-href bg-white" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code ?? 'null']) }}">
                             <div class="custom-card">
                                 <div class="custom-card-image flex justify-center items-center">
 
