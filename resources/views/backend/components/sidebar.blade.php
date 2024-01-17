@@ -1,7 +1,7 @@
 
 @inject('orders', 'App\Domains\Order\Models\Order')
 
-<aside id="sidebar" class="pt-12 fixed top-0 left-0 z-[2] w-[16rem] h-screen transition-transform -translate-x-full md:!translate-x-[0px] bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
+<aside id="logo-sidebar" class="pt-12 fixed top-0 left-0 z-[31] w-[16rem] h-screen transition-transform -translate-x-full md:!translate-x-[0px] bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">
    <div class="h-full px-3 py-8 overflow-y-auto">
       <ul class="space-y-2 font-medium">
 

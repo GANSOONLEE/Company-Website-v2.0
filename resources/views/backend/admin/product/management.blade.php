@@ -21,18 +21,21 @@
     <table class="pb-2 w-full border-gray-400 rounded-lg shadow">
         <thead>
             <tr class="bg-gray-200 dark:bg-gray-800">
-                <th class="px-3">@lang('Id')</th>
-                <th>@lang('product.name')</th>
-                <th>@lang('product.category')</th>
-                <th class="py-3">@lang('Action')</th>
+                <th class="whitespace-nowrap px-3 py-2">@lang('Id')</th>
+                <th class="whitespace-nowrap">
+                    <span class="hidden md:!table-cell">@lang('product.name')</span>
+                    <span class="block md:hidden">@lang('product.content')</span>
+                </th>
+                <th class="whitespace-nowrap hidden md:!table-cell">@lang('product.category')</th>
+                <th class="whitespace-nowrap hidden md:!table-cell py-3">@lang('Action')</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($productData as $product)
-                <tr class="text-sm">
-                    <td class="px-3 w-20">{{ $product->id }}</td>
-                    <td class="w-96">{{ $product->name ?? ':(' }}</td>
-                    <td class="w-60">{{ $product->product_category }}</td>
+                <tr class="text-sm border-gray-300 border-t-[1px] border-b-[1px] md:border-none">
+                    <td class="px-3 w-20 py-[.75rem] md:p-[0]">{{ $product->id }}</td>
+                    <td class="block md:!table-cell w-96">{{ $product->name ?? ':(' }}</td>
+                    <td class="block md:!table-cell w-60">{{ $product->product_category }}</td>
                     <td class="flex justify-content-start gap-x-4 align-items-center py-2">
                         <a class="w-18 flex justify-center btn btn-primary bg-primary text-nowrap" href="{{ route('backend.admin.product.edit', ["id" => $product->id]) }}"><i class="fa-solid fa-edit mr-2"></i>@lang('Edit')</a>
                         <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $product->id }}').submit() : null ;" class="w-18 flex justify-center btn btn-danger bg-danger text-nowrap ml-3"><i class="fa-solid fa-trash mr-2"></i>@lang('Delete')</a>

@@ -11,24 +11,32 @@
 
     @include('frontend.includes.carousel')
 
-    <div class="content position-relative z-10 bg-white">
+    <div class="content relative z-10 bg-white overflow-hidden">
 
-        <!-- #TODO 加入新内容 -->
-        <h2 class="text-2xl">Frozen Aircond Sdn. Bhd.</h2>
+        <div class="absolute top-0 left-0 z-[1]">
+            <img src="{{ asset('images/background.png') }}" alt="" class="h-full w-full object-cover">
+        </div>
 
-        <div class="section flex flex-col md:flex-row w-full md:w-auto">
-
-            <div class="area w-full max-w-[100%] md:max-w-[50%]">
-                <h4 class="section-title text-xl text-center font-bold mb-2 md:mb-[0]">Who are we</h4>
-
-                <div class="section-body mb-6">
-                    Frozen Air Cond Sdn Bhd, is an automatic air conditioning spare part supply to supplier or mechanic.
+        <div class="relative z-[10]">
+    
+            <!-- #TODO 加入新内容 -->
+            <h2 class="text-2xl">Frozen Aircond Sdn. Bhd.</h2>
+    
+            <div class="section flex flex-col md:flex-row w-full md:w-auto">
+    
+                <div class="area w-full max-w-[100%] md:max-w-[50%]">
+                    <h4 class="section-title text-xl text-center font-bold mb-2 md:mb-[0]">Who are we</h4>
+    
+                    <div class="section-body mb-6">
+                        Frozen Air Cond Sdn Bhd, is an automatic air conditioning spare part supply to supplier or mechanic.
+                    </div>
+                </div>
+    
+                <div class="area">
+                    <img src="{{ asset('image/frozen air cond.webp') }}" alt="">
                 </div>
             </div>
 
-            <div class="area">
-                <img src="{{ asset('image/frozen air cond.webp') }}" alt="">
-            </div>
         </div>
 
     </div>
