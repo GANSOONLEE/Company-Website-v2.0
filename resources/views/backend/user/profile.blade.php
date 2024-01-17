@@ -16,7 +16,7 @@
 
             <div class="row-content">
 
-                <div class="row mb-3">
+                <div class="flex flex-col md:flex-row gap-x-4 mb-3">
                     <div class="col">
                         <label class="form-label" for="">Name</label>
                         <input type="text" class="input-field" name="name" disabled value="{{ $user->name }}"  placeholder="John" required>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="flex flex-col md:flex-row gap-x-4 mb-3">
                     <div class="col">
                         <label class="form-label" for="">Whatasapp Number</label>
                         <input type="text" class="input-field" name="whatsapp_phone" disabled value="{{ $user->whatsapp_phone }}">
@@ -47,9 +47,9 @@
         <!-- Shop Information -->
         <div class="row">
 
-            <div class="row-title">
+            {{-- <div class="row-title">
                 <p class="row-title-text">Shop Information</p>
-            </div>
+            </div> --}}
 
             <div class="row-content">
                 
@@ -58,7 +58,7 @@
                     <textarea class="input-field resize-none" name="address" disabled>{{ $user->address }}</textarea>
                 </div>
 
-                <div class="row mt-3">
+                <div class="flex flex-col md:flex-row gap-x-4 mb-3">
 
                     <div class="col">
                         <label class="form-label read-only" for="">Jobs</label>

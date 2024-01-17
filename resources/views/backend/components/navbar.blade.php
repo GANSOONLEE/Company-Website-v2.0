@@ -16,7 +16,7 @@
                 </button>
                 <a href="{{ route('frontend.home') }}" class="flex ms-2 md:me-24">
                     <img src="{{ asset('image/logo.webp') }}" class="h-6 md:h-8 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-sm md:text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                    <span class="self-center hidden md:block text-sm md:text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                         Frozen Aircond Sdn Bhd
                     </span>
                 </a>
@@ -55,7 +55,7 @@
                             </p>
                         </div>
                         <ul class="py-1" role="none">
-                            <li>
+                            {{-- <li>
                                 <a href="#"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Dashboard</a>
@@ -69,7 +69,7 @@
                                 <a href="#"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Earnings</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('auth.logout') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"

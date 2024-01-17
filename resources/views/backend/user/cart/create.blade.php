@@ -87,23 +87,24 @@
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr class="block">
-                        <th scope="col" class="block px-6 py-3">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
                             No.
                         </th>
                         <th scope="col" class="block px-6 py-3">
-                            Product name
+                            <span class="hidden md:block">Product name</span>
+                            <span class="block md:hidden">Product Detail</span>
                         </th>
-                        <th scope="col" class="block px-6 py-3">
+                        <th scope="col" class="hidden md:!table-cell px-6 py-3">
                             Category
                         </th>
-                        <th scope="col" class="block px-6 py-3">
+                        <th scope="col" class="hidden md:!table-cell px-6 py-3">
                             Brand
                         </th>
-                        <th scope="col" class="block px-6 py-3">
+                        <th scope="col" class="hidden md:!table-cell px-6 py-3">
                             Quantity
                         </th>
-                        <th scope="col" class="block px-6 py-3">
+                        <th scope="col" class="hidden md:!table-cell px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -115,19 +116,19 @@
                                 <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $index + 1 }}
                                 </th>
-                                <td class="px-6 py-2">
+                                <td class="block md:!table-cell px-6 py-2">
                                     {{ $cart->productName()->first()->name }}
                                 </td>
-                                <td class="px-6 py-2">
+                                <td class="block md:!table-cell px-6 py-2">
                                     {{ $cart->product()->first()->product_category }}
                                 </td>
-                                <td class="px-6 py-2">
+                                <td class="block md:!table-cell px-6 py-2">
                                     {{ $cart->sku_id }}
                                 </td>
-                                <td class="px-6 py-2">
+                                <td class="block md:!table-cell px-6 py-2">
                                     <input type="number" name="quantity" data-brand="{{ $cart->sku_id }}" data-quantity="{{ $cart->number }}" onchange="updateQuantity(event)" min="0" max="500" value="{{ $cart->number }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 </td>
-                                <td class="px-6 py-2">
+                                <td class="block md:!table-cell px-6 py-2">
                                     <a href="{{ route('frontend.product.detail', ["productCode" => $cart->product()->first()->product_code]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Link</a>
                                 </td>
                             </tr>

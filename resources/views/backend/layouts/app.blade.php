@@ -36,7 +36,7 @@
     @routes
 
     <x-navbar />
-    <span id="logo-sidebar" hidden></span>
+    <span id="" hidden></span>
     
     <div class="app" id="app">
 
