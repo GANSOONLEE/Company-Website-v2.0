@@ -14,16 +14,16 @@
 </div>
 <div id="default-tab-content">
     @foreach ($tabs as $tab)
-        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="{{ $tab->dataTabsTarget }}" role="tabpanel" aria-labelledby="#{{ $tab->id }}">
+        <div class="hidden shadow md:shadow-none md:p-4 rounded-lg bg-gray-50 dark:bg-gray-800 overflow-x-auto" id="{{ $tab->dataTabsTarget }}" role="tabpanel" aria-labelledby="#{{ $tab->id }}">
             <table class="w-full">
                 <thead>
                     <tr class=" bg-gray-300 text-bold dark:bg-gray-600">
-                        <th class="px-3 py-2">@lang('Id')</th>
-                        <th>@lang('order.shop_name')</th>
+                        <th class="sticky left-0 px-3 py-2 bg-gray-300">@lang('Id')</th>
+                        <th class="pl-3">@lang('order.shop_name')</th>
                         <th class="pl-3">@lang('order.order-item-count')</th>
-                        <th>@lang('order.detail')</th>
-                        <th>@lang('order.created-at')</th>
-                        <th>@lang('order.updated-at')</th>
+                        <th class="pl-3">@lang('order.detail')</th>
+                        <th class="pl-3">@lang('order.created-at')</th>
+                        <th class="pl-3 pr-4">@lang('order.updated-at')</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,19 +38,19 @@
                             </div>
 
                             <tr class="text-sm odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:odd:bg-gray-700 dark:even:bg-gray-800 dark:hover:bg-gray-900">
-                                <td class="w-20 px-3 py-3">{{ $order->id }}</td>
-                                <td class="whitespace-nowrap">
+                                <td class="sticky border-gray-300 border-r-1 md:border-r-0 left-0 w-20 px-3 py-3 odd:bg-gray-100 even:bg-gray-200">{{ $order->id }}</td>
+                                <td class="pl-3 whitespace-nowrap">
                                     <p data-tooltip-target="{{ $order->code }}" class="w-min">
                                         {{ $order->user()->first()->shop_name }}</td>
                                     </p>
                                 <td class="w-30 pl-3">{{ $order->detail()->count() }}</td>
-                                <td class="w-30">
+                                <td class="w-30 pl-3">
                                     <a class="flex gap-x-4 hover:text-blue-600" href="{{ route('backend.admin.order.detail', ["id" => $order->id]) }}">
                                         <button><i class="fa-solid fa-search"></i></button>@lang('Detail')
                                     </a>
                                 </td>
-                                <td class="w-60 nowrap">{{ $order->created_at }}</td>
-                                <td class="w-60 nowrap">{{ $order->updated_at }}</td>
+                                <td class="w-60 pl-3 nowrap">{{ $order->created_at }}</td>
+                                <td class="w-60 pl-3 pr-4 nowrap">{{ $order->updated_at }}</td>
                             </tr>
                             
                         @endforeach

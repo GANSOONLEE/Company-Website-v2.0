@@ -83,20 +83,12 @@ button, textarea, input{
     outline: none;
 }
 
-h1, h2, h3, h4, h5, h6, p{
+h1, h2, h3, h4, h5, h6, p, span, th, td{
     margin-bottom: 0;
+    white-space: nowrap;
 }
 
 /* ———————————————————— Global Custom Class ———————————————————— */
-
-.flex-row{
-    display: flex;
-}
-
-.flex-column{
-    display: flex;
-    flex-direction: column;
-}
 
 .alert{
     z-index: 1;
@@ -104,14 +96,6 @@ h1, h2, h3, h4, h5, h6, p{
     height: 9vh;
     top: 1rem;
     column-gap: 1.2rem;
-}
-
-.border-hidden{
-    border: none;
-}
-
-.border-t-solid{
-    border-top-style: solid;
 }
 
 .required{
@@ -122,91 +106,9 @@ h1, h2, h3, h4, h5, h6, p{
     }
 }
 
-.bg-white {
-    background-color: white;
-}
-
-.bg-light {
-    background-color: #fefefe;
-}
-
-.text-white {
-    color: white;
-}
-
-/* ———————————————————— Global Variable ———————————————————— */
-
-// Color
-
-:root{
-    /* Common */
-    --color-white: #fff;
-    --color-black: #000;
-    
-    /* Light */
-    --color-white-light: #F9F2ED;
-    --color-blue-light: #3AB0FF;
-    --color-orange-light: #FFB562;
-    --color-red-light: #F87474;
-}
-
-// Font size
-
-/* Desktop */
-@media only screen and (min-width: 1300px) {
-    :root{
-        --font-h1: 4.5rem;
-        --font-h2: 3.5rem;
-        --font-h3: 2.3rem;
-        --font-h4: 1.8rem;
-        --font-h5: 1.6rem;
-        --font-h6: 1.3rem;
-
-        --font-title: 1.2rem;
-        --font-subtitle: 1.1rem;
-        --font-content: 1rem;
-        --font-remark: .8rem;
-    }
-}
-
-/* Tablet Computer */
-@media only screen and (min-width: 867px) {
-    :root{
-        --font-h1: 4.5rem;
-        --font-h2: 3.5rem;
-        --font-h3: 2.3rem;
-        --font-h4: 1.75rem;
-        --font-h5: 1.5rem;
-        --font-h6: 1.3rem;
-
-        --font-title: 1.1rem;
-        --font-subtitle: 1rem;
-        --font-content: 1rem;
-        --font-remark: .9rem;
-    }
-}
-
-/* Phone */
-@media only screen and (max-width: 867px) {
-    :root{
-        --font-h1: 3.5rem;
-        --font-h2: 3rem;
-        --font-h3: 2.5rem;
-        --font-h4: 1.55rem;
-        --font-h5: 1.4rem;
-        --font-h6: 1.4rem;
-
-        --font-title: 1.1rem;
-        --font-subtitle: 1rem;
-        --font-content: .9rem;
-        --font-remark: .8rem;
-    }
-}
-
 /* ———————————————————— Setup global style ———————————————————— */
 
 html{
-    
 
     div.app#app{
         display: flex;
