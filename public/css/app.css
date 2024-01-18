@@ -15633,6 +15633,12 @@ input:checked + .toggle-bg{
 .w-screen{
   width: 100vw;
 }
+.w-\[8rem\]{
+  width: 8rem;
+}
+.w-\[4rem\]{
+  width: 4rem;
+}
 .\!max-w-\[100\%\]{
   max-width: 100% !important;
 }

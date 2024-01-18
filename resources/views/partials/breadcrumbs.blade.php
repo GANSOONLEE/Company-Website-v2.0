@@ -6,7 +6,7 @@
 </style>
 
 @unless($breadcrumbs->isEmpty())
-    <ol class="relative breadcrumb flex px-4 py-3 text-gray-700 border border-gray-200 rounded-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:!text-white z-99">
+    <ol class="relative breadcrumb flex px-4 py-3 text-gray-700 border border-gray-200 rounded-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:!text-white z-30">
         @foreach($breadcrumbs as $breadcrumb)
  
             @if(!$loop->last)
