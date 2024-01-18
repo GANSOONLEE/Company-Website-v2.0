@@ -172,7 +172,7 @@ if(!function_exists('path_decode'))
                 "encode" => '%8',
             ],
             (object)[
-                "decode" => '|',
+                "decode" => '%259',
                 "encode" => '%9',
             ],
         ];

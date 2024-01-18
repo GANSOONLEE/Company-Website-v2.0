@@ -83,6 +83,8 @@ class CategoryService extends Service
 
         try{
 
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
             if($data['name'] && $data['name'] !== $category->name){
                 
                 if(isset($data['image'])){
@@ -115,6 +117,8 @@ class CategoryService extends Service
                 'name' => $data['name'],
                 'orderId' => $data['orderId'],
             ]);
+
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         }catch(Exception $e){
             DB::rollBack();

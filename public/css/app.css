@@ -15255,6 +15255,9 @@ input:checked + .toggle-bg{
 .sticky{
   position: sticky;
 }
+.-bottom-\[1rem\]{
+  bottom: -1rem;
+}
 .-left-100{
   left: -25rem;
 }
@@ -15267,14 +15270,8 @@ input:checked + .toggle-bg{
 .bottom-8{
   bottom: 2rem;
 }
-.bottom-\[0\]{
-  bottom: 0;
-}
 .bottom-\[60px\]{
   bottom: 60px;
-}
-.bottom-\[6rem\]{
-  bottom: 6rem;
 }
 .left-12{
   left: 3rem;
@@ -15318,15 +15315,6 @@ input:checked + .toggle-bg{
 .top-full{
   top: 100%;
 }
-.-bottom-6{
-  bottom: -1.5rem;
-}
-.-bottom-\[4\]{
-  bottom: -4;
-}
-.-bottom-\[1rem\]{
-  bottom: -1rem;
-}
 .\!z-99{
   z-index: 99 !important;
 }
@@ -15359,9 +15347,6 @@ input:checked + .toggle-bg{
 }
 .z-\[31\]{
   z-index: 31;
-}
-.z-99999{
-  z-index: 99999;
 }
 .z-\[998\]{
   z-index: 998;
@@ -15702,10 +15687,6 @@ input:checked + .toggle-bg{
   --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.translate-y-1\/2{
-  --tw-translate-y: 50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .translate-y-full{
   --tw-translate-y: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -15741,17 +15722,6 @@ input:checked + .toggle-bg{
 }
 .animate-\[bounce_\.6s_ease-in-out_alternate-reverse_infinite\]{
   animation: bounce .6s ease-in-out alternate-reverse infinite;
-}
-@keyframes concentric-circles{
-  0%, 100%{
-    transform: opacity(1);
-  }
-  50%{
-    transform: opacity(0);
-  }
-}
-.animate-concentric-circles-normal{
-  animation: concentric-circles 2s linear infinite alternate-reverse;
 }
 .cursor-default{
   cursor: default;
@@ -16148,10 +16118,6 @@ input:checked + .toggle-bg{
 .bg-black{
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-blue-100{
-  --tw-bg-opacity: 1;
-  background-color: rgb(225 239 254 / var(--tw-bg-opacity));
 }
 .bg-blue-400\/75{
   background-color: rgb(118 169 250 / 0.75);
@@ -16656,9 +16622,6 @@ input:checked + .toggle-bg{
 .opacity-80{
   opacity: 0.8;
 }
-.opacity-\[0\.25\]{
-  opacity: 0.25;
-}
 .opacity-\[0\.20\]{
   opacity: 0.20;
 }
@@ -16931,7 +16894,7 @@ li.box div.container label div.image-preview img {
 
 body {
   overflow-x: hidden;
-  cursor: url("/images/cursor.cur"), auto;
+  cursor: url("/images/cursor.png"), auto;
 }
 
 a {
