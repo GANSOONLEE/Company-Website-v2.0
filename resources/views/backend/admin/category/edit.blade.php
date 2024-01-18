@@ -67,16 +67,16 @@
         </thead>
         <tbody>
             @foreach ($categories::byName()->paginate(10) as $category)
-                <tr class="border-b-[1px] md:border-none odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
+                <tr class="border-gray-400 border-b-[1px] md:border-none odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
                     <td class="px-3">{{ $category->id }}</td>
-                    <td class="flex justify-center px-3 py-2 w-32">
+                    <td class="md:!table-cell flex justify-center px-3 py-2 w-32">
                         {{-- {{ dd( $category->image()) }} --}}
                         <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/category/' . $category->image()) }}" alt="">
                     </td>
-                    <td class="border-gray-100">{{ $category->name }}</td>
-                    <td class="w-64">{{ $category->title()->title ?? null }}</td>
-                    <td class="w-64">{{ $category->products()->count() }}</td>
-                    <td class="w-56 py-2">
+                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell border-gray-100">{{ $category->name }}</td>
+                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell md:!w-64">{{ $category->title()->title ?? null }}</td>
+                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell md:!w-64">{{ $category->products()->count() }}</td>
+                    <td class="w-full block px-3 py-2 md:!px-0 md:!table-cell md:!w-56 py-2">
                         <div class="flex justify-between align-items-center">
                             <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
                                 <a class="flex justify-center gap-x-4">

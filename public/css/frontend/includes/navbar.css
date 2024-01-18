@@ -14,7 +14,6 @@ nav.navbar#navbar {
   background-color: var(--color-white);
 }
 nav.navbar#navbar > div.company-logo {
-  width: 8%;
   height: 100%;
 }
 nav.navbar#navbar > div.company-logo > img.company-logo-image {
