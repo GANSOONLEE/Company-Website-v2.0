@@ -34,7 +34,7 @@
 
     @stack('before-body')
 
-    <title>{{env('APP_NAME')}} | @yield('title')</title>
+    <title>{{ config('app.name') }} | @yield('title')</title>
 </head>
 <body>
 

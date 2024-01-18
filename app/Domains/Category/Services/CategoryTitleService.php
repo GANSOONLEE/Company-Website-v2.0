@@ -71,8 +71,8 @@ class CategoryTitleService extends Service
             $categoryTitle = $this->model->find($id);
 
             $categoryTitle->update([
-                "title" => $data['title'] ?? null,
-                "order" => $data['order'] ?? null,
+                "title" => $data['title'],
+                "order" => $data['order'],
             ]);
 
         }catch(Exception $e){

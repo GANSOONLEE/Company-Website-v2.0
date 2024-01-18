@@ -8,76 +8,83 @@
         $model = isset($model) ? $model : '';
     @endphp
 
-    <div class="header">
-        <div class="breadcrumbs">
-            {{ Breadcrumbs::render('frontend.product.search') }}
+    <div class="relative">
+
+        <div class="fixed top-0 left-0 z-[1] h-screen w-screen">
+            <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover brightness-110">
         </div>
-    </div>
 
-    <div class="content flex flex-column">
+        <div class="header">
+            <div class="breadcrumbs">
+                {{ Breadcrumbs::render('frontend.product.search') }}
+            </div>
+        </div>
 
-        <!-- Filter -->
-        {{-- @include('frontend.includes.filter', ['category' => $category]) --}}
+        <div class="content flex flex-column">
 
-        <section class="container w-full px-8">
+            <!-- Filter -->
+            {{-- @include('frontend.includes.filter', ['category' => $category]) --}}
 
-            <p class="container-title">Search</p>
+            <section class="container w-full px-8">
 
-            <!-- Product Card -->
-            <section class="product-list">
+                <p class="container-title">Search</p>
 
-                <!-- Unit -->
-                @if (count($productData) > 0)
-                
-                    @foreach ($productData as $index => $item)
+                <!-- Product Card -->
+                <section class="product-list">
 
-                        <div class="flex flex-col w-full mt-[.5rem]">
+                    <!-- Unit -->
+                    @if (count($productData) > 0)
+                    
+                        @foreach ($productData as $index => $item)
 
-                            <h3 class="text-2xl font-bold mb-[1rem]">{{ $index }}</h3>
+                            <div class="flex flex-col w-full mt-[.5rem] z-9">
 
-                            <div class="flex flex-wrap justify-start gap-x-12">
+                                <h3 class="text-2xl font-bold mb-[1rem]">{{ $index }}</h3>
 
-                                @foreach ($item as $product)
+                                <div class="flex flex-wrap justify-start gap-x-12">
 
-                                    <a class="product-detail-href" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
-                                        <div class="custom-card">
+                                    @foreach ($item as $product)
 
-                                            <div class="custom-card-image flex justify-center items-center">
-                                                <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
-                                                <img class="product-cover"
-                                                    src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}"
-                                                    alt="">
-                                                <div class="see-more">
-                                                    See More
+                                        <a class="product-detail-href bg-white" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
+                                            <div class="custom-card">
+
+                                                <div class="custom-card-image flex justify-center items-center">
+                                                    <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                                                    <img class="product-cover"
+                                                        src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}"
+                                                        alt="">
+                                                    <div class="see-more">
+                                                        See More
+                                                    </div>
                                                 </div>
+
+                                                <div class="custom-card-header">
+                                                    @foreach ($product->names()->get() as $names)
+                                                        <p>{{ $names->name }}</p>
+                                                    @endforeach
+                                                </div>
+
                                             </div>
 
-                                            <div class="custom-card-header">
-                                                @foreach ($product->names()->get() as $names)
-                                                    <p>{{ $names->name }}</p>
-                                                @endforeach
-                                            </div>
+                                        </a>
 
-                                        </div>
+                                    @endforeach
 
-                                    </a>
-
-                                @endforeach
+                                </div>
 
                             </div>
 
-                        </div>
+                        @endforeach
 
-                    @endforeach
+                    @else
+                        <h1>No any record</h1>
+                    @endif
 
-                @else
-                    <h1>No any record</h1>
-                @endif
+                </section>
 
             </section>
 
-        </section>
-
+        </div>
     </div>
 
 @endsection

@@ -11,17 +11,16 @@
 
     @include('frontend.includes.carousel')
 
-    <div class="content relative z-10 bg-white overflow-hidden">
+    <div class="content relative z-10 bg-white w-full overflow-hidden">
 
-        <div class="absolute top-0 left-0 z-[1]">
+        <div class="absolute top-0 left-0 z-[1] w-full h-full">
             <img src="{{ asset('images/background.png') }}" alt="" class="h-full w-full object-cover">
         </div>
 
-        <div class="relative z-[10]">
+        <div class="relative z-[10] py-5 px-7">
     
             <!-- #TODO 加入新内容 -->
             <h2 class="text-2xl">Frozen Aircond Sdn. Bhd.</h2>
-    
             <div class="section flex flex-col md:flex-row w-full md:w-auto">
     
                 <div class="area w-full max-w-[100%] md:max-w-[50%]">

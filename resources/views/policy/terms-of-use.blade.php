@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content/>>t="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }} | {{ __('Terms and Conditions') }}</title>
 </head>
@@ -19,11 +19,11 @@
 
 <h3>AGREEMENT TO OUR LEGAL TERMS</h3>
 
-<p>We are {{config('policy-information.company-name')}}, doing business as Frozen Aircond ("Company," "we," "us," "our"), a company registered in Malaysia at No.1, Jalan Emas 5, Taman Emas, Kampung Pasir Ulu Yam, 44300, Selangor, Malaysia.</p>
+<p>We are {{ config('policy-information.company-name') }}, doing business as Frozen Aircond ("Company," "we," "us," "our"), a company registered in Malaysia at No.1, Jalan Emas 5, Taman Emas, Kampung Pasir Ulu Yam, 44300, Selangor, Malaysia.</p>
 
-<p>We operate the website {{ env('APP_URL') }} (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").</p>
+<p>We operate the website <a href="{{ config('app.url') }}"> {{ config('app.url') }}</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").</p>
 
-<p>You can contact us by phone at {{config('policy-information.phone-number')}}, email at {{config('policy-information.email-address')}}, or by mail to No.1, Jalan Emas 5, Taman Emas, Kampung Pasir Ulu Yam, 44300, Selangor, Malaysia.</p>
+<p>You can contact us by phone at {{ config('policy-information.phone-number') }}, email at {{config('policy-information.email-address')}}, or by mail to No.1, Jalan Emas 5, Taman Emas, Kampung Pasir Ulu Yam, 44300, Selangor, Malaysia.</p>
 
 <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and {{config('policy-information.company-name')}}, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
 
