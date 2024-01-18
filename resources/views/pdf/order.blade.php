@@ -27,7 +27,7 @@
     <p style="width: 100%; font-size: 1.6rem; font-weight: bold; color: black; text-align: center;">{{ config('app.name') }} Sdn. Bhd.</p>
 
     <!-- Watermark -->
-    <img style="position: absolute; width: 16rem; height: auto; left: 50%; top: 1rem; transform:translateX(-50%); opacity: 0.1" src="{{ asset('images/logo.webp') }}" alt="">
+    {{-- <img style="position: absolute; width: 16rem; height: auto; left: 50%; top: 1rem; transform:translateX(-50%); opacity: 0.1" src="{{ asset('images/logo.webp') }}" alt=""> --}}
 
     <h1 style="font-size: 1.8rem; margin: 0; line-height: 0">Order: #{{ $order->id }}</h1>
     <h4 style="font-size: 1rem; margin-top: 0; font-weight: normal; color: gray">{{ $order->user()->first()->shop_name }}</h4>

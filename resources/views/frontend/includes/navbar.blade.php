@@ -1,15 +1,15 @@
 
-<nav class="navbar sticky max-[650px]:!h-[8vh]" id="navbar">
+<nav class="navbar sticky max-[650px]:!h-[8vh] bg-white !z-99999" id="navbar">
 
     <div class="flex justify-center items-center company-logo w-[4rem]">
         <img src="{{asset('image/logo-square-lite.png')}}" alt="" class="company-logo-image !w-full h-auto">
     </div>
     <input type="checkbox" name="menu-button" id="menu-button">
-    <label for="menu-button">
+    <label class="cursor-pointer" for="menu-button">
         <i class="fa-solid fa-bars"></i>
     </label>
 
-    <div class="menu flex justify-content-between align-items-center sm:flex-column max-[867px]:!py-[.75rem] max-[867px]:border max-[867px]:!border-gray-300 max-[867px]:shadow max-[740px]:!top-[8vh] min-[740px]:!top-[7vh]">
+    <div class="menu bg-white flex justify-content-between align-items-center sm:flex-column max-[867px]:!py-[.75rem] max-[867px]:border max-[867px]:!border-gray-300 max-[867px]:shadow max-[740px]:!top-[8vh] min-[740px]:!top-[7vh]">
         <ul class="navbar-links common">
             <a href="{{ route('frontend.home') }}" class="navbar-link">
                 <li class="navbar-link-label">Home</li>

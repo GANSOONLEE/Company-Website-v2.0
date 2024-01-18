@@ -93,7 +93,7 @@
     </div>
 
     <!-- copyright & author -->
-    <div class="relative footer-footer z-9">
+    <div class="relative footer-footer z-9 text-white">
         <p class="copy-right">
             TM © 2023
             <?php echo date('Y') > 2023 ? date('- Y') : ''; ?>
