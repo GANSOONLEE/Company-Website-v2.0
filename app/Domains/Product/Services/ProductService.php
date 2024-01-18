@@ -415,11 +415,21 @@ class ProductService extends BaseService
      */
     public function updateProduct(Product $product, array $data = []) :void
     {
+        // update product 更新產品
+
+        $originCategory = $product->product_category;
+
         $product->update([
             'product_category' => $data['product_category'] ?? null,
             'product_status' => $data['product_status'] ?? null,
             'remarks' => $data['remarks'] ?? null,
         ]);
+
+        // move image path
+        $originPath = "product/$originCategory/$product->product_code";
+        $newPath = "product/" . $data['product_category'] . "/$product->product_code";
+        Storage::disk('public')->move($originPath, $newPath);
+
     }
 
     /**
