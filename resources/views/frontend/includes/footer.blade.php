@@ -1,7 +1,7 @@
 <footer class="relative footer display-column !bg-[#414141] z-9999" id="footer">
 
     <img src="https://w0.peakpx.com/wallpaper/466/1011/HD-wallpaper-blue-snowflake-in-black-background-snowflake-thumbnail.jpg"
-        class="z-1 absolute top-0 left-0 w-full h-full object-cover opacity-[0.25]" alt="">
+        class="z-1 absolute top-0 left-0 w-full h-full object-cover opacity-[0.20]" alt="">
     <!-- footer header -->
     {{-- <div class="footer-header display-column">
         <p class="footer-header-title">Site Map</p>
@@ -12,7 +12,7 @@
     <div class="footer-body z-9 relative top-0 left-0">
 
         <!-- footer links -->
-        <div class="footer-link-container">
+        <div class="footer-link-container pr-6">
 
             <!-- Follow Us -->
             <section class="footer-link-section">
@@ -54,7 +54,7 @@
 
             <!-- T&C -->
             <section class="footer-link-section">
-                <p class="footer-link-section-title !text-footer-thinker whitespace-nowrap">Policy</p>
+                <p class="footer-link-section-title text-center md:!text-start !text-footer-thinker whitespace-nowrap">Policy</p>
                 <ul class="footer-link-section-list !text-white">
                     <a href="{{ route('policy.privacy-policy') }}" target="_blank">
                         <li class="footer-link whitespace-nowrap hover:!text-blue-500">
@@ -71,7 +71,7 @@
 
             <!-- Address -->
             <section class="footer-link-section">
-                <p class="footer-link-section-title !text-footer-green whitespace-nowrap">Address</p>
+                <p class="footer-link-section-title text-center md:!text-start !text-footer-green whitespace-nowrap">Address</p>
                 <div class="footer-link-section-list !text-white w-max font-sans">
                     No.1 & 5 ,Jalan Emas 5,<br>
                     Taman Emas, Hulu Yam, <br>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- copyright & author -->
-    <div class="footer-footer">
+    <div class="relative footer-footer z-9">
         <p class="copy-right">
             TM © 2023
             <?php echo date('Y') > 2023 ? date('- Y') : ''; ?>

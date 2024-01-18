@@ -14834,6 +14834,8 @@ input[type="range"]::-ms-fill-lower{
   border-color: #D1D5DB;
   border-width: 1px;
   border-radius: 9999px;
+  height: 1.25rem;
+  width: 1.25rem;
   transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
   transition-duration: .15s;
   box-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -15015,6 +15017,8 @@ input[type=file]::file-selector-button:hover{
   border-color: #D1D5DB;
   border-width: 1px;
   border-radius: 9999px;
+  height: 1.25rem;
+  width: 1.25rem;
   transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
   transition-duration: .15s;
   box-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -15281,6 +15285,9 @@ input:checked + .toggle-bg{
 .left-\[25\%\]{
   left: 25%;
 }
+.right-5{
+  right: 1.25rem;
+}
 .right-6{
   right: 1.5rem;
 }
@@ -15310,6 +15317,15 @@ input:checked + .toggle-bg{
 }
 .top-full{
   top: 100%;
+}
+.-bottom-6{
+  bottom: -1.5rem;
+}
+.-bottom-\[4\]{
+  bottom: -4;
+}
+.-bottom-\[1rem\]{
+  bottom: -1rem;
 }
 .\!z-99{
   z-index: 99 !important;
@@ -15344,6 +15360,12 @@ input:checked + .toggle-bg{
 .z-\[31\]{
   z-index: 31;
 }
+.z-99999{
+  z-index: 99999;
+}
+.z-\[998\]{
+  z-index: 998;
+}
 .float-right{
   float: right;
 }
@@ -15368,6 +15390,9 @@ input:checked + .toggle-bg{
 }
 .-mr-\[4px\]{
   margin-right: -4px;
+}
+.mb-5{
+  margin-bottom: 1.25rem;
 }
 .mb-6{
   margin-bottom: 1.5rem;
@@ -15474,8 +15499,14 @@ input:checked + .toggle-bg{
 .h-16{
   height: 4rem;
 }
+.h-5{
+  height: 1.25rem;
+}
 .h-6{
   height: 1.5rem;
+}
+.h-7{
+  height: 1.75rem;
 }
 .h-8{
   height: 2rem;
@@ -15561,11 +15592,17 @@ input:checked + .toggle-bg{
 .w-40{
   width: 10rem;
 }
+.w-5{
+  width: 1.25rem;
+}
 .w-6{
   width: 1.5rem;
 }
 .w-60{
   width: 15rem;
+}
+.w-7{
+  width: 1.75rem;
 }
 .w-8{
   width: 2rem;
@@ -15575,9 +15612,6 @@ input:checked + .toggle-bg{
 }
 .w-\[1\.5rem\]{
   width: 1.5rem;
-}
-.w-\[100vh\]{
-  width: 100vh;
 }
 .w-\[10rem\]{
   width: 10rem;
@@ -15610,6 +15644,9 @@ input:checked + .toggle-bg{
 .w-min{
   width: -moz-min-content;
   width: min-content;
+}
+.w-screen{
+  width: 100vw;
 }
 .\!max-w-\[100\%\]{
   max-width: 100% !important;
@@ -15704,6 +15741,17 @@ input:checked + .toggle-bg{
 }
 .animate-\[bounce_\.6s_ease-in-out_alternate-reverse_infinite\]{
   animation: bounce .6s ease-in-out alternate-reverse infinite;
+}
+@keyframes concentric-circles{
+  0%, 100%{
+    transform: opacity(1);
+  }
+  50%{
+    transform: opacity(0);
+  }
+}
+.animate-concentric-circles-normal{
+  animation: concentric-circles 2s linear infinite alternate-reverse;
 }
 .cursor-default{
   cursor: default;
@@ -16271,9 +16319,17 @@ input:checked + .toggle-bg{
   padding-left: 3.125rem;
   padding-right: 3.125rem;
 }
+.px-5{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 .px-6{
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+.px-7{
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
 }
 .px-8{
   padding-left: 2rem;
@@ -16302,6 +16358,10 @@ input:checked + .toggle-bg{
 .py-17{
   padding-top: 4.25rem;
   padding-bottom: 4.25rem;
+}
+.py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .py-8{
   padding-top: 2rem;
@@ -16346,6 +16406,9 @@ input:checked + .toggle-bg{
 }
 .pl-6{
   padding-left: 1.5rem;
+}
+.pr-6{
+  padding-right: 1.5rem;
 }
 .pr-8{
   padding-right: 2rem;
@@ -16595,6 +16658,9 @@ input:checked + .toggle-bg{
 }
 .opacity-\[0\.25\]{
   opacity: 0.25;
+}
+.opacity-\[0\.20\]{
+  opacity: 0.20;
 }
 .shadow{
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -16865,7 +16931,7 @@ li.box div.container label div.image-preview img {
 
 body {
   overflow-x: hidden;
-  cursor: url("images/logo.cur"), auto !important;
+  cursor: url("/images/cursor.cur"), auto;
 }
 
 a {
@@ -17934,6 +18000,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   .md\:border-none{
     border-style: none;
   }
+  .md\:p-5{
+    padding: 1.25rem;
+  }
   .md\:p-\[0\]{
     padding: 0;
   }
@@ -17946,6 +18015,9 @@ aside#sidebar > div .active svg.w-3.h-3 {
   }
   .md\:pb-\[0\]{
     padding-bottom: 0;
+  }
+  .md\:\!text-start{
+    text-align: start !important;
   }
   .md\:text-base{
     font-size: 1rem;
@@ -18005,6 +18077,10 @@ aside#sidebar > div .active svg.w-3.h-3 {
   }
   .lg\:p-8{
     padding: 2rem;
+  }
+  .lg\:px-5{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
   .lg\:px-8{
     padding-left: 2rem;
