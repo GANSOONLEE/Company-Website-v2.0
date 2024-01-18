@@ -80,7 +80,6 @@
             <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
         </a>
         {{-- <div class=" animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]"> --}}
-            <div class="ripple-circle color_1" style="animation-duration: 0.6s; font-size: 1em; width: 5em; height: 5em;"></div>
             <img class="flex justify-center items-center absolute -bottom-[1rem] left-12 w-6 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]" src="{{ asset('images/hand-pointer.svg') }}" alt="">
         {{-- </div> --}}
     </div>
