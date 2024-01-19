@@ -18,7 +18,7 @@
                 <label class="mb-[.3rem]" for="notification-duration">@lang('notification.duration', ["unit" => "ms"])</label>
                 <input name="duration" type="number" id="notification-duration" min="1000" max="86400" class="block px-3 py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1000">
             </div>
-            <button class="text-base px-3 py-2 mt-2 self-end text-white bg-blue-600 rounded-sm hover:bg-blue-700">@lang('Publish')</button>
+            <button class="text-base px-3 py-2 mt-4 self-end text-white bg-blue-600 rounded-sm hover:bg-blue-700 w-full md:w-auto">@lang('Publish')</button>
         </x-form.post>
 
     </x-control-panel>

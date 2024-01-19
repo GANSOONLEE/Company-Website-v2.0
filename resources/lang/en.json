@@ -25,5 +25,6 @@
     "Cancel": "Cancel",
     "Rename": "There was be rename to",
     "File": "File",
-    "File Have Select": " :count files selected"
+    "File Have Select": " :count files selected",
+    "Delete-Account": "Delete Account"
 }

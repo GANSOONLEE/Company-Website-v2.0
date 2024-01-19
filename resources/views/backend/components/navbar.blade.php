@@ -71,9 +71,17 @@
                                     role="menuitem">Earnings</a>
                             </li> --}}
                             <li>
+                                <!-- Logout 登出 -->
                                 <a href="{{ route('auth.logout') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">@lang('Logout')</a>
+                                    role="menuitem">@lang('Logout')
+                                </a>
+
+                                <!-- Logout 永久刪除賬戶 -->
+                                <label class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white hover:text-blue-700 w-full text-left"
+                                    role="menuitem" for="profile-menu">
+                                    @lang('Delete-Account')
+                            </label>
                             </li>
                         </ul>
                     </div>
@@ -83,3 +91,50 @@
     </div>
     <div class="underline bg-blue-400/75 h-1"></div>
 </nav>
+
+<input type="checkbox" id="profile-menu" class="peer hidden">
+
+<!-- Confirm Popup 確認式彈出框 -->
+<section class="w-screen h-screen fixed z-99 top-0 left-0 bg-[#00000044] hidden peer-checked:flex justify-center items-center" onclick="document.querySelector('#profile-menu').checked = false">
+
+    <!-- Modal 模擬框 -->
+    <div class="rounded-md shadow px-4 py-3 bg-white dark:bg-gray-700 w-3/4 md:w-96" onclick="event.stopPropagation()">
+
+        <x-form.delete class="delete" :action="route('auth.destroy')">
+
+            <!-- Header 標頭 -->
+            <div class="text-lg font-bold border-b-1 border-gray-300 text-left flex gap-x-4 pb-2">
+                <i class="fa-solid fa-warning"></i>
+                Warning: 
+            </div>
+
+            <!-- Body 主體 -->
+            <div class="">
+
+                <!-- Description 描述 -->
+                <p class="text-sm whitespace-normal">
+                    We need to confirm that it is you.<br>
+                    Please enter password at below input field
+                </p>
+
+                <!-- Form Body 表單主體 -->
+                <div class="flex flex-col row-gap-4 py-2">
+                    
+                    <input name="password" type="password" placeholder="Password" class="border-solid border-1 border-blue-500" required>
+
+                    <button class="bg-danger text-white py-2">
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Footer 頁尾 -->
+            <div class=""></div>
+
+        </x-form.delete>
+
+    </div>
+
+</section>

@@ -3,9 +3,10 @@
 namespace App\Domains\Auth\Http\Controllers;
 
 use App\Domains\Auth\Request\LoginRequest;
+use App\Domains\Auth\Request\DestroyRequest;
 use App\Domains\Auth\Services\LoginService;
 use App\Domains\Auth\Models\User;
-use Hamcrest\Core\IsTypeOf;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,22 @@ class LoginController
         return redirect()->route('frontend.home');
     }
 
+    /**
+     * url: auth/destroy
+     * method: delete
+     * name: auth.destroy
+     * 
+     * @return mixed
+     */
+    public function destroy(DestroyRequest $request): mixed
+    {
+        
+        // get current user account
+        $user = auth()->user();
+        $this->loginService->destroy($user, $request->validated());
+
+        Auth::logout();
+        return redirect()->route('frontend.home');
+    }
 
 }

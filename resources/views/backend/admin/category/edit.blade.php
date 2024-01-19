@@ -54,51 +54,55 @@
         </div>
     </div> 
 
-    <table class="w-full">
-        <thead>
-            <tr class="bg-gray-200 dark:bg-gray-600">
-                <th class="px-3 py-2">@lang('ID')</th>
-                <th class="py-2">@lang('category.image')</th>
-                <th class="py-2">@lang('category.name')</th>
-                <th class="py-2">@lang('category.title')</th>
-                <th class="py-2">@lang('category.product-count')</th>
-                <th class="py-2">@lang('Action')</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories::byName()->paginate(10) as $category)
-                <tr class="border-gray-400 border-b-[1px] md:border-none odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
-                    <td class="px-3">{{ $category->id }}</td>
-                    <td class="md:!table-cell flex justify-center px-3 py-2 w-32">
-                        {{-- {{ dd( $category->image()) }} --}}
-                        <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/category/' . $category->image()) }}" alt="">
-                    </td>
-                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell border-gray-100">{{ $category->name }}</td>
-                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell md:!w-64">{{ $category->title()->title ?? null }}</td>
-                    <td class="w-full block px-3 py-2 md:!p-0 md:!table-cell md:!w-64">{{ $category->products()->count() }}</td>
-                    <td class="w-full block px-3 py-2 md:!px-0 md:!table-cell md:!w-56 py-2">
-                        <div class="flex justify-between align-items-center">
-                            <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
-                                <a class="flex justify-center gap-x-4">
-                                    <i class="fa-solid fa-pen"></i>@lang('Edit')
-                                </a>
-                            </button>
-                            <button class="btn btn-danger bg-danger" type="button" {{ $category->products()->count() === 0 ? '' : 'disabled' }}>
-                                <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $category->id }}').submit() : null ;" class="flex justify-center gap-x-4" href="">
-                                    <i class="fa-solid fa-trash"></i>@lang('Delete')
-                                </a>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+    <div class="overflow-x-auto">
 
-                <x-form.delete id="delete-form-{{ $category->id }}" :action="route('backend.admin.category.destroy', ['id' => $category->id])" class="hidden">
-            
-                </x-form.delete> 
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-200 dark:bg-gray-600">
+                    <th class="px-3 py-2">@lang('ID')</th>
+                    <th class="px-3 py-2">@lang('category.image')</th>
+                    <th class="px-3 py-2">@lang('category.name')</th>
+                    <th class="px-3 py-2">@lang('category.title')</th>
+                    <th class="px-3 py-2">@lang('category.product-count')</th>
+                    <th class="px-3 py-2">@lang('Action')</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories::byName()->paginate(10) as $category)
+                    <tr class="border-gray-400 border-b-[1px] md:border-none odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $category->id }}" data-name="{{ $category->name }}" data-title-id="{{ $category->title()->id ?? null }}">
+                        <td class="px-3">{{ $category->id }}</td>
+                        <td class="flex justify-center px-3 py-2 w-32">
+                            {{-- {{ dd( $category->image()) }} --}}
+                            <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/category/' . $category->image()) }}" alt="">
+                        </td>
+                        <td class="w-full px-3 py-2 md:!p-0 border-gray-100">{{ $category->name }}</td>
+                        <td class="w-full px-3 py-2 md:!p-0 md:!w-64">{{ $category->title()->title ?? null }}</td>
+                        <td class="w-full px-3 py-2 md:!p-0 md:!w-64">{{ $category->products()->count() }}</td>
+                        <td class="w-full px-3 py-2 md:!px-0 md:!w-56">
+                            <div class="flex justify-between align-items-center gap-x-4">
+                                <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
+                                    <a class="flex justify-center gap-x-4">
+                                        <i class="fa-solid fa-pen"></i>@lang('Edit')
+                                    </a>
+                                </button>
+                                <button class="btn btn-danger bg-danger" type="button" {{ $category->products()->count() === 0 ? '' : 'disabled' }}>
+                                    <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $category->id }}').submit() : null ;" class="flex justify-center gap-x-4" href="">
+                                        <i class="fa-solid fa-trash"></i>@lang('Delete')
+                                    </a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <x-form.delete id="delete-form-{{ $category->id }}" :action="route('backend.admin.category.destroy', ['id' => $category->id])" class="hidden">
                 
-            @endforeach
-        </tbody>
-    </table>
+                    </x-form.delete> 
+                    
+                @endforeach
+            </tbody>
+        </table>
+    
+    </div>
 
     {{ $categories::byName()->paginate(10)->links() }}
 

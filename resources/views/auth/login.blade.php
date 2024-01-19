@@ -5,19 +5,19 @@
 
 @section('app')
 
-    <div class="h-[100vh] w-auto fixed -z-1">
+    <div class="h-screen w-auto fixed -z-1 -top-2">
         <img class="h-full w-full object-cover brightness-50 blur-[2px]" src="{{ asset('image/frozen air cond.webp') }}" alt="">
     </div>
 
-    <div class="flex flex-col justify-start lg:justify-center align-items-center h-[100vh] mt-20">
+    <div class="flex flex-col justify-start lg:justify-center align-items-center relative h-screen top-0">
 
         <a class="pt-4 lg:pt-0 mb-[.5rem]" href="{{ route('frontend.home') }}">
             <img class="w-30 lg:w-40 h-auto object-cover" src="{{ asset('image/logo.webp') }}" alt="">
         </a>
 
-        <p class="text-xl lg:text-3xl text-white font-sans font-black mb-[2.25rem]">Sign in to your account</p>
+        <p class="text-xl lg:text-3xl text-white font-sans font-black mb-2">Sign in to your account</p>
 
-        <div class="w-[80%] lg:w-[30%] shadow py-[2.25rem] px-[1.75rem] mt-[1rem] mb-[1rem] rounded-md bg-white border-1 border-solid border-gray-300">
+        <div class="w-[80%] lg:w-[30%] shadow py-9 px-7 mt-4 mb-4 rounded-md bg-white border-1 border-solid border-gray-300">
 
             <x-form.post :action="route('auth.login.valid')">
                 

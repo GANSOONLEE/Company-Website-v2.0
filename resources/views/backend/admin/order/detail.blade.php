@@ -94,7 +94,7 @@
                                 <x-form.patch :action="route('backend.admin.order.update', ['id' => $item->detail_id])" class="relative flex gap-x-[1rem]">
                                     <div class="relative">
                                         <input type="text" id="input-group-1"
-                                        name="remark" value="{{ $item->detail_remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        name="remark" value="{{ $item->detail_remarks }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block min-w-[3rem] md:w-full ps-[.5rem] !pe-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="{{ __('order.remark') }}">
                                         <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                                             <i class="fa-solid fa-pen"></i>

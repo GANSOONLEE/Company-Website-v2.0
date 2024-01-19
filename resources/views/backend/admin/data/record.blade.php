@@ -18,37 +18,45 @@
         </div>
     </x-form.get>
 
-    <table class="w-full">
-        <thead>
-            <tr class="bg-gray-400 dark:bg-gray-900">
-                <th class="px-3 py-2">ID</th>
-                <th>@lang('user.email')</th>
-                <th>@lang('operation.method')</th>
-                <th>@lang('operation.object')</th>
-                <th>@lang('operation.detail')</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (count($operations) > 0)
-                @foreach ($operations as $operation)
-                    <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300">
-                        <td class="px-3 py-2">{{ $operation->id }}</td>
-                        <td>{{ $operation->email }}</td>
-                        <td>@lang('operation.type.' . $operation->operation_type)</td>
-                        <td>@lang('operation.category.' . $operation->operation_category)</td>
-                        <td>{{ $operation->operation_detail }}</td>
-                        <td>{{ $operation->created_at }}</td>
-                    </tr>
-                @endforeach
-            @else
-                <tr class="bg-gray-200 hover:bg-gray-300">
-                    <td colspan="6" class="text-center py-2">Not Record</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+    <div class="shadow rounded-md px-3 pb-4">
 
-    {{ $operations->links() }}
+        <div class="overflow-x-auto">
+
+            <table class="relative w-full">
+                <thead>
+                    <tr class="bg-gray-400 dark:bg-gray-900">
+                        <th class="sticky border-r-1 border-gray-300 md:border-none md:!table-cell -left-[1px] bg-inherit px-3 py-2">ID</th>
+                        <th class="px-3 py-2">@lang('user.email')</th>
+                        <th class="px-3 py-2">@lang('operation.method')</th>
+                        <th class="px-3 py-2">@lang('operation.object')</th>
+                        <th class="px-3 py-2">@lang('operation.detail')</th>
+                        <th class="px-3 py-2">@lang('operation.datetime')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($operations) > 0)
+                        @foreach ($operations as $operation)
+                            <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300">
+                                <td class="sticky border-r-1 border-gray-300 md:border-none md:!table-cell -left-[1px] bg-inherit px-3 py-2">{{ $operation->id }}</td>
+                                <td class="px-3 py-2">{{ $operation->email }}</td>
+                                <td class="px-3 py-2">@lang('operation.type.' . $operation->operation_type)</td>
+                                <td class="px-3 py-2">@lang('operation.category.' . $operation->operation_category)</td>
+                                <td class="px-3 py-2">{{ $operation->operation_detail }}</td>
+                                <td class="px-3 py-2">{{ $operation->created_at }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr class="bg-gray-200 hover:bg-gray-300">
+                            <td colspan="6" class="text-center py-2">Not Record</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+
+        </div>
+
+        {{ $operations->links() }}
+
+    </div>
 
 @endsection
