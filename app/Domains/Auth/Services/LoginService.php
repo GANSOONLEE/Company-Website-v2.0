@@ -78,4 +78,60 @@ class LoginService extends BaseService
         }
     }
 
+    /**
+     * @param User $user
+     * @param array $data
+     *
+     * @return void
+     * @throws GeneralException
+     */
+    public function destroy(User $user, array $data = [])
+    {
+
+        DB::beginTransaction();
+
+        try{
+
+            $credentials = [
+                'email' => $user->email, 
+                'password' => $data['password']
+            ];
+
+
+            if (Auth::attempt($credentials)) {
+
+                DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+                // Delete user relation order
+                foreach($user->order()->get() as $order) {
+                    $order->detail()->delete();
+                    $order->delete();
+                }
+
+                // Delete user relation cart
+                $user->cart()->get();
+
+                // Delete user relation role
+                $user->roles()->get();
+
+                // Delete User
+                $user->forceDelete();
+
+                // Logout User
+                Auth::logout();
+
+                DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+            }else{
+                return;
+            }
+
+        }catch (Exception $e){
+            DB::rollBack();
+            throw new GeneralException($e->getMessage());
+        }
+
+        DB::commit();
+    }
+
 }

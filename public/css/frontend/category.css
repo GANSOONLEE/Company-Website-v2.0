@@ -12,10 +12,10 @@
 }
 
 /* ———————————————————— Category Card ———————————————————— */
-a.category-box {
+/* a.category-box {
   width: 25%;
   height: 100%;
-}
+} */
 a.category-box section.category-card {
   border: 1px solid #ccc;
   box-shadow: 0 0 10px #ccc;
@@ -50,7 +50,7 @@ a.category-box section.category-card div.category-description p.category-descrip
     row-gap: 2rem;
     padding: 2rem 4vw;
   }
-  a.category-box {
+  /* a.category-box {
     width: calc(100% - 20px);
-  }
+  } */
 }

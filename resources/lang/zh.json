@@ -25,5 +25,6 @@
     "Update": "更新",
     "Rename": "将会被重命名为",
     "File": "文件",
-    "File Have Select": "已选择 :count 个文件"
+    "File Have Select": "已选择 :count 个文件",
+    "Delete-Account": "永久注销账号"
 }

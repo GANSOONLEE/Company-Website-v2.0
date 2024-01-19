@@ -46,8 +46,59 @@
 
     .input-field {
         @apply bg-gray-50 border-b-[.25rem] border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[0.625rem] disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
-
     }
+
+    /*
+     |--------------------------------------
+     | Frontend
+     |--------------------------------------
+     | All the frontend components element style
+     */
+
+    /* Navbar */
+    .navbar-links {
+        @apply flex min-[867px]:flex-row gap-x-10 mr-0 
+            flex-col max-[867px]:justify-center
+    }
+    
+    /* Navbar -> Link [Frontend.Home] */
+    .navbar-link-frontend {
+        @apply flex items-center px-[1.2rem] py-[.4rem] border-1 border-transparent rounded-[4px] transition-all duration-100 ease-in-out
+            hover:border-blue-700
+            
+            /* md below */
+            justify-center
+        ;
+    }
+
+    /* Navbar -> Link -> Label [Frontend.Home] */
+    .navbar-link-frontend > a {
+        @apply justify-center items-center px-[.4rem] py-0 border-none
+    }
+
+    /* Navbar -> Link -> Label [Frontend.Home] */
+    .navbar-link-frontend > li {
+        @apply text-lg font-display font-semibold
+    }
+
+    /* Navbar -> Link(CTA) [Frontend.Home] */
+    .navbar-link-frontend.cta {
+        @apply text-white bg-blue-700 transition-all duration-150 ease-in-out
+            hover:bg-blue-800
+    }
+
+    /* Category */
+    .category-list {
+        @apply flex flex-wrap justify-start items-stretch gap-x-12 gap-y-8 py-12 px-[4vw]
+    }
+
+    /*
+     |--------------------------------------
+     | Backend
+     |--------------------------------------
+     | All the backend components element style
+     */
+    
 }
 
 /* ———————————————————— Clear Default Style ———————————————————— */
@@ -114,21 +165,11 @@ html{
         display: flex;
         min-height: 100vh;
         max-height: auto;
-        background-color: rgb(243, 243, 248);
+        // background-color: rgb(243, 243, 248);
     
         > div.page#page{
             padding: 1.2rem 2rem;
-            margin-left: 16rem;
             flex: 1;
-        
-            >p.page-title{
-                font-weight: bold; 
-                font-size: var(--font-h5);
-            }
-
-            >p.page-subtitle{
-                font-size: var(--font-subtitle);   
-            }
 
             >div.content{
                 padding-top: 1.2rem;
@@ -140,7 +181,7 @@ html{
     &.dark{
         div.app#app{
             color: var(--color-white);
-            background-color: rgb(27, 27, 34);
+            // background-color: rgb(27, 27, 34);
         }
     }
 }

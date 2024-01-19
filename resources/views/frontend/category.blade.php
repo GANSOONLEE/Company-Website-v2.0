@@ -19,13 +19,13 @@
     
                     <p class="text-2xl font-bold">{{ $index }}</p>
     
-                    <div class="content">
+                    <div class="category-list">
         
                         @foreach ($categoryArray as $category)
-                            <a class="category-box" href="{{ route('frontend.product.list', ['category' => $category->name]) }}">
-                                <section class="category-card">
+                            <a class="category-box md:w-[29%] h-full w-[calc(100% - 20px)] rounded-[4px] overflow-hidden shadow" href="{{ route('frontend.product.list', ['category' => $category->name]) }}">
+                                <section class="">
                                     <img class="category-cover" src="{{ asset($category->cover)}}" alt="">
-                                    <div class="category-description bg-white">
+                                    <div class="category-description bg-white px-4 py-3 text-lg font-bold">
                                         <p class="category-description-text">
                                             {{ $category->name }}
                                         </p>

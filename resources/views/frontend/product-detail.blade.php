@@ -6,6 +6,8 @@
 
     <div id="alert"></div>
 
+    {{ Breadcrumbs::render('frontend.product.detail', $productData) }}
+
     <div class="content">
 
         <!-- Product Detail -->
@@ -293,7 +295,7 @@
     <!-- Cart Logo => Goto user cart page -->
     @auth
         @if (auth()->user()->getRoleEntity()->hasPermission('user_backend'))
-            <div class="action-bar">
+            <div class="action-bar text-white !z-99999">
                 <a href="{{ route('backend.user.cart.create') }}">
                     <div class="cart-container">
                         @if (auth()->user()->getCartNumber() > 0)

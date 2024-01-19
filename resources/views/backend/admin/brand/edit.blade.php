@@ -44,48 +44,52 @@
         </div>
     </div> 
 
-    <table class="w-full">
-        <thead>
-            <tr class="bg-gray-200 dark:bg-gray-600">
-                <th class="px-3 py-2">@lang('ID')</th>
-                <th class="py-2">@lang('brand.image')</th>
-                <th class="py-2">@lang('brand.name')</th>
-                <th class="py-2">@lang('brand.product-count')</th>
-                <th class="py-2">@lang('Action')</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($brands::byName()->paginate(10) as $brand)
-                <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $brand->id }}" data-name="{{ $brand->name }}">
-                    <td class="px-3">{{ $brand->id }}</td>
-                    <td class="flex justify-center px-3 py-2 w-32">
-                        <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/brand/' . $brand->image()) }}" alt="">
-                    </td>
-                    <td class="border-gray-100">{{ $brand->name }}</td>
-                    <td class="w-64">{{ count($brand->products()->get()) }}</td>
-                    <td class="w-56 py-2">
-                        <div class="flex justify-between align-items-center">
-                            <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
-                                <a class="flex justify-center gap-x-4" href="#">
-                                    <i class="fa-solid fa-pen"></i>@lang('Edit')
-                                </a>
-                            </button>
-                            <button class="btn btn-danger bg-danger" type="button" {{ count($brand->products()->get()) === 0 ? '' : 'disabled' }}>
-                                <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $brand->id }}').submit() : null ;" class="flex justify-center gap-x-4" href="">
-                                    <i class="fa-solid fa-trash"></i>@lang('Delete')
-                                </a>
-                            </button>
-                        </div>
-                    </td>
+    <div class="overflow-x-auto rounded-sm shadow p-1">
+
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-200 dark:bg-gray-600">
+                    <th class="px-3 py-2">@lang('ID')</th>
+                    <th class="px-3 py-2">@lang('brand.image')</th>
+                    <th class="px-3 py-2">@lang('brand.name')</th>
+                    <th class="px-3 py-2">@lang('brand.product-count')</th>
+                    <th class="px-3 py-2">@lang('Action')</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach ($brands::byName()->paginate(10) as $brand)
+                    <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 hover:dark:bg-gray-900" id="{{ $brand->id }}" data-name="{{ $brand->name }}">
+                        <td class="px-3">{{ $brand->id }}</td>
+                        <td class="px-3 py-2 flex justify-center w-32">
+                            <img class="h-full w-full object-fit-cover" onload="this.style.display='block'" onerror="this.style.display='none'" src="{{ asset('storage/brand/' . $brand->image()) }}" alt="">
+                        </td>
+                        <td class="px-3 border-gray-100">{{ $brand->name }}</td>
+                        <td class="px-3 w-64">{{ count($brand->products()->get()) }}</td>
+                        <td class="px-3 py-2 w-56">
+                            <div class="flex justify-between align-items-center gap-x-4">
+                                <button id="editModalButton" class="btn btn-primary bg-primary" type="button">
+                                    <a class="flex justify-center gap-x-4" href="#">
+                                        <i class="fa-solid fa-pen"></i>@lang('Edit')
+                                    </a>
+                                </button>
+                                <button class="btn btn-danger bg-danger" type="button" {{ count($brand->products()->get()) === 0 ? '' : 'disabled' }}>
+                                    <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $brand->id }}').submit() : null ;" class="flex justify-center gap-x-4" href="">
+                                        <i class="fa-solid fa-trash"></i>@lang('Delete')
+                                    </a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                <x-form.delete id="delete-form-{{ $brand->id }}" :action="route('backend.admin.brand.destroy', ['id' => $brand->id])" class="hidden">
-            
-                </x-form.delete> 
+                    <x-form.delete id="delete-form-{{ $brand->id }}" :action="route('backend.admin.brand.destroy', ['id' => $brand->id])" class="hidden">
+                
+                    </x-form.delete> 
 
-            @endforeach
-        </tbody>
-    </table>
+                @endforeach
+            </tbody>
+        </table>
+
+    </div>
 
     {{ $brands::byName()->paginate(10)->links() }}
 

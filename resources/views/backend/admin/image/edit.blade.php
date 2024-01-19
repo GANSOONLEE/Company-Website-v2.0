@@ -8,9 +8,9 @@
 
 @section('main')
 
-    <div class="flex justify-between items-center mb-1">
+    <div class="flex flex-col justify-between items-center mb-3 gap-y-3">
 
-        <div class="flex flex-col justify-start">
+        <div class="flex flex-col justify-start w-full">
             <x-form.patch id="imageEditForm" class="flex items-center gap-x-4" :action="route('backend.admin.image.update', ['id' => $imageInstance->id])">
                 <input class="text-xl read-only:border-none read-only:bg-transparent" type="text" name="name" id="" value="{{ $imageInstance->name }}" placeholder="{{ __('image.name') }}" required readonly>
     
@@ -30,10 +30,10 @@
                 </button>
             </x-form.patch>
             <p class="text-sm" id="info-text" hidden></p>
-            <p class="text-sm text-red-800" id="info-text">@lang('image.general-info')</p>
+            <p class="text-sm text-red-800 whitespace-normal" id="info-text">@lang('image.general-info')</p>
         </div>
 
-        <x-form.post class="flex items-center" :action="route('backend.admin.image.upload', ['id' => $imageInstance->id])">
+        <x-form.post class="flex w-full justify-between items-center" :action="route('backend.admin.image.upload', ['id' => $imageInstance->id])">
             <label class="p-[.75rem] bg-gray-800 hover:bg-gray-700 text-sm text-white" for="image-upload">
                 @lang('Select File')
             </label>
@@ -44,45 +44,49 @@
 
     </div>
 
-    <table class="w-full">
-        <thead class="border-b-[2px] border-b-gray-400">
-            <tr>
-                <th class="px-3 py-2">@lang('Id')</th>
-                <th>@lang('image.thumbnail')</th>
-                <th class="px-3">@lang('image.name')</th>
-                <th class="px-3">@lang('Action')</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (count($imageInstance->getImages()) > 0)
-                @foreach ($imageInstance->getImages() as $index => $image)
-                    <tr>
-                        <td class="px-3">{{ $index + 1 }}</td>
-                        <td class="w-40 py-3">
-                            <img class="w-full h-full object-cover" src="{{ asset("storage/$image") }}" alt="">    
-                        </td>
-                        <td class="px-3">
-                            <p class="text-base text-green-800 ">
-                                {{ basename($image) }}
-                            </p>
-                        </td>
-                        <td class="px-3">
-                            <x-form.delete id="imageDeleteForm" :action="route('backend.admin.image.destroy-image', ['id' => $imageInstance->id])">
-                                <input type="text" name="name" value="{{ basename($image) }}" hidden>
-                                <button class="flex items-center gap-x-4 btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>@lang('Delete')
-                                </button>
-                            </x-form.delete>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
+    <div class="overflow-x-auto p-1 shadow rounded-md">
+
+        <table class="w-full">
+            <thead class="border-b-[2px] border-b-gray-400">
                 <tr>
-                    <td class="px-3 py-2 text-center" colspan="4">@lang('No Record')</td>
+                    <th class="px-3 py-2">@lang('Id')</th>
+                    <th>@lang('image.thumbnail')</th>
+                    <th class="px-3">@lang('image.name')</th>
+                    <th class="px-3">@lang('Action')</th>
                 </tr>
-            @endif
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @if (count($imageInstance->getImages()) > 0)
+                    @foreach ($imageInstance->getImages() as $index => $image)
+                        <tr>
+                            <td class="px-3">{{ $index + 1 }}</td>
+                            <td class="w-40 py-3">
+                                <img class="w-full h-full object-cover" src="{{ asset("storage/$image") }}" alt="">    
+                            </td>
+                            <td class="px-3">
+                                <p class="text-base text-green-800 ">
+                                    {{ basename($image) }}
+                                </p>
+                            </td>
+                            <td class="px-3">
+                                <x-form.delete id="imageDeleteForm" :action="route('backend.admin.image.destroy-image', ['id' => $imageInstance->id])">
+                                    <input type="text" name="name" value="{{ basename($image) }}" hidden>
+                                    <button class="flex items-center gap-x-4 btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i>@lang('Delete')
+                                    </button>
+                                </x-form.delete>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td class="px-3 py-2 text-center" colspan="4">@lang('No Record')</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+      
+    </div>
 
 @endsection
 

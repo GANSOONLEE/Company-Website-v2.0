@@ -41,6 +41,12 @@ Breadcrumbs::for('frontend.product.query', function (BreadcrumbTrail $trail, $ca
     $trail->push($model, route('frontend.product.query', ["category" => $category, "model" => $model]));
 });
 
+// Breadcrumbs for the 'frontend.product.detail'
+Breadcrumbs::for('frontend.product.detail', function (BreadcrumbTrail $trail, $product) {
+    $trail->parent('frontend.product.list', $product->product_category);
+    $trail->push($product->id, route('frontend.product.detail', ['productCode' => $product->product_code]));
+});
+
 /* ------------------------------------- Backend ------------------------------------- */
 
 // Breadcrumbs for the 'backend'

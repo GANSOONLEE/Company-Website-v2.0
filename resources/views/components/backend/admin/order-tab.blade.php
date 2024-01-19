@@ -18,7 +18,7 @@
             <table class="w-full">
                 <thead>
                     <tr class=" bg-gray-300 text-bold dark:bg-gray-600">
-                        <th class="sticky left-0 px-3 py-2 bg-gray-300">@lang('Id')</th>
+                        <th class="sticky left-0 px-3 py-2 bg-inherit">@lang('Id')</th>
                         <th class="pl-3">@lang('order.shop_name')</th>
                         <th class="pl-3">@lang('order.order-item-count')</th>
                         <th class="pl-3">@lang('order.detail')</th>
@@ -38,7 +38,7 @@
                             </div>
 
                             <tr class="text-sm odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300 dark:odd:bg-gray-700 dark:even:bg-gray-800 dark:hover:bg-gray-900">
-                                <td class="sticky border-gray-300 border-r-1 md:border-r-0 left-0 w-20 px-3 py-3 odd:bg-gray-100 even:bg-gray-200">{{ $order->id }}</td>
+                                <td class="sticky bg-inherit border-r-1 md:border-r-0 left-0 w-20 px-3 py-3">{{ $order->id }}</td>
                                 <td class="pl-3 whitespace-nowrap">
                                     <p data-tooltip-target="{{ $order->code }}" class="w-min">
                                         {{ $order->user()->first()->shop_name }}</td>

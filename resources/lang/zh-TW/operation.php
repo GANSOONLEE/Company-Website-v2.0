@@ -28,4 +28,5 @@ return array (
   ),
   'object' => '操作對象',
   'method' => '操作類型',
+  'datetime' => '操作時間',
 );

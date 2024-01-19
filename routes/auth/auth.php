@@ -65,3 +65,7 @@ Route::group(['prefix' =>'password', 'as' =>'password.'], function()
 /** Process the logout event */
 Route::get('logout', [LoginController::class, 'logout'])
     ->name('logout');
+
+/** Process the destroy event */
+Route::delete('destroy', [LoginController::class, 'destroy'])
+    ->name('destroy');

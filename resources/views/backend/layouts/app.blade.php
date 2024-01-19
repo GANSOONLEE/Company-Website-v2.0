@@ -25,17 +25,20 @@
     @stack('before-style')
     
     <script defer src="{{ asset('js/app.js') }}"></script>
-    <link rel="preload stylesheet" as="style" href="{{ asset('css/backend/layouts/layout.css') }}">
 
     <!-- 要在 css 之后加載的文件 -->
     @stack('after-style')
 
 </head>
-<body>
+<body class="relative bg-[#F3F3F8] dark:bg-[#1B1B22]">
 
     @routes
+                          
+    <img src="{{ asset('image/logo.webp') }}" alt="" class="fixed top-50% left-0 translate-y-1/2 md:-translate-y-2/3 -z-1 w-screen h-auto object-cover blur-sm opacity-10 dark:hidden">
+    <img src="{{ asset('images/background.jpg') }}" alt="" class="hidden fixed top-0 left-0 -z-1 w-screen h-screen object-cover blur-sm opacity-20 brightness-[.3] [object-position:top] dark:block">
 
     <x-navbar />
+
     <span id="" hidden></span>
     
     <div class="app" id="app">
@@ -46,14 +49,14 @@
         <x-sidebar-user />
       @endif
 
-        <div class="page !ml-[0] !px-4 sm:px-0 md:!ml-[16rem] w-full dark:text-white" id="page">
+        <div class="page !ml-0 px-6 py-10 sm:px-0 md:!ml-64 w-full dark:text-white" id="page">
 
           <div class="breadcrumbs">
             {{ Breadcrumbs::render() }}
           </div>
 
-          <p class="page-title">@yield('title')</p>
-          <p class="page-subtitle">@yield('subtitle', 'Subtitle')</p>
+          <p class="text-2xl font-bold">@yield('title')</p>
+          <p class="text-base">@yield('subtitle', 'Subtitle')</p>
 
           <div id="alert">
             @if ($errors->any())

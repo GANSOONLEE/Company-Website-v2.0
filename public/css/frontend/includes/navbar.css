@@ -23,34 +23,7 @@ nav.navbar#navbar > div.menu {
   width: 92%;
   display: flex;
 }
-nav.navbar#navbar > div.menu > ul.navbar-links {
-  -moz-column-gap: 2.6rem;
-       column-gap: 2.6rem;
-  display: flex;
-  /* auth function */
-}
-nav.navbar#navbar > div.menu > ul.navbar-links a.navbar-link {
-  display: flex;
-  align-items: center;
-  padding: 0.4rem 1.2rem;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  transition: all 0.12s ease-in-out;
-}
-nav.navbar#navbar > div.menu > ul.navbar-links a.navbar-link:hover {
-  border: 1px solid blue;
-}
-nav.navbar#navbar > div.menu > ul.navbar-links a.navbar-link li.navbar-link-label {
-  font-size: var(--font-title);
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 600;
-}
-nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.primary {
-  color: #3636ff;
-}
-nav.navbar#navbar > div.menu > ul.navbar-links.auth a.navbar-link.secondary {
-  color: #3636ff;
-}
+
 nav.navbar#navbar > label[for=menu-button] {
   /* If not phone, hide it */
   display: none;
@@ -88,9 +61,6 @@ nav.navbar#navbar > input[type=checkbox][name=menu-button]#menu-button {
     left: -100%;
     border-top: 1px solid #777;
     transition: all 0.12s ease-in-out;
-  }
-  nav.navbar#navbar > div.menu > ul.navbar-links {
-    flex-direction: column;
   }
   nav.navbar#navbar > div.menu > ul.navbar-links a.navbar-link {
     justify-content: center;

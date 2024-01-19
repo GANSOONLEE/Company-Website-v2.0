@@ -28,4 +28,5 @@ return array (
   ),
   'object' => 'Operation object',
   'method' => 'Operation type',
+  'datetime' => 'Datetime',
 );

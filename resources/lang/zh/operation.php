@@ -28,4 +28,5 @@ return array (
   ),
   'object' => '操作对象',
   'method' => '操作类型',
+  'datetime' => '作业时间',
 );

@@ -10,6 +10,9 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    /* Cover */
+
+    /* Extend */
     extend: {
       aria: {
         current: 'current'
@@ -172,7 +175,10 @@ module.exports = {
         270: '67.5rem',
         280: '70rem',
         292.5: '73.125rem',
-      }
+      },
+      fontFamily: {
+        'display': ['Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif']
+      },
     },
   },
   plugins: [
