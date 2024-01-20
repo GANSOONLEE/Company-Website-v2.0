@@ -1,4 +1,4 @@
-
+{{-- 
 @extends('frontend.layouts.app')
 
 @section('title', __('Home'))
@@ -57,4 +57,4 @@
 
 @push('before-body')
     <link rel="stylesheet" href="{{asset('css/frontend/contact.css')}}">
-@endpush
+@endpush --}}
