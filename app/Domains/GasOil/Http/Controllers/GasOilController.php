@@ -17,7 +17,7 @@ class GasOilController extends Controller
 
     public $gasOilService;
 
-    protected function __construct(GasOilService $gasOilService)
+    public function __construct(GasOilService $gasOilService)
     {
         $this->gasOilService = $gasOilService;
     }
@@ -27,7 +27,7 @@ class GasOilController extends Controller
      */
     public function index()
     {
-        return view();
+        return view('frontend.gas-oil');
     }
 
     /**
@@ -36,7 +36,7 @@ class GasOilController extends Controller
      */
     public function store(CreateGasOilRequest $request)
     {
-        dd($request->validated());
+        // dd($request->validated());
         $this->gasOilService->store();
     }
 
@@ -46,7 +46,7 @@ class GasOilController extends Controller
      */
     public function update(UpdateGasOilRequest $request)
     {
-        dd($request->validated());
+        // dd($request->validated());
         $this->gasOilService->update();
     }
 
@@ -56,7 +56,7 @@ class GasOilController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
+        // dd($id);
         $this->gasOilService->destroy($id);
     }
 

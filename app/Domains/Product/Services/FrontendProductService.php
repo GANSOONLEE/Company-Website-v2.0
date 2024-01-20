@@ -30,6 +30,7 @@ class FrontendProductService extends BaseService
         return Product::where('product_category', $category)
             ->leftJoin('products_name', 'products_name.product_code', '=', 'products.product_code')
             ->orderBy('products_name.name')
+            ->groupBy('products.product_code')
             ->paginate($recordsPerPage);
 
     }

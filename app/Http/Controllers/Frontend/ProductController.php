@@ -15,7 +15,8 @@ use App\Domains\Product\Services\FrontendProductService;
 // Request
 use Illuminate\Http\Request;
 
-class ProductController extends Controller{
+class ProductController extends Controller
+{
 
     protected $frontendProductService;
     protected $cartService;

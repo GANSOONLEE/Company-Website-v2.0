@@ -100,6 +100,12 @@ class CategoryService extends Service
                 $products = \App\Domains\Product\Models\Product::where('product_category', $category->name)->get();
                 foreach($products as $product)
                 {
+
+                    $from = "product/$product->product_category/$product->product_code";
+                    $to = "product/" . $data['name'] . "/$product->product_code";
+
+                    Storage::disk('public')->move($from, $to);
+
                     $product->update([
                         'product_category' => $data['name'],
                     ]);
