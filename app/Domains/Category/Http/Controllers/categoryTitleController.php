@@ -45,7 +45,6 @@ class categoryTitleController
      */
     public function update(string $id, UpdateCategoryTitleRequest $request): mixed
     {
-        dd($id, $request->validated());
         $this->categoryTitleService->update($id, $request->validated());
         return redirect()->back()->with('success', 'Category title update successfully!');
     }
