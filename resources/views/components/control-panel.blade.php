@@ -1,10 +1,10 @@
 <div {{ $attributes->merge(['class' => 'p-6 bg-gray-10 c-bg-white border border-gray-200 w-full md:!w-[48%] sm:w-full rounded-lg dark:bg-gray-800 dark:border-none']) }}>
 
     @unless (!$attributes['title'])
-        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-inherit">{{ $attributes['title'] }}</h5>
+        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-inherit whitespace-normal">{{ $attributes['title'] }}</h5>
     @endunless
 
-    <p class="mb-4 font-normal text-gray-400">
+    <p class="mb-4 font-normal text-gray-400 whitespace-normal">
         {{ $slot }}
     </p>
 
