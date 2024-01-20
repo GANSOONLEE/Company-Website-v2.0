@@ -45,7 +45,7 @@
                 </p>
                 <ul class="footer-link-section-list !text-white">
                     <a href="https://www.wasap.my/60172430100">
-                        <li class="flex justify-center md:justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
+                        <li class="flex justify-center md:justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500 whitespace-nowrap">
                             <i class="fa-brands fa-whatsapp !text-[green]"></i>017-243 0100
                         </li>
                     </a>

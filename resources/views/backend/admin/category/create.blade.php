@@ -86,8 +86,10 @@
                                     <input class="w-full" type="number" name="order" value="{{ $categoryTitle->order }}" placeholder="{{ trans('category.order') }}">
                                 </td>
                                 <td class="block pb-3 md:!pb-[0] md:!table-cell">
-                                    <div>
+                                    <div class="flex justify-between gap-x-4">
                                         <button class="btn btn-success bg-green-600 text-white">@lang('Submit')</button>
+
+                                        <form action="" hidden></form>
 
                                         <x-form.delete :action="route('backend.admin.categoryTitle.delete', ['id' => $categoryTitle->id])">
                                             <button class="btn btn-danger bg-red-600 text-white">@lang('Delete')</button>

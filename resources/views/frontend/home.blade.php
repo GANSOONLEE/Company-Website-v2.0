@@ -20,14 +20,18 @@
         <div class="relative z-[10] py-5 px-7">
     
             <!-- #TODO 加入新内容 -->
-            <h2 class="text-2xl">Frozen Aircond Sdn. Bhd.</h2>
+            <h1 class="!text-3xl text-center">Frozen Aircond Sdn. Bhd.</h1>
             <div class="section flex flex-col md:flex-row w-full md:w-auto">
     
                 <div class="area w-full max-w-[100%] md:max-w-[50%]">
                     <h4 class="section-title text-xl text-center font-bold mb-2 md:mb-[0]">Who are we</h4>
     
                     <div class="section-body mb-6">
-                        Frozen Air Cond Sdn Bhd, is an automatic air conditioning spare part supply to supplier or mechanic.
+                        Frozen Aircond Sdn Bhd is Company which is focusing on selling Car and Lorry air-conditioner , which we supply spare part and accessories and also has a workshop to repair aircond.<br><br>
+
+                        Our Goal is for company grow up more and have business partners in every state of Malaysia including Sabah and Sarawak.<br><br>
+
+                        We also have our own aim to share about information about car, Lorry and other vehicle aircond and other parts through video on our media social platform.<br>
                     </div>
                 </div>
     
