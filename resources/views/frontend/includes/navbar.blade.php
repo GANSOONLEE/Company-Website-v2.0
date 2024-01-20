@@ -26,6 +26,9 @@
             <a href="{{ route('frontend.product.index') }}" class="navbar-link-frontend">
                 <li>Product</li>
             </a>
+            <a href="{{ route('frontend.gas-oil.index') }}" class="navbar-link-frontend">
+                <li>Gas Oil</li>
+            </a>
         </ul>
 
         <!-- Search Bar -->

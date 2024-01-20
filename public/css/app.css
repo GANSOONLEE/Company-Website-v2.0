@@ -15430,6 +15430,9 @@ input:checked + .toggle-bg{
 .m-3{
   margin: 0.75rem;
 }
+.m-2{
+  margin: 0.5rem;
+}
 .-mx-1{
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -15842,6 +15845,18 @@ input:checked + .toggle-bg{
 }
 .min-w-\[3rem\]{
   min-width: 3rem;
+}
+.min-w-\[100vw\]{
+  min-width: 100vw;
+}
+.min-w-\[60\%\]{
+  min-width: 60%;
+}
+.min-w-\[80\%\]{
+  min-width: 80%;
+}
+.min-w-\[100\%\]{
+  min-width: 100%;
 }
 .\!max-w-\[100\%\]{
   max-width: 100% !important;

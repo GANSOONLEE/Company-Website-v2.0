@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="custom-card-header">
                                     @foreach (($product->names()->get()) as $names)
-                                        <p>{{ $names->name }}</p>
+                                        <p class="whitespace-normal">{{ path_decode($names->name) }}</p>
                                     @endforeach
                                 </div>
                             </div>
