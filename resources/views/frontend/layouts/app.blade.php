@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Frozen Aircond">
+    <meta name="description" content="Frozen Aircond, a company which is focusing on selling Car and Lorry air-conditioner.">
     <meta name="keywords" content="Frozen Aircond, Frozen Aircond Sdn Bhd ">
+    <meta name="author" content="Frank Gan">
     <meta name="theme-color" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     <!-- csrf -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
