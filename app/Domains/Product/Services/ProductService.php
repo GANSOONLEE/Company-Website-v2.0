@@ -138,6 +138,7 @@ class ProductService extends BaseService
         }
 
         DB::commit();
+        event(new ProductCreated($product));
         return $product;
     }
     
@@ -403,7 +404,7 @@ class ProductService extends BaseService
             $product->product_code
         );
 
-
+        event(new ProductCreated($product));
         return $product;
     }
 
