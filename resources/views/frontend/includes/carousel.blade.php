@@ -19,7 +19,7 @@
             @foreach ($promotionImages as $index => $promotionImage)
             <div class="relative carousel-item {{$index == 0?'active':''}}">
                 <span class="sm:flex justify-center items-center absolute hidden bottom-4 left-4 bg-gray-100 text-gray-800 opacity-80 md:opacity-60 rounded-full text-xs md:text-base m-3 md:m-4 px-2 py-2 md:px-[.75rem] md:py-1">{{ $index + 1 }} of {{ count($promotionImages) }}</span>
-                <img src="{{ asset('storage/'.$promotionImage) }}" class="d-block w-full h-full object-cover" alt="">
+                <img loading="lazy" src="{{ asset('storage/'.$promotionImage) }}" class="d-block w-full h-full object-cover" alt="">
             </div>
             @endforeach
         </div>
