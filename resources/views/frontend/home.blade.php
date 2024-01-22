@@ -14,13 +14,15 @@
     <div class="content relative z-10 bg-white w-full overflow-hidden">
 
         <div class="absolute top-0 left-0 z-[1] w-full h-full">
-            <img src="{{ asset('images/background.png') }}" alt="" class="h-full w-full object-cover">
+            <img src="{{ asset('images/background.png') }}" alt="" class="h-full w-full object-cover brightness-110">
         </div>
 
         <div class="relative z-[10] py-5 px-7">
     
             <!-- #TODO 加入新内容 -->
             <h1 class="!text-3xl text-center">Frozen Aircond Sdn. Bhd.</h1>
+            <h3 class="text-lg text-center text-gray-800">Since 2010</h3>
+
             <div class="section flex flex-col md:flex-row w-full md:w-auto">
     
                 <div class="area w-full max-w-[100%] md:max-w-[50%]">
