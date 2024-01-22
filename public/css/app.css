@@ -14135,7 +14135,7 @@ textarea.form-control-lg {
   }
 }
 /* ———————————————————— Tailwind Css ———————————————————— */
-/* ! tailwindcss v3.3.6 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -14159,16 +14159,19 @@ textarea.form-control-lg {
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
-html {
+html,
+:host {
   line-height: 1.5; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
 }
 /*
 1. Remove the margin in all browsers.
@@ -16173,6 +16176,12 @@ input:checked + .toggle-bg{
 .whitespace-nowrap{
   white-space: nowrap;
 }
+.text-wrap{
+  text-wrap: wrap;
+}
+.text-nowrap{
+  text-wrap: nowrap;
+}
 .rounded{
   border-radius: 0.25rem;
 }
@@ -16817,7 +16826,11 @@ input:checked + .toggle-bg{
   font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
 }
 .font-sans{
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.\!text-3xl{
+  font-size: 1.875rem !important;
+  line-height: 2.25rem !important;
 }
 .\!text-base{
   font-size: 1rem !important;
@@ -16850,10 +16863,6 @@ input:checked + .toggle-bg{
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.\!text-3xl{
-  font-size: 1.875rem !important;
-  line-height: 2.25rem !important;
 }
 .font-black{
   font-weight: 900;
@@ -17936,19 +17945,6 @@ aside#sidebar > div .active svg.w-3.h-3 {
   --tw-border-opacity: 1 !important;
   border-color: rgb(28 100 242 / var(--tw-border-opacity)) !important;
 }
-:is([dir="rtl"] .rtl\:rotate-180){
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-:is([dir="rtl"] .rtl\:justify-end){
-  justify-content: flex-end;
-}
-:is([dir="rtl"] .rtl\:space-x-reverse) > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse: 1;
-}
-:is([dir="rtl"] .rtl\:text-right){
-  text-align: right;
-}
 @media (prefers-reduced-motion: no-preference){
   .motion-safe\:hover\:scale-\[1\.01\]:hover{
     --tw-scale-x: 1.01;
@@ -18680,4 +18676,17 @@ aside#sidebar > div .active svg.w-3.h-3 {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
+}
+.rtl\:rotate-180:where([dir="rtl"], [dir="rtl"] *){
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.rtl\:justify-end:where([dir="rtl"], [dir="rtl"] *){
+  justify-content: flex-end;
+}
+.rtl\:space-x-reverse:where([dir="rtl"], [dir="rtl"] *) > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 1;
+}
+.rtl\:text-right:where([dir="rtl"], [dir="rtl"] *){
+  text-align: right;
 }
