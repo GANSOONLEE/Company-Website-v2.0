@@ -1,12 +1,6 @@
 <footer class="relative footer display-column !bg-[#414141] z-9999" id="footer">
 
-    <img src="https://w0.peakpx.com/wallpaper/466/1011/HD-wallpaper-blue-snowflake-in-black-background-snowflake-thumbnail.jpg"
-        class="z-1 absolute top-0 left-0 w-full h-full object-cover opacity-[0.20]" alt="" width="338" height="190">
-    <!-- footer header -->
-    {{-- <div class="footer-header display-column">
-        <p class="footer-header-title">Site Map</p>
-        <p class="footer-header-subtitle"></p>
-    </div> --}}
+    <img width="338" height="190" src="https://w0.peakpx.com/wallpaper/466/1011/HD-wallpaper-blue-snowflake-in-black-background-snowflake-thumbnail.jpg" class="z-1 absolute top-0 left-0 w-full h-full object-cover opacity-[0.20]" alt="">
 
     <!-- footer body -->
     <div class="footer-body z-9 relative top-0 left-0">
