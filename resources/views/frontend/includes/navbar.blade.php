@@ -20,15 +20,23 @@
         <!-- Site Link -->
         <ul class="navbar-links">
 
-            <a href="{{ route('frontend.home') }}" class="navbar-link-frontend">
-                <li>Home</li>
-            </a>
-            <a href="{{ route('frontend.product.index') }}" class="navbar-link-frontend">
-                <li>Product</li>
-            </a>
-            <a href="{{ route('frontend.gas-oil.index') }}" class="navbar-link-frontend">
-                <li>Gas Oil</li>
-            </a>
+            <li>
+                <a href="{{ route('frontend.home') }}" class="navbar-link-frontend">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('frontend.product.index') }}" class="navbar-link-frontend">
+                    Product
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('frontend.gas-oil.index') }}" class="navbar-link-frontend">
+                    Gas Oil
+                </a>
+            </li>
         </ul>
 
         <!-- Search Bar -->
@@ -39,12 +47,17 @@
 
             <!-- Guest -->
             @guest
-                <a href="{{ route('auth.login.index') }}" class="navbar-link-frontend cta">
-                    <li>Login</li>
-                </a>
-                <a href="{{ route('auth.register.index') }}" class="navbar-link-frontend">
-                    <li>Register</li>
-                </a>
+                <li>
+                    <a href="{{ route('auth.login.index') }}" class="navbar-link-frontend cta">
+                        Login
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('auth.register.index') }}" class="navbar-link-frontend">
+                        Register
+                    </a>
+                </li>
             @endguest
 
             <!-- Check -->

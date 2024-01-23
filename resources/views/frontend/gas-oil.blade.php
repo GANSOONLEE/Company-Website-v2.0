@@ -22,11 +22,11 @@
             <div id="default-tab-content">
                 <div class="hidden px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 w-full" id="asian" role="tabpanel" aria-labelledby="asian-tab">
                     <!-- Asian -->
-                    <iframe class="min-w-[100%] w-auto min-h-screen shadow rounded p-2" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSscfW4_1-pcmJcm7Dx16zOm4hLWmlAzXCouvFTJ4mbWqGRxPCiU5kLoo-KRm2lelsQGYePjazyNFIa/pubhtml?widget=true&amp;headers=false"></iframe>   
+                    <iframe title="excel" class="min-w-[100%] w-auto min-h-screen shadow rounded p-2" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSscfW4_1-pcmJcm7Dx16zOm4hLWmlAzXCouvFTJ4mbWqGRxPCiU5kLoo-KRm2lelsQGYePjazyNFIa/pubhtml?widget=true&amp;headers=false"></iframe>   
                 </div>
                 <div class="hidden px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 w-full" id="europe" role="tabpanel" aria-labelledby="europe-tab">
                     <!-- Europe -->
-                    <iframe class="min-w-[100%] w-auto min-h-screen shadow rounded p-2" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTBiK1SvgDBy6pficKyUfKboKkjh-4SlGcNCMcF8psripsX2jPvS6K7HYYbxLp_7QNZzMb85G_MpSt7/pubhtml?widget=true&amp;headers=false"></iframe> 
+                    <iframe title="excel" class="min-w-[100%] w-auto min-h-screen shadow rounded p-2" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTBiK1SvgDBy6pficKyUfKboKkjh-4SlGcNCMcF8psripsX2jPvS6K7HYYbxLp_7QNZzMb85G_MpSt7/pubhtml?widget=true&amp;headers=false"></iframe> 
                 </div>
             </div>
 
