@@ -7,10 +7,10 @@
 
     <!-- Tab <section> -->
 
-        <section class="mt-3 flex flex-row md:!flex-col">   
+        <section class="mt-3">   
 
             <div class="border-b border-gray-200 dark:border-gray-700">
-                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center ml-6 flex-col md:!flex-row content-start" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center ml-6" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
                     <li class="me-2" role="presentation">
                         <button class="inline-block px-4 py-3 border-b-2 rounded-t-lg" id="asian-tab" data-tabs-target="#asian" type="button" role="tab" aria-controls="asian" aria-selected="false">Asian</button>
                     </li>
