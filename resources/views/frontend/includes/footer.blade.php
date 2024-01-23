@@ -12,21 +12,24 @@
             <section class="footer-link-section">
                 <p class="footer-link-section-title !text-footer-cyan whitespace-nowrap">Follow Us</p>
                 <ul class="footer-link-section-list">
-                    <a href="https://youtube.com/@frozenaircondsdnbhd8042">
-                        <li class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
+
+                    <li>
+                        <a href="https://youtube.com/@frozenaircondsdnbhd8042" class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
                             <i class="fa-brands fa-youtube !text-[red]"></i>Youtube
-                        </li>
-                    </a>
-                    <a href="https://www.facebook.com/FrozenForAlatGanti">
-                        <li class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.facebook.com/FrozenForAlatGanti" class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
                             <i class="fa-brands fa-facebook !text-[#4267B2]"></i>Facebook
-                        </li>
-                    </a>
-                    <a href="https://www.tiktok.com/@alatganti_aircond_ahseng">
-                        <li class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.tiktok.com/@alatganti_aircond_ahseng" class="flex justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500">
                             <i class="fa-brands fa-tiktok !text-white"></i>Tiktok
-                        </li>
-                    </a>
+                        </a>
+                    </li>
 
                 </ul>
             </section>
@@ -38,11 +41,11 @@
                     <i class="fa-solid fa-phone"></i>
                 </p>
                 <ul class="footer-link-section-list !text-white">
-                    <a href="https://www.wasap.my/60172430100">
-                        <li class="flex justify-center md:justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500 whitespace-nowrap">
+                    <li>
+                        <a href="https://www.wasap.my/60172430100" class="flex justify-center md:justify-start gap-x-[.25rem] footer-link !text-white hover:!text-blue-500 whitespace-nowrap">
                             <i class="fa-brands fa-whatsapp !text-[green]"></i>017-243 0100
-                        </li>
-                    </a>
+                        </a>
+                    </li>
                 </ul>
             </section>
 
@@ -50,16 +53,19 @@
             <section class="footer-link-section">
                 <p class="footer-link-section-title text-center md:!text-start !text-footer-thinker whitespace-nowrap">Policy</p>
                 <ul class="footer-link-section-list !text-white">
-                    <a href="{{ route('policy.privacy-policy') }}" target="_blank">
-                        <li class="footer-link whitespace-nowrap hover:!text-blue-500">
+
+                    <li>
+                        <a href="{{ route('policy.privacy-policy') }}" target="_blank" class="footer-link whitespace-nowrap hover:!text-blue-500">
                             Privacy Policy
-                        </li>
-                    </a>
-                    <a href="{{ route('policy.terms-of-use') }}" target="_blank">
-                        <li class="footer-link whitespace-nowrap hover:!text-blue-500">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('policy.terms-of-use') }}" target="_blank" class="footer-link whitespace-nowrap hover:!text-blue-500">
                             Terms of Use
-                        </li>
-                    </a>
+                        </a>
+                    </li>
+
                 </ul>
             </section>
 
