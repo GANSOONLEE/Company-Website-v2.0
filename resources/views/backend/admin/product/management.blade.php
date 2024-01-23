@@ -27,6 +27,7 @@
                     <span class="block md:hidden">@lang('product.content')</span>
                 </th>
                 <th class="whitespace-nowrap hidden md:!table-cell">@lang('product.category')</th>
+                <th class="whitespace-nowrap hidden md:!table-cell py-3">@lang('order.product-code')</th>
                 <th class="whitespace-nowrap hidden md:!table-cell py-3">@lang('Action')</th>
             </tr>
         </thead>
@@ -36,6 +37,12 @@
                     <td class="px-3 w-20 py-[.75rem] md:p-[0]">{{ $product->id }}</td>
                     <td class="block md:!table-cell w-96">{{ $product->name ?? ':(' }}</td>
                     <td class="block md:!table-cell w-60">{{ $product->product_category }}</td>
+                    
+                    <!-- If root -->
+                    @if (auth()->user()->roles()->first()->name === 'root')
+                    <td class="block md:!table-cell w-40">{{ $product->product_code }}</td>
+                    @endif
+
                     <td class="flex justify-content-start gap-x-4 align-items-center py-2">
                         <a class="w-18 flex justify-center btn btn-primary bg-primary text-nowrap" href="{{ route('backend.admin.product.edit', ["id" => $product->id]) }}"><i class="fa-solid fa-edit mr-2"></i>@lang('Edit')</a>
                         <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $product->id }}').submit() : null ;" class="w-18 flex justify-center btn btn-danger bg-danger text-nowrap ml-3"><i class="fa-solid fa-trash mr-2"></i>@lang('Delete')</a>
