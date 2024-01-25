@@ -7,7 +7,16 @@
 
     <!-- Tab <section> -->
 
-        <section class="mt-3">   
+        <section class="mt-3">
+
+            <!-- Tooltip <section> !only-phone -->
+
+            <section class="fixed w-screen h-screen opacity-80 portrait:block landscape:hidden md:hidden bg-black">
+                <img class="absolute translate-y-1/4" src="https://assets-v2.lottiefiles.com/a/685770f2-1168-11ee-8e72-c72882ce9865/gLAYGvglay.gif" alt="">
+                <p class="text-xl text-white text-center mt-4 whitespace-normal">Please turn your phone to landspace</p>
+            </section>
+
+            <!-- Tooltip </section> !only-phone -->
 
             <div class="border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center ml-6" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">

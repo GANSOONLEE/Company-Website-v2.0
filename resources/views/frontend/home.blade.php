@@ -20,10 +20,17 @@
         <div class="relative z-[10] py-5 px-7">
     
             <!-- #TODO 加入新内容 -->
-            <h1 class="!text-3xl text-center whitespace-normal">Frozen Aircond Sdn. Bhd.</h1>
+            <h1 class="!text-3xl text-center whitespace-normal flex flex-col md:flex-row gap-x-2 justify-center">
+                <span>
+                    Frozen Air Cond
+                </span>
+                <span>
+                    Sdn. Bhd.
+                </span>
+            </h1>
             <h3 class="text-lg text-center text-gray-800">Since 2010</h3>
 
-            <div class="section flex flex-col md:flex-row w-full md:w-auto">
+            <div class="section flex flex-col lg:flex-row w-full md:w-auto">
     
                 <div class="area w-full max-w-[100%] md:max-w-[50%]">
                     <h4 class="section-title text-xl text-center font-bold mb-2 md:mb-[0]">Who are we</h4>

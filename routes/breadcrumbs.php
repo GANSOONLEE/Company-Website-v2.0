@@ -38,12 +38,27 @@ Breadcrumbs::for('frontend.product.list', function (BreadcrumbTrail $trail, $cat
 // Breadcrumbs for the 'frontend.product.query'
 Breadcrumbs::for('frontend.product.query', function (BreadcrumbTrail $trail, $category, $model) {
     $trail->parent('frontend.product.list', $category);
-    $trail->push($model, route('frontend.product.query', ["category" => $category, "model" => $model]));
+    $model = $model === "" ? null : $model;
+    $trail->push($model ?? '*', route('frontend.product.query', ["category" => $category, "model" => $model ?? '*']));
 });
 
 // Breadcrumbs for the 'frontend.product.detail'
 Breadcrumbs::for('frontend.product.detail', function (BreadcrumbTrail $trail, $product) {
-    $trail->parent('frontend.product.list', $product->product_category);
+
+    // get model list
+    $productModel = '';
+    $modelArray = \App\Domains\Model\Models\Model::all()->pluck('name')->toArray();
+    foreach ($modelArray as $model) {
+        if(str_contains($product->names()->first()->name, $model)) {
+            $productModel = $model;
+            break;
+        }else{
+            $productModel = "";
+            continue;
+        };
+    };
+    
+    $trail->parent('frontend.product.query', $product->product_category, $productModel);
     $trail->push($product->id, route('frontend.product.detail', ['productCode' => $product->product_code]));
 });
 

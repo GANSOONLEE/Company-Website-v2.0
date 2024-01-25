@@ -75,7 +75,7 @@
     </div>
 
     <!-- Promotion Side-Popup -->
-    <div class="fixed z-99 top-30 -right-[5px]">
+    <div class="fixed z-99 top-36 -right-[5px]">
         <a href="{{ route('frontend.home') }}#promotionControls" class="relative flex items-center max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[11px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
             <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
         </a>
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Wahtapps Side-Popup -->
-    <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed z-99 top-[11.6rem] -right-[5px] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
+    <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed z-99 top-[13.5rem] -right-[5px] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
         <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-200 hover:text-white dark:text-white"><i class="fa-brands fa-whatsapp text-lg"></i>Whatsapp</h5>
     </a>
 
