@@ -34,16 +34,16 @@
                     <!-- Image Selector -->
                     <div class="image-selector" data-item="image-selector">
 
-                        <div class="flex justify-center items-center relative item" data-item="image-selector">
-                            <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                        <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector">
+                            <img class="absolute z-9 opacity-45 w-full object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                             <img data-item="image-selector" src="{{ asset('storage/' . $productCover) }}" alt=""
                                 class="item-image" data-image="image-selector">
                         </div>
 
                         <!-- Item -->
-                        @foreach ($productImages as $productImage)
-                            <div class="flex justify-center items-center relative item" data-item="image-selector">
-                                <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                        @foreach ($productImages as $productImage)  
+                            <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector">
+                                <img class="absolute z-9 opacity-45 w-full object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                                 <img data-item="image-selector"
                                     src="{{ str_replace('#', '%23', asset('storage/' . $productImage)) }}" alt=""
                                     class="item-image" data-image="image-selector">

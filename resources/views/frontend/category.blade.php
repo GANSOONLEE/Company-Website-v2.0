@@ -11,7 +11,7 @@
             <img src="{{ asset('images/bee.png') }}" alt="" class="h-full w-full object-cover brightness-110">
         </div>
         
-        <div class="relative top-0 left-0 flex flex-col pl-6 pt-4 z-9">
+        <div class="relative top-0 left-0 flex flex-col px-4 pt-4 z-9">
     
             @foreach ($categoryTitle as $index => $categoryArray)
             
@@ -23,7 +23,7 @@
         
                         @foreach ($categoryArray as $category)
                             <a class="category-box md:w-[29%] h-full w-[calc(100% - 20px)] rounded-[4px] overflow-hidden shadow" href="{{ route('frontend.product.list', ['category' => $category->name]) }}">
-                                <section class="">
+                                <section>
                                     <img class="category-cover" src="{{ asset($category->cover)}}" alt="">
                                     <div class="category-description bg-white px-4 py-3 text-lg font-bold">
                                         <p class="category-description-text">
@@ -43,19 +43,23 @@
 
     </div>
 
-
     <!-- Promotion Side-Popup -->
-    <a href="{{ route('frontend.home') }}#promotionControls" class="z-99 flex items-center fixed top-30 right-[0] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[11px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
-        <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
-    </a>
+    <div class="fixed z-99 top-36 -right-[5px]">
+        <a href="{{ route('frontend.home') }}#promotionControls" class="relative flex items-center max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[11px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
+            <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-900 hover:text-blue-700 dark:text-white"><i class="fa-solid fa-bullhorn text-lg"></i>Promotion</h5>
+        </a>
+        {{-- <div class=" animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]"> --}}
+            <img class="flex justify-center items-center absolute -bottom-[1rem] left-12 w-6 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]" src="{{ asset('images/hand-pointer.svg') }}" alt="">
+        {{-- </div> --}}
+    </div>
 
     <!-- Wahtapps Side-Popup -->
-    <a href="https://api.whatsapp.com/send?phone=60172430100" class="z-99 flex items-center fixed top-[11.6rem] right-[0] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
+    <a href="https://api.whatsapp.com/send?phone=60172430100" class="flex items-center fixed z-99 top-[13.5rem] -right-[5px] max-w-sm py-[0.425rem] px-3 pr-8 translate-x-[5px] bg-green-800 border !border-green-800 rounded-lg shadow hover:bg-green-900 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 animate-[bounce_.6s_ease-in-out_alternate-reverse_infinite]">
         <h5 class="flex items-center gap-x-[1rem] text-base font-bold tracking-tight text-gray-200 hover:text-white dark:text-white"><i class="fa-brands fa-whatsapp text-lg"></i>Whatsapp</h5>
     </a>
 
-@endsection
+    <a href="#top" class="flex justify-center itesm-center w-10 h-10 fixed right-6 bottom-8 shadow rounded-full bg-white z-99">
+        <i class="fa-solid fa-arrow-up text-base"></i>
+    </a>
 
-@push('before-body')
-    <link rel="stylesheet" href="{{asset('css/frontend/category.css')}}">
-@endpush
+@endsection
