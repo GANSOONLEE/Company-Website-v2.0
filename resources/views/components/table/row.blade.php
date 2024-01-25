@@ -17,16 +17,16 @@
     </td>
     <td class="flex justify-between items-center px-6 py-4">
         @if ($attributes['areTrashed'])
-            <button data-bs-toggle="modal" data-bs-target="#editModalForm" id="editButton" class="font-medium text-blue-600 dark:text-blue-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:text-slate-700 disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Edit')</button>
+            <button data-bs-toggle="modal" data-bs-target="#editModalForm" id="editButton" class="font-medium text-blue-600 dark:text-blue-500 hover:underline disabled:hover:no-underline disabled:text-slate-700 disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Edit')</button>
             <x-form.delete id="deleteForm" :action="route('backend.admin.user.delete', ['id' => $attributes['id']])">
-                <button class="font-medium text-red-600 dark:text-red-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:text-slate-700 disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Delete')</button>
+                <button class="font-medium text-red-600 dark:text-red-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Delete')</button>
             </x-form.delete>
         @else
-            <x-form.patch :action="route('backend.admin.user.restore', ['id' => $attributes['id']])">
-                <button class="font-medium text-green-600 dark:text-green-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:text-slate-700 disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Restore')</button>
+            <x-form.patch id="editForm" :action="route('backend.admin.user.restore', ['id' => $attributes['id']])">
+                <button class="font-medium text-green-600 dark:text-green-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('Restore')</button>
             </x-form.patch>
             <x-form.delete id="destoryForm" :action="route('backend.admin.user.destroy', ['id' => $attributes['id']])">
-                <button class="font-medium text-red-600 dark:text-red-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:text-slate-700 disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('ForceDelete')</button>
+                <button class="font-medium text-red-600 dark:text-red-500 hover:underline disabled:text-gray-600 disabled:hover:no-underline disabled:cursor-not-allowed dark:disabled:text-slate-700" {{ $attributes['weight'] }} >@lang('ForceDelete')</button>
             </x-form.delete>
         @endif
     </td>
