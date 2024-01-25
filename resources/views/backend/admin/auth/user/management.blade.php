@@ -12,7 +12,7 @@
     <!-- Modal -->
     <div class="modal fade text-black" id="editModalForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog dark:text-white">
-            <x-form.patch>
+            <x-form.patch :id="'editForm'">
                 <div class="modal-content dark:bg-gray-800">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="editModalFormLabel">@lang('Edit')</h1>
@@ -150,7 +150,7 @@
 
         function initForm(data){
 
-            let form = document.querySelector('form');
+            let form = document.querySelector('form#editForm');
 
             form.querySelector('[name="id"]').value = data.id;
             form.querySelector('[name="name"]').value = data.name;
@@ -170,10 +170,12 @@
         });
         
         let destoryForm = document.querySelector('#destoryForm');
-        destoryForm.addEventListener('submit', e => {
-            confirm('Are you sure you want to delete this user foreveer?') ?
-                destoryForm.submit() :
-                e.preventDefault();
-        });
+        if(destoryForm){
+            destoryForm.addEventListener('submit', e => {
+                confirm('Are you sure you want to delete this user foreveer?') ?
+                    destoryForm.submit() :
+                    e.preventDefault();
+            });
+        }
     </script>
 @endpush
