@@ -404,7 +404,7 @@ class ProductService extends BaseService
             $product->product_code
         );
 
-        event(new ProductCreated($product));
+        event(new ProductUpdated($product));
         return $product;
     }
 
