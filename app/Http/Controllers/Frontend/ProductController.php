@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function list(string $category): mixed
     {
         $productData = $this->frontendProductService->list($category, 48);
-        $directory = "storage/product/$category";
+        $directory = "product/$category";
         $modelData = $this->modelData;
         
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category'));

@@ -46,7 +46,23 @@
                                 <div class="custom-card-image flex justify-center items-center">
 
                                     <img class="absolute z-9 opacity-20 w-2/3" src="{{ asset("images/watermark.png") }}" alt="">
-                                    <img class="product-cover" src="{{ asset("$directory/$product->product_code/cover.png") }}" alt="">
+
+                                    @php
+                                        $files = Storage::disk('public')->allFiles("$directory/$product->product_code");
+                                        $productCover = '';
+
+                                        if(count($files) > 0) {
+                                            foreach ($files as $file) {
+                                                $name = basename(substr($file, 0, strripos($file, '.')));
+                                                if($name === 'cover') {
+                                                    $productCover = $file;
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                    @endphp
+                                    <img class="product-cover" src="{{ asset("storage/$productCover") }}" alt="">
 
                                     <div class="see-more">
                                         See More
@@ -54,7 +70,7 @@
                                 </div>
                                 <div class="custom-card-header">
                                     @foreach (($product->names()->get()) as $names)
-                                        <p class="whitespace-normal">{{ path_decode($names->name) }}</p>
+                                        <p class="whitespace-normal">{{ $names->name }}</p>
                                     @endforeach
                                 </div>
                             </div>
