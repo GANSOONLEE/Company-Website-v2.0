@@ -60,8 +60,8 @@
                                                 }
                                             }
                                         }
-
                                     @endphp
+                                    
                                     <img class="product-cover" src="{{ asset("storage/$productCover") }}" alt="">
 
                                     <div class="see-more">

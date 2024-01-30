@@ -148,6 +148,7 @@ class ProductService extends BaseService
             'product_code' => $data['product_code'],
             'product_category' => $data['product_category'] ?? null,
             'product_status' => $data['product_status'] ?? 'public',
+            'remarks' => $data['remarks'] ?? 'null',
         ]);
     }
 
