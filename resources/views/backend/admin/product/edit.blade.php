@@ -10,10 +10,6 @@
 
 @section('main')
 
-@inject('models', 'App\Domains\Model\Models\Model')
-@inject('brands', 'App\Domains\Brand\Models\Brand')
-@inject('categories', 'App\Domains\Category\Models\Category')
-
 <x-form.patch :action="route('backend.admin.product.update', ['id' => $product->id])" class="overscroll-y-auto">
 
     <!-- Product Image Upload -->
@@ -75,7 +71,7 @@
                     $id = Str::random(12);
 
                     $matchedModel = '';
-                    foreach ($models::all() as $model) {
+                    foreach ($models::sort('name')->get() as $model) {
                         if (stripos($name, $model->name) !== false) {
                             $matchedModel = $model->name;
                             break;

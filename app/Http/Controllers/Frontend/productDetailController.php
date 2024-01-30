@@ -29,8 +29,10 @@ class productDetailController extends Controller
         $productImage = Storage::disk($disk)->files($directory);
         foreach($productImage as $image){
 
+            $name = basename(substr($image, 0, strripos($image, '.')));
+
             // Are Product Cover
-            if(strpos($image, 'cover') && $productCover === ''){
+            if($name === 'cover' && $productCover === ''){
                 $productCover = $image;
                 continue;
             }else{
