@@ -41,17 +41,33 @@
 
                                 <h3 class="text-2xl font-bold mb-[1rem]">{{ $index }}</h3>
 
-                                <div class="flex flex-wrap justify-start gap-x-12">
+                                <div class="flex flex-wrap justify-start gap-x-12 gap-y-4">
 
                                     @foreach ($item as $product)
 
-                                        <a class="product-detail-href bg-white" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
+                                        <a class="product-detail-href bg-white mt-4" href="{{ route('frontend.product.detail', ['productCode' => $product->product_code]) }}">
                                             <div class="custom-card">
+
+                                                @php
+                                                    $files = Storage::disk('public')->allFiles("product/$product->product_category/$product->product_code");
+                                                    $productCover = '';
+
+                                                    if(count($files) > 0) {
+                                                        foreach ($files as $file) {
+                                                            $name = basename(substr($file, 0, strripos($file, '.')));
+                                                            if($name === 'cover') {
+                                                                $productCover = $file;
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+
+                                                @endphp
 
                                                 <div class="custom-card-image flex justify-center items-center">
                                                     <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                                                     <img class="product-cover"
-                                                        src="{{ asset("storage/product/$product->product_category/$product->product_code/cover.png") }}"
+                                                        src="{{ asset("storage/$productCover") }}"
                                                         alt="">
                                                     <div class="see-more">
                                                         See More
