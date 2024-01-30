@@ -59,7 +59,7 @@ class ProductController extends Controller
         $productData = $this->frontendProductService->searchProductByCategoryAndModel($data, 48);
 
         // Defined variable
-        $directory = "storage/product/$category";
+        $directory = "product/$category";
         $modelData = $this->modelData;
 
         return view('frontend.product', compact('productData', 'directory', 'modelData', 'category', 'model'));
