@@ -19,7 +19,7 @@
                 <!-- Image Preview -->
                 <div class="relative image-preview-container" data-item="image-selector">
                     <img class="absolute z-9 opacity-20 w-[60%] object-cover" src="{{ asset('images/watermark.png') }}" alt="">
-                    <img data-item="image-selector" src="{{ asset('storage/' . $productCover) }}" alt=""
+                    <img src="{{ asset('storage/' . $productCover) }}" alt=""
                         class="image-preview item-image" data-preview="image-selector">
                 </div>
 
@@ -32,19 +32,19 @@
                     </div>
 
                     <!-- Image Selector -->
-                    <div class="image-selector" data-item="image-selector">
+                    <div class="image-selector">
 
-                        <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector">
+                        <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector" data-image="image-selector">
                             <img class="absolute z-9 opacity-45 w-full object-cover" src="{{ asset('images/watermark.png') }}" alt="">
-                            <img data-item="image-selector" src="{{ asset('storage/' . $productCover) }}" alt=""
-                                class="item-image" data-image="image-selector">
+                            <img src="{{ asset('storage/' . $productCover) }}" alt=""
+                                class="item-image" >
                         </div>
 
                         <!-- Item -->
                         @foreach ($productImages as $productImage)  
-                            <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector">
+                            <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector" data-image="image-selector">
                                 <img class="absolute z-9 opacity-45 w-full object-cover" src="{{ asset('images/watermark.png') }}" alt="">
-                                <img data-item="image-selector"
+                                <img
                                     src="{{ str_replace('#', '%23', asset('storage/' . $productImage)) }}" alt=""
                                     class="item-image" data-image="image-selector">
                             </div>

@@ -230,13 +230,14 @@ class ImageSelector{
         this.container = imagePreview.find(`[data-item="${this.selectorID}"]`)
 
         // Image
-        let images = document.querySelectorAll(`img[data-item="${this.selectorID}"]`);
+        let images = document.querySelectorAll(`div[data-item="${this.selectorID}"]`);
         images.forEach(image => {
+            console.log(image)
             image.addEventListener('mouseenter',()=>{
-                this.imagePreview(image.src)
+                this.imagePreview(image.querySelector('img.item-image').src)
             })
             image.addEventListener('dblclick',()=>{
-                this.imageZoom(image.src)
+                this.imageZoom(image.querySelector('img.item-image').src)
 
             })
         });
