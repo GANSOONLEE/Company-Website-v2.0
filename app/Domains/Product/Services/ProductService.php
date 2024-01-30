@@ -175,9 +175,7 @@ class ProductService extends BaseService
             for($index = 0; $index < $count; $index++)
             {
 
-                $fullname = path_encode(($model[$index] ?? '') . ' ' . $modelSerial[$index]);
-
-                // $fullname = path_encode($model[$index] . ' ' . $modelSerial[$index]);
+                $fullname = ($model[$index] ?? '') . ' ' . $modelSerial[$index];
 
                 DB::table('products_name')->insert([
                     'product_code' => $product_code,
@@ -230,9 +228,9 @@ class ProductService extends BaseService
                 DB::table('products_brand')->insert([
                     'product_code' => $product_code,
                     'sku_id' => $skuID,
-                    'brand' => path_encode($brand[$index]),
-                    'code' => path_encode($brand_code[$index]),
-                    'frozen_code' => path_encode($frozen_code_element),
+                    'brand' => $brand[$index],
+                    'code' => $brand_code[$index],
+                    'frozen_code' => $frozen_code_element,
                 ]);
                 
                 $skuIDs[] = $skuID;
