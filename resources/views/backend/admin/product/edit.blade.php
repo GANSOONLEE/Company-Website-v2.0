@@ -71,7 +71,7 @@
                     $id = Str::random(12);
 
                     $matchedModel = '';
-                    foreach ($models::sort('name')->get() as $model) {
+                    foreach ($models::orderBy('name')->get() as $model) {
                         if (stripos($name, $model->name) !== false) {
                             $matchedModel = $model->name;
                             break;
