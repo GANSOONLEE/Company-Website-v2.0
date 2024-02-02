@@ -32,7 +32,7 @@
                     </a>
     
                     <x-form.post :action="route('backend.user.order.store')">
-                        <button type="submit" href="{{ route('backend.user.order.store') }}" class="flex items-center justify-center text-white !bg-green-700 hover:!bg-green-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                        <button type="submit" href="{{ route('backend.user.order.store') }}" {{ $cartData->count() > 0 ? "" : "disabled" }} class="flex items-center justify-center text-white !bg-green-700 hover:!bg-green-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-sm text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 disabled:!bg-gray-600">
                             <i class="fa-solid fa-file mr-2"></i>
                             Make order
                         </button>
