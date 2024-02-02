@@ -11,6 +11,7 @@ const mix = require("laravel-mix");
 const tailwindcss = require("tailwindcss");
 const { ProvidePlugin } = require("webpack");
 const path = require('path');
+const minify = require('html-minifier').minify;
 
 mix.webpackConfig({
     stats: {
@@ -63,9 +64,7 @@ module.exports = {
         filename: 'app.js'
     },
     plugins: [
-        new ProvidePlugin({
-            React: "react"
-        })
+
     ],
     resolve: {
         extensions: [".jsx", ".js"]

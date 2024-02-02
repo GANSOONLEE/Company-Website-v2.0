@@ -14,7 +14,7 @@
     <div class="content relative z-10 bg-white w-full overflow-hidden">
 
         <div class="absolute top-0 left-0 z-[1] w-full h-full">
-            <img src="{{ asset('images/background.png') }}" alt="" class="h-full w-full object-cover brightness-110">
+            <img src="{{ asset('images/background.webp') }}" width="540" height="800" alt="" class="h-full w-full object-cover brightness-110">
         </div>
 
         <div class="relative z-[10] py-5 px-7">
