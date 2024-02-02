@@ -4,7 +4,7 @@
 
     <!-- Company Logo -->
     <div class="flex justify-center items-center company-logo w-[4rem]">
-        <img src="{{asset('image/logo-square-lite.png')}}" alt="" class="company-logo-image !w-full h-auto" width="484" height="484">
+        <img src="{{asset('image/logo-square-lite.webp')}}" alt="" class="company-logo-image !w-full h-auto" width="484" height="484">
     </div>
 
     <label class="cursor-pointer" for="menu-button">
