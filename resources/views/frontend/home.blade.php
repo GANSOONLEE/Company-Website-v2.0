@@ -44,8 +44,8 @@
                     </div>
                 </div>
     
-                <div class="area">
-                    <img src="{{ asset('image/frozen air cond.webp') }}" alt="">
+                <div class="area !w-2/3">
+                    <img src="{{ asset('images/funny-1.png') }}" alt="">
                 </div>
             </div>
 
