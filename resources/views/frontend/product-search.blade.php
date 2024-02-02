@@ -101,6 +101,23 @@
             </section>
 
         </div>
+
+        @auth
+            @if (auth()->user()->getRoleEntity()->hasPermission('user_backend'))
+                <div class="action-bar text-white !z-99999">
+                    <a href="{{ route('backend.user.cart.create') }}">
+                        <div class="cart-container">
+                            @if (auth()->user()->getCartNumber() > 0)
+                                <div class="notification" id="notification-total-cart">{{ auth()->user()->getCartNumber() }}
+                                </div>
+                            @endif
+                            <i class="icon fa-solid fa-cart-shopping"></i>
+                        </div>
+                    </a>
+                </div>
+            @endif
+        @endauth
+
     </div>
 
 @endsection
