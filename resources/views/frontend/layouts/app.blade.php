@@ -45,7 +45,8 @@
 
     <!-- Pusher -->
     <script defer src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
-
+    <link rel="stylesheet" href="{{ asset('css\frontend\product-detail.css') }}">
+    
     @stack('before-body')
 
     <title>{{ config('app.name') }} | @yield('title')</title>
