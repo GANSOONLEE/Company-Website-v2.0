@@ -25,7 +25,13 @@ class ProductDeleted extends BaseEvent
         DB::table('carts')
             ->leftJoin('products_brand', 'products_brand.code', '=', 'carts.sku_id')
             ->leftJoin('products', 'products.product_code', '=', 'products_brand.product_code')
-            ->whereNull('products.product_code')
+            ->where('products.id', $product->id)
+            ->delete();
+            
+        DB::table('orders_detail')
+            ->leftJoin('products_brand', 'products_brand.code', '=', 'orders_detail.sku_id')
+            ->leftJoin('products', 'products.product_code', '=', 'products_brand.product_code')
+            ->where('products.id', $product->id)
             ->delete();
 
     }

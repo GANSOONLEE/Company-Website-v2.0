@@ -167,13 +167,14 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\NodeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
         Barryvdh\TranslationManager\TranslationServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\HtmlServiceProvider::class,
-        App\Providers\NodeServiceProvider::class,
     ])->toArray(),
 
     /*

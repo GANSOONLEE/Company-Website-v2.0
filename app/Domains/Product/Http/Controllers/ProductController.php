@@ -162,7 +162,7 @@ class ProductController
      */
     public function delete($id): mixed
     {
-        Product::where('id', $id)->delete();
+        $this->productService->delete($id);
         return redirect()->back()->with('success', __('product.delete-product-success', ["id" => $id]));
     }
 

@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-require_once app_path('Helpers/Global/SystemHelper.php');
-
 // Language
 
 Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
@@ -33,8 +31,6 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 Route::group(['as' => 'frontend.', 'middleware' => 'login'], function () {
     includeRouteFiles(__DIR__ . '/frontend/');
 });
-
-
 
 /**
  * Backend Customer
@@ -53,7 +49,6 @@ Route::group(['prefix' => 'user', 'as' => 'backend.user.', 'middleware' => 'user
 Route::group(['prefix' => 'admin', 'as' => 'backend.admin.', 'middleware' => 'admin'], function () {
     includeRouteFiles(__DIR__ . '/backend/admin/');
 });
-
 
 /**
  * Policy
@@ -82,7 +77,6 @@ Route::group(['prefix' => 'service', 'as' => 'service.'], function () {
     includeRouteFiles(__DIR__ . '/service/');
 });
 
-
 Route::get('/translation/', function () {
     $groups = DB::table('ltm_translations')
                 ->select('group')
@@ -96,6 +90,5 @@ Route::get('/translation/', function () {
 
     return view('vendor.translation-manager.index', ["groups" => $groups, "group" => "", "locales" => $locales]);
 })->name('translation');
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
