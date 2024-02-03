@@ -79,7 +79,7 @@
                         <p class="title !text-xl">Available Car Model</p>
                         <ul class="item-list !text-base">
                             @foreach ($productData->getProductName() as $name)
-                                <li class="item flex-row">
+                                <li class="item flex flex-row">
                                     <span></span>
                                     <p class="item-text">{{ $name->name }}</p>
                                 </li>
