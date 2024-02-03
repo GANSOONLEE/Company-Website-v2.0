@@ -50,7 +50,6 @@
                             </div>
                         @endforeach
 
-
                     </div>
 
                     <!-- Next Button -->
@@ -256,7 +255,7 @@
                 <div class="slot">
                     <span
                         class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">1
-                        of {{ 1 + count($productImages) }}</span>
+                        of {{ count($productImages) + count($productData->getProductBrand()) }}</span>
                     <div class="relative flex justify-center items-center ">
                         
                         <img class="absolute z-9 opacity-20 !w-[80%] !h-auto object-cover" src="{{ asset('images/watermark.png') }}" alt="">
@@ -270,13 +269,41 @@
                     <div class="slot hidden">
                         <span
                         class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">{{ $index + 2 }}
-                        of {{ 1 + count($productImages) }}</span>
+                        of {{ count($productImages) + count($productData->getProductBrand()) }}</span>
 
                         <div class="relative flex justify-center items-center ">
                             <img class="absolute z-9 opacity-20 !w-[80%] !h-auto object-cover" src="{{ asset('images/watermark.png') }}" alt="">
                             <img class="w-full object-cover"
                             src="{{ str_replace('#', '%23', asset('storage/' . $productImage)) }}"
                             alt="Product Image {{ $index + 1 }}">
+                        </div>
+                    </div>
+                @endforeach
+
+                <!-- Brand Item -->
+                @foreach ($productData->getProductBrand() as $index => $brand)  
+
+                    @if($index === 0)
+
+                    @endif
+
+                    {{-- <div class="flex justify-center items-center relative item border !border-gray-300" data-item="image-selector" data-image="image-selector">
+                        <img class="absolute z-9 opacity-45 w-full object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                        <img
+                            src="{{ str_replace('#', '%23', asset('storage/'.$brandCover[$brand->sku_id][0])) }}" alt=""
+                            class="item-image" data-image="image-selector">
+                    </div> --}}
+
+                    <div class="slot hidden">
+                        <span
+                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">{{ count($productImages) + $index + 1 }}
+                        of {{ count($productImages) + count($productData->getProductBrand()) }}</span>
+
+                        <div class="relative flex justify-center items-center ">
+                            <img class="absolute z-9 opacity-20 !w-[80%] !h-auto object-cover" src="{{ asset('images/watermark.png') }}" alt="">
+                            <img class="w-full object-cover"
+                            src="{{ str_replace('#', '%23', asset('storage/' . $brandCover[$brand->sku_id][0] )) }}"
+                            alt="Product Image {{ count($productImages) + 2 }}">
                         </div>
                     </div>
                 @endforeach
@@ -319,10 +346,9 @@
 @endpush
 
 @push('after-body')
-    <script src="{{ asset('js\frontend\product-detail.js') }}"></script>
+    <script defer src="{{ asset('js\frontend\product-detail.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const mainImage = document.getElementById("mainImage");
             const productImages = document.querySelectorAll(".relative div.slot");
             const prevBtn = document.getElementById("prevBtn");
             const nextBtn = document.getElementById("nextBtn");
