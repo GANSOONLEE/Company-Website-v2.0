@@ -296,7 +296,7 @@
 
                     <div class="slot hidden">
                         <span
-                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">{{ count($productImages) + $index + 1 }}
+                        class="flex justify-center items-center absolute bottom-4 left-4 bg-gray-500 text-white opacity-60 rounded-full m-3 px-[.5rem] py-1 z-9999">{{ count($productImages) + $index + 2 }}
                         of {{ count($productImages) + count($productData->getProductBrand()) }}</span>
 
                         <div class="relative flex justify-center items-center ">
