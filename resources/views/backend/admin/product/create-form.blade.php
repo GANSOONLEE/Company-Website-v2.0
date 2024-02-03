@@ -32,7 +32,7 @@
         <h4 h4 class="text-2xl mb-4">@lang('product.category')</h4>
         <select name="product_category" type="text" class="form-select rounded-sm dark:bg-gray-700 dark:text-white" required>
             <option value="" hidden selected>@lang('product.category')</option>
-            @foreach ($categories::all() as $category)
+            @foreach ($categories::orderBy('name')->get() as $category)
                 <option value="{{ $category->name }}">{{ $category->name }}</option>
             @endforeach
         </select>
