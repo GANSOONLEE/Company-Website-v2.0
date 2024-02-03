@@ -17,7 +17,6 @@ if (! function_exists('includeFilesInFolder')) {
                 if (! $it->isDot() && $it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php') {
                     require $it->key();
                 }
-
                 $it->next();
             }
         } catch (Exception $e) {

@@ -45,7 +45,7 @@
 
                     <td class="flex justify-content-start gap-x-4 align-items-center py-2">
                         <a class="w-18 flex justify-center btn btn-primary bg-primary text-nowrap" href="{{ route('backend.admin.product.edit', ["id" => $product->id]) }}"><i class="fa-solid fa-edit mr-2"></i>@lang('Edit')</a>
-                        <a onclick="event.preventDefault(); confirm('{{ __('Delete-Confirm') }}') ? document.getElementById('delete-form-{{ $product->id }}').submit() : null ;" class="w-18 flex justify-center btn btn-danger bg-danger text-nowrap ml-3"><i class="fa-solid fa-trash mr-2"></i>@lang('Delete')</a>
+                        <a onclick="event.preventDefault(); confirm('{{ __('Do you make sure to delete it?') }}') ? document.getElementById('delete-form-{{ $product->id }}').submit() : null ;" class="w-18 flex justify-center btn btn-danger bg-danger text-nowrap ml-3"><i class="fa-solid fa-trash mr-2"></i>@lang('Delete')</a>
                         <a target="_product" class="w-18 flex justify-center btn btn-link text-nowrap ml-3" href="{{ route('frontend.product.detail', ["productCode" => $product->product_code]) }}"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>@lang('Link')</a>
                     </td>
                 </tr>

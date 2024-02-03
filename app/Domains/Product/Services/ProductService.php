@@ -562,4 +562,17 @@ class ProductService extends BaseService
             ->paginate(10)
             ->withQueryString();
     }
+
+    public function delete(string $id)
+    {
+        $product = Product::where('id', $id)->first();
+
+        try{
+            $product->delete();
+            event(new ProductDeleted($product));
+        }catch (Exception $e){
+            throw new GeneralException('Then has problem when delete the product.');
+        }
+
+    }
 }
