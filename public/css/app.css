@@ -16419,6 +16419,10 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1 !important;
   background-color: rgb(4 108 78 / var(--tw-bg-opacity)) !important;
 }
+.\!bg-orange-500{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 90 31 / var(--tw-bg-opacity)) !important;
+}
 .\!bg-primary-600{
   --tw-bg-opacity: 1 !important;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity)) !important;
@@ -17940,6 +17944,10 @@ aside#sidebar > div .active svg.w-3.h-3 {
 .peer:checked ~ .peer-checked\:rotate-180{
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.peer:checked ~ .peer-checked\:\!text-white{
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 .aria-selected\:\!border-b-blue-600[aria-selected="true"]{
   --tw-border-opacity: 1 !important;
