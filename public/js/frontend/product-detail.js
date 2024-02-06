@@ -18,10 +18,10 @@
 
 /** Init document */
 
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+// let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new bootstrap.Tooltip(tooltipTriggerEl)
+// })
 
 /** Form Valid */
 // #region
@@ -71,14 +71,14 @@ function validateForm(){
     // check are brand select
     let checkedRadio = $('input[type="radio"][name="brand"]:checked').length;
     if(!checkedRadio > 0){
-        tooltipList[0].show()
+        // tooltipList[0].show()
         return false;
     }
 
     // check are quantity invalid
     let checkedQuantity = $('input[type="number"]')[0].value;
     if(checkedQuantity == 0){
-        tooltipList[1].show()
+        // tooltipList[1].show()
         return false;
     }
 
@@ -213,31 +213,34 @@ class ImageSelector{
 
     init(){
         
-        let imagePreview = $(`#${this.selectorID}`); 
+        let imagePreview = document.querySelector('#' + this.selectorID);
 
         // Button
-        let prevButton = imagePreview.find('[data-button="prev"]');
-        let nextButton = imagePreview.find('[data-button="next"]');
+        let prevButton = imagePreview.querySelector('[data-button="prev"]');
+        let nextButton = imagePreview.querySelector('[data-button="next"]');
 
-        prevButton.click(()=>{
+        prevButton.addEventListener('click', e => {
             this.moveContainer('prev')                
         })
-        nextButton.click(()=>{
+        nextButton.addEventListener('click', e => {
             this.moveContainer('next')            
         })
 
         // Container
-        this.container = imagePreview.find(`[data-item="${this.selectorID}"]`)
+        this.container = imagePreview.querySelector(`[data-item="${this.selectorID}"]`)
 
         // Image
-        let images = document.querySelectorAll(`img[data-item="${this.selectorID}"]`);
+        let images = document.querySelectorAll(`div[data-item="${this.selectorID}"]`);
+
+        console.info(this.container);
+        console.info(images);
+
         images.forEach(image => {
             image.addEventListener('mouseenter',()=>{
-                this.imagePreview(image.src)
+                this.imagePreview(image.querySelector('.item-image').src)
             })
             image.addEventListener('dblclick',()=>{
-                this.imageZoom(image.src)
-
+                this.imageZoom(image.querySelector('.item-image').src)
             })
         });
 
@@ -246,17 +249,17 @@ class ImageSelector{
     moveContainer(mode){
 
         let container = this.container; 
-        let containerWidth = container.width();
+        let containerWidth = container.width;
 
         switch(mode){
 
             case 'prev':
-                let scrollX = container.scrollLeft() - containerWidth / 2;
+                let scrollX = container.scrollLeft - containerWidth / 2;
                 container.animate({ scrollLeft: scrollX }, 220);
                 break;
 
             case 'next':
-                let scrollXNext = container.scrollLeft() + containerWidth / 2;
+                let scrollXNext = container.scrollLeft + containerWidth / 2;
                 container.animate({ scrollLeft: scrollXNext }, 220);
                 break;
 
@@ -279,7 +282,7 @@ class ImageSelector{
             zoom.style.display = 'none';
         });
 
-        let imageZoom =$('#zoom-preview');
+        let imageZoom = document.querySelector('#zoom-preview');
 
         modal.addEventListener('click', e => {
             e.stopPropagation();
@@ -292,7 +295,7 @@ class ImageSelector{
             event.stopPropagation();
         })
 
-        imageZoom.attr('src', imgSrc);
+        imageZoom.setAttribute('src', imgSrc);
 
     }
 
@@ -301,7 +304,7 @@ class ImageSelector{
 let zoom = document.querySelector('div.zoom-preview');
 let modal = document.querySelector('#popupModal');
 let imagePreview = new ImageSelector('image-selector');
-let imagePreviewContainer = $(`#image-selector`);
+let imagePreviewContainer = document.querySelector(`#image-selector`);
 imagePreview.init();
 
 /**
