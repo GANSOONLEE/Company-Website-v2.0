@@ -133,11 +133,11 @@
                                     <label data-auth="{{ $auth }}" for="{{ $brand->code }}" class="brand-label" data-image="">
                                     @endif
 
-                                        <input name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
+                                        <input class="peer" name="brand" value="{{ $brand->code }}" id="{{ $brand->code }}" data-product="{{ $productData->product_code }}" data-category="{{ $productData->product_category }}" type="radio" {{ $permission }}>
                                         
-                                        <div class="brand-box">
+                                        <div class="brand-box peer-checked:!text-white">
 
-                                            <p class="brand-name">{{ str_replace('_', '/', $brand->code) }}</p>
+                                            <p class="">{{ str_replace('_', '/', $brand->code) }}</p>
 
                                             @if (file_exists(public_path("storage/brand/$brand->brand.svg")))
                                                 <img class="brand-logo" src="{{ asset(url_encode("storage/brand/$brand->brand.svg")) }}" alt="">
