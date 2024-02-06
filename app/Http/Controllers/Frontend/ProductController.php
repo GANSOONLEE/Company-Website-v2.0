@@ -78,7 +78,13 @@ class ProductController extends Controller
             return redirect()->route('frontend.product.index');
         }
 
-        $products = $this->frontendProductService->search($searchTerm);
+        $termArray = explode(' ', $searchTerm);
+        $termResult = '';
+        foreach($termArray as $term) {
+            $termResult = $termResult . $term . '%';
+        }
+
+        $products = $this->frontendProductService->search($termResult);
 
         $productData = [];
         foreach($products as $product) {
