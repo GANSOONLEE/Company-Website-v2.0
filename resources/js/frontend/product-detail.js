@@ -232,9 +232,6 @@ class ImageSelector{
         // Image
         let images = document.querySelectorAll(`div[data-item="${this.selectorID}"]`);
 
-        console.info(this.container);
-        console.info(images);
-
         images.forEach(image => {
             image.addEventListener('mouseenter',()=>{
                 this.imagePreview(image.querySelector('.item-image').src)
@@ -306,6 +303,15 @@ let modal = document.querySelector('#popupModal');
 let imagePreview = new ImageSelector('image-selector');
 let imagePreviewContainer = document.querySelector(`#image-selector`);
 imagePreview.init();
+
+// Setup Prev and Next Button
+let imageSelector = document.querySelector('.image-selector-container');
+let selectorPrevButton = imageSelector.querySelector('prev-button');
+let selectorNextButton = imageSelector.querySelector('next-button');
+
+console.log(imageSelector);
+console.log(selectorPrevButton);
+console.log(selectorNextButton);
 
 /**
  * Brand Image

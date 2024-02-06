@@ -37,7 +37,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 // 复制其他不需要编译的 JS 文件
-mix.copy('resources/js/frontend/product-detail.js', 'public/js/frontend/product-detail.js');
+// mix.copy('resources/js/frontend/product-detail.js', 'public/js/frontend/product-detail.js');
 
 // 在开发环境启用 source maps
 if (!mix.inProduction()) {

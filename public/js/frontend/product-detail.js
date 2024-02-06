@@ -216,24 +216,21 @@ class ImageSelector{
         let imagePreview = document.querySelector('#' + this.selectorID);
 
         // Button
-        let prevButton = imagePreview.querySelector('[data-button="prev"]');
-        let nextButton = imagePreview.querySelector('[data-button="next"]');
+        // let prevButton = imagePreview.querySelector('[data-button="prev"]');
+        // let nextButton = imagePreview.querySelector('[data-button="next"]');
 
-        prevButton.addEventListener('click', e => {
-            this.moveContainer('prev')                
-        })
-        nextButton.addEventListener('click', e => {
-            this.moveContainer('next')            
-        })
+        // prevButton.addEventListener('click', e => {
+        //     this.moveContainer('prev')                
+        // })
+        // nextButton.addEventListener('click', e => {
+        //     this.moveContainer('next')            
+        // })
 
         // Container
         this.container = imagePreview.querySelector(`[data-item="${this.selectorID}"]`)
 
         // Image
         let images = document.querySelectorAll(`div[data-item="${this.selectorID}"]`);
-
-        console.info(this.container);
-        console.info(images);
 
         images.forEach(image => {
             image.addEventListener('mouseenter',()=>{
@@ -243,30 +240,6 @@ class ImageSelector{
                 this.imageZoom(image.querySelector('.item-image').src)
             })
         });
-
-    }
-
-    moveContainer(mode){
-
-        let container = this.container; 
-        let containerWidth = container.width;
-
-        switch(mode){
-
-            case 'prev':
-                let scrollX = container.scrollLeft - containerWidth / 2;
-                container.animate({ scrollLeft: scrollX }, 220);
-                break;
-
-            case 'next':
-                let scrollXNext = container.scrollLeft + containerWidth / 2;
-                container.animate({ scrollLeft: scrollXNext }, 220);
-                break;
-
-            default:
-                break;
-
-        }
 
     }
 
@@ -301,11 +274,65 @@ class ImageSelector{
 
 }
 
+function moveContainer(mode) {
+
+    let container = imageSelector.querySelector('.image-selector'); 
+    let containerWidth = container.clientWidth;
+
+    console.info(mode);
+    console.info(container);
+    console.info(containerWidth);
+
+    switch(mode){
+
+        case 'prev':
+            let scrollXPrev = container.scrollLeft - containerWidth / 2;
+            // container.animate({ scrollLeft: scrollXPrev }, 220);
+            container.scroll(({
+                top: 0,
+                left: scrollXPrev,
+                behavior: "smooth",
+            }))
+            console.info(scrollXPrev);
+            break;
+
+        case 'next':
+            let scrollXNext = container.scrollLeft + containerWidth / 2;
+            // container.animate({ scrollLeft: scrollXNext }, 220);
+            container.scroll(({
+                top: 0,
+                left: scrollXNext,
+                behavior: "smooth",
+            }))
+            console.info(scrollXNext);
+            break;
+
+        default:
+            break;
+
+        }
+        
+    console.info(scrollX);
+    console.info(container.scrollLeft);
+}
+
 let zoom = document.querySelector('div.zoom-preview');
 let modal = document.querySelector('#popupModal');
 let imagePreview = new ImageSelector('image-selector');
 let imagePreviewContainer = document.querySelector(`#image-selector`);
 imagePreview.init();
+
+// Setup Prev and Next Button
+let imageSelector = document.querySelector('.image-selector-container');
+let selectorPrevButton = imageSelector.querySelector('.prev-button');
+let selectorNextButton = imageSelector.querySelector('.next-button');
+
+selectorPrevButton.addEventListener('click', e => {
+    moveContainer('prev')                
+})
+selectorNextButton.addEventListener('click', e => {
+    moveContainer('next')            
+})
 
 /**
  * Brand Image
